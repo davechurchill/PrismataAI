@@ -1,0 +1,209 @@
+{
+
+"Opening Books" :
+{
+    "DefaultOpeningBook" :
+    [
+        { "self" : [["Drone", 8], ["Engineer", 2]], "enemy" : [], "buyable" : ["Vivid Drone"], "buy" : ["Drone", "Drone", "Engineer"] },
+        { "self" : [["Drone", 7], ["Engineer", 2]], "enemy" : [], "buyable" : ["Vivid Drone"], "buy" : ["Drone", "Engineer", "Engineer"] },
+        { "self" : [["Drone", 8], ["Engineer", 4]], "enemy" : [], "buyable" : ["Vivid Drone"], "buy" : ["Drone", "Vivid Drone"] },
+        { "self" : [["Drone", 6], ["Engineer", 2]], "enemy" : [], "buy" : ["Drone", "Drone"] },
+        { "self" : [["Drone", 7], ["Engineer", 2]], "enemy" : [], "buy" : ["Drone", "Drone"] }
+    ],
+    
+    "BlueTurnTwoOpeningBook" :
+    [
+        { "self" : [["Drone", 6], ["Engineer", 2]], "enemy" : [], "buy" : ["Drone", "Drone"] },
+        { "self" : [["Drone", 7], ["Engineer", 2]], "enemy" : [], "buy" : ["Drone", "Drone"] },
+        { "self" : [["Drone", 8], ["Engineer", 2]], "enemy" : [], "buy" : ["Drone", "Blastforge"] },
+        { "self" : [["Drone", 9], ["Engineer", 2]], "enemy" : [], "buy" : ["Drone", "Blastforge"] }
+    ]
+},
+
+"Filters" :
+{
+    "BuyGK_Filter" : 
+    {
+        "default"    : false,
+        "cards"      : ["Drone", "Engineer", "Conduit", "Animus", "Blastforge", "Auric Impulse", "Auride Core", "Thermite Core", "Overwork", "Blood Pact", "Ossified Drone", "Steelforge"],
+        "allowResonate" : true,
+        "conditions" : 
+        [ 
+            [["lifespan", "=", 1]], 
+            [["isBlocker", "=", true], ["constructionTime", "=", 0], ["hasAbility", "=", false], ["attackProduced", "=", 0]]
+        ],
+        "stateConditions" :
+        [
+            [["cardName", "=", "Amporilla"], ["Tarsier", "<", 3]],
+            [["cardName", "=", "Savior"], ["Drone", "<", 12]],
+            [["cardName", "=", "Ferritin Sac"], ["Blastforge", ">", 0]]
+        ]
+    },
+    
+    "Docile_Filter" : 
+    {
+        "default"    : false,
+        "cards"      : ["Engineer", "Conduit", "Animus", "Blastforge", "Overwork", "Cluster Bolt"],
+        "conditions" : 
+        [ 
+            [["beginTurnAttack", ">", 0]],
+            [["isBlocker", "=", true], ["constructionTime", "=", 0], ["hasAbility", "=", false], ["attackProduced", "=", 0]]
+        ]
+    },
+    
+    "Ability_Filter" : 
+    {
+        "default"    : false,
+        "cards"      : ["Drake", "Grenade Mech"]
+    }
+},
+
+"Buy Limits" :
+{
+    "DefaultLimits" : [ ["Synthesizer", 1], ["Cauterizer", 2]],
+    "EconLimits" : [ ["Engineer", 2] ],
+    "EconLimits15" : [ ["Drone", 15], ["Engineer", 2] ],
+    "RedRushLimits" : [ ["Drone", 12], ["Engineer", 1], ["Conduit", 0], ["Blastforge", 0], ["Animus", 2]],
+    "GreenBlueLimits" : [ ["Engineer", 2], ["Animus", 0], ["Chrono Filter", 0]],
+    "DroneSpamLimits" : [ ["Engineer", 3]]
+},
+
+"Partial Players":
+{
+    "DefenseDefault" :          { "type":"Defense_Default"},
+    "DefenseRandom" :           { "type":"Defense_Random"},
+    "DefenseSolver" :           { "type":"Defense_Solver"},
+    "DefenseWillKnapsack" :     { "type":"Defense_GreedyKnapsack"},
+    
+    "AbilityDefault" :          { "type":"ActionAbility_Default"},
+    "AbilityDontAttack" :       { "type":"ActionAbility_DontAttack"},
+    "AbilityRandom" :           { "type":"ActionAbility_Random"},
+    "AvoidBreachGK" :           { "type":"ActionBuy_AvoidBreach" },
+    
+    "AvoidBreach_NoChill" :     { "type":"ActionAbility_AvoidBreachSolver", "maxUntapDrones":5, "chillCalculationMethod":"None"},
+    "AvoidBreach_SolveChill" :  { "type":"ActionAbility_AvoidBreachSolver", "maxUntapDrones":5, "chillCalculationMethod":"Solver", "maxChillSolverIterations":500},
+    "AbilityUntapBreach" :      { "type":"ActionAbility_UntapAvoidBreach"},
+    "AbilityAvoidAttackWaste" : { "type":"ActionAbility_AvoidAttackWaste"},
+    "AbilityAvoidEconomyWaste" :{ "type":"ActionAbility_AvoidEconomyWaste"},
+    
+    "AbilityAttackDefault" :    { "type":"ActionAbility_AttackDefault", "filter":"Ability_Filter"},
+    "AbilityEconomyDefault" :   { "type":"ActionAbility_EconomyDefault"},
+    "AbilityActivateUtility" :  { "type":"ActionAbility_ActivateUtility", "filter":"Ability_Filter"},
+    "AbilityFrontlineGKWill" :  { "type":"ActionAbility_FrontlineGreedyKnapsack"},
+    "AbilitySnipeGKWill" :      { "type":"ActionAbility_SnipeGreedyKnapsack"},
+    "AbilityChillGKWill" :      { "type":"ActionAbility_ChillGreedyKnapsack"},
+    "AbilityChillSolver" :      { "type":"ActionAbility_ChillSolver", "maxIterations":200},
+    
+    "ACDefault" :               { "type":"ActionAbility_Combination", "combination": ["AbilityEconomyDefault", "AbilityAttackDefault", "AbilityActivateUtility", "AbilityFrontlineGKWill", "AbilitySnipeGKWill", "AbilityChillGKWill", "AbilityAvoidAttackWaste"] },
+    "ACEasy" :                  { "type":"ActionAbility_Combination", "combination": ["ACDefault", "BuyOpeningBook"] },
+    "ACAvoidBreach" :           { "type":"ActionAbility_Combination", "combination": ["ACEasy", "AvoidBreach_NoChill"] },
+    "ACAvoidBreachSimple" :     { "type":"ActionAbility_Combination", "combination": ["ACEasy", "AvoidBreachGK"] },
+    "ACAvoidBreach_ChillSolver":{ "type":"ActionAbility_Combination", "combination": ["ACEasy", "AvoidBreach_SolveChill"] },
+    "ACDocile" :                { "type":"ActionAbility_Combination", "combination": ["AbilityEconomyDefault", "AvoidBreach_SolveChill"] },                    
+    "ACRandom" :                { "type":"ActionAbility_Combination", "combination": ["AbilityEconomyDefault"] },    
+    
+    "BuyDefault" :              { "type":"ActionBuy_Default"},
+    "BuyNothing" :              { "type":"ActionBuy_Nothing"},
+    "BuyRandom" :               { "type":"ActionBuy_Random"},
+    "BuyEngineer" :             { "type":"ActionBuy_EngineerHeuristic"},
+    "BuyGK_WillScore" :         { "type":"ActionBuy_GreedyKnapsack", "heuristic":"BuyWillScore",   "filter":"BuyGK_Filter"},
+    "BuyGK_AttackValue" :       { "type":"ActionBuy_GreedyKnapsack", "heuristic":"BuyAttackValue", "filter":"BuyGK_Filter"},
+    "BuyGK_BlockValue" :        { "type":"ActionBuy_GreedyKnapsack", "heuristic":"BuyBlockValue",  "filter":"BuyGK_Filter"},
+    "BuyGK_WillScore_Docile" :  { "type":"ActionBuy_GreedyKnapsack", "heuristic":"BuyWillScore",   "filter":"Docile_Filter"},
+    "BuyAvoidBreach" :          { "type":"ActionBuy_AvoidBreach"},
+    "BuyOpeningBook" :          { "type":"ActionBuy_OpeningBook", "openingBook" : "DefaultOpeningBook"},
+    "BuyTech_Elyot" :           { "type":"ActionBuy_TechHeuristic", "heuristic":"ElyotFormula"},
+    
+    "BuyDocile" :               { "type":"ActionBuy_Combination", "combination": ["BuyEcon", "BuyTech_Elyot", "BuyGK_WillScore_Docile", "BuySafeguardDocile"] },
+    "BuyEcon" :                 { "type":"ActionBuy_Sequence", "buySequence": [["Vivid Drone", 0], ["Drone", 0], ["Engineer", 0]], "buyLimits": "EconLimits"},  
+    "BuyOneDrone" :             { "type":"ActionBuy_Sequence", "buySequence": [["Drone", 1]], "buyLimits": "EconLimits"}, 
+    "BuyEconLimited" :          { "type":"ActionBuy_Sequence", "buySequence": [["Vivid Drone", 0], ["Drone", 0], ["Engineer", 0]], "buyLimits": "EconLimits15"},  
+                                        
+    "BuyComboGreedyAttack" :    { "type":"ActionBuy_Combination", "combination": ["BuyGK_AttackValue", "BuyGK_WillScore", "BuyEconLimited", "BuyTech_Elyot", "BuySafeguard"] },
+    "BuyComboGreedyWill" :      { "type":"ActionBuy_Combination", "combination": ["BuyGK_WillScore", "BuyGK_AttackValue", "BuyEconLimited", "BuyTech_Elyot", "BuySafeguard"] },    
+    "BuyComboGreedyDefense" :   { "type":"ActionBuy_Combination", "combination": ["BuyGK_BlockValue",  "BuyGK_AttackValue", "BuyEconLimited", "BuyTech_Elyot", "BuySafeguard"] },
+    "BuyEconTech" :             { "type":"ActionBuy_Combination", "combination": ["BuyEcon", "BuyTech_Elyot", "BuySafeguard"] },
+    "BuyEconEngTech" :          { "type":"ActionBuy_Combination", "combination": ["BuyEcon", "BuyEngineer", "BuyTech_Elyot", "BuySafeguard"] },
+    "BuyTechEcon" :             { "type":"ActionBuy_Combination", "combination": ["BuyOneDrone", "BuyTech_Elyot", "BuyEcon", "BuySafeguard"] },
+    "BuySafeguard" :            { "type":"ActionBuy_Combination", "combination": ["AbilityAvoidEconomyWaste", "BuyGK_AttackValue", "BuyEcon", "BuyTech_Elyot"] },
+    "BuySafeguardDocile" :      { "type":"ActionBuy_Combination", "combination": ["AbilityAvoidEconomyWaste", "BuyEcon", "BuyTech_Elyot", "BuyGK_WillScore_Docile"] },
+    
+    "BCGWill_Root" :            { "type":"ActionBuy_Combination", "combination": ["BuyGK_WillScore", "BuySafeguardRoot"] },                                    
+    "BCGAttack_Root" :          { "type":"ActionBuy_Combination", "combination": ["BuyGK_AttackValue", "BuyGK_WillScore", "BuySafeguardRoot"] },  
+    "BCGDef_Root" :             { "type":"ActionBuy_Combination", "combination": ["BuyComboGreedyDefense", "BuyGK_WillScore", "BuySafeguardRoot"] },
+    "BuySafeguardRoot" :        { "type":"ActionBuy_Combination", "combination": ["BuySafeguard", "AbilityAvoidAttackWaste"] },
+    
+    "BuyComboPlayout" :         { "type":"ActionBuy_Combination", "combination": ["BuyGK_AttackValue", "BuyGK_WillScore", "BuyEconLimited", "BuyTech_Elyot", "BuySafeguard"] },
+    "BreachDefault" :           { "type":"Breach_Default"},
+    "BreachRandom" :            { "type":"Breach_Random"},
+    "BreachGreedyKnapsack" :    { "type":"Breach_GreedyKnapsack", "lowTechPriority":true},
+    
+    "BlueTurn2_BuyOB" :         { "type":"ActionBuy_OpeningBook", "openingBook" : "BlueTurnTwoOpeningBook"},
+    "BlueTurn2_Ability" :       { "type":"ActionAbility_Combination", "combination": ["ACDefault", "BlueTurn2_BuyOB", "AvoidBreach_SolveChill"] }
+},
+
+"Move Iterators" :
+{
+    "BaseIterator" :        { "type":"PPPortfolio", "PartialPlayers": [ ["DefenseSolver"], [], ["BuyEconTech", "BuyTechEcon", "BuyComboGreedyAttack", "BuyComboGreedyWill", "BuyComboGreedyDefense"], ["BreachGreedyKnapsack"] ] },
+
+    "HardIterator_Root" :   { "type":"PPPortfolio", "PartialPlayers": [ ["DefenseSolver"], ["ACAvoidBreach_ChillSolver"], ["BuyEconTech", "BuyTechEcon", "BCGAttack_Root", "BCGWill_Root", "BCGDef_Root"], ["BreachGreedyKnapsack"] ] },
+    "HardIterator" :        { "type":"PPPortfolio", "include":"BaseIterator", "PartialPlayers": [ [], ["ACAvoidBreach_ChillSolver"], [], [] ] },
+    "EasyIterator" :        { "type":"PPPortfolio", "include":"BaseIterator", "PartialPlayers": [ [], ["ACEasy"], [], [] ] },
+    
+    "BlueTurn2Iterator" :   { "type":"PPPortfolio", "include":"BaseIterator", "PartialPlayers": [ [], ["BlueTurn2_Ability"], [], [] ] },
+    "DroneSpamIterator" :   { "type":"PPPortfolio", "include":"HardIterator_Root", "buyLimits":"DroneSpamLimits" },
+    "RedRushIterator" :     { "type":"PPPortfolio", "include":"HardIterator_Root", "buyLimits":"RedRushLimits" },
+    "GreenBlueIterator" :   { "type":"PPPortfolio", "include":"HardIterator_Root", "buyLimits":"GreenBlueLimits" }
+},
+
+"Players" :
+{
+    "Playout" :             { "type":"Player_PPSequence", "PartialPlayers":["DefenseSolver", "ACAvoidBreach_ChillSolver", "BuyComboGreedyAttack", "BreachGreedyKnapsack"]},
+    "PuzzlePlayer" :        { "type":"Player_PPSequence", "PartialPlayers":["DefenseSolver", "AbilityDefault", "BuyComboGreedyAttack", "BreachGreedyKnapsack"]},
+    "PlayoutBuyNothing" :   { "type":"Player_PPSequence", "PartialPlayers":["DefenseSolver", "ACDefault", "BuyNothing", "BreachGreedyKnapsack"]},
+    
+    "HardestAIUCT" :        { "type":"Player_UCT", "TimeLimit":7000, "MaxChildren":40, "MaxTraversals":100000, "RootMoveIterator":"HardIterator_Root", "MoveIterator":"HardIterator", "Eval":"Playout", "PlayoutPlayer":"Playout"},    
+    "HardAIUCT" :           { "type":"Player_UCT", "TimeLimit":3000, "MaxChildren":40, "MaxTraversals":100000, "RootMoveIterator":"HardIterator_Root", "MoveIterator":"HardIterator", "Eval":"Playout", "PlayoutPlayer":"Playout"},
+    "HardestAI" :           { "type":"Player_StackAlphaBeta", "TimeLimit":7000, "MaxChildren":40, "RootMoveIterator":"HardIterator_Root", "MoveIterator":"HardIterator", "Eval":"Playout", "PlayoutPlayer":"Playout"},
+    "HardAI" :              { "type":"Player_StackAlphaBeta", "TimeLimit":3000, "MaxChildren":40, "RootMoveIterator":"HardIterator_Root", "MoveIterator":"HardIterator", "Eval":"Playout", "PlayoutPlayer":"Playout"},
+    "ExpertAI" :            { "type":"Player_StackAlphaBeta", "TimeLimit":1000, "MaxDepth":1, "MaxChildren":40, "RootMoveIterator":"HardIterator_Root", "MoveIterator":"HardIterator", "Eval":"Playout", "PlayoutPlayer":"Playout"},
+    "MediumAI" :            { "type":"Player_RandomFromIterator", "iterator":"HardIterator_Root" },
+    "EasyAI" :              { "type":"Player_RandomFromIterator", "iterator":"EasyIterator" },
+    "RandomAI" :            { "type":"Player_PPSequence", "PartialPlayers":["DefenseRandom", "ACRandom", "BuyRandom", "BreachRandom"]},
+    "DocileAI" :            { "type":"Player_PPSequence", "PartialPlayers":["DefenseSolver", "ACDocile", "BuyDocile", "BreachGreedyKnapsack"]},
+    
+    "Personality_BlueTurn2":{ "type":"Player_StackAlphaBeta", "TimeLimit":3000, "MaxChildren":40, "RootMoveIterator":"BlueTurn2Iterator", "MoveIterator":"HardIterator", "Eval":"Playout", "PlayoutPlayer":"Playout"},
+    "Personality_DroneSpam":{ "type":"Player_StackAlphaBeta", "TimeLimit":3000, "MaxChildren":40, "RootMoveIterator":"DroneSpamIterator", "MoveIterator":"HardIterator", "Eval":"Playout", "PlayoutPlayer":"Playout"},
+    "Personality_RedRush"  :{ "type":"Player_StackAlphaBeta", "TimeLimit":1000, "MaxChildren":40, "RootMoveIterator":"RedRushIterator", "MoveIterator":"HardIterator", "Eval":"Playout", "PlayoutPlayer":"Playout"},
+    "Personality_GreenBlue":{ "type":"Player_StackAlphaBeta", "TimeLimit":1000, "MaxChildren":40, "RootMoveIterator":"GreenBlueIterator", "MoveIterator":"HardIterator", "Eval":"Playout", "PlayoutPlayer":"Playout"}
+},
+
+"States" :
+{
+    "Base Set" :            { "type":"Dominion", "DominionCards":0},
+    "Base + 4" :            { "type":"Dominion", "DominionCards":4},
+    "Base + 8" :            { "type":"Dominion", "DominionCards":8},
+    "Base + 10" :           { "type":"Dominion", "DominionCards":10},
+    "JSON State Example":   { "type":"JSON", "filename":"asset/states/JSONState_Example.txt" }
+},
+
+"Benchmarks" :
+[
+    { "run":false, "type":"PlayerBenchmark", "name":"RandomB8", "PlayerOne":"RandomAI", "PlayerTwo":"RandomAI", "TimeLimitSec":60000, "RandomCards":8, "UpdateIntervalSec":5, "DoClickString":false, "DoUnitStats":true, "DoEvalStats":true, "DoPlayoutEvalStats":false, "DoSearchStats":false},
+    { "run":false, "type":"PlayerBenchmark", "name":"PlayoutB8", "PlayerOne":"Playout", "PlayerTwo":"Playout", "TimeLimitSec":60000, "RandomCards":8, "UpdateIntervalSec":5, "DoClickString":false, "DoUnitStats":true, "DoEvalStats":true, "DoPlayoutEvalStats":false, "DoSearchStats":false},
+    { "run":false,  "type":"PlayerBenchmark", "name":"MediumAIB8", "PlayerOne":"MediumAI", "PlayerTwo":"MediumAI", "TimeLimitSec":60000, "RandomCards":8, "UpdateIntervalSec":5, "DoClickString":false, "DoUnitStats":true, "DoEvalStats":true, "DoPlayoutEvalStats":false, "DoSearchStats":false},
+    { "run":false, "type":"PlayerBenchmark", "name":"ExpertAIB8", "PlayerOne":"ExpertAI", "PlayerTwo":"ExpertAI", "TimeLimitSec":60000, "RandomCards":8, "UpdateIntervalSec":5, "DoClickString":false, "DoUnitStats":false, "DoEvalStats":false, "DoPlayoutEvalStats":false, "DoSearchStats":false},
+    { "run":false, "type":"PlayerBenchmark", "name":"HardAI300UCT",   "PlayerOne":"HardAI300UCT", "PlayerTwo":"HardAI300UCT", "TimeLimitSec":60000, "RandomCards":8, "UpdateIntervalSec":5, "DoClickString":false, "DoUnitStats":true, "DoEvalStats":true, "DoPlayoutEvalStats":false, "DoSearchStats":true},
+    { "run":false, "type":"PlayerBenchmark", "name":"HardAI300",   "PlayerOne":"HardAI300", "PlayerTwo":"HardAI300", "TimeLimitSec":60000, "RandomCards":8, "UpdateIntervalSec":5, "DoClickString":false, "DoUnitStats":true, "DoEvalStats":true, "DoPlayoutEvalStats":false, "DoSearchStats":true},
+    { "run":false, "type":"PlayerBenchmark", "name":"UCT300",   "PlayerOne":"HardAI300UCT", "PlayerTwo":"HardAI300UCT", "TimeLimitSec":60000, "RandomCards":8, "UpdateIntervalSec":5, "DoClickString":false, "DoUnitStats":false, "DoEvalStats":false, "DoPlayoutEvalStats":false, "DoSearchStats":false},
+    
+    { "run":true, "type":"Tournament", "name":"AIDifficulties", "rounds":10000, "UpdateIntervalSec":5, "RandomCards":8, "players":[ {"name":"DocileAI","group":1}, {"name":"RandomAI","group":2}, {"name":"EasyAI","group":3}, {"name":"MediumAI","group":4}, {"name":"Playout","group":5},{"name":"ExpertAI","group":6}] },
+    { "run":false, "type":"Tournament", "name":"HardAI", "rounds":10000, "UpdateIntervalSec":5, "RandomCards":8, "players":[ {"name":"HardAI300","group":1}, {"name":"HardAI300OrigP","group":2}, {"name":"HardAI300Eval","group":3}, {"name":"HardAI3002","group":4}] },
+    { "run":false, "type":"Tournament", "name":"Playout", "rounds":10000, "UpdateIntervalSec":5, "RandomCards":8, "players":[ {"name":"Playout","group":1}, {"name":"PlayoutNew","group":2}] },
+    { "run":false, "type":"Tournament", "name":"HardPlayoutTest2", "rounds":10000, "UpdateIntervalSec":5, "RandomCards":8, "players":[ {"name":"HardAI300","group":1}, {"name":"HardAI300Solver","group":2}, {"name":"HardAI300Combo","group":3}, {"name":"HardAI300SolverCombo","group":4}, {"name":"HardAI300Eval","group":5}] },
+    { "run":false, "type":"Tournament", "name":"ExpertAI", "rounds":10000, "UpdateIntervalSec":5, "RandomCards":8, "players":[ {"name":"ExpertAI1","group":1}, {"name":"ExpertAI2","group":2}, {"name":"ExpertAI3","group":3}, {"name":"ExpertAI4","group":4},{"name":"HardAI300","group":5}, {"name":"HardAI300UCT","group":6}] },
+    { "run":false, "type":"Tournament", "name":"HardTest", "rounds":10000, "UpdateIntervalSec":5, "RandomCards":8, "players":[ {"name":"HardAI1000","group":1}, {"name":"HardAI1000Eng","group":2}, {"name":"ExpertAI","group":3}] },
+    { "run":false, "type":"Tournament", "name":"UCTTest", "rounds":10000, "UpdateIntervalSec":5, "RandomCards":8, "players":[ {"name":"HardAI300UCT","group":1}, {"name":"HardAI300UCTSimple","group":2}, {"name":"HardAI300UCTRand","group":3}, {"name":"ExpertAI","group":4}, {"name":"MediumAI","group":5}] }
+]
+
+}

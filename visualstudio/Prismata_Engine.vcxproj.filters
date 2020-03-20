@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="cards">
+      <UniqueIdentifier>{45ede359-d434-49f5-9eff-3ec57e945891}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scripts">
+      <UniqueIdentifier>{57d65aa7-60e1-4851-85d7-37e2330b6ae1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{54f0de3d-e54e-434a-92c7-ea16fffde860}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util">
+      <UniqueIdentifier>{19866126-1f80-4b70-86f4-b753c4d46749}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source\engine\Card.cpp">
+      <Filter>cards</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\CardBuyable.cpp">
+      <Filter>cards</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\CardType.cpp">
+      <Filter>cards</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\CardTypeData.cpp">
+      <Filter>cards</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\CardTypeInfo.cpp">
+      <Filter>cards</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\CardTypes.cpp">
+      <Filter>cards</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\GameState.cpp" />
+    <ClCompile Include="..\source\engine\Prismata.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\PrismataAssert.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\SacDescription.cpp">
+      <Filter>scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\Script.cpp">
+      <Filter>scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\ScriptEffect.cpp">
+      <Filter>scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\CreateDescription.cpp">
+      <Filter>scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\DestroyDescription.cpp">
+      <Filter>scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\Condition.cpp">
+      <Filter>scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\Common.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\GenericValue.cpp">
+      <Filter>scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\JSONTools.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\FileUtils.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\Timer.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\Action.cpp" />
+    <ClCompile Include="..\source\engine\Game.cpp" />
+    <ClCompile Include="..\source\engine\Move.cpp" />
+    <ClCompile Include="..\source\engine\Player.cpp" />
+    <ClCompile Include="..\source\engine\Resources.cpp" />
+    <ClCompile Include="..\source\engine\CardBuyableData.cpp" />
+    <ClCompile Include="..\source\engine\CardData.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\source\engine\Card.h">
+      <Filter>cards</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\CardBuyable.h">
+      <Filter>cards</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\CardType.h">
+      <Filter>cards</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\CardTypeData.h">
+      <Filter>cards</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\CardTypeInfo.h">
+      <Filter>cards</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\CardTypes.h">
+      <Filter>cards</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\GameState.h" />
+    <ClInclude Include="..\source\engine\PrismataAssert.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\Prismata.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\ScriptEffect.h">
+      <Filter>scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\SacDescription.h">
+      <Filter>scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\Script.h">
+      <Filter>scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\DestroyDescription.h">
+      <Filter>scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\CreateDescription.h">
+      <Filter>scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\Condition.h">
+      <Filter>scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\Common.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\BaseTypes.hpp">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\Constants.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\GenericValue.h">
+      <Filter>scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\JSONTools.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\GraphViz.hpp">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\FileUtils.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\Timer.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\Action.h" />
+    <ClInclude Include="..\source\engine\Game.h" />
+    <ClInclude Include="..\source\engine\Move.h" />
+    <ClInclude Include="..\source\engine\Player.h" />
+    <ClInclude Include="..\source\engine\Resources.h" />
+    <ClInclude Include="..\source\engine\CardBuyableData.h" />
+    <ClInclude Include="..\source\engine\CardData.h" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,104 @@
+Image: Card_Blue.png
+  Format: PNG (Portable Network Graphics)
+  Mime type: image/png
+  Class: DirectClass
+  Geometry: 128x128+0+0
+  Resolution: 28.34x28.34
+  Print size: 4.51658x4.51658
+  Units: PixelsPerCentimeter
+  Type: TrueColorAlpha
+  Endianess: Undefined
+  Colorspace: sRGB
+  Depth: 8-bit
+  Channel depth:
+    red: 8-bit
+    green: 8-bit
+    blue: 8-bit
+    alpha: 8-bit
+  Channel statistics:
+    Pixels: 16384
+    Red:
+      min: 0 (0)
+      max: 137 (0.537255)
+      mean: 15.6085 (0.0612096)
+      standard deviation: 23.3766 (0.091673)
+      kurtosis: 7.25366
+      skewness: 2.42972
+      entropy: 0.603856
+    Green:
+      min: 0 (0)
+      max: 177 (0.694118)
+      mean: 69.4736 (0.272445)
+      standard deviation: 36.9473 (0.144891)
+      kurtosis: -0.0574992
+      skewness: 0.167872
+      entropy: 0.912962
+    Blue:
+      min: 0 (0)
+      max: 243 (0.952941)
+      mean: 132.663 (0.520249)
+      standard deviation: 54.3406 (0.2131)
+      kurtosis: 0.767592
+      skewness: -0.961365
+      entropy: 0.914807
+    Alpha:
+      min: 0 (0)
+      max: 255 (1)
+      mean: 240.861 (0.944551)
+      standard deviation: 53.2761 (0.208926)
+      kurtosis: 12.8283
+      skewness: 3.75614
+      entropy: 0.0847045
+  Image statistics:
+    Overall:
+      min: 0 (0)
+      max: 255 (1)
+      mean: 57.9712 (0.227338)
+      standard deviation: 43.8828 (0.172089)
+      kurtosis: 10.143
+      skewness: 2.89131
+      entropy: 0.629082
+  Alpha: none   #00000000
+  Rendering intent: Perceptual
+  Gamma: 0.454545
+  Chromaticity:
+    red primary: (0.64,0.33)
+    green primary: (0.3,0.6)
+    blue primary: (0.15,0.06)
+    white point: (0.3127,0.329)
+  Background color: white
+  Border color: srgba(223,223,223,1)
+  Matte color: grey74
+  Transparent color: none
+  Interlace: None
+  Intensity: Undefined
+  Compose: Over
+  Page geometry: 128x128+0+0
+  Dispose: Undefined
+  Iterations: 0
+  Compression: Zip
+  Orientation: Undefined
+  Properties:
+    date:create: 2015-01-09T11:25:21-07:00
+    date:modify: 2015-01-09T13:08:10-07:00
+    png:bKGD: chunk was found (see Background color, above)
+    png:cHRM: chunk was found (see Chromaticity, above)
+    png:IHDR.bit-depth-orig: 8
+    png:IHDR.bit_depth: 8
+    png:IHDR.color-type-orig: 6
+    png:IHDR.color_type: 6 (RGBA)
+    png:IHDR.interlace_method: 0 (Not interlaced)
+    png:IHDR.width,height: 128, 128
+    png:pHYs: x_res=2834, y_res=2834, units=1
+    png:sRGB: intent=0 (Perceptual Intent)
+    signature: 646fdc54da6a198c7db08c2451fd42d776a3f332e128ba7d193429e09f1dd7eb
+  Artifacts:
+    filename: Card_Blue.png
+    verbose: true
+  Tainted: False
+  Filesize: 14.6KB
+  Number pixels: 16.4K
+  Pixels per second: 16.39MB
+  User time: 0.000u
+  Elapsed time: 0:01.000
+  Version: ImageMagick 6.9.0-3 Q16 x64 2014-12-30 http://www.imagemagick.org

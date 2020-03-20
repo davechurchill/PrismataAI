@@ -1,0 +1,537 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="move iterators">
+      <UniqueIdentifier>{0eaa6fe5-8fb1-4d1f-b90e-c4892e298511}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="partial players">
+      <UniqueIdentifier>{345ea3a2-424e-457e-a332-8b60d1e551b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="players">
+      <UniqueIdentifier>{c35a71a3-9f06-4fdd-b14f-8df607b94a0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tactical">
+      <UniqueIdentifier>{ad60dcf4-9059-49bd-9dfd-ba2c43e445e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util">
+      <UniqueIdentifier>{7011e88a-72b3-45af-851d-0615c1a5758b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="search algorithms">
+      <UniqueIdentifier>{d3c317b0-13c5-4a4f-8521-3cc12b37884e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="search algorithms\alphabeta">
+      <UniqueIdentifier>{db85ada1-f638-4bab-a3d6-46179d5e038e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="search algorithms\buildordersearch">
+      <UniqueIdentifier>{1d639293-34ee-4f27-a04f-d74079cbbb23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="search algorithms\puzzles">
+      <UniqueIdentifier>{35db01c1-31ed-47ff-9d2e-d4a4ac826166}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="search algorithms\uct">
+      <UniqueIdentifier>{f2872c49-a7a2-464c-9385-1230e946c350}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="partial players\action ability">
+      <UniqueIdentifier>{2412e0b0-bcb1-499b-999b-b73ba2147f88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="partial players\action buy">
+      <UniqueIdentifier>{dcf04ccf-e445-4987-851e-e04eafdf2a17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="partial players\breach">
+      <UniqueIdentifier>{3006eeb7-b223-4d96-afbd-db0ac63743f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="partial players\defense">
+      <UniqueIdentifier>{dd5b0c49-d828-4ed6-a33b-043d2708e077}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source\ai\PartialPlayer.cpp">
+      <Filter>partial players</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayerSequence.cpp">
+      <Filter>partial players</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\MoveIterator.cpp">
+      <Filter>move iterators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\MoveIterator_All.cpp">
+      <Filter>move iterators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\MoveIterator_AllAbility.cpp">
+      <Filter>move iterators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\MoveIterator_AllBreach.cpp">
+      <Filter>move iterators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\MoveIterator_AllBuy.cpp">
+      <Filter>move iterators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\MoveIterator_AllDefense.cpp">
+      <Filter>move iterators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\MoveIterator_PPPortfolio.cpp">
+      <Filter>move iterators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\AlphaBetaSearch.cpp">
+      <Filter>search algorithms\alphabeta</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\AITools.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\AllPlayers.cpp">
+      <Filter>players</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_ActionAbility_ActivateAll.cpp">
+      <Filter>partial players\action ability</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_ActionAbility_ActivateUtility.cpp">
+      <Filter>partial players\action ability</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_ActionAbility_AttackDefault.cpp">
+      <Filter>partial players\action ability</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_ActionAbility_AvoidAttackWaste.cpp">
+      <Filter>partial players\action ability</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_ActionAbility_AvoidBreachSolver.cpp">
+      <Filter>partial players\action ability</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_ActionAbility_AvoidEconomyWaste.cpp">
+      <Filter>partial players\action ability</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_ActionAbility_ChillGreedyKnapsack.cpp">
+      <Filter>partial players\action ability</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_ActionAbility_ChillSolver.cpp">
+      <Filter>partial players\action ability</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_ActionAbility_Combination.cpp">
+      <Filter>partial players\action ability</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_ActionAbility_Default.cpp">
+      <Filter>partial players\action ability</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_ActionAbility_DontAttack.cpp">
+      <Filter>partial players\action ability</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_ActionAbility_EconomyDefault.cpp">
+      <Filter>partial players\action ability</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_ActionAbility_FrontlineGreedyKnapsack.cpp">
+      <Filter>partial players\action ability</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_ActionAbility_Random.cpp">
+      <Filter>partial players\action ability</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_ActionAbility_SnipeGreedyKnapsack.cpp">
+      <Filter>partial players\action ability</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_ActionAbility_UntapAvoidBreach.cpp">
+      <Filter>partial players\action ability</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_ActionBuy_AvoidBreach.cpp">
+      <Filter>partial players\action buy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_ActionBuy_Combination.cpp">
+      <Filter>partial players\action buy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_ActionBuy_Default.cpp">
+      <Filter>partial players\action buy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_ActionBuy_EngineerHeuristic.cpp">
+      <Filter>partial players\action buy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_ActionBuy_GreedyKnapsack.cpp">
+      <Filter>partial players\action buy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_ActionBuy_Iterator.cpp">
+      <Filter>partial players\action buy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_ActionBuy_Nothing.cpp">
+      <Filter>partial players\action buy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_ActionBuy_OpeningBook.cpp">
+      <Filter>partial players\action buy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_ActionBuy_Random.cpp">
+      <Filter>partial players\action buy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_ActionBuy_Sequence.cpp">
+      <Filter>partial players\action buy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_ActionBuy_TechHeuristic.cpp">
+      <Filter>partial players\action buy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_Breach_Default.cpp">
+      <Filter>partial players\breach</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_Breach_GreedyKnapsack.cpp">
+      <Filter>partial players\breach</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_Breach_Random.cpp">
+      <Filter>partial players\breach</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_Defense_Default.cpp">
+      <Filter>partial players\defense</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_Defense_GreedyKnapsack.cpp">
+      <Filter>partial players\defense</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_Defense_Random.cpp">
+      <Filter>partial players\defense</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PartialPlayer_Defense_Solver.cpp">
+      <Filter>partial players\defense</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\Player_AlphaBeta.cpp">
+      <Filter>players</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\Player_Default.cpp">
+      <Filter>players</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\Player_GUI.cpp">
+      <Filter>players</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\Player_PPSequence.cpp">
+      <Filter>players</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\Player_Random.cpp">
+      <Filter>players</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\Player_RandomFromIterator.cpp">
+      <Filter>players</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\Player_StackAlphaBeta.cpp">
+      <Filter>players</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\Player_UCT.cpp">
+      <Filter>players</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\AttackDamageScenario.cpp">
+      <Filter>tactical</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\AvoidBreachBuyIterator.cpp">
+      <Filter>tactical</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\BlockIterator.cpp">
+      <Filter>tactical</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\BuildOrderIterator.cpp">
+      <Filter>search algorithms\buildordersearch</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\BuildOrderSearch.cpp">
+      <Filter>search algorithms\buildordersearch</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\BuildOrderSearchGoal.cpp">
+      <Filter>search algorithms\buildordersearch</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\BuildOrderSearchParameters.cpp">
+      <Filter>search algorithms\buildordersearch</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\UCTNode.cpp">
+      <Filter>search algorithms\uct</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\UCTSearch.cpp">
+      <Filter>search algorithms\uct</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\ChillIterator.cpp">
+      <Filter>tactical</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\ChillScenario.cpp">
+      <Filter>tactical</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\StateChillIterator.cpp">
+      <Filter>tactical</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\BuyIterator.cpp">
+      <Filter>tactical</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\IsomorphicCardSet.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\Eval.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\Heuristics.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\CardFilter.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\CardFilterCondition.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\CanonicalOrderComparator.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\CanonicalOrdering.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\PuzzleSolver.cpp">
+      <Filter>search algorithms\puzzles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\StackAlphaBetaSearch.cpp">
+      <Filter>search algorithms\alphabeta</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\DefenseHistogramExperiment.cpp">
+      <Filter>tactical</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ai\BuyLimits.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\source\ai\PartialPlayer.h">
+      <Filter>partial players</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayerSequence.h">
+      <Filter>partial players</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\MoveIterator.h">
+      <Filter>move iterators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\MoveIterator_All.h">
+      <Filter>move iterators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\MoveIterator_AllAbility.h">
+      <Filter>move iterators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\MoveIterator_AllBreach.h">
+      <Filter>move iterators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\MoveIterator_AllBuy.h">
+      <Filter>move iterators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\MoveIterator_AllDefense.h">
+      <Filter>move iterators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\MoveIterator_PPPortfolio.h">
+      <Filter>move iterators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\AlphaBetaSearch.h">
+      <Filter>search algorithms\alphabeta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\AlphaBetaSearchParameters.hpp">
+      <Filter>search algorithms\alphabeta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\AlphaBetaSearchResults.hpp">
+      <Filter>search algorithms\alphabeta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\AlphaBetaSearchSaveState.hpp">
+      <Filter>search algorithms\alphabeta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\AITools.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\AllPlayers.h">
+      <Filter>players</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_ActionAbility_ActivateAll.h">
+      <Filter>partial players\action ability</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_ActionAbility_ActivateUtility.h">
+      <Filter>partial players\action ability</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_ActionAbility_AttackDefault.h">
+      <Filter>partial players\action ability</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_ActionAbility_AvoidAttackWaste.h">
+      <Filter>partial players\action ability</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_ActionAbility_AvoidBreachSolver.h">
+      <Filter>partial players\action ability</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_ActionAbility_AvoidEconomyWaste.h">
+      <Filter>partial players\action ability</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_ActionAbility_ChillGreedyKnapsack.h">
+      <Filter>partial players\action ability</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_ActionAbility_ChillSolver.h">
+      <Filter>partial players\action ability</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_ActionAbility_Combination.h">
+      <Filter>partial players\action ability</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_ActionAbility_Default.h">
+      <Filter>partial players\action ability</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_ActionAbility_DontAttack.h">
+      <Filter>partial players\action ability</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_ActionAbility_EconomyDefault.h">
+      <Filter>partial players\action ability</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_ActionAbility_FrontlineGreedyKnapsack.h">
+      <Filter>partial players\action ability</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_ActionAbility_Random.h">
+      <Filter>partial players\action ability</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_ActionAbility_SnipeGreedyKnapsack.h">
+      <Filter>partial players\action ability</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_ActionAbility_UntapAvoidBreach.h">
+      <Filter>partial players\action ability</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_ActionBuy_AvoidBreach.h">
+      <Filter>partial players\action buy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_ActionBuy_Combination.h">
+      <Filter>partial players\action buy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_ActionBuy_Default.h">
+      <Filter>partial players\action buy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_ActionBuy_EngineerHeuristic.h">
+      <Filter>partial players\action buy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_ActionBuy_GreedyKnapsack.h">
+      <Filter>partial players\action buy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_ActionBuy_Iterator.h">
+      <Filter>partial players\action buy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_ActionBuy_Nothing.h">
+      <Filter>partial players\action buy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_ActionBuy_OpeningBook.h">
+      <Filter>partial players\action buy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_ActionBuy_Random.h">
+      <Filter>partial players\action buy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_ActionBuy_Sequence.h">
+      <Filter>partial players\action buy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_ActionBuy_TechHeuristic.h">
+      <Filter>partial players\action buy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_Breach_Default.h">
+      <Filter>partial players\breach</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_Breach_GreedyKnapsack.h">
+      <Filter>partial players\breach</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_Breach_Random.h">
+      <Filter>partial players\breach</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_Defense_Default.h">
+      <Filter>partial players\defense</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_Defense_GreedyKnapsack.h">
+      <Filter>partial players\defense</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_Defense_Random.h">
+      <Filter>partial players\defense</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PartialPlayer_Defense_Solver.h">
+      <Filter>partial players\defense</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\Player_AlphaBeta.h">
+      <Filter>players</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\Player_Default.h">
+      <Filter>players</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\Player_GUI.h">
+      <Filter>players</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\Player_PPSequence.h">
+      <Filter>players</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\Player_Random.h">
+      <Filter>players</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\Player_RandomFromIterator.h">
+      <Filter>players</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\Player_StackAlphaBeta.h">
+      <Filter>players</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\Player_UCT.h">
+      <Filter>players</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\AvoidBreachBuyIterator.h">
+      <Filter>tactical</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\AttackDamageScenario.h">
+      <Filter>tactical</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\BlockIterator.h">
+      <Filter>tactical</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\BuildOrderIterator.h">
+      <Filter>search algorithms\buildordersearch</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\BuildOrderSearch.h">
+      <Filter>search algorithms\buildordersearch</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\BuildOrderSearchGoal.h">
+      <Filter>search algorithms\buildordersearch</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\BuildOrderSearchParameters.h">
+      <Filter>search algorithms\buildordersearch</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\UCTSearchResults.hpp">
+      <Filter>search algorithms\uct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\UCTMemoryPool.hpp">
+      <Filter>search algorithms\uct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\UCTNode.h">
+      <Filter>search algorithms\uct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\UCTSearch.h">
+      <Filter>search algorithms\uct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\UCTSearchParameters.hpp">
+      <Filter>search algorithms\uct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\ChillScenario.h">
+      <Filter>tactical</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\ChillIterator.h">
+      <Filter>tactical</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\StateChillIterator.h">
+      <Filter>tactical</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\BuyIterator.h">
+      <Filter>tactical</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\IsomorphicCardSet.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\Heuristics.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\Eval.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\CardFilter.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\CardFilterCondition.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\CanonicalOrderComparator.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\CanonicalOrdering.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\PuzzleSolver.h">
+      <Filter>search algorithms\puzzles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\StackAlphaBetaSearch.h">
+      <Filter>search algorithms\alphabeta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\DefenseHistogramExperiment.h">
+      <Filter>tactical</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\BuyLimits.h">
+      <Filter>util</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

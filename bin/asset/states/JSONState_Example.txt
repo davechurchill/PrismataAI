@@ -1,0 +1,25 @@
+{
+    "whiteMana":"10BBCCGG",
+    "blackMana":"0",
+    "phase":"action",
+    "table":
+    [
+        {"cardName":"Blastforge", "color":0, "amount":1},
+        {"cardName":"Drone", "color":0, "amount":8},
+        {"cardName":"Wall", "color":0, "amount":1},
+        {"cardName":"Apollo", "color":0, "amount":1},
+        {"cardName":"Omega Splitter", "color":0, "amount":4},
+        {"cardName":"Rhino", "color":0, "amount":1},
+        {"cardName":"Rhino", "color":0, "amount":1, "lifespan":7},
+        {"cardName":"Tarsier", "color":0, "amount":1, "constructionTime":3},
+        {"cardName":"Gauss Cannon", "color":0, "amount":1},
+        {"cardName":"Tarsier", "color":1, "amount":1},
+        {"cardName":"Drone", "color":1, "amount":10},
+        {"cardName":"Forcefield", "color":1, "amount":4},
+        {"cardName":"Wall", "color":1, "amount":2},
+        {"cardName":"Engineer", "color":1, "amount":7},
+        {"cardName":"Animus", "color":1, "amount":2}
+    ],
+    "cards":["Drone","Engineer","Blastforge","Conduit","Academy","Gauss Cannon","Forcefield","Steelsplitter","Wall","Tarsier","Rhino"]
+}
+

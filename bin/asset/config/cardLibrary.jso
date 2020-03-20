@@ -1,0 +1,1818 @@
+{
+
+"Drone" : {
+    "baseSet" : 1,
+    "rarity" : "trinket",
+    "toughness" : 1,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "3H",
+    "abilityScript" : {"receive" : "1"}
+},
+
+"Engineer" : {
+    "baseSet" : 1,
+    "rarity" : "trinket",
+    "toughness" : 1,
+    "defaultBlocking" : 1,
+    "buyCost" : "2",
+    "beginOwnTurnScript" : {"receive" : "H"},
+    "score" : "2.01"
+},
+
+"Brooder" : {
+    "baseSet" : 1,
+    "rarity" : "normal",
+    "toughness" : 3,
+    "defaultBlocking" : 0,
+    "buyCost" : "5",
+    "beginOwnTurnScript" : {"receive" : "B"},
+    "score" : "4",
+    "UIName" : "Blastforge"
+},
+
+"Academy" : {
+    "baseSet" : 1,
+    "rarity" : "normal",
+    "toughness" : 2,
+    "defaultBlocking" : 0,
+    "buyCost" : "6",
+    "beginOwnTurnScript" : {"receive" : "CC"},
+    "score" : "5",
+    "UIName" : "Animus"
+},
+
+"Conduit" : {
+    "baseSet" : 1,
+    "rarity" : "normal",
+    "toughness" : 3,
+    "defaultBlocking" : 0,
+    "fragile" : 1,
+    "buyCost" : "4",
+    "beginOwnTurnScript" : {"receive" : "G"},
+    "score" : "3"
+},
+
+"Treant" : {
+    "baseSet" : 1,
+    "rarity" : "normal",
+    "toughness" : 3,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "6B",
+    "abilityScript" : {"receive" : "A"},
+    "UIName" : "Steelsplitter"
+},
+
+"Wall" : {
+    "baseSet" : 1,
+    "rarity" : "normal",
+    "toughness" : 3,
+    "defaultBlocking" : 1,
+    "buildTime" : 0,
+    "buyCost" : "5B",
+    "score" : "6"
+},
+
+"Elephant" : {
+    "baseSet" : 1,
+    "rarity" : "normal",
+    "toughness" : 2,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "5C",
+    "buildTime" : 0,
+    "abilityScript" : {"receive" : "A"},
+    "charge" : 2,
+    "score" : "4C",
+    "UIName" : "Rhino"
+},
+
+"Tesla Tower" : {
+    "baseSet" : 1,
+    "rarity" : "normal",
+    "toughness" : 1,
+    "defaultBlocking" : 0,
+    "buildTime" : 2,
+    "buyCost" : "4C",
+    "beginOwnTurnScript" : {"receive" : "A"},
+    "score" : "5C",
+    "UIName" : "Tarsier"
+},
+
+"Blood Barrier" : {
+    "baseSet" : 1,
+    "rarity" : "trinket",
+    "toughness" : 2,
+    "defaultBlocking" : 1,
+    "fragile" : 1,
+    "buyCost" : "1G",
+    "buySac" : [["Drone"]],
+    "buildTime" : 0,
+    "needs" : ["Drone"],
+    "UIName" : "Forcefield"
+},
+
+"Minicannon" : {
+    "baseSet" : 1,
+    "rarity" : "normal",
+    "toughness" : 5,
+    "fragile" : 1,
+    "defaultBlocking" : 0,
+    "buyCost" : "6G",
+    "beginOwnTurnScript" : {"receive" : "A"},
+    "UIName" : "Gauss Cannon"
+},
+
+
+
+
+
+
+
+
+
+
+"Doomed Drone" : {
+    "rarity" : "normal",
+    "toughness" : 1,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "2H",
+    "lifespan" : 4,
+    "abilityScript" : {"receive" : "1"}
+},
+
+"Wild Drone" : {
+    "rarity" : "normal",
+    "toughness" : 3,
+    "defaultBlocking" : 0,
+    "undefendable" : 1,
+    "buyCost" : "5HH",
+    "beginOwnTurnScript" : {"receive" : 2}
+},
+
+"Vivid Drone" : {
+    "rarity" : "rare",
+    "toughness" : 1,
+    "defaultBlocking" : 0,
+    "buyCost" : "4HHH",
+	"buySac" : [["Drone", 3]],
+    "beginOwnTurnScript" : {"receive" : "5"},
+    "needs" : ["Drone"]
+},
+
+"Bond" : {
+    "UIName" : "Auric Impulse",
+    "rarity" : "trinket",
+    "defaultBlocking" : 0,
+    "buyCost" : "3H",
+    "beginOwnTurnScript" : {"receive" : "4", "selfsac" : true}
+},
+
+"Immaculon" : {
+    "rarity" : "legendary",
+    "toughness" : 1,
+    "defaultBlocking" : 0,
+    "buyCost" : "25HHHHH",
+    "beginOwnTurnScript" : {"delay" : 2},
+    "resonate" : "Drone",
+    "needs" : ["Drone"]
+},
+
+"Basilica" : {
+    "rarity" : "legendary",
+    "toughness" : 4,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "10",
+    "abilityCost" : "6HH",
+    "abilityScript" : {"create" : [["Drone", "own", 2], ["Tesla Tower", "own"]]},
+    "needs" : ["Drone", "Tesla Tower"],
+    "lifespan" : 6
+},
+
+"Galvani Drone" : {
+    "rarity" : "normal",
+    "undefendable" : 1,
+    "toughness" : 1,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "1H",
+    "abilityCost" : "H",
+    "abilityScript" : {"receive" : "1"}
+},
+
+"Electrophore" : {
+    "UIName" : "Chrono Filter",
+    "rarity" : "legendary",
+    "toughness" : 2,
+    "defaultBlocking" : 0,
+    "buyCost" : "4",
+    "beginOwnTurnScript" : {"receive" : "BC", "delay" : 2},
+	"group" : "BR"
+},
+
+"Overwork" : {
+    "spell" : 1,
+    "rarity" : "rare",
+    "toughness" : 1,
+    "defaultBlocking" : 0,
+    "buyCost" : "0",
+    "buildTime" : 0,
+    "buyScript" : {"receive" : "2"},
+    "buySac" : [["Drone"]],
+    "needs" : ["Drone"]
+},
+
+"God's Gift" : {
+    "spell" : 1,
+    "rarity" : "legendary",
+    "toughness" : 1,
+    "defaultBlocking" : 0,
+    "buyCost" : "0",
+    "buildTime" : 0,
+    "buyScript" : {"receive" : "1"},
+	"UIName" : "The Gift"
+},
+
+"Superservant" : {
+    "rarity" : "legendary",
+    "toughness" : 4,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "3HHHAAA",
+    "abilityScript" : {"receive" : "4"}
+},
+
+"Centrifuge" : {
+    "rarity" : "legendary",
+    "defaultBlocking" : 0,
+    "buyCost" : "12HHH",
+    "buildTime" : 3,
+    "beginOwnTurnScript" : {"receive" : "20BBCCGG", "selfsac" : true},
+	"group" : "GBR"
+},
+
+"Charged Drone" : {
+    "rarity" : "normal",
+    "toughness" : 2,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "4HHHH",
+    "buildTime" : 0,
+    "abilityScript" : {"receive" : "3"},
+    "charge" : 2,
+    "score" : "3HHHH",
+    "UIShortname" : "Char. Drone"
+},
+
+"Cursed Wall" : {
+    "rarity" : "legendary",
+    "toughness" : 6,
+    "defaultBlocking" : 1,
+    "buyCost" : "6",
+    "buildTime" : 0,
+    "buyScript" : {"create" : [["Behemoth", "opponent", 1, 6]]},
+    "needs" : ["Behemoth"],
+    "score" : "12"
+},
+
+"Behemoth" : {
+    "rarity" : "unbuyable",
+    "toughness" : 9,
+    "defaultBlocking" : 0,
+    "undefendable" : 1,
+    "beginOwnTurnScript" : {"receive" : "AAAAAAAAA"},
+    "score" : 36
+},
+
+"Savior" : {
+    "rarity" : "legendary",
+    "toughness" : 8,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "fragile" : 1,
+    "buyCost" : "9",
+    "buildTime" : 8,
+    "beginOwnTurnScript" : {"receive" : "AA"},
+    "goldResonate" : "Drone",
+    "abilitySac" : [["Drone",1]],
+    "abilityScript" : {"create" : [["BFD", "own"]]},
+    "needs" : ["BFD"]
+},
+
+"Distractocell" : {
+    "rarity" : "trinket",
+    "toughness" : 1,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "G",
+    "abilityScript" : {"selfsac" : true},
+    "targetAction" : "disrupt",
+    "targetAmount" : 1,
+	"lifespan" : 1,
+	"UIName" : "Cryo Cell"
+},
+
+"Sound Barrier" : {
+    "UIName" : "Barrier",
+    "rarity" : "trinket",
+    "toughness" : 1,
+    "defaultBlocking" : 1,
+    "buyCost" : "1G",
+    "buildTime" : 0,
+    "lifespan" : 1,
+    "score" : 0
+},
+
+"Machine" : {
+    "UIName" : "Trinity Drone",
+    "rarity" : "normal",
+    "toughness" : 5,
+    "defaultBlocking" : 0,
+    "fragile" : 1,
+    "buyCost" : "2G",
+    "buySac" : [["Drone",2]],
+    "beginOwnTurnScript" : {"receive" : 3},
+    "needs" : ["Drone"],
+    "score" : "9HHH"
+},
+
+"Thorium Dynamo" : {
+    "rarity" : "rare",
+    "toughness" : 10,
+    "defaultBlocking" : 0,
+	"assignedBlocking" : 0,
+    "fragile" : 1,
+    "buyCost" : "5H",
+    "buildTime" : 2,
+    "buySac" : [["Drone", 3]],
+    "beginOwnTurnScript" : {"receive" : "5G"},
+    "needs" : ["Drone"],
+	"abilityCost" : "GGG",
+    "abilityScript" : {"receive" : "3"},
+    "UIShortname":"Th. Dynamo"
+},
+
+"Flame Kin" : {
+    "rarity" : "trinket",
+    "defaultBlocking" : 0,
+    "buyCost" : "1G",
+    "beginOwnTurnScript" : {"receive" : "A", "selfsac" : true},
+    "UIName" : "Gauss Charge"
+},
+
+"Distractorod" : {
+    "rarity" : "normal",
+    "toughness" : 3,
+	"fragile" : 1,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "1G",
+    "targetAction" : "disrupt",
+	"HPUsed" : 1,
+    "targetAmount" : 1,
+    "UIName" : "Cryo Ray"
+},
+
+"Cyclic Attacker" : {
+    "UIName" : "Iso Kronus",
+    "rarity" : "normal",
+    "toughness" : 5,
+    "fragile" : 1,
+    "defaultBlocking" : 0,
+    "buyCost" : "5G",
+    "buildTime" : 2,
+    "beginOwnTurnScript" : {"receive" : "AA", "delay" : 2},
+    "score" : "6GG"
+},
+
+"Cyclic Drone" : {
+    "rarity" : "trinket",
+    "toughness" : 2,
+    "defaultBlocking" : 0,
+    "buyCost" : "4H",
+    "beginOwnTurnScript" : {"receive" : "2", "delay" : 2}
+},
+
+"Xaetron" : {
+    "rarity" : "legendary",
+    "toughness" : 4,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "fragile" : 1,
+    "buyCost" : "11GGGGG",
+    "buildTime" : 0,
+    "HPGained" : 4,
+    "HPMax" : 12,
+    "HPUsed" : 7,
+    "abilityScript" : {"create" : [["Flame Kin", "own", 5]]},
+    "needs" : ["Flame Kin"]
+},
+
+"Fragilewall" : {
+    "UIName" : "Aegis",
+    "rarity" : "normal",
+    "toughness" : 5,
+    "defaultBlocking" : 1,
+    "fragile" : 1,
+    "buyCost" : "6GGG",
+    "buildTime" : 0,
+    "score" : "10"
+},
+
+"Meteor Shower" : {
+    "UIName" : "Cluster Bolt",
+    "spell" : 1,
+    "rarity" : "normal",
+    "toughness" : 1,
+    "defaultBlocking" : 0,
+    "buyCost" : "GGGG",
+    "buildTime" : 0,
+    "buyScript" : {"create" : [["Flame Kin", "own", 4], ["Flame Kin", "opponent", 1]]},
+    "needs" : ["Flame Kin"]
+},
+
+"Uberdefcell" : {
+    "UIName" : "Plexo Cell",
+    "rarity" : "normal",
+    "toughness" : 4,
+    "defaultBlocking" : 1,
+    "buyCost" : "2GG",
+    "buildTime" : 0,
+    "lifespan" : 1,
+    "buySac" : [["Drone"]],
+    "needs" : ["Drone"],
+    "score" : "0"
+},
+
+"Moment's Peace" : {
+    "rarity" : "legendary",
+    "toughness" : 20,
+    "defaultBlocking" : 1,
+    "buyCost" : "9HHHGGG",
+    "buildTime" : 0,
+    "lifespan" : 1,
+    "score" : "0"
+},
+
+"Flying Drone" : {
+    "rarity" : "normal",
+    "toughness" : 2,
+    "defaultBlocking" : 0,
+    "buyCost" : "H",
+    "buySac" : [["Drone"]],
+    "beginOwnTurnScript" : {"receive" : 1},
+    "needs" : ["Drone"]
+},
+
+"Gas Packet" : {
+    "rarity" : "trinket",
+    "defaultBlocking" : 0,
+    "buyCost" : "2",
+    "beginOwnTurnScript" : {"receive" : "G", "selfsac" : true}
+},
+
+"Arsonist" : {
+    "rarity" : "rare",
+    "toughness" : 1,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "lifespan" : 6,
+    "buyCost" : "5G",
+    "beginOwnTurnScript" : {"receive" : "A"},
+    "abilityScript" : {"selfsac" : true},
+    "abilityCost" : "3",
+    "targetAction" : "snipe",
+    "condition" : {"isABC" : 1},
+    "description" : "Destroy any Animus, Blastforge, or Conduit.",
+	"UIName" : "Kinetic Driver"
+},
+
+"NeoContraption" : {
+    "UIName" : "Zemora Voidbringer",
+    "rarity" : "legendary",
+    "toughness" : 20,
+    "fragile" : 1,
+    "buildTime" : 6,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "6GG",
+    "abilityCost" : "GGGGGGGG",
+    "abilityScript" : {"receive" : "8AAAAAAAA"},
+    "score" : "50",
+    "UIShortname" : "Zemora V"
+},
+
+"Viletrope" : {
+    "rarity" : "normal",
+    "toughness" : 5,
+    "fragile" : 1,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "11GG",
+    "HPGained" : 2,
+    "abilityScript" : {"receive" : "AA"},
+    "score" : "18GG",
+    "UIName" : "Mahar Rectifier",
+    "UIShortname" : "Rectifier",
+    "needs" : ["Drone", "Engineer"]
+},
+
+"Butter on Blood" : {
+    "rarity" : "legendary",
+    "fragile" : 1,
+    "buildTime" : 5,
+    "toughness" : 4,
+    "defaultBlocking" : 0,
+    "buyCost" : "1CG",
+    "resonate" : "Blood Barrier",
+    "needs" : ["Blood Barrier"],
+    "UIName" : "Resophore"
+},
+
+"Ion Cannon" : {
+    "rarity" : "normal",
+    "toughness" : 9,
+    "fragile" : 1,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "1GGG",
+    "buySac" : [["Drone", 3]],
+    "beginOwnTurnScript" : {"receive" : "AA"},
+    "abilityCost" : "GGGG",
+    "abilityScript" : {"create" : [["Flame Kin", "own", 3]]},
+    "HPUsed" : 2,
+	"UIName" : "Venge Cannon",
+    "needs" : ["Flame Kin","Drone"]
+},
+
+"Tantalum Ray" : {
+    "rarity" : "normal",
+    "toughness" : 9,
+    "fragile" : 1,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "7GG",
+    "beginOwnTurnScript" : {"receive" : "A"},
+    "abilityScript" : {"create" : [["Flame Kin", "own", 1]]},
+    "HPUsed" : 2,
+    "needs" : ["Flame Kin"]
+},
+
+"Giga Cannon" : {
+    "rarity" : "rare",
+    "toughness" : 16,
+    "fragile" : 1,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "16GGGG",
+    "beginOwnTurnScript" : {"receive" : "AAA"},
+    "abilityScript" : {"create" : [["Sound Barrier", "own", 1, 0]]},
+    "HPUsed" : 5,
+    "needs" : ["Sound Barrier"],
+    "UIName" : "Asteri Cannon"
+},
+
+"Sound Plan" : {
+    "rarity" : "rare",
+    "toughness" : 5,
+    "defaultBlocking" : 1,
+    "buyCost" : "2GGG",
+    "lifespan" : 1
+},
+
+"Deconstructible Tower" : {
+    "rarity" : "normal",
+    "toughness" : 1,
+	"lifespan" : 5,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "4G",
+    "beginOwnTurnScript" : {"receive" : "A"},
+	"abilityCost" : "HHH",
+    "abilityScript" : {"receive" : "GGG", "selfsac" : true},
+    "UIName" : "Fission Turret"
+},
+
+"Evaporoid" : {
+    "rarity" : "normal",
+    "toughness" : 2,
+	"lifespan" : 3,
+    "defaultBlocking" : 0,
+    "buyCost" : "7G",
+    "beginOwnTurnScript" : {"receive" : "AA"}
+},
+
+"Fabricator" : {
+    "rarity" : "legendary",
+    "toughness" : 10,
+    "fragile" : 1,
+    "lifespan" : 8,
+    "defaultBlocking" : 0,
+    "buyCost" : "12GGGG",
+    "beginOwnTurnScript" : {"create" : [["Minicannon", "own"]]},
+    "needs" : ["Minicannon"],
+    "UIName" : "Gauss Fabricator",
+    "UIShortname" : "Fabricator"
+},
+
+"Volatile Blast" : {
+    "rarity" : "normal",
+    "toughness" : 1,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "2G",
+    "abilityScript" : {"selfsac" : true},
+    "targetAction" : "disrupt",
+    "targetAmount" : 5,
+    "lifespan" : 1,
+    "score" : "0",
+    "UIName" : "Nivo Charge"
+},
+
+"Ebb Turbine" : {
+    "rarity" : "normal",
+    "toughness" : 5,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "6HB",
+    "abilitySac" : [["Drone"]],
+	"beginOwnTurnScript" : {"receive" : "1"},
+    "abilityScript" : {"receive" : "4H"},
+    "needs" : ["Drone"]
+},
+
+"Militia" : {
+    "rarity" : "normal",
+    "toughness" : 4,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "6B",
+    "beginOwnTurnScript" : {"receive" : "A"},
+    "abilityCost" : "A",
+    "abilityScript" : {"receive" : 1}
+},
+
+"Pixie" : {
+    "rarity" : "trinket",
+    "toughness" : 1,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "1B",
+    "abilityScript" : {"receive" : "A", "selfsac" : true}
+},
+
+"Adrenaline Reactor" : {
+    "UIName" : "Thermite Core",
+    "rarity" : "rare",
+    "lifespan" : 7,
+    "toughness" : 1,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "1B",
+    "abilityCost" : "A",
+    "abilityScript" : {"create" : [["Pixie", "own"]]},
+    "needs" : ["Pixie"]
+},
+
+"Panther" : {
+    "UIName" : "Shredder",
+    "rarity" : "normal",
+    "toughness" : 4,
+    "defaultBlocking" : 1,
+	"assignedBlocking" : 0,
+    "buyCost" : "5B",
+    "undefendable" : 1,
+    "abilityScript" : {"receive" : "A"}
+},
+
+"Polywall" : {
+    "rarity" : "normal",
+    "toughness" : 6,
+    "defaultBlocking" : 1,
+    "buyCost" : "10B",
+    "buildTime" : 0,
+    "undefendable" : 1,
+    "score" : "12"
+},
+
+"Golem" : {
+    "UIName" : "Energy Matrix",
+    "rarity" : "rare",
+    "toughness" : 5,
+    "defaultBlocking" : 1,
+    "buyCost" : "8BB",
+    "buildTime" : 0,
+    "score" : "10.01"
+},
+
+"Blade" : {
+    "rarity" : "rare",
+    "toughness" : 4,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "10BB",
+    "beginOwnTurnScript" : {"receive" : "A"},
+    "buyScript" : {"create":[["Pixie", "own", 3]]},
+    "abilitySac" : [["Brooder"]],
+    "abilityScript" : {"create" : [["Pixie", "own", 3]]},
+    "needs" : ["Pixie","Brooder"],
+    "UIName" : "Grenade Mech",
+    "score" : "5B"
+},
+
+"Drake" : {
+    "rarity" : "rare",
+    "toughness" : 4,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "12BB",
+    "beginOwnTurnScript" : {"receive" : "AA"},
+    "abilitySac" : [["Brooder"]],
+    "abilityScript" : {"receive" : "AA"},
+    "needs" : ["Brooder"]
+},
+
+"Furion" : {
+    "UIName" : "Odin",
+    "rarity" : "legendary",
+    "toughness" : 4,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "19BBB",
+    "abilitySac" : [["Treant"]],
+    "abilityScript" : {"receive" : "AAAA"},
+    "buyScript" : {"create":[["Treant", "own", 3]]},
+    "needs" : ["Treant"],
+    "score" : "10"
+},
+
+"Doomwall" : {
+    "UIName" : "Doomed Wall",
+    "rarity" : "normal",
+    "toughness" : 4,
+    "defaultBlocking" : 1,
+    "buyCost" : "7B",
+    "buildTime" : 0,
+    "lifespan" : 3,
+    "score" : "8"
+},
+
+"Defense Grid" : {
+    "rarity" : "legendary",
+    "toughness" : 7,
+    "defaultBlocking" : 1,
+    "buyCost" : "16BBB",
+    "beginOwnTurnScript" : {"create" : [["Drone", "own"]]},
+    "needs" : ["Drone"],
+    "lifespan" : 7
+},
+
+"Oxide Mixer" : {
+    "rarity" : "rare",
+    "lifespan" : 4,
+    "toughness" : 2,
+    "defaultBlocking" : 0,
+    "buyCost" : "3B",
+    "beginOwnTurnScript" : {"create" : [["Pixie", "own"]]},
+    "needs" : ["Pixie"]
+},
+
+"Monk" : {
+    "rarity" : "legendary",
+    "lifespan" : 10,
+    "toughness" : 2,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "3HB",
+    "beginOwnTurnScript" : {"create" : [["Engineer", "own"]]},
+    "needs" : ["Engineer"],
+    "abilitySac" : [["Engineer", 3]],
+    "abilityScript" : {"receive" : "5"}
+},
+
+"Doomed Mech" : {
+    "rarity" : "normal",
+    "toughness" : 5,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "8BB",
+    "lifespan" : 5,
+    "abilityScript" : {"receive" : "AA"}
+},
+
+"Flame Assassin" : {
+    "rarity" : "legendary",
+    "toughness" : 4,
+    "potentiallyMoreAttack" : 1,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "condition" : {"healthAtMost" : 3},
+    "buyCost" : "13BBB",
+	"buildTime" : 2,
+    "targetAction" : "snipe",
+    "description" : "Destroy any unit with 3 or less health.",
+    "UIName" : "Apollo"
+},
+
+"Nether Warrior" : {
+    "UIName" : "Deadeye Operative",
+    "rarity" : "rare",
+    "toughness" : 4,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "4BB",
+    "buySac" : [["Treant"]],
+	"beginOwnTurnScript" : {"receive" : "AA"},
+    "description" : "Destroy a non-blocking Drone. (Only units named exactly 'Drone' can be destroyed.) ",
+	"abilityCost" : "AA",
+	"abilityScript" : {},
+    "abilityNetherfy" : true,
+    "UIShortname" : "Deadeye Op.",
+    "needs" : ["Treant"]
+},
+
+"Conscription" : {
+    "UIName" : "Steelforge",
+    "rarity" : "rare",
+    "toughness" : 4,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "4",
+    "buySac" : [["Brooder"]],
+    "abilitySac" : [["Drone"]],
+    "abilityCost" : "1BB",
+	"beginOwnTurnScript" : {"receive" : "BB"},
+    "abilityScript" : {"create" : [["Treant", "own"]]},
+    "needs" : ["Brooder", "Drone", "Treant"],
+    "score" : "7BG"
+},
+
+"Ionic Welder" : {
+    "rarity" : "legendary",
+    "toughness" : 9,
+    "defaultBlocking" : 0,
+    "buyCost" : "5",
+    "buySac" : [["Brooder"], ["Drone", 5]],
+    "beginOwnTurnScript" : {"create" : [["Drone", "own"], ["Treant", "own"]]},
+    "needs" : ["Brooder", "Engineer", "Drone", "Treant"],
+    "lifespan" : 8,
+    "score" : "27"
+},
+
+"Lancetooth" : {
+    "rarity" : "normal",
+    "toughness" : 4,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "8BA",
+    "buildTime" : 2,
+    "abilityScript" : {"receive" : "AA"},
+    "score" : "10BB"
+},
+
+"Hate Reactor" : {
+    "UIName" : "Auride Core",
+    "rarity" : "rare",
+    "toughness" : 1,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "1B",
+    "abilityCost" : "A",
+    "abilityScript" : {"receive" : "2"}
+},
+
+"Summon Fusion" : {
+    "rarity" : "normal",
+    "undefendable" : 1,
+    "toughness" : 3,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "3B",
+    "abilitySac" : [["Summon Fusion", 3]],
+    "abilityScript" : {"create" : [["Fusion", "own"]], "selfsac" : true},
+    "needs" : ["Fusion"],
+    "UIShortname" : "Summ. Fusion"
+},
+
+"Fusion" : {
+    "rarity" : "unbuyable",
+    "toughness" : 9,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 1,
+    "abilitySac" : [["Summon Fusion"]],
+    "abilityScript" : {"receive" : "AAA"},
+    "needs" : ["Summon Fusion"],
+    "score" : "16BBBB"
+},
+
+"Supertreant" : {
+    "rarity" : "rare",
+    "toughness" : 6,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "14BBB",
+    "abilityScript" : {"receive" : "AAA"},
+    "UIName" : "Omega Splitter",
+    "UIShortname" : "Omega Split."
+},
+
+"Living Blastforge" : {
+    "rarity" : "normal",
+    "toughness" : 3,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "6",
+    "abilityScript" : {"receive" : "B"},
+    "UIShortname" : "Liv. Blastforge"
+},
+
+"Cowardly Marine" : {
+    "rarity" : "trinket",
+    "toughness" : 1,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "3C",
+    "abilityScript" : {"receive" : "A", "delay" : 2},
+    "UIName" : "Immolite"
+},
+
+"Unholy Barrier" : {
+    "UIName" : "Blood Pact",
+    "spell" : 1,
+    "rarity" : "normal",
+    "toughness" : 1,
+    "defaultBlocking" : 0,
+    "buyCost" : "3C",
+    "buildTime" : 0,
+    "buyScript" : {"create" : [["House", "own", 4, 0], ["Tesla Tower", "opponent"]]},
+    "needs" : ["House", "Tesla Tower"]
+},
+
+"Psychosis Cannon" : {
+    "UIName" : "Frost Brooder",
+    "rarity" : "rare",
+    "toughness" : 2,
+    "defaultBlocking" : 0,
+    "buyCost" : "5CC",
+    "beginOwnTurnScript" : {"create" : [["Screech Blast", "own", 1, 1, 3]]},
+    "needs" : ["Screech Blast"],
+    "lifespan" : 6
+},
+
+"Flame Warrior" : {
+    "UIName" : "Shadowfang",
+    "rarity" : "normal",
+    "toughness" : 1,
+    "defaultBlocking" : 0,
+    "buyCost" : "7CCC",
+    "beginOwnTurnScript" : {"receive" : "AA"}
+},
+
+"Marauder" : {
+    "UIName" : "Cynestra",
+    "rarity" : "rare",
+    "toughness" : 2,
+    "defaultBlocking" : 0,
+	"fragile" : 1,
+    "buyCost" : "12CGGG",
+    "beginOwnTurnScript" : {"receive" : "AAA"}
+},
+
+"Neo Overlord" : {
+    "UIName" : "Ossified Drone",
+    "rarity" : "legendary",
+    "toughness" : 2,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "2C",
+    "buySac" : [["Drone"]],
+    "beginOwnTurnScript" : {"receive" : "1"},
+    "abilitySac" : [["Drone"]],
+    "abilityCost" : "C",
+    "abilityScript" : {"create" : [["Neo Overlord", "own"]]},
+    "needs" : ["Drone"],
+    "score" : "4H"
+},
+
+"Doomed Infantry" : {
+    "UIName" : "Grimbotch",
+    "rarity" : "normal",
+    "toughness" : 2,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "4C",
+    "abilityScript" : {"receive" : "A"},
+    "lifespan" : 4
+},
+
+"Fickle Marine" : {
+    "UIName" : "Electrovore",
+    "rarity" : "normal",
+    "toughness" : 2,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "4C",
+    "abilityCost" : "H",
+    "abilityScript" : {"receive" : "A"}
+},
+
+"House" : {
+    "UIName" : "Husk",
+    "rarity" : "trinket",
+    "toughness" : 1,
+    "defaultBlocking" : 1,
+    "buildTime" : 0,
+    "buyCost" : "2C",
+    "score" : "2"
+},
+
+"Vai Mauronax" : {
+    "rarity" : "legendary",
+    "toughness" : 6,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "14BCCC",
+    "beginOwnTurnScript" : {"receive" : "AAA"},
+    "abilityCost" : "A",
+    "targetAction" : "disrupt",
+    "targetAmount" : 7
+},
+
+"Blasto" : {
+    "rarity" : "rare",
+    "toughness" : 1,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "10GCC",
+    "beginOwnTurnScript" : {"receive" : "AA"},
+    "abilityCost" : "A",
+    "targetAction" : "disrupt",
+    "targetAmount" : 4
+},
+
+"Gnoll" : {
+    "rarity" : "normal",
+    "toughness" : 2,
+    "defaultBlocking" : 0,
+    "buyCost" : "7CAAA",
+    "beginOwnTurnScript" : {"receive" : "AA"},
+    "score" : "10CC",
+    "UIName" : "Bloodrager"
+},
+
+"Nightmare Cannon" : {
+    "UIName" : "Tatsu Nullifier",
+    "rarity" : "rare",
+    "toughness" : 2,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "12CCCC",
+    "beginOwnTurnScript" : {"receive" : "AA"},
+    "targetAction" : "disrupt",
+    "targetAmount" : 5
+},
+
+"Jester" : {
+    "UIName" : "Shiver Yeti",
+    "rarity" : "normal",
+    "toughness" : 2,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "5C",
+    "buildTime" : 0,
+    "targetAction" : "disrupt",
+    "targetAmount" : 2,
+    "score" : "4C"
+},
+
+"Trickster" : {
+    "rarity" : "normal",
+    "toughness" : 2,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "3C",
+	"abilityCost" : "C",
+    "abilityScript" : {"receive" : "A"},
+    "UIName" : "Perforator"
+},
+
+"Screech Blast" : {
+    "UIName" : "Frostbite",
+    "rarity" : "trinket",
+    "toughness" : 1,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "2C",
+    "buildTime" : 2,
+    "abilityScript" : {"selfsac" : true},
+    "targetAction" : "disrupt",
+    "targetAmount" : 3
+},
+
+"Nitrocybe" : {
+    "rarity" : "trinket",
+    "toughness" : 1,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "1C",
+    "buildTime" : 2,
+    "abilityScript" : {"receive" : "A", "selfsac" : true}
+},
+
+"Blood Phage" : {
+    "rarity" : "rare",
+    "toughness" : 2,
+    "defaultBlocking" : 0,
+	"assignedBlocking" : 0,
+    "buyCost" : "7HCC",
+    "beginOwnTurnScript" : {"receive" : "1A"},
+    "abilityCost" : "C",
+    "abilityScript" : {"receive" : "1"}
+},
+
+"Annihilator" : {
+    "rarity" : "rare",
+    "toughness" : 3,
+    "defaultBlocking" : 0,
+    "buyCost" : "12CCC",
+    "resonate" : "Tesla Tower",
+    "needs" : ["Tesla Tower"],
+    "UIName" : "Amporilla"
+},
+
+"Angelic" : {
+    "UIName" : "Lucina Spinos",
+    "rarity" : "legendary",
+    "toughness" : 1,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "17CCCC",
+    "beginOwnTurnScript" : {"receive" : "AAAA"},
+    "abilitySac" : [["Drone"]],
+    "abilityScript" : {"create" : [["Trickster", "own"]]},
+    "needs" : ["Trickster", "Drone"]
+},
+
+"Valkyrion" : {
+    "rarity" : "rare",
+    "toughness" : 4,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "12GGBC",
+    "abilityScript" : {"receive" : "AAAA", "create" : [["Sound Barrier", "opponent", 2, 1]]},
+    "needs" : ["Sound Barrier"]
+},
+
+"Need for Speed" : {
+    "spell" : 1,
+    "rarity" : "normal",
+    "toughness" : 1,
+    "defaultBlocking" : 0,
+    "buyCost" : "5C",
+    "buildTime" : 0,
+    "buyScript" : {"create" : [["Tesla Tower", "own"]]},
+    "needs" : ["Tesla Tower"],
+    "UIShortname" : "Need for Spd."
+},
+
+"Mobile Animus" : {
+    "rarity" : "normal",
+    "toughness" : 1,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "4",
+    "beginOwnTurnScript" : {"receive" : "C"},
+    "abilityCost" : "3",
+    "abilityScript" : {"create" : [["Elephant", "own", 1, 0]], "selfsac" : true},
+    "needs" : ["Elephant"]
+},
+
+"Twin-Barrel Mech" : {
+    "rarity" : "normal",
+    "toughness" : 2,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "6CC",
+    "buildTime" : 2,
+    "charge" : 2,
+    "abilityCost" : "HHH",
+    "abilityScript" : {"receive" : "AAAA"},
+    "score" : "8CC",
+    "UIShortname" : "TB. Mech"
+},
+
+"Corpus" : {
+    "rarity" : "rare",
+    "toughness" : 2,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "6CCC",
+    "buildTime" : 0,
+    "abilityCost" : "4CCC",
+    "buyScript" : {"create":[["House", "own", 2, 0]]},
+    "abilityScript" : {"create" : [["House", "own", 4, 0]]},
+    "charge" : 2,
+    "needs" : ["House"]
+},
+
+"Farmer" : {
+    "rarity" : "rare",
+    "toughness" : 2,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "9CC",
+    "abilityScript" : {"receive" : "AAA"},
+    "buyScript" : {"create" : [["Drone", "opponent", 3]]},
+    "needs" : ["Drone"]
+},
+
+"Frost Tarsier" : {
+    "rarity" : "normal",
+    "toughness" : 2,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "3C",
+    "beginOwnTurnScript" : {"receive" : "A"},
+    "targetAction" : "disrupt",
+    "targetAmount" : 2,
+	"buySac" : [["Tesla Tower"]],
+	"needs" : ["Tesla Tower"]
+},
+
+
+
+
+
+
+
+
+
+
+"Factory" : {
+    "rarity" : "rare",
+    "UIName" : "Synthesizer",
+    "toughness" : 4,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "6B",
+    "beginOwnTurnScript" : {"receive" : "GG"},
+    "abilityCost" : "GGG",
+    "abilityScript" : {"receive" : "BB"},
+	"group" : "GB"
+},
+
+"Stone Guardian" : {
+	"UIName" : "Xeno Guardian",
+    "rarity" : "normal",
+    "toughness" : 4,
+    "defaultBlocking" : 1,
+    "buyCost" : "4GB",
+    "buildTime" : 2,
+    "beginOwnTurnScript" : {"receive" : "A"}
+},
+
+"Borehole Patroller" : {
+    "rarity" : "normal",
+    "toughness" : 2,
+    "defaultBlocking" : 1,
+	"buyScript" : {"create" : [["Pixie", "own", 1]]},
+    "buyCost" : "6GB",
+    "beginOwnTurnScript" : {"receive" : "A"},
+	"needs" : ["Pixie"],
+	"UIShortname" : "Patroller"
+},
+
+"Tank" : {
+    "UIName" : "Chieftain",
+    "rarity" : "normal",
+    "toughness" : 7,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "8GGB",
+    "lifespan" : 3,
+    "fragile" : 1,
+    "abilityScript" : {"receive" : "AA"}
+},
+
+"Tesla Coil" : {
+    "rarity" : "rare",
+    "toughness" : 3,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "fragile" : 1,
+    "buyCost" : "12GGB",
+    "abilitySac" : [["Engineer"]],
+    "abilityScript" : {"receive" : "AAA"},
+    "buyScript" : {"create" : [["Engineer", "own", 3]]},
+    "needs" : ["Engineer"],
+    "score" : "7GB"
+},
+
+"BFD" : {
+    "rarity" : "rare",
+    "fragile" : 1,
+    "toughness" : 4,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "12GGGB",
+    "abilitySac" : [["Drone"]],
+    "abilityScript" : {"receive" : "AAAA"},
+    "needs" : ["Drone"],
+    "UIName" : "Plasmafier"
+},
+
+"Antima Comet" : {
+    "rarity" : "legendary",
+    "defaultBlocking" : 0,
+    "buyCost" : "3GBC",
+    "buildTime" : 2,
+    "resonate" : "Engineer",
+    "beginOwnTurnScript" : {"selfsac" : true},
+    "needs" : ["Engineer"]
+},
+
+"Thunderhead" : {
+    "rarity" : "legendary",
+    "toughness" : 10,
+    "defaultBlocking" : 1,
+    "lifespan" : 3,
+    "buyCost" : "15GGGGGB",
+    "beginOwnTurnScript" : {"receive" : "AAAAA"},
+    "undefendable" : 1
+},
+
+"Forcefield" : {
+    "rarity" : "rare",
+    "toughness" : 8,
+    "defaultBlocking" : 1,
+    "buyCost" : "6GB",
+    "buildTime" : 2,
+    "lifespan" : 5,
+    "undefendable" : 1,
+    "score" : "16",
+    "UIName" : "Forcefield2"
+},
+
+"Rukh" : {
+    "rarity" : "rare",
+    "toughness" : 4,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "9GGB",
+    "abilityScript" : {"receive" : "AAA"},
+    "buyScript" : {"create" : [["Flame Kin", "opponent", 4]]},
+    "needs" : ["Flame Kin"],
+    "UIName" : "Redeemer",
+    "score" : "15CCC"
+},
+
+"Fragilant" : {
+    "rarity" : "normal",
+    "toughness" : 6,
+    "fragile" : 1,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "11GG",
+    "buySac" : [["Treant"]],
+    "abilityScript" : {"receive" : "AAA"},
+    "needs" : ["Treant"],
+    "score" : "17GGB"
+},
+
+
+"Ferritin Sac" : {
+    "rarity" : "normal",
+    "toughness" : 1,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "1C",
+    "buildTime" : 2,
+    "abilityScript" : {"receive" : "B", "selfsac" : true}
+},
+
+"Piranha Academy" : {
+    "UIName" : "Flame Animus",
+    "rarity" : "rare",
+    "toughness" : 2,
+    "defaultBlocking" : 0,
+    "buyCost" : "7B",
+    "beginOwnTurnScript" : {"receive" : "CA"},
+	"group" : "BR"
+},
+
+"Corracks" : {
+    "rarity" : "normal",
+    "toughness" : 3,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "7",
+    "beginOwnTurnScript" : {"receive" : "CC"},
+    "abilityCost" : "CC",
+    "abilityScript" : {"receive" : "B"}
+},
+
+"Hotel" : {
+    "UIName" : "Infusion Grid",
+    "rarity" : "normal",
+    "toughness" : 4,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "5B",
+    "abilityScript" : {"create" : [["House", "own", 4, 0]], "selfsac" : true},
+    "abilityCost" : "C",
+    "needs" : ["House"]
+},
+
+"Minimarshal" : {
+    "rarity" : "normal",
+    "toughness" : 6,
+    "undefendable" : 1,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "7BC",
+    "beginOwnTurnScript" : {"receive" : "A"},
+    "targetAction" : "disrupt",
+    "targetAmount" : 2,
+    "UIName" : "Iceblade Golem",
+    "UIShortname" : "Iceblade Gol."
+},
+
+"Roshan" : {
+    "rarity" : "legendary",
+    "toughness" : 7,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "7BBCAAAAAAA",
+    "buildTime" : 0,
+    "abilityScript" : {"receive" : "AAAA"},
+    "score" : "16BBBB",
+    "UIName" : "Arka Sodara"
+},
+
+"Arcflare" : {
+    "rarity" : "normal",
+    "toughness" : 5,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "8BC",
+    "undefendable" : 1,
+    "lifespan" : 4,
+    "abilityCost" : "C",
+    "abilityScript" : {"receive" : "AAA"}
+},
+
+"Doomed Ship" : {
+    "rarity" : "rare",
+    "toughness" : 6,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "15BBCC",
+    "lifespan" : 6,
+    "abilityScript" : {"receive" : "AAAA"}
+},
+
+"Demolition Mech" : {
+    "UIName" : "Cauterizer",
+    "rarity" : "rare",
+    "toughness" : 3,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "11BCC",
+    "abilityCost" : "HHHH",
+    "abilityScript" : {"receive" : "AA"},
+    "buyScript" : {"create" : [["Engineer", "own", 4]]},
+    "needs" : ["Engineer"],
+    "score" : "1BCC"
+},
+
+"Grenadier" : {
+    "UIName" : "Hellhound",
+    "rarity" : "normal",
+    "toughness" : 1,
+    "defaultBlocking" : 0,
+    "buyCost" : "5BC",
+    "beginOwnTurnScript" : {"receive" : "A"},
+    "buyScript" : {"create" : [["Engineer", "own"]]},
+    "needs" : ["Engineer"],
+    "score" : "5C"
+},
+
+"Statue" : {
+    "UIName" : "Hannibull",
+    "rarity" : "rare",
+    "toughness" : 7,
+    "defaultBlocking" : 1,
+	"assignedBlocking" : 0,
+    "buyCost" : "10BC",
+    "undefendable" : 1,
+	"beginOwnTurnScript" : {"receive" : "A"},
+    "abilityScript" : {"receive" : "A"}
+},
+
+"Elephant Graveyard" : {
+    "rarity" : "legendary",
+    "toughness" : 4,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "9BBC",
+    "buildTime" : 0,
+    "abilityScript" : {"create" : [["Elephant", "own", 1, 0]]},
+    "charge" : 2,
+    "score" : "7BBC",
+    "needs" : ["Elephant"],
+    "UIShortname" : "Elephant Gy."
+},
+
+
+
+
+
+
+
+
+
+
+"Rocket Artillery" : {
+    "rarity" : "normal",
+    "toughness" : 3,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "fragile" : 1,
+    "buyCost" : "3GC",
+    "buildTime" : 3,
+    "abilityScript" : {"receive" : "AAA", "delay" : 3},
+    "UIName" : "Scorchilla"
+},
+
+"HPMan" : {
+    "UIName" : "Feral Warden",
+    "rarity" : "normal",
+    "toughness" : 3,
+    "defaultBlocking" : 1,
+    "fragile" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "5GC",
+    "buildTime" : 0,
+    "abilityScript" : {"receive" : "A"},
+    "score" : "5G"
+},
+
+"Gasplant" : {
+    "rarity" : "rare",
+    "toughness" : 2,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "7CC",
+    "beginOwnTurnScript" : {"receive" : "GA"},
+    "abilityCost" : "GGG",
+    "abilityScript" : {"create" : [["Flame Kin", "own", 5]], "selfsac" : true},
+    "needs" : ["Flame Kin"],
+    "UIName" : "Gaussite Symbiote",
+    "UIShortname" : "G. Symbiote",
+	"group" : "RG"
+},
+
+"Pixieflower" : {
+    "UIName" : "Protoplasm",
+    "rarity" : "normal",
+    "toughness" : 4,
+    "fragile" : 1,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buildTime" : 0,
+    "buyCost" : "7GGCC",
+    "abilityScript" : {"receive" : "AAAA", "selfsac" : true},
+    "score" : "6GGCC"
+},
+
+"Fireflower" : {
+    "rarity" : "normal",
+    "toughness" : 2,
+    "fragile" : 1,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buildTime" : 0,
+    "buyCost" : "3GC",
+    "abilityScript" : {"receive" : "AA", "selfsac" : true},
+    "score" : "2BB"
+},
+
+"Ephemeron" : {
+    "UIName" : "Tia Thurnax",
+    "rarity" : "legendary",
+    "toughness" : 4,
+    "fragile" : 1,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "6GGGC",
+    "buySac" : [["Drone", 7]],
+    "charge" : 3,
+    "abilityScript" : {"receive" : "AAAAAAA"},
+    "buildTime" : 0,
+    "needs" : ["Drone"],
+    "score" : "25GGGC"
+},
+
+"Disruption Kit" : {
+    "UIName" : "Endotherm Kit",
+    "spell" : 1,
+    "rarity" : "legendary",
+    "toughness" : 1,
+    "defaultBlocking" : 0,
+    "buyCost" : "5GGGC",
+    "buildTime" : 0,
+    "buyScript" : {"create" : [["Screech Blast", "own", 4,4], ["Distractorod", "own", 4,4]]},
+    "needs" : ["Screech Blast", "Distractorod"]
+},
+
+"Harm Maker" : {
+    "rarity" : "rare",
+    "toughness" : 3,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "buyCost" : "10GC",
+    "beginOwnTurnScript" : {"receive" : "AA"},
+    "abilityCost" : "AA",
+    "abilityScript" : {"create" : [["Distractocell", "own", 2]]},
+    "needs" : ["Distractocell"]
+},
+
+"Transtower" : {
+    "rarity" : "legendary",
+    "toughness" : 1,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "lifespan" : 3,
+    "buyCost" : "9CCC",
+    "beginOwnTurnScript" : {"receive" : "AAA"},
+    "abilityCost" : "9GGG",
+    "abilityScript" : {"create" : [["Transwall", "own"]], "selfsac" : true},
+    "needs" : ["Transwall"]
+},
+
+"Transwall" : {
+    "rarity" : "unbuyable",
+    "fragile" : 1,
+    "toughness" : 9,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "abilityCost" : "6CCC",
+    "abilityScript" : {"create" : [["Transtower", "own"]], "selfsac" : true},
+    "needs" : ["Transtower"],
+    "score" : "18"
+},
+
+"Sentinel" : {
+    "rarity" : "normal",
+    "toughness" : 4,
+    "fragile" : 1,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "7CG",
+    "abilityScript" : {"create" : [["Engineer", "own"]], "receive" : "A"},
+    "needs" : ["Engineer"],
+    "charge" : 3
+},
+
+"Battalion" : {
+    "UIName" : "Centurion",
+    "rarity" : "legendary",
+    "toughness" : 6,
+    "defaultBlocking" : 1,
+    "buyCost" : "18GGBBC",
+    "beginOwnTurnScript" : {"receive" : "AA"},
+    "buildTime" : 0
+},
+
+"Tough Drone" : {
+    "rarity" : "normal",
+    "toughness" : 2,
+    "defaultBlocking" : 1,
+    "buyCost" : "4HC",
+    "beginOwnTurnScript" : {"receive" : "1"},
+    "buildTime" : 0
+},
+
+"Nightmare Vortex" : {
+    "spell" : 1,
+    "rarity" : "rare",
+    "toughness" : 1,
+    "defaultBlocking" : 0,
+    "buyCost" : "1HGBC",
+    "buildTime" : 0,
+    "buyScript" : {"create" : [["Distractocell", "own", 15, 4]]},
+    "needs" : ["Distractocell"],
+    "UIShortname" : "NM. Vortex"
+},
+
+"Beam of Wincing" : {
+    "rarity" : "legendary",
+    "toughness" : 5,
+    "defaultBlocking" : 0,
+    "assignedBlocking" : 0,
+    "fragile" : 1,
+    "buyCost" : "8GBBC",
+    "buildTime" : 3,
+    "abilitySac" : [["Drone", 5]],
+    "abilityScript" : {"receive" : "AAAAAAAAAAAAAAA", "delay" : 3},
+    "score" : "30",
+    "UIName" : "The Wincer",
+	"UIShortname" : "Wincer",
+	"needs" : ["Drone"]
+},
+
+"Colossus" : {
+    "rarity" : "rare",
+    "toughness" : 8,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 0,
+    "buyCost" : "16GBBCC",
+    "fragile" : 1,
+    "abilityScript" : {"receive" : "AAA"}
+},
+
+"Warp Rift" : {
+    "spell" : 1,
+    "rarity" : "rare",
+    "toughness" : 1,
+    "defaultBlocking" : 0,
+    "buyCost" : "10GBC",
+    "buildTime" : 0,
+    "buyScript" : {"create" : [["Tesla Tower", "own"], ["Minicannon", "own"], ["Treant", "own"], ["Wall", "opponent"]]},
+    "needs" : ["Wall", "Tesla Tower", "Treant", "Minicannon"]
+},
+
+"Infestor" : {
+    "rarity" : "legendary",
+    "toughness" : 5,
+    "fragile" : 1,
+    "defaultBlocking" : 1,
+    "assignedBlocking" : 1,
+    "buyCost" : "5GB",
+    "buySac" : [["Academy"]],
+    "abilitySac" : [["Drone"]],
+    "abilityCost" : 1,
+    "abilityScript" : {"create" : [["Nitrocybe", "own", 3, 0]]},
+    "needs" : ["Academy", "Drone", "Nitrocybe"],
+    "score" : "11GB"
+},
+
+"Years of Plenty" : {
+     "rarity" : "legendary",
+     "buildTime" : 6,
+     "toughness" : 9,
+     "defaultBlocking" : 0,
+     "buyCost" : "12",
+     "lifespan" : 6,
+     "description" : "At the start of your turn, gain {1} for each Drone you have, and restore 1 supply to each of your units whose current supply is neither full nor depleted.",
+     "UIName" : "Aurb Magnifier"
+},
+
+"Deep Impact" : {
+     "rarity" : "legendary",
+     "buildTime" : 3,
+     "toughness" : 1,
+     "defaultBlocking" : 0,
+     "buyCost" : "20",
+     "description" : "Spell: at the start of your next turn, destroy all enemy units capable of producing any amount of Gold."
+},
+
+"EMP" : {
+     "rarity" : "legendary",
+     "toughness" : 1,
+     "defaultBlocking" : 0,
+     "buyCost" : "40",
+     "description" : "Spell: at the start of your next turn, destroy all enemy units capable of producing any amount of Attack."
+},
+
+"A.R. Groans" : {
+     "rarity" : "legendary",
+     "toughness" : 8,
+     "defaultBlocking" : 0,
+     "buyCost" : "8GBCC",
+     "description" : "At the start of your turn, destroy a random enemy unit with 8 or less health."
+},
+
+"Icy Savior" : {
+     "rarity" : "legendary",
+     "toughness" : 8,
+     "defaultBlocking" : 1,
+     "buyCost" : "8",
+     "buildTime" : 8,
+     "beginOwnTurnScript" : {"receive" : "AAA"},
+     "description" : "At the start of your turn, freeze all enemy units (they cannot block this turn).",
+     "UIName" : "Glaciator"
+},
+
+"Fire Spinner" : {
+     "rarity" : "legendary",
+     "toughness" : 1,
+     "defaultBlocking" : 0,
+     "buyCost" : "CCCCCCCCCCCCCCCCCCCC",
+     "beginOwnTurnScript" : {"receive" : "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"}
+}
+
+}

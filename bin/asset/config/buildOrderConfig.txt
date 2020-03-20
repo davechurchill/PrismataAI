@@ -1,0 +1,78 @@
+{
+
+"BuildOrderSearch" :
+[        
+    { 
+        "description" : "Search for fastest build to a Centurion with a wall by turn 4",
+        "run" :         true, 
+        "printStack":   false,
+        "name" :        "CenturionSearch", 
+        "type" :        "UnitGoal", 
+        "goal" :        [["Odin", 1, 0]], 
+        "relevant":     ["Drone", "Engineer", "Blastforge", "Odin"], 
+        "buyLimits":    [["Engineer", 4], ["Blastforge", 4], ["Drone", 15]],
+        "state":
+        {
+            "startingResources" :   "HH",
+            "startingUnits" :       [ ["Drone", 6], ["Engineer", 2] ],
+            "buyableUnits" :        [ "Drone", "Engineer", "Conduit", "Blastforge", "Animus", "Gauss Cannon", "Forcefield", "Steelsplitter", "Wall", "Rhino", "Tarsier", "Odin", "Auric Impulse" ]
+        }
+    },
+    
+    { 
+        "description" : "Search for fastest build to a 4 tarsiers and an amporilla",
+        "run" :         true, 
+        "printStack":   false,
+        "name" :        "AmporillaSearch", 
+        "type" :        "UnitGoal", 
+        "goal" :        [["Amporilla", 1, 0], ["Tarsier", 4, 0]], 
+        "relevant":     ["Drone", "Engineer", "Animus", "Tarsier", "Amporilla", "Auric Impulse"], 
+        "buyLimits":    [["Engineer", 3], ["Animus", 2], ["Drone", 20], ["Tarsier", 4]],
+        "state":
+        {
+            "startingResources" :   "HH",
+            "startingUnits" :       [ ["Drone", 6], ["Engineer", 2] ],
+            "buyableUnits" :        [ "Drone", "Engineer", "Conduit", "Blastforge", "Animus", "Gauss Cannon", "Forcefield", "Steelsplitter", "Wall", "Rhino", "Tarsier", "Grimbotch", "Auric Impulse" ]
+        }
+    }
+],
+
+"Explanation / Format" :
+[
+    "Above is the configuration for the Build Order Search Program. The format is as follows:                                      ",
+    "                                                                                                                              ",
+    "   run          - set this to true if you want this instance to run, so you can have multiple defined but not all running     ",
+    "   printStack   - if this is true it will print every possible build order to the screen, just for debugging                  ",
+    "   name         - give each build order search a unique name                                                                  ",
+    "   type         - keep this as 'UnitGoal' for now                                                                             ",
+    "   goal         - this defines the unit goal that you are searching for, it has to be an array                                ",
+    "                - each element of the array is a 3-element array with syntax ['UnitName', AmountDesired, TurnDesired]         ",
+    "                - UnitName - The name of the unit                                                                             ",
+    "                - AmountDesired - The number of this unit you want to have at the end of the build order                      ",
+    "                - TurnDesired - Condition which states you must have AmountDesired of UnitName by TurnDesired. 0 = no limit   ",
+    "                - ['Tarsier', 2, 4] means 'The build must have 4 Tarsiers started construction by turn 4'                     ",
+    "                - ['Centurion', 1, 0] means 'I want 1 Centurion eventually'                                                   ",
+    "   relevant     - an array of unit names which are 'relevant', only buying these units will be searched, useful for pruning   ",
+    "                - make sure this array contains all units in the goal as well as all units required to produce that unit      ",
+    "                - if this array is left empty, all buyable units will be open for search and it will be quite slow            ",
+    "                - the smaller this array is, the more pruning will happen in the search and branching factor will be lower    ",
+    "   buyLimits    - defines a set of upper bounds on the number of units to be bought, also useful for pruning                  ",
+    "                - each element is array of size 2 ['UnitName', amount] so we can never build > amount of UnitName             ",
+    "                - make sure these limits allow your goal to be reached, ie: 1 buyLimit animus won't allow an amporilla        ",
+    "                - engineer / conduit limits are most important since they are so cheap they explode the branching factor      ",
+    "   state        - defines the starting state of the search with the following syntax-                                         ",
+    "                - 'startingResouces' - resources player starts with, make sure it's 'HH' since we start in action phase       ",
+    "                - 'startingUnits' - units that player starts with, all are clickable with build time 0                        ",
+    "                - 'buyableUnits' - units which are buyable with standard supplies                                             ",
+    "                                                                                                                              ",
+    "    The search will print the fastest build order (in turns) tie-break'd by maximizing drone production                       ",
+    "    The search is iterative deepening branch and bound. It will set its own max search depth each iteration.                  ",
+    "    As the search runs it will print if a solution was found at each maximum depth along with relevant statistics.            ",
+    "    Search solutions will be printed as each new best solution is found                                                       ",
+    "                                                                                                                              ",
+    "    Note: If no solution is possible with your configuration the search will just run forever (or to turn 100)                ",
+    "    Note: There's a bug right now where only one search will work per running of the program, working on it                   ",
+    "    Note: The search does not activate any units except Drone and Doomed Drone, more functionality will be added later        "
+]
+
+}
