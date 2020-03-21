@@ -4,7 +4,7 @@ This repository contains the C++ AI Engine for [Prismata](https://store.steampow
 This work is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 2.5 Canada License](https://creativecommons.org/licenses/by-nc-sa/2.5/ca/), so you can create and freely distribute your own versions of the AI for others to play against.
 
 Getting Started with the Prismata AI:
-* Watch the [GDC 2017 Prismata AI Presentation](https://youtu.be/sQSL9j7W7uA) on YouTube!
+* Watch the [GDC 2017 Prismata AI Presentation](https://youtu.be/sQSL9j7W7uA) on YouTube
 * Read the [Publications](https://github.com/davechurchill/PrismataAI/wiki/Publications) about the Prismata AI from the [AIIDE 2015 Conference](http://www.cs.mun.ca/~dchurchill/pdf/aiide15_churchill_prismata.pdf) and [Game AI Pro 3](http://www.cs.mun.ca/~dchurchill/pdf/prismata_gaip3.pdf)
 * Read the [Installation Instructions](https://github.com/davechurchill/PrismataAI/wiki/Installation-Instructions) and [Tutorials](https://github.com/davechurchill/PrismataAI/wiki/GameState-Tutorial) on the [Prismata AI Wiki](https://github.com/davechurchill/PrismataAI/wiki)
 * A precompiled Windows 10 version of the GUI is available for download here: [PrismataAI.zip](http://www.cs.mun.ca/~dchurchill/prismata/PrismataAI.zip)
