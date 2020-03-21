@@ -283,7 +283,7 @@ void GUIState_Play::sUserInput()
                 case sf::Keyboard::M:       { toggleBool(m_drawMouseOver); break; }
                 case sf::Keyboard::X:       { toggleBool(m_drawPotentials); break; }
                 case sf::Keyboard::Tilde:   { toggleBool(m_drawDebugInfo); break; }
-                case sf::Keyboard::Enter:   { handleAIMenu(); break; }
+                case sf::Keyboard::Return:  { handleAIMenu(); break; }
                 case sf::Keyboard::Up:      { menuIndexChange = -1; break; }
                 case sf::Keyboard::Down:    { menuIndexChange =  1; break; }
 

@@ -66,7 +66,7 @@ void GUIState_Menu::sUserInput()
                     break; 
                 }
                 case sf::Keyboard::D: 
-                case sf::Keyboard::Enter:
+                case sf::Keyboard::Return:
                 { 
                     auto & stateName = m_menuStrings[m_selectedMenuIndex];
                     m_game.pushState(std::make_shared<GUIState_Play>(m_game, AIParameters::Instance().getState(stateName)));
