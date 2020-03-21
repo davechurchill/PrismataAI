@@ -2,7 +2,7 @@
 
 #include "Common.h"
 #include <cstdarg>
-
+#include <cstring>
 #include <ctime>
 
 namespace Prismata
