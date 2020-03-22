@@ -2,7 +2,7 @@
 
 using namespace Prismata;
 
-PartialPlayer_Defense_Random::PartialPlayer_Defense_Random(const PlayerID & playerID)
+PartialPlayer_Defense_Random::PartialPlayer_Defense_Random(const PlayerID playerID)
 {
     _playerID = playerID;
     _phaseID = PPPhases::DEFENSE;

@@ -2,7 +2,7 @@
 
 using namespace Prismata;
 
-PartialPlayer_ActionAbility_ChillGreedyKnapsack::PartialPlayer_ActionAbility_ChillGreedyKnapsack(const PlayerID & playerID, EvaluationType (*heuristic)(const Card &, const GameState &))
+PartialPlayer_ActionAbility_ChillGreedyKnapsack::PartialPlayer_ActionAbility_ChillGreedyKnapsack(const PlayerID playerID, EvaluationType (*heuristic)(const Card &, const GameState &))
     : _heuristic(heuristic)
 {
     _playerID = playerID;
@@ -222,7 +222,7 @@ HealthType PartialPlayer_ActionAbility_ChillGreedyKnapsack::freezeEnemyCard(Card
     return chillUsed;
 }
 
-bool PartialPlayer_ActionAbility_ChillGreedyKnapsack::canContinueChilling(const GameState & state, const PlayerID & player) const
+bool PartialPlayer_ActionAbility_ChillGreedyKnapsack::canContinueChilling(const GameState & state, const PlayerID player) const
 {
     CardID sum = 0;
 

@@ -53,7 +53,7 @@ bool Condition::isNotBlocking() const
     return _notBlocking;
 }
 
-const CardID & Condition::getTypeID() const
+const CardID Condition::getTypeID() const
 {
     if (_typeID == 0)
     {

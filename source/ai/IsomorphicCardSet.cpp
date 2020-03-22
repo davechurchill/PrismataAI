@@ -8,7 +8,7 @@ IsomorphicCardSet::IsomorphicCardSet()
     _cardIDs.reserve(10);
 }
     
-bool IsomorphicCardSet::isIsomorphic(const GameState & state, const CardID & otherCardID) const
+bool IsomorphicCardSet::isIsomorphic(const GameState & state, const CardID otherCardID) const
 {
     if (_cardIDs.empty())
     {
@@ -23,7 +23,7 @@ const std::vector<CardID> & IsomorphicCardSet::getCardIDs() const
     return _cardIDs;
 }
 
-void IsomorphicCardSet::add(const CardID & cardID)
+void IsomorphicCardSet::add(const CardID cardID)
 {
     _cardIDs.push_back(cardID);
 }
@@ -53,7 +53,7 @@ const Card & IsomorphicCardSet::getCurrentCard(const GameState & state) const
     return state.getCardByID(_cardIDs[_numUsed]);
 }
 
-const CardID & IsomorphicCardSet::getCurrentCardID() const
+const CardID IsomorphicCardSet::getCurrentCardID() const
 {
     return _cardIDs[_numUsed];
 }

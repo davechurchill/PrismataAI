@@ -29,7 +29,7 @@ void TournamentGame::playGame()
     }
 }
 
-const std::string & TournamentGame::getPlayerName(const PlayerID & player) const
+const std::string & TournamentGame::getPlayerName(const PlayerID player) const
 {
     return _playerNames[player];
 }
@@ -39,12 +39,12 @@ const GameState & TournamentGame::getFinalGameState() const
     return _game.getState();
 }
 
-const size_t TournamentGame::getTotalTimeMS(const PlayerID & player) const
+const size_t TournamentGame::getTotalTimeMS(const PlayerID player) const
 {
     return _playerTotalTimeMS[player];
 }
 
-const size_t TournamentGame::getMaxTimeMS(const PlayerID & player) const
+const size_t TournamentGame::getMaxTimeMS(const PlayerID player) const
 {
     return _maxTimeMS[player];
 }

@@ -2,7 +2,7 @@
 
 using namespace Prismata;
 
-PartialPlayer_Breach_GreedyKnapsack::PartialPlayer_Breach_GreedyKnapsack(const PlayerID & playerID, bool lowTechPriority, EvaluationType (*heuristic)(const Card &, const GameState &, const HealthType &))
+PartialPlayer_Breach_GreedyKnapsack::PartialPlayer_Breach_GreedyKnapsack(const PlayerID playerID, bool lowTechPriority, EvaluationType (*heuristic)(const Card &, const GameState &, const HealthType &))
     : _heuristic(heuristic)
     , _totalBreachDamageLoss(0)
     , _lowTechPriority(lowTechPriority)

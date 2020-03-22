@@ -2,7 +2,7 @@
 
 using namespace Prismata;
 
-PartialPlayer_Defense_Default::PartialPlayer_Defense_Default(const PlayerID & playerID)
+PartialPlayer_Defense_Default::PartialPlayer_Defense_Default(const PlayerID playerID)
 {
  _playerID = playerID;
     _phaseID = PPPhases::DEFENSE;

@@ -8,7 +8,7 @@ Action::Action()
 
 }
 
-Action::Action(const PlayerID & player, const ActionID & actionType, const CardID & id)
+Action::Action(const PlayerID player, const ActionID & actionType, const CardID id)
     : m_type(actionType)
     , m_player(player)
     , m_id(id)
@@ -16,7 +16,7 @@ Action::Action(const PlayerID & player, const ActionID & actionType, const CardI
   
 }
 
-Action::Action(const PlayerID & player, const ActionID & actionType, const CardID & id, const CardID & target)
+Action::Action(const PlayerID player, const ActionID & actionType, const CardID id, const CardID target)
     : m_type(actionType)
     , m_player(player)
     , m_id(id)
@@ -45,7 +45,7 @@ CardID Action::getID() const
     return m_id;
 }
 
-void Action::setID(const CardID & id)
+void Action::setID(const CardID id)
 {
     m_id = id;
 }

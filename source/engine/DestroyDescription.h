@@ -25,8 +25,8 @@ public:
     
     const std::string toString() const;
     const CardType & getType() const;
-    const CardID & getTypeID() const;
-    const CardID & getMultiple() const;
+    const CardID getTypeID() const;
+    const CardID getMultiple() const;
     bool getOwn() const;
     const Condition & getCondition() const;
 

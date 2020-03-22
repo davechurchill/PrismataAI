@@ -302,7 +302,7 @@ void AIParameters::parsePlayers(const std::string & keyName, const rapidjson::Va
     std::sort(_playerNames.begin(), _playerNames.end());
 }
 
-PPPtr AIParameters::parsePartialPlayer(const PlayerID & player, const std::string & playerVariable, const rapidjson::Value & root)
+PPPtr AIParameters::parsePartialPlayer(const PlayerID player, const std::string & playerVariable, const rapidjson::Value & root)
 {
     // if the partial player has already been parsed, no need to re-parse it, just return the already parsed version
     if (_partialPlayerMap[player].find(playerVariable) != _partialPlayerMap[player].end())
@@ -617,7 +617,7 @@ PPPtr AIParameters::parsePartialPlayer(const PlayerID & player, const std::strin
     return playerPtr->clone();
 }
 
-PlayerPtr AIParameters::parsePlayer(const PlayerID & player, const std::string & playerVariable, const rapidjson::Value & root)
+PlayerPtr AIParameters::parsePlayer(const PlayerID player, const std::string & playerVariable, const rapidjson::Value & root)
 {
     // if the player has already been parsed, no need to re-parse it, just return the already parsed version
     if (_playerMap[player].find(playerVariable) != _playerMap[player].end())
@@ -805,7 +805,7 @@ PlayerPtr AIParameters::parsePlayer(const PlayerID & player, const std::string &
     return playerPtr->clone();
 }
 
-MoveIteratorPtr AIParameters::parseMoveIterator(const PlayerID & player, const std::string & iteratorVariable, const rapidjson::Value & root)
+MoveIteratorPtr AIParameters::parseMoveIterator(const PlayerID player, const std::string & iteratorVariable, const rapidjson::Value & root)
 {
     // if the move iterator has already been parsed, no need to re-parse it, just return the already parsed version
     if (_moveIteratorMap[player].find(iteratorVariable) != _moveIteratorMap[player].end())
@@ -877,21 +877,21 @@ MoveIteratorPtr AIParameters::parseMoveIterator(const PlayerID & player, const s
     return mip->clone();
 }
 
-PlayerPtr AIParameters::getPlayer(const PlayerID & player, const std::string & playerName)
+PlayerPtr AIParameters::getPlayer(const PlayerID player, const std::string & playerName)
 {
     PRISMATA_ASSERT(_playerMap[player].find(playerName) != _playerMap[player].end(), "AIParameters::getPlayer Couldn't find player variable: %d %s", (int)_playerMap[player].size(), playerName.c_str());
 
     return _playerMap[player][playerName]->clone();
 }
 
-PPPtr AIParameters::getPartialPlayer(const PlayerID & player, const std::string & playerName)
+PPPtr AIParameters::getPartialPlayer(const PlayerID player, const std::string & playerName)
 {
 	PRISMATA_ASSERT(_partialPlayerMap[player].find(playerName) != _partialPlayerMap[player].end(), "AIParameters::getPartialPlayer Couldn't find player variable  %d %s", (int)_partialPlayerMap[player].size(), playerName.c_str());
 
     return _partialPlayerMap[player][playerName]->clone();
 }
 
-MoveIteratorPtr AIParameters::getMoveIterator(const PlayerID & player, const std::string & iteratorName)
+MoveIteratorPtr AIParameters::getMoveIterator(const PlayerID player, const std::string & iteratorName)
 {
 	PRISMATA_ASSERT(_moveIteratorMap[player].find(iteratorName) != _moveIteratorMap[player].end(), "AIParameters::getMoveIterator Couldn't find movw iterator variable %d %s", (int)_moveIteratorMap[player].size(), iteratorName.c_str());
 

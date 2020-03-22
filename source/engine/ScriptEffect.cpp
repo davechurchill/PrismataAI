@@ -86,7 +86,7 @@ void ScriptEffect::addCreateEffect(const CreateDescription & create)
     m_hasEffect = true;
 }
 
-const CardID & ScriptEffect::getResonateTypeID() const
+const CardID ScriptEffect::getResonateTypeID() const
 {
     if (m_resonateTypeID == 0)
     {

@@ -2,7 +2,7 @@
 
 using namespace Prismata;
 
-Player_RandomFromIterator::Player_RandomFromIterator (const PlayerID & playerID, const MoveIteratorPtr & moveIterator)
+Player_RandomFromIterator::Player_RandomFromIterator (const PlayerID playerID, const MoveIteratorPtr & moveIterator)
 {
     _moveIterator = moveIterator;
     m_playerID = playerID;

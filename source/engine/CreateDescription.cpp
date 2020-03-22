@@ -76,7 +76,7 @@ const std::string CreateDescription::getCardName() const
     return _cardName;
 }
 
-const CardID & CreateDescription::getTypeID() const
+const CardID CreateDescription::getTypeID() const
 {
     if (_typeID == 0)
     {
@@ -91,7 +91,7 @@ const CardType & CreateDescription::getType() const
     return CardTypes::GetAllCardTypes()[getTypeID()];
 }
 
-const CardID & CreateDescription::getMultiple() const
+const CardID CreateDescription::getMultiple() const
 {
     return _multiple;
 }

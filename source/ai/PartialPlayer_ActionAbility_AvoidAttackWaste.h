@@ -19,7 +19,7 @@ class PartialPlayer_ActionAbility_AvoidAttackWaste : public PartialPlayer
     bool        weWillWinOnThisAttack(const GameState & state);
 
 public:
-    PartialPlayer_ActionAbility_AvoidAttackWaste (const PlayerID & playerID);
+    PartialPlayer_ActionAbility_AvoidAttackWaste (const PlayerID playerID);
     void getMove(GameState & state, Move & move);
 
     PPPtr clone() { return PPPtr(new PartialPlayer_ActionAbility_AvoidAttackWaste(*this));}

@@ -2,7 +2,7 @@
 
 using namespace Prismata;
 
-Player_GUI::Player_GUI (const PlayerID & playerID)
+Player_GUI::Player_GUI (const PlayerID playerID)
 {
     m_playerID = playerID;
 }

@@ -3,7 +3,7 @@
 
 using namespace Prismata;
 
-PartialPlayer_ActionAbility_ChillSolver::PartialPlayer_ActionAbility_ChillSolver(const PlayerID & playerID, const size_t maxIterations)
+PartialPlayer_ActionAbility_ChillSolver::PartialPlayer_ActionAbility_ChillSolver(const PlayerID playerID, const size_t maxIterations)
     : _maxIterations(maxIterations)
 {
     _playerID = playerID;

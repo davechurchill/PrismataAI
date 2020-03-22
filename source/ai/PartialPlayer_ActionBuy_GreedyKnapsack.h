@@ -12,7 +12,7 @@ namespace Prismata
 
 class PartialPlayer_ActionBuy_GreedyKnapsack : public PartialPlayer
 {
-    EvaluationType          (*_heuristic)(const CardType &, const GameState &, const PlayerID &);
+    EvaluationType          (*_heuristic)(const CardType &, const GameState &, const PlayerID);
     CardFilter              _filter;
     Resources                    _beginTurnIncome;
     Resources                    _totalAbilityActivateCost;
@@ -31,9 +31,9 @@ class PartialPlayer_ActionBuy_GreedyKnapsack : public PartialPlayer
 
 public:
     
-    PartialPlayer_ActionBuy_GreedyKnapsack( const PlayerID & playerID, 
+    PartialPlayer_ActionBuy_GreedyKnapsack( const PlayerID playerID, 
                                             const CardFilter & filter,
-                                            EvaluationType (*heuristic)(const CardType &, const GameState &, const PlayerID &) = &Heuristics::BuyHighestCost);
+                                            EvaluationType (*heuristic)(const CardType &, const GameState &, const PlayerID) = &Heuristics::BuyHighestCost);
 
     void getMove(GameState & state, Move & move);
     void addToBlacklist(const CardType & type);
@@ -42,14 +42,14 @@ public:
 
 class BuyKnapsackCompare 
 {
-    EvaluationType (*_heuristic)(const CardType &, const GameState &, const PlayerID &);
+    EvaluationType (*_heuristic)(const CardType &, const GameState &, const PlayerID);
     const GameState & _state;
-    const PlayerID & _player;
+    const PlayerID _player;
     const HealthType & _enemyAttackPotential;
 
 public:
 
-    BuyKnapsackCompare(EvaluationType (*heuristic)(const CardType &, const GameState &, const PlayerID &), const GameState & state, const PlayerID & player, const HealthType & enemyAttackPotential)
+    BuyKnapsackCompare(EvaluationType (*heuristic)(const CardType &, const GameState &, const PlayerID), const GameState & state, const PlayerID player, const HealthType & enemyAttackPotential)
         : _heuristic(heuristic)
         , _state(state)
         , _player(player)

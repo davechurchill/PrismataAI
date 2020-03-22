@@ -2,7 +2,7 @@
 
 using namespace Prismata;
 
-Player_AlphaBeta::Player_AlphaBeta (const PlayerID & playerID, const AlphaBetaSearchParameters & params)
+Player_AlphaBeta::Player_AlphaBeta (const PlayerID playerID, const AlphaBetaSearchParameters & params)
     : _search(params)
     , _params(params)
 {

@@ -32,7 +32,7 @@ void StateChillIterator::reset()
     _bestEval = StateChillEvaluation();
 
     // add all the chillers to the vector
-    for (const CardID & cardID : _initialState.getCardIDs(_player))
+    for (const CardID cardID : _initialState.getCardIDs(_player))
     {
         const Card & card = _initialState.getCardByID(cardID);
 
@@ -62,7 +62,7 @@ void StateChillIterator::reset()
     }
 
     // add all the enemy blockers to the vector
-    for (const CardID & cardID : _initialState.getCardIDs(_enemy))
+    for (const CardID cardID : _initialState.getCardIDs(_enemy))
     {
         const Card & card = _initialState.getCardByID(cardID);
 
@@ -231,7 +231,7 @@ void StateChillIterator::recurseIsomorphic(const size_t currentBlockerIndex, con
 }
 
 // chills blocker with chiller on current state, returns whether it was loegal
-bool StateChillIterator::chillTarget(const Card & chiller, const CardID & chillerIndex, const Card & blocker, const CardID & blockerIndex)
+bool StateChillIterator::chillTarget(const Card & chiller, const CardID chillerIndex, const Card & blocker, const CardID blockerIndex)
 {
     const Action clickChiller(_player, ActionTypes::USE_ABILITY, chiller.getID());
     const Action chillUnit(_player, ActionTypes::CHILL, chiller.getID(), blocker.getID());
@@ -261,7 +261,7 @@ bool StateChillIterator::chillTarget(const Card & chiller, const CardID & chille
 }
 
 // chills blocker with chiller on current state, returns whether it was loegal
-void StateChillIterator::undoChillTarget(const Card & chiller, const CardID & chillerIndex, const Card & blocker, const CardID & blockerIndex)
+void StateChillIterator::undoChillTarget(const Card & chiller, const CardID chillerIndex, const Card & blocker, const CardID blockerIndex)
 {
     // if we are un-freezing the blocker then decrement the number used
     if (blocker.isFrozen())

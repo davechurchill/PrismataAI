@@ -39,7 +39,7 @@ class MoveIterator_AllBreach : public MoveIterator
 
 public:
     
-    MoveIterator_AllBreach(const PlayerID & playerID);
+    MoveIterator_AllBreach(const PlayerID playerID);
     
     void testIterator();
 

@@ -25,7 +25,7 @@ public:
     
     const std::string toString() const;
     const CardType & getType() const;
-    const CardID & getTypeID() const;
+    const CardID getTypeID() const;
     bool isTech() const;
     bool isNotBlocking() const;
     bool hasCardType() const;

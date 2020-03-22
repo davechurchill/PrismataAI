@@ -13,7 +13,7 @@ class Player_RandomFromIterator : public Player
 
 public:
 
-    Player_RandomFromIterator (const PlayerID & playerID, const MoveIteratorPtr & moveIterator);
+    Player_RandomFromIterator (const PlayerID playerID, const MoveIteratorPtr & moveIterator);
     void getMove(const GameState & state, Move & move);
     std::string getDescription();
 

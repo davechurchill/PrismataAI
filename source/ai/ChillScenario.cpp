@@ -17,7 +17,7 @@ ChillScenario::ChillScenario()
     std::fill(_defenseHistogram.begin(), _defenseHistogram.end(), 0);
 }
 
-ChillScenario::ChillScenario(const GameState & state, const PlayerID & chillPlayer)
+ChillScenario::ChillScenario(const GameState & state, const PlayerID chillPlayer)
     : _numDefenders(0)
     , _totalDefense(0)
     , _numChillers(0)

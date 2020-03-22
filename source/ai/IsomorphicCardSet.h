@@ -15,16 +15,16 @@ public:
 
     IsomorphicCardSet();
     
-    void add(const CardID & cardID);
+    void add(const CardID cardID);
     void incUsed();
     void decUsed();
 
-    bool isIsomorphic(const GameState & state, const CardID & otherCardID) const;
+    bool isIsomorphic(const GameState & state, const CardID otherCardID) const;
     const std::vector<CardID> & getCardIDs() const;
     const size_t size() const;
     const size_t & numUsed() const;
     const Card & getCurrentCard(const GameState & state) const;
-    const CardID & getCurrentCardID() const;
+    const CardID getCurrentCardID() const;
     bool allUsed() const;
 };
  

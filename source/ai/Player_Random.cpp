@@ -2,7 +2,7 @@
 
 using namespace Prismata;
 
-Player_Random::Player_Random (const PlayerID & playerID)
+Player_Random::Player_Random (const PlayerID playerID)
 {
     m_playerID = playerID;
 }

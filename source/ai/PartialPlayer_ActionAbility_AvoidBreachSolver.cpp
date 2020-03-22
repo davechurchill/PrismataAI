@@ -4,7 +4,7 @@
 
 using namespace Prismata;
 
-PartialPlayer_ActionAbility_AvoidBreachSolver::PartialPlayer_ActionAbility_AvoidBreachSolver(const PlayerID & playerID, const BreachIteratorParameters & params)
+PartialPlayer_ActionAbility_AvoidBreachSolver::PartialPlayer_ActionAbility_AvoidBreachSolver(const PlayerID playerID, const BreachIteratorParameters & params)
     : _params(params)
 {
     _playerID = playerID;

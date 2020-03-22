@@ -15,7 +15,7 @@ public:
 
     static CardTypeData & Instance();
     
-    const CardTypeInfo & getCardTypeInfo(const CardID & id);
+    const CardTypeInfo & getCardTypeInfo(const CardID id);
     const CardTypeInfo & GetCardTypeInfoByName(const std::string & name);
     
     void ProcessPostInit();

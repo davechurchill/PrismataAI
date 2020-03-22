@@ -3,7 +3,7 @@
 
 using namespace Prismata;
 
-MoveIterator_PPPortfolio::MoveIterator_PPPortfolio(const PlayerID & playerID)
+MoveIterator_PPPortfolio::MoveIterator_PPPortfolio(const PlayerID playerID)
     : m_portfolio(PPPhases::NUM_PHASES, std::vector<PPPtr>())
     , m_currentIndex(PPPhases::NUM_PHASES, 0)
     , m_previousMoveChanged(PPPhases::NUM_PHASES, true)

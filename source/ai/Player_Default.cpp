@@ -3,7 +3,7 @@
 
 using namespace Prismata;
 
-Player_Default::Player_Default (const PlayerID & playerID)
+Player_Default::Player_Default (const PlayerID playerID)
 {
     m_playerID = playerID;
 }

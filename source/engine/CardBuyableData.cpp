@@ -7,46 +7,46 @@ CardBuyableData::CardBuyableData()
     
 }
 
-const CardBuyable & CardBuyableData::getCardBuyableByIndex(const CardID & cardIndex) const
+const CardBuyable & CardBuyableData::getCardBuyableByIndex(const CardID cardIndex) const
 {
-    PRISMATA_ASSERT(cardIndex < _buyableCards.size(), "cardIndex exceeds capacity, cardIndex=%d, capacity=%d", cardIndex, _buyableCards.size());
+    PRISMATA_ASSERT(cardIndex < m_buyableCards.size(), "cardIndex exceeds capacity, cardIndex=%d, capacity=%d", cardIndex, m_buyableCards.size());
 
-    return _buyableCards[cardIndex];
+    return m_buyableCards[cardIndex];
 }
 
-CardBuyable & CardBuyableData::getCardBuyableByIndex(const CardID & cardIndex)
+CardBuyable & CardBuyableData::getCardBuyableByIndex(const CardID cardIndex)
 {
-    PRISMATA_ASSERT(cardIndex < _buyableCards.size(), "cardIndex exceeds capacity, cardIndex=%d, capacity=%d", cardIndex, _buyableCards.size());
+    PRISMATA_ASSERT(cardIndex < m_buyableCards.size(), "cardIndex exceeds capacity, cardIndex=%d, capacity=%d", cardIndex, m_buyableCards.size());
 
-    return _buyableCards[cardIndex];
+    return m_buyableCards[cardIndex];
 }
 
-const CardBuyable & CardBuyableData::getCardBuyableByID(const CardID & cardID) const
+const CardBuyable & CardBuyableData::getCardBuyableByID(const CardID cardID) const
 {
-    for (size_t i(0); i < _buyableCards.size(); ++i)
+    for (size_t i(0); i < m_buyableCards.size(); ++i)
     {
-        if (_buyableCards[i].getType() == cardID)
+        if (m_buyableCards[i].getType() == cardID)
         {
-            return _buyableCards[i];
+            return m_buyableCards[i];
         }
     }
 
     PRISMATA_ASSERT(false, "Couldn't find card by ID");
-    return _buyableCards[0];
+    return m_buyableCards[0];
 }
 
-CardBuyable & CardBuyableData::getCardBuyableByID(const CardID & cardID)
+CardBuyable & CardBuyableData::getCardBuyableByID(const CardID cardID)
 {
-    for (size_t i(0); i < _buyableCards.size(); ++i)
+    for (size_t i(0); i < m_buyableCards.size(); ++i)
     {
-        if (_buyableCards[i].getType() == cardID)
+        if (m_buyableCards[i].getType() == cardID)
         {
-            return _buyableCards[i];
+            return m_buyableCards[i];
         }
     }
 
     PRISMATA_ASSERT(false, "Couldn't find card by ID");
-    return _buyableCards[0];
+    return m_buyableCards[0];
 }
 
 const CardBuyable & CardBuyableData::getCardBuyableByType(const CardType & type) const
@@ -61,24 +61,24 @@ CardBuyable & CardBuyableData::getCardBuyableByType(const CardType & type)
 
 const CardID CardBuyableData::size() const
 {
-    return _buyableCards.size();
+    return m_buyableCards.size();
 }
 
-void CardBuyableData::buyCardByID(const PlayerID & player, const CardID & cardID)
+void CardBuyableData::buyCardByID(const PlayerID player, const CardID cardID)
 {
     PRISMATA_ASSERT(player < 2, "player exceeds num players, player=%d, numplayers=%d", player, 2);
 
     getCardBuyableByID(cardID).buyCard(player);
 }
 
-void CardBuyableData::sellCardByID(const PlayerID & player, const CardID & cardID)
+void CardBuyableData::sellCardByID(const PlayerID player, const CardID cardID)
 {
     PRISMATA_ASSERT(player < 2, "player exceeds num players, player=%d, numplayers=%d", player, 2);
 
     getCardBuyableByID(cardID).sellCard(player);
 }
 
-void CardBuyableData::buyCardByIndex(const PlayerID & player, const CardID & cardIndex)
+void CardBuyableData::buyCardByIndex(const PlayerID player, const CardID cardIndex)
 {
     PRISMATA_ASSERT(player < 2, "player exceeds num players, player=%d, numplayers=%d", player, 2);
 
@@ -87,5 +87,5 @@ void CardBuyableData::buyCardByIndex(const PlayerID & player, const CardID & car
 
 void CardBuyableData::addCardBuyable(const CardBuyable & cardBuyable)
 {
-    _buyableCards.push_back(cardBuyable);
+    m_buyableCards.push_back(cardBuyable);
 }

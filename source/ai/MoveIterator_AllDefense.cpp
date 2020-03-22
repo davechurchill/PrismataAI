@@ -4,7 +4,7 @@
 
 using namespace Prismata;
 
-MoveIterator_AllDefense::MoveIterator_AllDefense(const PlayerID & playerID)
+MoveIterator_AllDefense::MoveIterator_AllDefense(const PlayerID playerID)
     : _movesGenerated(0)
     , _legalMovesGenerated(0)
 {

@@ -46,11 +46,11 @@ class Action
 public:
 
     Action();
-    Action(const PlayerID & player, const ActionID & actionType, const CardID & id = 0);
-    Action(const PlayerID & player, const ActionID & actionType, const CardID & id, const CardID & target);
+    Action(const PlayerID player, const ActionID & actionType, const CardID id = 0);
+    Action(const PlayerID player, const ActionID & actionType, const CardID id, const CardID target);
 
     void setShift(bool shift);
-    void setID(const CardID & id);
+    void setID(const CardID id);
     bool getShift() const;
 
     bool operator == (const Action & rhs)   const;

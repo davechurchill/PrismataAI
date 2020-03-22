@@ -72,12 +72,12 @@ class StateChillIterator
     void printActions(const Move & move);
     void printStackEnglish();
     void printDebug();
-    void undoChillTarget(const Card & chiller, const CardID & chillerIndex, const Card & blocker, const CardID & blockerIndex);
+    void undoChillTarget(const Card & chiller, const CardID chillerIndex, const Card & blocker, const CardID blockerIndex);
     void recurse(const size_t currentBlockerIndex);
     void recurseIsomorphic(const size_t currentBlockerIndex, const size_t currentChillerIndex, bool partialChill);
     bool checkState(const GameState & state);
     bool checkStateIsomorphism();
-    bool chillTarget(const Card & chiller, const CardID & chillerIndex, const Card & blocker, const CardID & blockerIndex);
+    bool chillTarget(const Card & chiller, const CardID chillerIndex, const Card & blocker, const CardID blockerIndex);
 
 public:
     

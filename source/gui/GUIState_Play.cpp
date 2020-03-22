@@ -452,7 +452,7 @@ void GUIState_Play::drawInformation()
         GUITools::DrawMana(m_currentState.getResources(player), origin[player], iconSize, numberSize, sf::Vector2f(10, 0), true, &m_game.window());
     }
 
-    EnumType phase = m_currentState.getActivePhase();
+    int phase = m_currentState.getActivePhase();
     PlayerID player = m_currentState.getActivePlayer();
     sf::Vector2f attackSize(300, 300);
     sf::Vector2f numSize(80, 80);

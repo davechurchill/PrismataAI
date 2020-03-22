@@ -12,7 +12,7 @@ class PartialPlayer_ActionBuy_Iterator : public PartialPlayer
 
 public:
 
-    PartialPlayer_ActionBuy_Iterator (const PlayerID & playerID);
+    PartialPlayer_ActionBuy_Iterator (const PlayerID playerID);
     void getMove(GameState & state, Move & move);
 
     PPPtr clone() { return PPPtr(new PartialPlayer_ActionBuy_Iterator(*this));}

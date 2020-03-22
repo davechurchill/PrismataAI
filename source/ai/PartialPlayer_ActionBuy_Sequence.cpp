@@ -2,7 +2,7 @@
 
 using namespace Prismata;
 
-PartialPlayer_ActionBuy_Sequence::PartialPlayer_ActionBuy_Sequence(const PlayerID & playerID, const BuySequence & buySequence)
+PartialPlayer_ActionBuy_Sequence::PartialPlayer_ActionBuy_Sequence(const PlayerID playerID, const BuySequence & buySequence)
     : _buySequence(buySequence)
 {
     _playerID = playerID;

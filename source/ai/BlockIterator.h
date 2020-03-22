@@ -39,12 +39,12 @@ public:
         return *_card;
     }
 
-    const CardID & getNum() const
+    const CardID getNum() const
     {
         return _num;
     }
 
-    const CardID & getNumBlocking() const
+    const CardID getNumBlocking() const
     {
         return _numBlocking;
     }
@@ -112,7 +112,7 @@ public:
 
     void        solve();
     void        getBestMove(Move & move);
-    void        recurse(const CardID & depth, const HealthType & damageRemaining, const double lossScore, const double tieBreakScore);
+    void        recurse(const CardID depth, const HealthType & damageRemaining, const double lossScore, const double tieBreakScore);
     size_t      getNumBuys();
     double      getMinLossScore() const;
 

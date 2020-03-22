@@ -198,7 +198,7 @@ void AttackDamageScenario::calculateBeginBreachState()
 
     _beginBreachState.manuallySetAttack(_attackingPlayerID, _totalEnemyDefense + 1);
 
-    const EnumType startingPhase = _beginBreachState.getActivePhase();
+    const int startingPhase = _beginBreachState.getActivePhase();
     const PlayerID player = _beginBreachState.getActivePlayer();
     const PlayerID enemy = _beginBreachState.getInactivePlayer();
     Move moves[2] = {Move(), Move()};
@@ -225,7 +225,7 @@ void AttackDamageScenario::calculateBeginDefenseState()
     _beginDefenseState = _initialState;
     _beginDefenseState.manuallySetAttack(_attackingPlayerID, std::max(0, (int)_totalEnemyDefense - 1));
 
-    const EnumType startingPhase = _beginDefenseState.getActivePhase();
+    const int startingPhase = _beginDefenseState.getActivePhase();
     const PlayerID player = _beginDefenseState.getActivePlayer();
     const PlayerID enemy = _beginDefenseState.getInactivePlayer();
     Move moves[2] = {Move(), Move()};

@@ -3,7 +3,7 @@
 
 using namespace Prismata;
 
-PartialPlayer_ActionAbility_ActivateUtility::PartialPlayer_ActionAbility_ActivateUtility(const PlayerID & playerID, const CardFilter & filter)
+PartialPlayer_ActionAbility_ActivateUtility::PartialPlayer_ActionAbility_ActivateUtility(const PlayerID playerID, const CardFilter & filter)
     : _filter(filter)
 {
     _playerID = playerID;

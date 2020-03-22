@@ -174,7 +174,7 @@ Card::Card(const rapidjson::Value & cardValue)
     }
 }
    
-Card::Card(const CardType & type, const PlayerID & player, const EnumType & creationMethod, const TurnType & delay, const TurnType & lifespan)
+Card::Card(const CardType & type, const PlayerID player, const int & creationMethod, const TurnType & delay, const TurnType & lifespan)
     : _type                 (type)
     , _player               (player)
     , _id                   (-1)
@@ -235,7 +235,7 @@ Card::Card(const CardType & type, const PlayerID & player, const EnumType & crea
     }
 }
 
-void Card::setID(const CardID & id)
+void Card::setID(const CardID id)
 {
     _id = id;
 }
@@ -271,12 +271,12 @@ const CardType & Card::getType() const
  return _type;
 }
 
-const PlayerID & Card::getPlayer() const
+const PlayerID Card::getPlayer() const
 {
     return _player;
 }
 
-const CardID & Card::getID() const
+const CardID Card::getID() const
 {
  return _id;
 }
@@ -326,12 +326,12 @@ const HealthType & Card::currentChill() const
     return _currentChill;
 }
 
-const EnumType & Card::getStatus() const
+const int & Card::getStatus() const
 {
     return _status;
 }
 
-const EnumType & Card::getAliveStatus() const
+const int & Card::getAliveStatus() const
 {
     return _aliveStatus;
 }
@@ -386,7 +386,7 @@ bool Card::canOverkillFor(const HealthType & damage) const
     return true;
 }
 
-void Card::takeDamage(const HealthType & amount, const EnumType & damageSource)
+void Card::takeDamage(const HealthType & amount, const int & damageSource)
 {
     _damageTaken = std::min(amount, _currentHealth);
 
@@ -436,7 +436,7 @@ void Card::removeChill(const HealthType & amount)
     _currentChill -= amount;
 }
 
-void Card::setStatus(EnumType status)
+void Card::setStatus(int status)
 {
     _status = status;
 }
@@ -447,13 +447,13 @@ void Card::clearTarget()
     _targetID = 0;
 }
 
-void Card::setTargetID(const CardID & targetID)
+void Card::setTargetID(const CardID targetID)
 {
     _hasTarget = true;
     _targetID = targetID;
 }
 
-const CardID & Card::getTargetID() const
+const CardID Card::getTargetID() const
 {
     PRISMATA_ASSERT(hasTarget(), "Trying to get the target of a card without one: %s", getType().getUIName().c_str() );
 
@@ -505,7 +505,7 @@ bool Card::canBlock() const
     return true;
 }
 
-void Card::kill(const EnumType & causeOfDeath)
+void Card::kill(const int & causeOfDeath)
 {
     _dead = true;
     _aliveStatus = AliveStatus::KilledThisTurn;
@@ -873,12 +873,12 @@ bool Card::isIsomorphic(const Card & other) const
                 &&  getStatus()             == other.getStatus();
 }
 
-void Card::addCreatedCardID(const CardID & id)
+void Card::addCreatedCardID(const CardID id)
 {
     _createdCardIDs.push_back(id);
 }
 
-void Card::addKilledCardID(const CardID & id)
+void Card::addKilledCardID(const CardID id)
 {
     _killedCardIDs.push_back(id);
 }

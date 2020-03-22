@@ -33,7 +33,7 @@ public:
     // UCT-specific functions
     UCTNode &           UCTNodeSelect(UCTNode & parent);
     PlayerID            traverse(UCTNode & node);//, GameState & currentState);
-    void                uct(GameState & state, size_t depth, const EnumType lastPlayerToMove);
+    void                uct(GameState & state, size_t depth, const int lastPlayerToMove);
     UCTNode *           getBestRootNode();
     
     bool                searchShouldStop();

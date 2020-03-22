@@ -14,7 +14,7 @@ class PartialPlayer_ActionAbility_SnipeGreedyKnapsack : public PartialPlayer
     EvaluationType (*_heuristic)(const Card &, const GameState &);
 
 public:
-    PartialPlayer_ActionAbility_SnipeGreedyKnapsack(const PlayerID & playerID, EvaluationType (*heuristic)(const Card &, const GameState &) = &Heuristics::CurrentCardValue);
+    PartialPlayer_ActionAbility_SnipeGreedyKnapsack(const PlayerID playerID, EvaluationType (*heuristic)(const Card &, const GameState &) = &Heuristics::CurrentCardValue);
     void getMove(GameState & state, Move & move);
 
     PPPtr clone() { return PPPtr(new PartialPlayer_ActionAbility_SnipeGreedyKnapsack(*this));}

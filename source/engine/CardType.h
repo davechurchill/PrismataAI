@@ -21,7 +21,7 @@ class CardType
 public:
  
     CardType();
-    CardType(const CardID & id);
+    CardType(const CardID id);
     CardType(const CardType & type);
 
     CardType & operator = (const CardType & rhs);
@@ -31,7 +31,7 @@ public:
     const std::vector<CardID> & getResonateFromIDs()        const;
     const std::vector<CardID> & getResonateToIDs()          const;
 
-    const CardID &              getID()                     const;
+    const CardID              getID()                     const;
     const HealthType &          getAttack()                 const;
     const HealthType &          getAttackGivenToEnemy()     const;
     const HealthType &          getStartingHealth()         const;
@@ -61,7 +61,7 @@ public:
     bool usesCharges()               const;
     bool usesBuySac()                const;
     bool canBlock(bool assigned)     const;
-    bool canProduce(EnumType m)      const;
+    bool canProduce(int m)      const;
     bool isSpell()                   const;
     bool isTech()                    const;
     bool isFragile()                 const;

@@ -58,7 +58,7 @@ const int GUICardBuyable::getLayer() const
     return m_layer;
 }
 
-Action GUICardBuyable::onClick(const int & player, const EnumType & phase)
+Action GUICardBuyable::onClick(const int & player, const int & phase)
 {
     return Action(player, ActionTypes::BUY, m_cardBuyable->getType().getID());
 }

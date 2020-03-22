@@ -9,7 +9,7 @@
 
 using namespace Prismata;
 
-MoveIterator_All::MoveIterator_All(const PlayerID & playerID)
+MoveIterator_All::MoveIterator_All(const PlayerID playerID)
     : _movesGenerated(0)
     , _legalMovesGenerated(0)
 {

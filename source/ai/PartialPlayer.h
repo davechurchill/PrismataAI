@@ -21,14 +21,14 @@ class PartialPlayer
 protected:
 
     PlayerID            _playerID;      // the player this PartialPlayer chooses moves for
-    EnumType            _phaseID;       // the phase this PartialPlayer should be choosing moves in
+    int            _phaseID;       // the phase this PartialPlayer should be choosing moves in
     std::string         _description;
     BuyLimits           _buyLimits;
 
 public:
 
     virtual void                getMove(GameState & state, Move & move);
-    //virtual EnumType            getPhase() const;
+    //virtual int            getPhase() const;
     virtual std::string         getDescription(size_t depth = 0);
     virtual const PlayerID      playerID() const;
     virtual void                setDescription(const std::string & description) { _description = description; }

@@ -18,6 +18,6 @@ public:
 
     CanonicalOrderComparator(const GameState & state);
 
-    bool operator() (const CardID & cardID1, const CardID & cardID2) const;
+    bool operator() (const CardID cardID1, const CardID cardID2) const;
 };
 }

@@ -4,7 +4,7 @@
 
 using namespace Prismata;
 
-Player_PPSequence::Player_PPSequence(const PlayerID & playerID, const PPSequence & sequence)
+Player_PPSequence::Player_PPSequence(const PlayerID playerID, const PPSequence & sequence)
 {
     m_playerID = playerID;
     _sequence = sequence;

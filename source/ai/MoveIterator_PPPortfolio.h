@@ -29,7 +29,7 @@ protected:
 
 public:
 
-    MoveIterator_PPPortfolio(const PlayerID & playerID);
+    MoveIterator_PPPortfolio(const PlayerID playerID);
 
     bool            generateNextChild(GameState & child, Move & movePerformed);
     void            addPartialPlayer(const size_t phase, const PPPtr & player);

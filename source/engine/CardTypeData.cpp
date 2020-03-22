@@ -46,7 +46,7 @@ void CardTypeData::ProcessPostInit()
         }
     }
 }
-const CardTypeInfo & CardTypeData::getCardTypeInfo(const CardID & id)
+const CardTypeInfo & CardTypeData::getCardTypeInfo(const CardID id)
 {
     PRISMATA_ASSERT(id < _allCardTypeInfo.size(), "Card ID not known: %d", id);
 

@@ -23,7 +23,7 @@ public:
 
     virtual void            getMove(const GameState & state, Move & move);
     const int               ID();
-    void                    setID(const int & playerid);
+    void                    setID(const int playerid);
     virtual std::string     getDescription();
     virtual void            setDescription(const std::string & desc);
 

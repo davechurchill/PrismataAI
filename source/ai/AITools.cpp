@@ -125,7 +125,7 @@ std::string AITools::GetAIMove(const std::string & aiParamsString)
     return aistring.str();
 }
 
-bool AITools::PlayerShouldResign(const GameState & state, const PlayerID & playerID)
+bool AITools::PlayerShouldResign(const GameState & state, const PlayerID playerID)
 {
     const PlayerID enemyID = state.getEnemy(playerID);
 
@@ -539,7 +539,7 @@ int AITools::FindIsomorphicCardID(const Card & card, const GameState & state)
 
 void AITools::PredictEnemyNextTurn(GameState & state, bool solveDefense)
 {
-    const EnumType startingPhase = state.getActivePhase();
+    const int startingPhase = state.getActivePhase();
     const PlayerID player = state.getActivePlayer();
     const PlayerID enemy = state.getInactivePlayer();
     Move moves[2] = {Move(), Move()};
@@ -630,7 +630,7 @@ double AITools::CalculateWipeoutLoss(GameState & state, const PlayerID player)
 
 double AITools::CalculateEnemyNextTurnDefenseLoss(GameState & state)
 {
-    const EnumType startingPhase = state.getActivePhase();
+    const int startingPhase = state.getActivePhase();
     const PlayerID player = state.getActivePlayer();
     const PlayerID enemy = state.getInactivePlayer();
     Move moves[2] = {Move(), Move()};
@@ -686,7 +686,7 @@ double AITools::CalculateEnemyNextTurnDefenseLoss(GameState & state)
     }
 }
 
-PPPtr AITools::GetPredictionPlayer(const PlayerID & player)
+PPPtr AITools::GetPredictionPlayer(const PlayerID player)
 {
     std::vector<PPPtr> combo;
 
@@ -753,7 +753,7 @@ bool AITools::PurchaseIsOutOfSync(const PlayerID player, const CardType & type, 
     return false;
 }
 
-size_t AITools::NumResonatorsReady(const CardType & type, const GameState & state, const PlayerID & player, const TurnType maxConstructionTime)
+size_t AITools::NumResonatorsReady(const CardType & type, const GameState & state, const PlayerID player, const TurnType maxConstructionTime)
 {
     size_t resonatorsFound = 0;
     for (const auto & resonateToID : type.getResonateToIDs())
@@ -778,7 +778,7 @@ size_t AITools::NumResonatorsReady(const CardType & type, const GameState & stat
     return resonatorsFound;
 }
 
-Resources AITools::GetReceiveFromResonators(const CardType & type, const GameState & state, const PlayerID & player, const TurnType maxConstructionTime)
+Resources AITools::GetReceiveFromResonators(const CardType & type, const GameState & state, const PlayerID player, const TurnType maxConstructionTime)
 {
     Resources contribution;
     for (const auto & resonateToID : type.getResonateToIDs())
@@ -803,7 +803,7 @@ Resources AITools::GetReceiveFromResonators(const CardType & type, const GameSta
     return contribution;
 }
 
-Resources AITools::GetReceiveFromResonatees(const CardType & type, const GameState & state, const PlayerID & player, const TurnType maxConstructionTime)
+Resources AITools::GetReceiveFromResonatees(const CardType & type, const GameState & state, const PlayerID player, const TurnType maxConstructionTime)
 {
     Resources receive;
     size_t numResonatees = NumResonateesReady(type, state, player, maxConstructionTime);
@@ -816,7 +816,7 @@ Resources AITools::GetReceiveFromResonatees(const CardType & type, const GameSta
     return receive;
 }
 
-size_t AITools::NumResonateesReady(const CardType & type, const GameState & state, const PlayerID & player, const TurnType maxConstructionTime)
+size_t AITools::NumResonateesReady(const CardType & type, const GameState & state, const PlayerID player, const TurnType maxConstructionTime)
 {
     size_t resonateesFound = 0;
     for (const auto & resonateFromID : type.getResonateFromIDs())

@@ -832,7 +832,7 @@ bool GameState::undoTargetAbility(Card & card)
     return true;
 }
 
-bool GameState::canRunScript(const PlayerID & player, const Script & script) const
+bool GameState::canRunScript(const PlayerID player, const Script & script) const
 {
     // CHECK IF WE HAVE MANA COST
     if (script.hasManaCost() && !getResources(player).has(script.getManaCost()))
@@ -855,7 +855,7 @@ bool GameState::canRunScript(const PlayerID & player, const Script & script) con
     return true;
 }
 
-bool GameState::canRunScriptUndo(const PlayerID & player, const CardID & cardID, const Script & script) const
+bool GameState::canRunScriptUndo(const PlayerID player, const CardID cardID, const Script & script) const
 {
     // if we no longer have the resource that this produced we can't undo it
     if (!getResources(player).has(script.getEffect().getReceive()))
@@ -875,7 +875,7 @@ bool GameState::canRunScriptUndo(const PlayerID & player, const CardID & cardID,
     return true;
 }
 
-bool GameState::haveDestroyCards(const PlayerID & player, const std::vector<DestroyDescription> & desroyDescriptions) const
+bool GameState::haveDestroyCards(const PlayerID player, const std::vector<DestroyDescription> & desroyDescriptions) const
 {
     for (const auto & destroyDescription : desroyDescriptions)
     {
@@ -976,7 +976,7 @@ void GameState::runScript(const CardID cardID, const Script & script, size_t scr
             
             for (size_t m(0); m< createDescription.getMultiple(); ++m)
             {
-                EnumType cardCreationMethod = (scriptType == ScriptTypes::BuyScript) ? CardCreationMethod::BuyScript : CardCreationMethod::AbilityScript;
+                int cardCreationMethod = (scriptType == ScriptTypes::BuyScript) ? CardCreationMethod::BuyScript : CardCreationMethod::AbilityScript;
 
                 Card toAdd(createType, createPlayer, cardCreationMethod, createDescription.getBuildTime(), createDescription.getLifespan());
 
@@ -1091,7 +1091,7 @@ void GameState::runScriptUndo(const CardID cardID, const Script & script, size_t
 }
 
 
-void GameState::getCardsToSac(const PlayerID & abilityOwner, const SacDescription & sacDescription, std::vector<CardID> & cardsToSac) const
+void GameState::getCardsToSac(const PlayerID abilityOwner, const SacDescription & sacDescription, std::vector<CardID> & cardsToSac) const
 {
     const CardID sacTypeID = sacDescription.getTypeID();
     const CardID mult = sacDescription.getMultiple();
@@ -1150,7 +1150,7 @@ void GameState::getCardsToSac(const PlayerID & abilityOwner, const SacDescriptio
     }
 }
 
-void GameState::getCardsToDestroy(const PlayerID & abilityOwner, const DestroyDescription & destroyDescription, std::vector<CardID> & cardsToDestroy) const
+void GameState::getCardsToDestroy(const PlayerID abilityOwner, const DestroyDescription & destroyDescription, std::vector<CardID> & cardsToDestroy) const
 {
     const PlayerID destroyedCardOwner = destroyDescription.getOwn() ? abilityOwner : getEnemy(abilityOwner);
 
@@ -1181,12 +1181,12 @@ const PlayerID GameState::getInactivePlayer() const
     return getEnemy(m_activePlayer);
 }
 
-void GameState::killCardByID(const CardID cardID, const EnumType & causeOfDeath)
+void GameState::killCardByID(const CardID cardID, const int causeOfDeath)
 {
     m_cards.killCardByID(cardID, causeOfDeath);
 }
 
-const PlayerID GameState::getEnemy(const PlayerID & player) const
+const PlayerID GameState::getEnemy(const PlayerID player) const
 {
     PRISMATA_ASSERT(player < 2, "player exceeds num players, player=%d, numplayers=%d", player, 2);
 
@@ -1206,7 +1206,7 @@ bool GameState::calculateGameOver() const
     return p1Cards == 0 || p2Cards == 0;
 }
 
-void GameState::beginTurn(const PlayerID & player)
+void GameState::beginTurn(const PlayerID player)
 {
     PRISMATA_ASSERT(player < 2, "player exceeds num players, player=%d, numplayers=%d", player, 2);
 
@@ -1269,7 +1269,7 @@ void GameState::beginTurn(const PlayerID & player)
     m_cards.removeKilledCards();
 }
 
-void GameState::beginPhase(const PlayerID & player, const EnumType & newPhase)
+void GameState::beginPhase(const PlayerID player, const int newPhase)
 {
     PRISMATA_ASSERT(player < 2, "player exceeds num players, player=%d, numplayers=%d", player, 2);
 
@@ -1393,7 +1393,7 @@ void GameState::endPhase()
     }
 }
 
-Card & GameState::buyCardByID(const PlayerID & player, const CardID & cardID)
+Card & GameState::buyCardByID(const PlayerID player, const CardID cardID)
 {
     // subtract the appropriate resource from the current player
     PRISMATA_ASSERT(getResources(player).has(getCardBuyableByID(cardID).getType().getBuyCost()), "Do not have enough resource to buy this card");
@@ -1429,7 +1429,7 @@ Card & GameState::buyCardByID(const PlayerID & player, const CardID & cardID)
     return boughtCard;
 }
 
-void GameState::sellCardByID(const PlayerID & player, const CardID & cardID)
+void GameState::sellCardByID(const PlayerID player, const CardID cardID)
 {
     Card & card = _getCardByID(cardID);
     
@@ -1448,7 +1448,7 @@ const CardID GameState::getLastCardBoughtID() const
     return m_lastCardBoughtID;
 }
 
-bool GameState::canWipeout(const PlayerID & player) const
+bool GameState::canWipeout(const PlayerID player) const
 {
     if (getAttack(player) == 0)             { return false; }
     if (getActivePlayer() != player)        { return false; }
@@ -1470,7 +1470,7 @@ bool GameState::doMove(const Move & move)
 
 // blocks with all of a player's available blockers
 // this function is used to kill off a player's blockers if breach will happen
-void GameState::blockWithAllBlockers(const PlayerID & player)
+void GameState::blockWithAllBlockers(const PlayerID player)
 {
     // block with all available enemy blockers
     CardID c(0);
@@ -1491,7 +1491,7 @@ void GameState::blockWithAllBlockers(const PlayerID & player)
     }
 }
 
-const HealthType GameState::getTotalAvailableDefense(const PlayerID & player) const
+const HealthType GameState::getTotalAvailableDefense(const PlayerID player) const
 {
     PRISMATA_ASSERT(player < 2, "player exceeds num players, player=%d, numplayers=%d", player, 2);
 
@@ -1560,12 +1560,12 @@ void GameState::undoBreachCard(Card & card)
 }
 
 
-const HealthType GameState::getAttack(const PlayerID & player) const
+const HealthType GameState::getAttack(const PlayerID player) const
 {
     return (HealthType)getResources(player).amountOf(Resources::Attack);
 }
 
-void GameState::addCard(const PlayerID & player, const CardType & type, const size_t num, const EnumType & creationMethod, const TurnType & delay, const TurnType & lifespan)
+void GameState::addCard(const PlayerID player, const CardType & type, const size_t num, const int creationMethod, const TurnType delay, const TurnType lifespan)
 {
     for (size_t i(0); i<num; ++i)
     {
@@ -1586,43 +1586,43 @@ void GameState::addBuyableCardType(const CardType & type)
     m_cards.addBuyableCardType(type);
 }
 
-const Resources & GameState::getResources(const PlayerID & player) const
+const Resources & GameState::getResources(const PlayerID player) const
 {
     PRISMATA_ASSERT(player < 2, "player exceeds num players, player=%d, numplayers=%d", player, 2);
 
     return m_resources[player];
 }
 
-Resources & GameState::_getResources(const PlayerID & player)
+Resources & GameState::_getResources(const PlayerID player)
 {
     PRISMATA_ASSERT(player < 2, "player exceeds num players, player=%d, numplayers=%d", player, 2);
 
     return m_resources[player];
 }
 
-void GameState::setMana(const PlayerID & player, const Resources & resource)
+void GameState::setMana(const PlayerID player, const Resources & resource)
 {
     PRISMATA_ASSERT(player < 2, "player exceeds num players, player=%d, numplayers=%d", player, 2);
 
     m_resources[player] = resource;
 }
 
-const EnumType GameState::getActivePhase() const
+const int GameState::getActivePhase() const
 {
     return m_activePhase;
 }
 
-const CardID GameState::numCards(const PlayerID & player) const
+const CardID GameState::numCards(const PlayerID player) const
 {
     return m_cards.numCards(player);
 }
 
-const CardID GameState::numKilledCards(const PlayerID & player) const
+const CardID GameState::numKilledCards(const PlayerID player) const
 {
     return m_cards.numKilledCards(player);
 }
 
-const CardID GameState::numCardsOfType(const PlayerID & player, const CardType & type, bool requireActive) const
+const CardID GameState::numCardsOfType(const PlayerID player, const CardType & type, bool requireActive) const
 {
     if (!requireActive)
     {
@@ -1646,7 +1646,7 @@ const CardID GameState::numCardsOfType(const PlayerID & player, const CardType &
     return num;
 }
 
-const CardID GameState::numCompletedCardsOfType(const PlayerID & player, const CardType & type) const
+const CardID GameState::numCompletedCardsOfType(const PlayerID player, const CardType & type) const
 {
     CardID num(0);
 
@@ -1662,32 +1662,32 @@ const CardID GameState::numCompletedCardsOfType(const PlayerID & player, const C
     return num;
 }
 
-//const Card & GameState::getCard(const PlayerID & player, const CardID & index) const
+//const Card & GameState::getCard(const PlayerID player, const CardID index) const
 //{
 //    return _cards.getCard(player, index);
 //}
 //
-//const Card & GameState::getKilledCard(const PlayerID & player, const CardID & index) const
+//const Card & GameState::getKilledCard(const PlayerID player, const CardID index) const
 //{
 //    return _cards.getKilledCard(player, index);
 //}
 //
-//Card & GameState::_getCard(const PlayerID & player, const CardID & index)
+//Card & GameState::_getCard(const PlayerID player, const CardID index)
 //{
 //    return _cards.getCard(player, index);
 //}
 //
-//Card & GameState::_getKilledCard(const PlayerID & player, const CardID & index)
+//Card & GameState::_getKilledCard(const PlayerID player, const CardID index)
 //{
 //    return _cards.getKilledCard(player, index);
 //}
 
-const Card & GameState::getCardByID(const CardID & id) const
+const Card & GameState::getCardByID(const CardID id) const
 {
     return m_cards.getCardByID(id);
 }
 
-Card & GameState::_getCardByID(const CardID & id)
+Card & GameState::_getCardByID(const CardID id)
 {
     return m_cards.getCardByID(id);
 }
@@ -1697,12 +1697,12 @@ const CardID GameState::numCardsBuyable() const
     return m_cards.numCardsBuyable();
 }
 
-const CardBuyable & GameState::getCardBuyableByID(const CardID & cardID) const
+const CardBuyable & GameState::getCardBuyableByID(const CardID cardID) const
 {
     return m_cards.getCardBuyableByID(cardID);
 }
 
-const CardBuyable & GameState::getCardBuyableByIndex(const CardID & index) const
+const CardBuyable & GameState::getCardBuyableByIndex(const CardID index) const
 {
     return m_cards.getCardBuyableByIndex(index);
 }
@@ -1712,12 +1712,12 @@ const CardBuyable & GameState::getCardBuyableByType(const CardType & type) const
     return m_cards.getCardBuyableByType(type);
 }
 
-CardBuyable & GameState::_getCardBuyableByID(const CardID & cardID)
+CardBuyable & GameState::_getCardBuyableByID(const CardID cardID)
 {
     return m_cards.getCardBuyableByID(cardID);
 }
 
-CardBuyable & GameState::_getCardBuyableByIndex(const CardID & index)
+CardBuyable & GameState::_getCardBuyableByIndex(const CardID index)
 {
     return m_cards.getCardBuyableByIndex(index);
 }
@@ -1747,7 +1747,7 @@ const PlayerID GameState::winner() const
     return Players::Player_None;
 }
 
-bool GameState::hasOverkillableCard(const PlayerID & player) const
+bool GameState::hasOverkillableCard(const PlayerID player) const
 {
     for (const auto & cardID : getCardIDs(player))
     {
@@ -1761,7 +1761,7 @@ bool GameState::hasOverkillableCard(const PlayerID & player) const
     return true;
 }
 
-bool GameState::canOverkillEnemyCard(const PlayerID & player) const
+bool GameState::canOverkillEnemyCard(const PlayerID player) const
 {
     bool canOverkill = false;
     const PlayerID enemy(getEnemy(player));
@@ -1784,7 +1784,7 @@ bool GameState::canOverkillEnemyCard(const PlayerID & player) const
     return canOverkill;
 }
 
-bool GameState::canBreachEnemyCard(const PlayerID & player) const
+bool GameState::canBreachEnemyCard(const PlayerID player) const
 {
     const PlayerID enemy(getEnemy(player));
     for (const auto & cardID : getCardIDs(enemy))
@@ -1798,7 +1798,7 @@ bool GameState::canBreachEnemyCard(const PlayerID & player) const
     return false;
 }
 
-bool GameState::hasBreachableCard(const PlayerID & player) const
+bool GameState::hasBreachableCard(const PlayerID player) const
 {
     for (const auto & cardID : getCardIDs(player))
     {
@@ -1936,7 +1936,7 @@ void GameState::generateLegalActions(std::vector<Action> & actions) const
     }
 }
 
-bool GameState::haveSacCost(const PlayerID & player, const std::vector<SacDescription> & sacCost) const
+bool GameState::haveSacCost(const PlayerID player, const std::vector<SacDescription> & sacCost) const
 {
     for (CardID sacIndex(0); sacIndex < sacCost.size(); ++sacIndex)
     {
@@ -2000,7 +2000,7 @@ void GameState::setStartingState(const PlayerID startPlayer, const CardID numDom
     beginPhase(startPlayer, Phases::Swoosh);
 }
 
-void  GameState::manuallySetAttack(const PlayerID & player, const HealthType & attackAmount)
+void  GameState::manuallySetAttack(const PlayerID player, const HealthType & attackAmount)
 {
     m_resources[player].set(Resources::Attack, attackAmount);
 }
@@ -2056,7 +2056,7 @@ void GameState::addCardBuyable(const CardType & type)
     m_cards.addBuyableCardType(type);
 }
 
-bool GameState::isBuyable(const PlayerID & player, const CardType & type) const
+bool GameState::isBuyable(const PlayerID player, const CardType & type) const
 {
     for (size_t i(0); i < numCardsBuyable(); ++i)
     {
@@ -2094,7 +2094,7 @@ bool GameState::isIsomorphic(const GameState & otherState) const
     return true;
 }
 
-bool GameState::isPlayerIsomorphic(const GameState & otherState, const PlayerID & playerID) const
+bool GameState::isPlayerIsomorphic(const GameState & otherState, const PlayerID playerID) const
 {
     if (numCards(playerID) != otherState.numCards(playerID))
     {
@@ -2145,7 +2145,7 @@ const size_t GameState::getMemoryUsed() const
     return sizeof(GameState) + m_cards.getMemoryUsed();
 }
 
-void GameState::manuallySetMana(const PlayerID & player, const Resources & resource)
+void GameState::manuallySetMana(const PlayerID player, const Resources & resource)
 {
     m_resources[player] = resource;
 }
@@ -2153,7 +2153,7 @@ void GameState::manuallySetMana(const PlayerID & player, const Resources & resou
 Action GameState::getClickAction(const Card & card) const
 {
     PlayerID player = getActivePlayer();
-    EnumType phase = getActivePhase();
+    int phase = getActivePhase();
     bool targetAbilityCardClicked = isTargetAbilityCardClicked();
 
     if (phase == Phases::Action)
@@ -2224,12 +2224,12 @@ Action GameState::getClickAction(const Card & card) const
     return Action();
 }
 
-const CardIDVector & GameState::getCardIDs(const PlayerID & player) const
+const CardIDVector & GameState::getCardIDs(const PlayerID player) const
 {
     return m_cards.getCardIDs(player);
 }
 
-const CardIDVector & GameState::getKilledCardIDs(const PlayerID & player) const
+const CardIDVector & GameState::getKilledCardIDs(const PlayerID player) const
 {
     return m_cards.getKilledCardIDs(player);
 }

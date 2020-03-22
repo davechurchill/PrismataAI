@@ -24,7 +24,7 @@ SacDescription::SacDescription(const rapidjson::Value & value)
     //std::cout << "Sac " << multiplicity << " " << cardName << std::endl;
 }
 
-const CardID & SacDescription::getTypeID() const
+const CardID SacDescription::getTypeID() const
 {
     if (_typeID == 0)
     {
@@ -39,7 +39,7 @@ const CardType & SacDescription::getType() const
     return CardTypes::GetAllCardTypes()[getTypeID()];
 }
 
-const CardID & SacDescription::getMultiple() const
+const CardID SacDescription::getMultiple() const
 {
     return _multiple;
 }

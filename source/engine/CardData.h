@@ -52,11 +52,11 @@ public:
             CardBuyable &   getCardBuyableByType(const CardType & type);
 
             Card &          addCard(const Card & card);
-            Card &          buyCardByID(const PlayerID & player, const CardID & cardBuyableIndex);
-    void                    sellCardByID(const CardID & cardID);
+            Card &          buyCardByID(const PlayerID player, const CardID cardBuyableIndex);
+    void                    sellCardByID(const CardID cardID);
     void                    addBuyableCardType(const CardType & type);
     void                    addBuyableCard(const CardBuyable & type);
-    void                    killCardByID(const CardID cardID, const EnumType causeOfDeath);
+    void                    killCardByID(const CardID cardID, const int causeOfDeath);
     void                    removeKilledCards();
     void                    undoKill(const CardID cardID);
     void                    removeLiveCardByID(const CardID cardID);

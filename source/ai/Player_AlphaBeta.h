@@ -14,7 +14,7 @@ class Player_AlphaBeta : public Player
     AlphaBetaSearch                     _search;
     AlphaBetaSearchParameters           _params;
 public:
-    Player_AlphaBeta(const PlayerID & playerID, const AlphaBetaSearchParameters & params);
+    Player_AlphaBeta(const PlayerID playerID, const AlphaBetaSearchParameters & params);
     void getMove(const GameState & state, Move & move);
     AlphaBetaSearchParameters & getParams();
     AlphaBetaSearchResults & getResults();

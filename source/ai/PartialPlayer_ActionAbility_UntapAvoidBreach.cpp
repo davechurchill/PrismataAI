@@ -3,7 +3,7 @@
 
 using namespace Prismata;
 
-PartialPlayer_ActionAbility_UntapAvoidBreach::PartialPlayer_ActionAbility_UntapAvoidBreach(const PlayerID & playerID)
+PartialPlayer_ActionAbility_UntapAvoidBreach::PartialPlayer_ActionAbility_UntapAvoidBreach(const PlayerID playerID)
 {
     _playerID = playerID;
     _phaseID = PPPhases::ACTION_ABILITY;

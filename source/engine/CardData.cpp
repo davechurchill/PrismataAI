@@ -148,7 +148,7 @@ void CardData::removeKilledCardByID(const CardID cardID)
     PRISMATA_ASSERT(false, "Tried to remove a Card that didn't exist: %d %s", cardID, getCardByID(cardID).getType().getUIName().c_str());
 }
 
-void CardData::killCardByID(const CardID cardID, const EnumType causeOfDeath)
+void CardData::killCardByID(const CardID cardID, const int causeOfDeath)
 {
     Card & card = getCardByID(cardID);
 
@@ -182,7 +182,7 @@ void CardData::undoKill(const CardID cardID)
     m_cardTypeCounts[player][getCardByID(cardID).getType().getID()]++;
 }
 
-void CardData::sellCardByID(const CardID & cardID)
+void CardData::sellCardByID(const CardID cardID)
 {
     Card & card = getCardByID(cardID);
 
@@ -210,7 +210,7 @@ void CardData::sellCardByID(const CardID & cardID)
     
 }
 
-Card & CardData::buyCardByID(const PlayerID & player, const CardID & cardID)
+Card & CardData::buyCardByID(const PlayerID player, const CardID cardID)
 {
     PRISMATA_ASSERT(getCardBuyableByID(cardID).getSupplyRemaining(player) > 0, "Trying to buy a card with no supply remaining");
 

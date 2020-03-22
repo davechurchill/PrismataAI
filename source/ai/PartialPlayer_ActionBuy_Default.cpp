@@ -2,7 +2,7 @@
 
 using namespace Prismata;
 
-PartialPlayer_ActionBuy_Default::PartialPlayer_ActionBuy_Default(const PlayerID & playerID)
+PartialPlayer_ActionBuy_Default::PartialPlayer_ActionBuy_Default(const PlayerID playerID)
 {
     _playerID = playerID;
     _phaseID = PPPhases::ACTION_BUY;

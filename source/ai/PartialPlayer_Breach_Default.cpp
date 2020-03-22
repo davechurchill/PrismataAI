@@ -2,7 +2,7 @@
 
 using namespace Prismata;
 
-PartialPlayer_Breach_Default::PartialPlayer_Breach_Default(const PlayerID & playerID)
+PartialPlayer_Breach_Default::PartialPlayer_Breach_Default(const PlayerID playerID)
 {
     _playerID = playerID;
     _phaseID = PPPhases::BREACH;

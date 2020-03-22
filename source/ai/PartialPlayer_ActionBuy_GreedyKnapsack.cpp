@@ -4,9 +4,9 @@
 
 using namespace Prismata;
 
-PartialPlayer_ActionBuy_GreedyKnapsack::PartialPlayer_ActionBuy_GreedyKnapsack( const PlayerID & playerID, 
+PartialPlayer_ActionBuy_GreedyKnapsack::PartialPlayer_ActionBuy_GreedyKnapsack( const PlayerID playerID, 
                                                                                 const CardFilter & filter,
-                                                                                EvaluationType (*heuristic)(const CardType &, const GameState &, const PlayerID &))
+                                                                                EvaluationType (*heuristic)(const CardType &, const GameState &, const PlayerID))
     : _heuristic(heuristic)
     , _filter(filter)
     , _enemyWasChilled(false)

@@ -39,7 +39,7 @@ class PartialPlayer_ActionBuy_OpeningBook : public PartialPlayer
 
 public:
 
-    PartialPlayer_ActionBuy_OpeningBook (const PlayerID & playerID, const OpeningBook & openingBook);
+    PartialPlayer_ActionBuy_OpeningBook (const PlayerID playerID, const OpeningBook & openingBook);
     void getMove(GameState & state, Move & move);
 
     PPPtr clone() { return PPPtr(new PartialPlayer_ActionBuy_OpeningBook(*this));}

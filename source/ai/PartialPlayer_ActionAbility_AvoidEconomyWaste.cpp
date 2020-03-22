@@ -3,7 +3,7 @@
 
 using namespace Prismata;
 
-PartialPlayer_ActionAbility_AvoidEconomyWaste::PartialPlayer_ActionAbility_AvoidEconomyWaste(const PlayerID & playerID)
+PartialPlayer_ActionAbility_AvoidEconomyWaste::PartialPlayer_ActionAbility_AvoidEconomyWaste(const PlayerID playerID)
 {
     _playerID = playerID;
     _phaseID = PPPhases::ACTION_ABILITY;
@@ -75,7 +75,7 @@ void PartialPlayer_ActionAbility_AvoidEconomyWaste::getMove(GameState & state, M
     }
 }
 
-bool PartialPlayer_ActionAbility_AvoidEconomyWaste::shouldUseCardAbility(const GameState & state, const CardID & cardID) const
+bool PartialPlayer_ActionAbility_AvoidEconomyWaste::shouldUseCardAbility(const GameState & state, const CardID cardID) const
 {
     const Card & card = state.getCardByID(cardID);
     
@@ -109,7 +109,7 @@ bool PartialPlayer_ActionAbility_AvoidEconomyWaste::shouldUseCardAbility(const G
     return true;
 }
 
-bool PartialPlayer_ActionAbility_AvoidEconomyWaste::shouldUndoCardAbility(const GameState & state, const CardID & cardID) const
+bool PartialPlayer_ActionAbility_AvoidEconomyWaste::shouldUndoCardAbility(const GameState & state, const CardID cardID) const
 {
     const Card & card = state.getCardByID(cardID);
 

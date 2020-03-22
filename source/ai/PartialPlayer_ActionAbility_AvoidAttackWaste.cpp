@@ -4,7 +4,7 @@
 
 using namespace Prismata;
 
-PartialPlayer_ActionAbility_AvoidAttackWaste::PartialPlayer_ActionAbility_AvoidAttackWaste(const PlayerID & playerID)
+PartialPlayer_ActionAbility_AvoidAttackWaste::PartialPlayer_ActionAbility_AvoidAttackWaste(const PlayerID playerID)
 {
     _playerID = playerID;
     _phaseID = PPPhases::ACTION_ABILITY;

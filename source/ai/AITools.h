@@ -19,7 +19,7 @@ namespace AITools
 
     void PerformAIError(const std::string & errorType);
 
-    bool PlayerShouldResign(const GameState & state, const PlayerID & playerID);
+    bool PlayerShouldResign(const GameState & state, const PlayerID playerID);
     std::string GetAIMove(const std::string & aiParamsString);
     std::string InitializeAI(const std::string & initString);
     std::string InitializeAIAndGetAIMove(const std::string & inputString);
@@ -27,16 +27,16 @@ namespace AITools
 
     void PredictEnemyNextTurn(GameState & state, bool solveDefense = true);
     double CalculateEnemyNextTurnDefenseLoss(GameState & state);
-    PPPtr GetPredictionPlayer(const PlayerID & player);
+    PPPtr GetPredictionPlayer(const PlayerID player);
 
     double CalculateWipeoutLoss(GameState & state, const PlayerID player);
 
     bool PurchaseIsOutOfSync(const PlayerID player, const CardType & type, const GameState & state);
 
-    size_t NumResonatorsReady(const CardType & type, const GameState & state, const PlayerID & player, const TurnType maxConstructionTime);
-    size_t NumResonateesReady(const CardType & type, const GameState & state, const PlayerID & player, const TurnType maxConstructionTime);
-    Resources GetReceiveFromResonators(const CardType & type, const GameState & state, const PlayerID & player, const TurnType maxConstructionTime);
-    Resources GetReceiveFromResonatees(const CardType & type, const GameState & state, const PlayerID & player, const TurnType maxConstructionTime);
+    size_t NumResonatorsReady(const CardType & type, const GameState & state, const PlayerID player, const TurnType maxConstructionTime);
+    size_t NumResonateesReady(const CardType & type, const GameState & state, const PlayerID player, const TurnType maxConstructionTime);
+    Resources GetReceiveFromResonators(const CardType & type, const GameState & state, const PlayerID player, const TurnType maxConstructionTime);
+    Resources GetReceiveFromResonatees(const CardType & type, const GameState & state, const PlayerID player, const TurnType maxConstructionTime);
     
     void TestParseJSONString(const std::string & jsonString);
 

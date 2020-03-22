@@ -34,7 +34,7 @@ BuyLimits::BuyLimits(const rapidjson::Value & val)
     }
 }
 
-const CardID & BuyLimits::getLimit(const CardType & type) const
+const CardID BuyLimits::getLimit(const CardType & type) const
 {
     return _buyLimits[type.getID()];
 }

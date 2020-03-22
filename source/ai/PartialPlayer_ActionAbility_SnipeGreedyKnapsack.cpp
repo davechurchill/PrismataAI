@@ -2,7 +2,7 @@
 
 using namespace Prismata;
 
-PartialPlayer_ActionAbility_SnipeGreedyKnapsack::PartialPlayer_ActionAbility_SnipeGreedyKnapsack(const PlayerID & playerID, EvaluationType (*heuristic)(const Card &, const GameState &))
+PartialPlayer_ActionAbility_SnipeGreedyKnapsack::PartialPlayer_ActionAbility_SnipeGreedyKnapsack(const PlayerID playerID, EvaluationType (*heuristic)(const Card &, const GameState &))
     : _heuristic(heuristic)
 {
     _playerID = playerID;

@@ -58,9 +58,9 @@ class AIParameters
     void                parseStates(const std::string & keyName, const rapidjson::Value & rootValue);
     
     CardFilter          parseCardFilter(const std::string & filterVariable, const rapidjson::Value & root);
-    PPPtr               parsePartialPlayer(const PlayerID & player, const std::string & playerVariable, const rapidjson::Value & root);
-    PlayerPtr           parsePlayer(const PlayerID & player, const std::string & playerVariable, const rapidjson::Value & root);
-    MoveIteratorPtr     parseMoveIterator(const PlayerID & player, const std::string & iteratorVariable, const rapidjson::Value & root);
+    PPPtr               parsePartialPlayer(const PlayerID player, const std::string & playerVariable, const rapidjson::Value & root);
+    PlayerPtr           parsePlayer(const PlayerID player, const std::string & playerVariable, const rapidjson::Value & root);
+    MoveIteratorPtr     parseMoveIterator(const PlayerID player, const std::string & iteratorVariable, const rapidjson::Value & root);
 
     static GameState    GetStateFromVariable(const std::string & stateVariable, const rapidjson::Value & root);
     
@@ -74,9 +74,9 @@ public:
     void                parseJSONString(const std::string & jsonString);
     void                parseFile(const std::string & filename);
 
-    PlayerPtr           getPlayer(const PlayerID & player, const std::string & playerName);
-    PPPtr               getPartialPlayer(const PlayerID & player, const std::string & playerName);
-    MoveIteratorPtr     getMoveIterator(const PlayerID & player, const std::string & iteratorName);
+    PlayerPtr           getPlayer(const PlayerID player, const std::string & playerName);
+    PPPtr               getPartialPlayer(const PlayerID player, const std::string & playerName);
+    MoveIteratorPtr     getMoveIterator(const PlayerID player, const std::string & iteratorName);
     GameState           getState(const std::string & stateName);
 
     const std::vector<std::string> & getStateNames() const;

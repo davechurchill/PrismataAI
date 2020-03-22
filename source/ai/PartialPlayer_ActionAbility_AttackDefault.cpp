@@ -3,7 +3,7 @@
 
 using namespace Prismata;
 
-PartialPlayer_ActionAbility_AttackDefault::PartialPlayer_ActionAbility_AttackDefault(const PlayerID & playerID, const CardFilter & filter)
+PartialPlayer_ActionAbility_AttackDefault::PartialPlayer_ActionAbility_AttackDefault(const PlayerID playerID, const CardFilter & filter)
     : _filter(filter)
 {
     _playerID = playerID;

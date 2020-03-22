@@ -35,7 +35,7 @@ class ChillScenario
 public:
     
     ChillScenario();
-    ChillScenario(const GameState & state, const PlayerID & chillPlayer);
+    ChillScenario(const GameState & state, const PlayerID chillPlayer);
 
     const size_t & getNumChillers() const;
     const size_t & getNumDefenders() const;

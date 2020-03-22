@@ -14,7 +14,7 @@ class PartialPlayer_ActionAbility_AvoidBreachSolver : public PartialPlayer
 
 public:
 
-    PartialPlayer_ActionAbility_AvoidBreachSolver (const PlayerID & playerID, const BreachIteratorParameters & params);
+    PartialPlayer_ActionAbility_AvoidBreachSolver (const PlayerID playerID, const BreachIteratorParameters & params);
     void getMove(GameState & state, Move & move);
 
     PPPtr clone() { return PPPtr(new PartialPlayer_ActionAbility_AvoidBreachSolver(*this));}

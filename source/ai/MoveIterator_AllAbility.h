@@ -30,7 +30,7 @@ class MoveIterator_AllAbility : public MoveIterator
 
 public:
     
-    MoveIterator_AllAbility(const PlayerID & playerID);
+    MoveIterator_AllAbility(const PlayerID playerID);
     
     void testIterator();
 

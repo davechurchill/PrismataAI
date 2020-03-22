@@ -23,7 +23,7 @@ class MoveIterator_All : public MoveIterator
 
 public:
     
-    MoveIterator_All(const PlayerID & playerID);
+    MoveIterator_All(const PlayerID playerID);
     
     virtual void            reset();
     virtual void            setState(const GameState & state);

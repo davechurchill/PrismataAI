@@ -12,7 +12,7 @@ CanonicalOrderComparator::CanonicalOrderComparator(const GameState & state)
 
 const std::vector<size_t> CanonicalOrder = { Resources::Energy, Resources::Green, Resources::Red, Resources::Blue, Resources::Attack, Resources::Gold };
 
-bool CanonicalOrderComparator::operator() (const CardID & cardID1, const CardID & cardID2) const
+bool CanonicalOrderComparator::operator() (const CardID cardID1, const CardID cardID2) const
 {
     const Card & card1 = _state.getCardByID(cardID1);
     const Card & card2 = _state.getCardByID(cardID2);

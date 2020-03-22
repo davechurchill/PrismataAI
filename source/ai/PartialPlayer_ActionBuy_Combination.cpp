@@ -2,7 +2,7 @@
 
 using namespace Prismata;
 
-PartialPlayer_ActionBuy_Combination::PartialPlayer_ActionBuy_Combination(const PlayerID & playerID, const std::vector<PPPtr> & combo)
+PartialPlayer_ActionBuy_Combination::PartialPlayer_ActionBuy_Combination(const PlayerID playerID, const std::vector<PPPtr> & combo)
 {
     _movesGenerated = std::vector<size_t>(combo.size(), 0);
 

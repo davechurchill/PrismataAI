@@ -33,7 +33,7 @@ public:
 
     void    draw(const int layer, const GameState & state);
     void    setPosition(const sf::Vector2f & pos);
-    Action  onClick(const int & player, const EnumType & phase);
+    Action  onClick(const int & player, const int & phase);
 };
 
 class GUICardBuyableNewSort

@@ -2,7 +2,7 @@
 
 using namespace Prismata;
 
-PartialPlayer_ActionBuy_TechHeuristic::PartialPlayer_ActionBuy_TechHeuristic(const PlayerID & playerID, const size_t & heuristicType)
+PartialPlayer_ActionBuy_TechHeuristic::PartialPlayer_ActionBuy_TechHeuristic(const PlayerID playerID, const size_t & heuristicType)
 {
     _playerID = playerID;
     _phaseID = PPPhases::ACTION_BUY;

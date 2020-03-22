@@ -23,7 +23,7 @@ class MoveIterator_AllDefense : public MoveIterator
 
 public:
     
-    MoveIterator_AllDefense(const PlayerID & playerID);
+    MoveIterator_AllDefense(const PlayerID playerID);
     
     void testIterator();
 

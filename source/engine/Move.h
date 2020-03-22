@@ -10,7 +10,7 @@ namespace Prismata
  
 class Move
 {
-    std::vector<Action>   _actions;
+    std::vector<Action> m_actions;
     
 public:
 

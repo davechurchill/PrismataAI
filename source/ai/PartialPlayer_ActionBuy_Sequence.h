@@ -16,7 +16,7 @@ class PartialPlayer_ActionBuy_Sequence : public PartialPlayer
 
 public:
 
-    PartialPlayer_ActionBuy_Sequence (const PlayerID & playerID, const BuySequence & buySequence);
+    PartialPlayer_ActionBuy_Sequence (const PlayerID playerID, const BuySequence & buySequence);
     void getMove(GameState & state, Move & move);
 
     PPPtr clone() { return PPPtr(new PartialPlayer_ActionBuy_Sequence(*this));}

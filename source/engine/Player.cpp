@@ -12,7 +12,7 @@ const int Player::ID()
     return m_playerID; 
 }
 
-void Player::setID(const int & playerID)
+void Player::setID(const int playerID)
 {
     m_playerID = playerID;
 }

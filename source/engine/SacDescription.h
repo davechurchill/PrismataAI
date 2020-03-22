@@ -19,9 +19,9 @@ public:
     SacDescription();
     SacDescription(const rapidjson::Value & value);
     
-    const CardID & getMultiple() const;
+    const CardID getMultiple() const;
     const CardType & getType() const;
-    const CardID & getTypeID() const;
+    const CardID getTypeID() const;
     const std::string & getCardName() const;
 
     bool operator == (const SacDescription & rhs) const;

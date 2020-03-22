@@ -265,7 +265,7 @@ EvaluationType Heuristics::DamageLoss_AttackValue(const Card & card, const GameS
     
 }
 
-EvaluationType Heuristics::BuyHighestCost(const CardType & type, const GameState & state, const PlayerID & player)
+EvaluationType Heuristics::BuyHighestCost(const CardType & type, const GameState & state, const PlayerID player)
 {
     return HeuristicValues::Instance().GetInflatedTotalCostValue(type);
 }
@@ -297,7 +297,7 @@ EvaluationType Heuristics::DefenseHeuristicSaveAttackers(const Card & card, cons
     return attackProduced / card.currentHealth();
 }
 
-HealthType Heuristics::GetAttackProduced(const CardType & type, const Script & script, const GameState & state, const PlayerID & player)
+HealthType Heuristics::GetAttackProduced(const CardType & type, const Script & script, const GameState & state, const PlayerID player)
 {
     HealthType attack = 0;
     attack += script.getEffect().getReceive().amountOf(Resources::Attack);
@@ -310,12 +310,12 @@ HealthType Heuristics::GetAttackProduced(const CardType & type, const Script & s
     return attack;
 }
 
-HealthType Heuristics::GetAttackProduced(const CardType & type, const GameState & state, const PlayerID & player)
+HealthType Heuristics::GetAttackProduced(const CardType & type, const GameState & state, const PlayerID player)
 {
     return GetAttackProduced(type, type.getBeginOwnTurnScript(), state, player) + GetAttackProduced(type, type.getAbilityScript(), state, player);
 }
 
-HealthType Heuristics::GetAttackProduced(const Card & card, const GameState & state, const PlayerID & player)
+HealthType Heuristics::GetAttackProduced(const Card & card, const GameState & state, const PlayerID player)
 {
     if (card.getCurrentLifespan() == 1)
     {
@@ -336,7 +336,7 @@ HealthType Heuristics::GetAttackProduced(const Card & card, const GameState & st
     return attack;
 }
 
-EvaluationType Heuristics::BuyAttackValue(const CardType & type, const GameState & state, const PlayerID & player)
+EvaluationType Heuristics::BuyAttackValue(const CardType & type, const GameState & state, const PlayerID player)
 {
     EvaluationType attack = GetAttackProduced(type, state, player);
     EvaluationType val    = (attack / HeuristicValues::Instance().GetBuyTotalCost(type));
@@ -369,7 +369,7 @@ EvaluationType Heuristics::BuyAttackValue(const CardType & type, const GameState
     
 }
 
-EvaluationType Heuristics::BuyBlockValue(const CardType & type, const GameState & state, const PlayerID & player)
+EvaluationType Heuristics::BuyBlockValue(const CardType & type, const GameState & state, const PlayerID player)
 {
     EvaluationType block = type.canBlock(false) ? type.getStartingHealth() : 0;
 

@@ -2,7 +2,7 @@
 
 using namespace Prismata;
 
-PartialPlayer_ActionAbility_DontAttack::PartialPlayer_ActionAbility_DontAttack(const PlayerID & playerID)
+PartialPlayer_ActionAbility_DontAttack::PartialPlayer_ActionAbility_DontAttack(const PlayerID playerID)
 {
  _playerID = playerID;
     _phaseID = PPPhases::ACTION_ABILITY;

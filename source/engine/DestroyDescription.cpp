@@ -62,7 +62,7 @@ const std::string DestroyDescription::toString() const
     return ss.str();
 }
 
-const CardID & DestroyDescription::getTypeID() const
+const CardID DestroyDescription::getTypeID() const
 {
     if (_typeID == 0)
     {
@@ -77,7 +77,7 @@ const CardType & DestroyDescription::getType() const
     return CardTypes::GetAllCardTypes()[getTypeID()];
 }
 
-const CardID & DestroyDescription::getMultiple() const
+const CardID DestroyDescription::getMultiple() const
 {
     return _multiple;
 }

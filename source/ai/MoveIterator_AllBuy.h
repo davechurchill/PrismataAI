@@ -22,7 +22,7 @@ class MoveIterator_AllBuy : public MoveIterator
 
 public:
     
-    MoveIterator_AllBuy(const PlayerID & playerID);
+    MoveIterator_AllBuy(const PlayerID playerID);
     
     void testIterator();
 

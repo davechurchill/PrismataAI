@@ -156,7 +156,7 @@ public:
     {
     }
 
-    bool operator() (const CardID & cardBuyableIndex1, const CardID & cardBuyableIndex2) const
+    bool operator() (const CardID cardBuyableIndex1, const CardID cardBuyableIndex2) const
     {
         return _state.getCardBuyableByIndex(cardBuyableIndex1).getType().getStartingHealth() > _state.getCardBuyableByIndex(cardBuyableIndex2).getType().getStartingHealth();
     }
@@ -173,7 +173,7 @@ public:
     {
     }
 
-    bool operator() (const CardID & card1, const CardID & card2) const
+    bool operator() (const CardID card1, const CardID card2) const
     {
         // we want to sort so that drones > doomed drone and lower lifespan doomed drone < higher lifespan
         // so we set a drone's lifespan to 100 then sort in ascending order

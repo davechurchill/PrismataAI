@@ -14,7 +14,7 @@ class Player_UCT : public Player
     UCTSearchParameters     _params;
 
 public:
-    Player_UCT(const PlayerID & playerID, const UCTSearchParameters & params);
+    Player_UCT(const PlayerID playerID, const UCTSearchParameters & params);
     void getMove(const GameState & state, Move & move);
     UCTSearchParameters & getParams();
     UCTSearchResults & getResults();

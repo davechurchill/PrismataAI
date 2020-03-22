@@ -12,7 +12,7 @@ CardType::CardType()
 
 }
 
-CardType::CardType(const CardID & id)
+CardType::CardType(const CardID id)
     : _id(id)
 {
 
@@ -34,7 +34,7 @@ CardType & CardType::operator = (const CardType & rhs)
     return *this;
 }
 
-const CardID & CardType::getID() const
+const CardID CardType::getID() const
 {
     return _id;
 }
@@ -94,7 +94,7 @@ bool CardType::isFrontline() const
     return CardTypeData::Instance().getCardTypeInfo(_id).frontline;
 }
 
-bool CardType::canProduce(EnumType m) const
+bool CardType::canProduce(int m) const
 {
     return CardTypeData::Instance().getCardTypeInfo(_id).produces.amountOf(m) > 0;
 }

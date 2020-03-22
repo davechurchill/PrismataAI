@@ -16,7 +16,7 @@ class PartialPlayer_ActionAbility_AttackDefault : public PartialPlayer
  
 public:
 
-    PartialPlayer_ActionAbility_AttackDefault (const PlayerID & playerID, const CardFilter & filter);
+    PartialPlayer_ActionAbility_AttackDefault (const PlayerID playerID, const CardFilter & filter);
     void getMove(GameState & state, Move & move);
 
     PPPtr clone() { return PPPtr(new PartialPlayer_ActionAbility_AttackDefault(*this));}

@@ -19,10 +19,10 @@ public:
 
     void playGame();
 
-    const std::string & getPlayerName(const PlayerID & player) const;
+    const std::string & getPlayerName(const PlayerID player) const;
     const GameState & getFinalGameState() const;
-    const size_t getTotalTimeMS(const PlayerID & player) const;
-    const size_t getMaxTimeMS(const PlayerID & player) const;
+    const size_t getTotalTimeMS(const PlayerID player) const;
+    const size_t getMaxTimeMS(const PlayerID player) const;
 };
 
 }

@@ -12,7 +12,7 @@ const PlayerID PartialPlayer::playerID() const
     return _playerID; 
 }
 
-//EnumType PartialPlayer::getPhase() const
+//int PartialPlayer::getPhase() const
 //{
 //    return _phaseID;
 //}

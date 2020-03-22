@@ -2,7 +2,7 @@
 
 using namespace Prismata;
 
-PartialPlayer_ActionAbility_ActivateAll::PartialPlayer_ActionAbility_ActivateAll(const PlayerID & playerID)
+PartialPlayer_ActionAbility_ActivateAll::PartialPlayer_ActionAbility_ActivateAll(const PlayerID playerID)
 {
     _playerID = playerID;
     _phaseID = PPPhases::ACTION_ABILITY;

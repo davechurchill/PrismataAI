@@ -10,8 +10,7 @@ namespace Prismata
     
     typedef size_t          CardID;  
     typedef CardID          SupplyType;
-    typedef unsigned short  ChargeType;      
-    typedef unsigned short  EnumType;
+    typedef unsigned short  ChargeType;   
     typedef unsigned short  HealthType;
     typedef unsigned short  TurnType;
     typedef unsigned short  ResourceType;

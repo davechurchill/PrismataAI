@@ -14,10 +14,10 @@ class PartialPlayer_ActionAbility_ChillGreedyKnapsack : public PartialPlayer
 
     HealthType freezeEnemyCard(Card & target, std::vector<Card *> & ourChillCards, GameState & state, Move & move);
 
-    bool canContinueChilling(const GameState & state, const PlayerID & player) const;
+    bool canContinueChilling(const GameState & state, const PlayerID player) const;
 
 public:
-    PartialPlayer_ActionAbility_ChillGreedyKnapsack(const PlayerID & playerID, EvaluationType (*heuristic)(const Card &, const GameState &) = &Heuristics::CurrentCardValue);
+    PartialPlayer_ActionAbility_ChillGreedyKnapsack(const PlayerID playerID, EvaluationType (*heuristic)(const Card &, const GameState &) = &Heuristics::CurrentCardValue);
     void getMove(GameState & state, Move & move);
 
     PPPtr clone() { return PPPtr(new PartialPlayer_ActionAbility_ChillGreedyKnapsack(*this));}

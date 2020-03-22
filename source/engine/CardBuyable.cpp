@@ -7,7 +7,7 @@ CardBuyable::CardBuyable()
    
 }
 
-CardBuyable::CardBuyable(const CardType & type, const CardID & p1MaxSupply, const CardID & p2MaxSupply, const CardID & p1Spent, const CardID & p2Spent)
+CardBuyable::CardBuyable(const CardType & type, const CardID p1MaxSupply, const CardID p2MaxSupply, const CardID p1Spent, const CardID p2Spent)
     : m_type(type)
 {
     m_maxSupply[Players::Player_One] = p1MaxSupply;
@@ -36,36 +36,36 @@ const CardType & CardBuyable::getType() const
     return m_type;
 }
 
-SupplyType CardBuyable::getSupplyRemaining(const PlayerID & player) const
+SupplyType CardBuyable::getSupplyRemaining(const PlayerID player) const
 {
     return m_supplyRemaining[player];
 }
 
-SupplyType CardBuyable::getMaxSupply(const PlayerID & player) const
+SupplyType CardBuyable::getMaxSupply(const PlayerID player) const
 {
     return m_maxSupply[player];
 }
 
-void CardBuyable::setSupplyRemaining(const PlayerID & player, const SupplyType & amount)
+void CardBuyable::setSupplyRemaining(const PlayerID player, const SupplyType & amount)
 {
     m_supplyRemaining[player] = amount;
 }
 
-void CardBuyable::buyCard(const PlayerID & player)
+void CardBuyable::buyCard(const PlayerID player)
 {
     PRISMATA_ASSERT(getSupplyRemaining(player) != 0, "Can't remove from 0 supply");
 
     m_supplyRemaining[player]--;
 }
 
-void CardBuyable::sellCard(const PlayerID & player)
+void CardBuyable::sellCard(const PlayerID player)
 {
     PRISMATA_ASSERT(getSupplyRemaining(player) < getMaxSupply(player), "Can't sell a card at max supply");
 
     m_supplyRemaining[player]++;
 }
 
-bool CardBuyable::hasSupplyRemaining(const PlayerID & player) const
+bool CardBuyable::hasSupplyRemaining(const PlayerID player) const
 {
     return getSupplyRemaining(player) > 0;
 }

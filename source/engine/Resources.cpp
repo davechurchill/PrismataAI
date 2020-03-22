@@ -26,15 +26,15 @@ Resources::Resources(const std::string & resourceString)
     setFromString(resourceString);
 }
 
-Resources::Resources(const ResourceType & p, const ResourceType & h, const ResourceType & b, const ResourceType & c, const ResourceType & g, const ResourceType & a)
+Resources::Resources(const ResourceType p, const ResourceType h, const ResourceType b, const ResourceType c, const ResourceType g, const ResourceType a)
     : Resources()
 {
-    _pool[Resources::Gold] = p;
-    _pool[Resources::Energy] = h;
-    _pool[Resources::Blue] = b;
-    _pool[Resources::Red] = c;
-    _pool[Resources::Green] = g;
-    _pool[Resources::Attack] = a;
+    m_pool[Resources::Gold] = p;
+    m_pool[Resources::Energy] = h;
+    m_pool[Resources::Blue] = b;
+    m_pool[Resources::Red] = c;
+    m_pool[Resources::Green] = g;
+    m_pool[Resources::Attack] = a;
 }
 
 bool Resources::operator == (const Resources & rhs) const
@@ -52,7 +52,7 @@ bool Resources::operator == (const Resources & rhs) const
 
 bool Resources::empty() const
 {
-    return _pool[Resources::Gold] == 0 && _pool[Resources::Energy] == 0 && _pool[Resources::Blue] == 0 && _pool[Resources::Red] == 0 && _pool[Resources::Green] == 0 && _pool[Resources::Attack] == 0;
+    return m_pool[Resources::Gold] == 0 && m_pool[Resources::Energy] == 0 && m_pool[Resources::Blue] == 0 && m_pool[Resources::Red] == 0 && m_pool[Resources::Green] == 0 && m_pool[Resources::Attack] == 0;
 }
 
 bool Resources::operator != (const Resources & rhs) const
@@ -105,82 +105,82 @@ void Resources::setFromString(const std::string & resourceString)
 
 void Resources::multiply(const ResourceType val)
 {
-    _pool[0] *= val;
-    _pool[1] *= val;
-    _pool[2] *= val;
-    _pool[3] *= val;
-    _pool[4] *= val;
-    _pool[5] *= val;
+    m_pool[0] *= val;
+    m_pool[1] *= val;
+    m_pool[2] *= val;
+    m_pool[3] *= val;
+    m_pool[4] *= val;
+    m_pool[5] *= val;
 }
 
 void Resources::add(const Resources & m)
 {
-    _pool[0] += m._pool[0];
-    _pool[1] += m._pool[1];
-    _pool[2] += m._pool[2];
-    _pool[3] += m._pool[3];
-    _pool[4] += m._pool[4];
-    _pool[5] += m._pool[5];
+    m_pool[0] += m.m_pool[0];
+    m_pool[1] += m.m_pool[1];
+    m_pool[2] += m.m_pool[2];
+    m_pool[3] += m.m_pool[3];
+    m_pool[4] += m.m_pool[4];
+    m_pool[5] += m.m_pool[5];
 }
 
 void Resources::subtract(const Resources & m)
 {
     PRISMATA_ASSERT(has(m), "Mana::subtract() error: Don't have enough to subtract!");
 
-    _pool[0] -= m._pool[0];
-    _pool[1] -= m._pool[1];
-    _pool[2] -= m._pool[2];
-    _pool[3] -= m._pool[3];
-    _pool[4] -= m._pool[4];
-    _pool[5] -= m._pool[5];
+    m_pool[0] -= m.m_pool[0];
+    m_pool[1] -= m.m_pool[1];
+    m_pool[2] -= m.m_pool[2];
+    m_pool[3] -= m.m_pool[3];
+    m_pool[4] -= m.m_pool[4];
+    m_pool[5] -= m.m_pool[5];
 }
 
 void Resources::set(const Resources & m)
 {
-    _pool[0] = m._pool[0];
-    _pool[1] = m._pool[1];
-    _pool[2] = m._pool[2];
-    _pool[3] = m._pool[3];
-    _pool[4] = m._pool[4];
-    _pool[5] = m._pool[5];
+    m_pool[0] = m.m_pool[0];
+    m_pool[1] = m.m_pool[1];
+    m_pool[2] = m.m_pool[2];
+    m_pool[3] = m.m_pool[3];
+    m_pool[4] = m.m_pool[4];
+    m_pool[5] = m.m_pool[5];
 }
 
 const ResourceType & Resources::amountOf(const size_t & resourceType) const
 {
     PRISMATA_ASSERT(resourceType < Resources::NumTypes, "Mana::amountOf() error: Mana type index not known: %d", resourceType);
 
-    return _pool[resourceType];
+    return m_pool[resourceType];
 }
 
-void Resources::add(const size_t & resourceType, const ResourceType val)
+void Resources::add(const size_t resourceType, const ResourceType val)
 {
     PRISMATA_ASSERT(resourceType < Resources::NumTypes, "Mana::add() error: Mana type index not known: %d", resourceType);
 
-    _pool[resourceType] += val;
+    m_pool[resourceType] += val;
 }
 
-void Resources::subtract(const size_t & resourceType, const ResourceType val)
+void Resources::subtract(const size_t resourceType, const ResourceType val)
 {
     PRISMATA_ASSERT(resourceType < Resources::NumTypes, "Mana::subtract() error: Mana type index not known: %d", resourceType);
-    PRISMATA_ASSERT(_pool[resourceType] >= val, "Mana::subtract() error: Did not have enough of given type: %d", resourceType);
+    PRISMATA_ASSERT(m_pool[resourceType] >= val, "Mana::subtract() error: Did not have enough of given type: %d", resourceType);
 
-    _pool[resourceType] -= val;
+    m_pool[resourceType] -= val;
 }
 
-void Resources::set(const size_t & resourceType, const ResourceType val)
+void Resources::set(const size_t resourceType, const ResourceType val)
 {
     PRISMATA_ASSERT(resourceType < Resources::NumTypes, "Mana::set() error: Mana type index not known: %d", resourceType);
-    _pool[resourceType] = val;
+    m_pool[resourceType] = val;
 }
 
 bool Resources::has(const Resources & m) const
 {
-    if (_pool[0] < m._pool[0]) return false;
-    if (_pool[1] < m._pool[1]) return false;
-    if (_pool[2] < m._pool[2]) return false;
-    if (_pool[3] < m._pool[3]) return false;
-    if (_pool[4] < m._pool[4]) return false;
-    if (_pool[5] < m._pool[5]) return false;
+    if (m_pool[0] < m.m_pool[0]) return false;
+    if (m_pool[1] < m.m_pool[1]) return false;
+    if (m_pool[2] < m.m_pool[2]) return false;
+    if (m_pool[3] < m.m_pool[3]) return false;
+    if (m_pool[4] < m.m_pool[4]) return false;
+    if (m_pool[5] < m.m_pool[5]) return false;
     
     return true;
 }

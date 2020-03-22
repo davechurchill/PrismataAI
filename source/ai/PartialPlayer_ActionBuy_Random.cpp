@@ -2,7 +2,7 @@
 
 using namespace Prismata;
 
-PartialPlayer_ActionBuy_Random::PartialPlayer_ActionBuy_Random(const PlayerID & playerID)
+PartialPlayer_ActionBuy_Random::PartialPlayer_ActionBuy_Random(const PlayerID playerID)
 {
  _playerID = playerID;
     _phaseID = PPPhases::ACTION_BUY;

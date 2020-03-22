@@ -47,7 +47,7 @@ void BlockIterator::solve()
     recurse(0, _state.getAttack(_state.getEnemy(_state.getActivePlayer())), 0, 0);
 }
 
-void BlockIterator::recurse(const CardID & depth, const HealthType & damageRemaining, const double lossScore, const double tieBreakScore)
+void BlockIterator::recurse(const CardID depth, const HealthType & damageRemaining, const double lossScore, const double tieBreakScore)
 {
     // solve condition
     if (damageRemaining == 0)
