@@ -17,32 +17,28 @@ class GUIState_Play : public GUIState
 {   
     sf::Text m_text;
 
-    GameState                       m_currentState;             // State that the GUI will be drawing
-    std::vector<GameState>          m_stateHistory;             // Stack of state history, push on doGUIAction
-    GUICard *                    m_mouseOverCard = nullptr;  // The card the mouse is over
-    GUICardBuyable *             m_mouseOverCardBuyable = nullptr;  // The buyable card the mouse is over
-    std::vector<GUICard>         m_guiCards;                 // Handles and draws each card in the state
-    std::vector<GUICardBuyable>  m_guiCardsBuyable;          // Handles and draws cardBuyable in the state
-    bool                            m_drawBaseSetCards = true;  // Toggle drawing base set or dominion set
-    bool                            m_doingAIMove      = false; // whether AI move being beformed / animated
-    bool                            m_drawAIMenu       = false; // Is the AI menu visible
-    bool                            m_drawDebugInfo    = false; // whether to draw debug info
-    bool                            m_drawMouseOver    = false; // whether to draw mouseover panes
-    bool                            m_drawPotentials   = false; // whether to draw atk/def potentials
-
-
+    GameState                   m_currentState;             // State that the GUI will be drawing
+    std::vector<GameState>      m_stateHistory;             // Stack of state history, push on doGUIAction
+    GUICard *                   m_mouseOverCard = nullptr;  // The card the mouse is over
+    GUICardBuyable *            m_mouseOverCardBuyable = nullptr;  // The buyable card the mouse is over
+    std::vector<GUICard>        m_guiCards;                 // Handles and draws each card in the state
+    std::vector<GUICardBuyable> m_guiCardsBuyable;          // Handles and draws cardBuyable in the state
+    bool                        m_drawBaseSetCards = true;  // Toggle drawing base set or dominion set
+    bool                        m_doingAIMove      = false; // whether AI move being beformed / animated
+    bool                        m_drawAIMenu       = false; // Is the AI menu visible
+    bool                        m_drawDebugInfo    = false; // whether to draw debug info
+    bool                        m_drawMouseOver    = false; // whether to draw mouseover panes
+    bool                        m_drawPotentials   = false; // whether to draw atk/def potentials
+    Vec2                        m_drag = { -1, -1 };
+    WorldView                   m_view;
+    Vec2                        m_mouseScreen;
+    Vec2                        m_mouseGrid;
+    sf::Vector2f                m_mouseWorld;
+    int                         m_selectedPlayer[2] = {0, 0};       // AI selected player index
+    std::string                 m_selectedPlayerName[2];            // AI selected player name
+    std::string                 m_aiDescription[2];
     std::map<std::string, PlayerPtr> m_players[2];  // AI players for each side
-    int                              m_selectedPlayer[2] = {0, 0};       // AI selected player index
-    std::string                      m_selectedPlayerName[2];            // AI selected player name
-    std::string                      m_aiDescription[2];
 
-    Vec2 m_drag = { -1, -1 };
-    Vec2 m_mouseScreen;
-    sf::Vector2f m_mouseWorld;
-    Vec2 m_mouseGrid;
-    
-    WorldView m_view;
-    
     void init();  
     void setState(const GameState & state);
     void setGUICards();

@@ -13,11 +13,11 @@ namespace Prismata
  
 class GUICardBuyable
 {
-    sf::RenderWindow *      m_window        = nullptr;
-    const CardBuyable *     m_cardBuyable   = nullptr;
-    sf::Vector2f            m_pos           = {-1, -1};
-    int                     m_layer         = 0;
-    bool                    m_selected      = false;
+    sf::RenderWindow *  m_window        = nullptr;
+    const CardBuyable * m_cardBuyable   = nullptr;
+    sf::Vector2f        m_pos           = {-1, -1};
+    int                 m_layer         = 0;
+    bool                m_selected      = false;
     
 public:
 

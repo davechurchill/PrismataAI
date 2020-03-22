@@ -23,7 +23,7 @@ void Assets::addTexture(const std::string & textureName, const std::string & pat
     if (!m_textureMap[textureName].loadFromFile(path))
     {
         std::cerr << "Could not load texture file: " << path << std::endl;
-        m_textureMap.erase(textureName);
+        // m_textureMap.erase(textureName);
     }
     else
     {
@@ -34,11 +34,6 @@ void Assets::addTexture(const std::string & textureName, const std::string & pat
 
 const sf::Texture & Assets::getTexture(const std::string & textureName) const
 {
-    if (m_textureMap.find(textureName) == m_textureMap.end())
-    {
-        return m_blankTexture;
-    }
-    
     return m_textureMap.at(textureName);
 }
 

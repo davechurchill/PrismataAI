@@ -26,7 +26,7 @@ public:
     void                draw(const int layer, const GameState & state, bool isFirstInStack);
     void                setPosition(const sf::Vector2f & pos);
     const int           getLayer() const;
-    sf::Vector2f pos() const;
+    sf::Vector2f        pos() const;
     const bool          isClicked(int x, int y) const;
     Action              onClick(const GameState & currentState);
 

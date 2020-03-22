@@ -10,12 +10,6 @@ namespace Prismata
 {
     namespace GUITools
     {
-        const int FLIP_VERTICAL = 1;
-        const int FLIP_HORIZONTAL = 2;
-
-        std::string GetClipboardText();
-
-        // NEW: DONT TOUCH
         void DrawRect(sf::Vector2f tl, sf::Vector2f size, sf::Color color, sf::RenderWindow * window);
         void DrawTexturedRect(sf::Vector2f tl, sf::Vector2f size, const std::string & tex, sf::Color color, sf::RenderWindow * window);
         void DrawString(sf::Vector2f p, const std::string & str, sf::Color color, sf::RenderWindow * window, int size = 12);

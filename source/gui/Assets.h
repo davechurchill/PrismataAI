@@ -9,8 +9,6 @@ namespace Prismata
 {
 class Assets
 {
-    sf::Texture m_blankTexture;
-
     std::map<std::string, sf::Texture>      m_textureMap;
     std::map<std::string, sf::Font>         m_fontMap;
     std::map<std::string, sf::SoundBuffer>  m_soundBufferMap;
