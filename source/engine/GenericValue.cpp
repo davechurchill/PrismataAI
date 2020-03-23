@@ -62,7 +62,7 @@ GenericValue::GenericValue(bool b)
 GenericValue::GenericValue(const std::vector<GenericValue> & v) 
     : _valueType(VAL_VECTOR), _vec(v) {}
 
-GenericValue::GenericValue(const CardType & type)
+GenericValue::GenericValue(const CardType type)
     : _valueType(VAL_CARDTYPE), _cardType(type) {}
 
 const size_t GenericValue::size() const { return _vec.size(); }
@@ -79,7 +79,7 @@ bool GenericValue::isBool() const     { return _valueType == VAL_BOOL; }
 bool GenericValue::isString() const   { return _valueType == VAL_STRING; }
 bool GenericValue::isVector() const   { return _valueType == VAL_VECTOR; }
 
-const CardType & GenericValue::getCardType() const { return _cardType; }
+const CardType GenericValue::getCardType() const { return _cardType; }
 const int GenericValue::getInt() const { return _data._i; }
 const double GenericValue::getDouble() const { return _data._d; }
 bool GenericValue::getBool() const { return _data._b; }

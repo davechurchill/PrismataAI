@@ -23,20 +23,20 @@ class HeuristicValues
     void Init();
 
     // CALCULATION FUNCTIONS USED TO PRECOMPUTE LOOKUP VALUES
-    EvaluationType CalculateBuyManaCost(const CardType & type);
-    EvaluationType CalculateBuySacCost(const CardType & type);
-    EvaluationType CalculateInflatedManaCostGivenToEnemy(const CardType & type);
+    EvaluationType CalculateBuyManaCost(const CardType type);
+    EvaluationType CalculateBuySacCost(const CardType type);
+    EvaluationType CalculateInflatedManaCostGivenToEnemy(const CardType type);
 
 public:
 
     static HeuristicValues & Instance();
 
-    EvaluationType GetBuyManaCost(const CardType & type);
-    EvaluationType GetBuySacCost(const CardType & type);
-    EvaluationType GetBuyTotalCost(const CardType & type);
-    EvaluationType GetInflatedManaCostValue(const CardType & type);
-    EvaluationType GetInflatedTotalCostValue(const CardType & type);
-    EvaluationType GetInflatedManaCostValueGivenToEnemy(const CardType & type);
+    EvaluationType GetBuyManaCost(const CardType type);
+    EvaluationType GetBuySacCost(const CardType type);
+    EvaluationType GetBuyTotalCost(const CardType type);
+    EvaluationType GetInflatedManaCostValue(const CardType type);
+    EvaluationType GetInflatedTotalCostValue(const CardType type);
+    EvaluationType GetInflatedManaCostValueGivenToEnemy(const CardType type);
 };
 
 namespace Heuristics
@@ -44,9 +44,9 @@ namespace Heuristics
     // SPECIFIC PHASE EVALUATIONS
     EvaluationType SnipeHighestDefense(const Card & card, const GameState & state);
     EvaluationType DefenseHeuristicSaveAttackers(const Card & card, const GameState & state);
-    EvaluationType BuyHighestCost(const CardType & type, const GameState & state, const PlayerID player);
-    EvaluationType BuyAttackValue(const CardType & type, const GameState & state, const PlayerID player);
-    EvaluationType BuyBlockValue(const CardType & type, const GameState & state, const PlayerID player);
+    EvaluationType BuyHighestCost(const CardType type, const GameState & state, const PlayerID player);
+    EvaluationType BuyAttackValue(const CardType type, const GameState & state, const PlayerID player);
+    EvaluationType BuyBlockValue(const CardType type, const GameState & state, const PlayerID player);
 
     // GENERIC EVALUATIONS
     EvaluationType CurrentCardValue(const Card & blocker, const GameState & state);
@@ -54,8 +54,8 @@ namespace Heuristics
     EvaluationType DamageLoss_AttackValue(const Card & blocker, const GameState & state, const HealthType damage);
 
     // HELPER FUNCTIONS
-    HealthType     GetAttackProduced(const CardType & type, const Script & script, const GameState & state, const PlayerID player);
-    HealthType     GetAttackProduced(const CardType & type, const GameState & state, const PlayerID player);
+    HealthType     GetAttackProduced(const CardType type, const Script & script, const GameState & state, const PlayerID player);
+    HealthType     GetAttackProduced(const CardType type, const GameState & state, const PlayerID player);
     HealthType     GetAttackProduced(const Card & card, const GameState & state, const PlayerID player);
 
 

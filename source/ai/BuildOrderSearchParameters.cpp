@@ -161,7 +161,7 @@ void BuildOrderSearchParameters::parseState(const rapidjson::Value & root)
     _initialState = state;
 }
 
-bool BuildOrderSearchParameters::isRelevant(const CardType & type) const
+bool BuildOrderSearchParameters::isRelevant(const CardType type) const
 {
     // if we don't have any relevant actions then we don't care, do it's relevant
     if (_relevantCards.empty())

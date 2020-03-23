@@ -60,12 +60,12 @@ public:
     Card();
     Card(const std::string & jsonString);
     Card(const rapidjson::Value & cardValue);
-    Card(const CardType & type, const PlayerID player, const int & creationMethod, const TurnType delay, const TurnType lifespan);
+    Card(const CardType type, const PlayerID player, const int & creationMethod, const TurnType delay, const TurnType lifespan);
     Card & operator = (const Card & rhs);
     bool          operator == (const Card & rhs) const;
     bool          operator < (const Card & rhs) const;
 
-    const CardType &    getType() const;
+    const CardType    getType() const;
     CardID      getID() const;
     CardID      getTargetID() const;
     PlayerID    getPlayer() const;

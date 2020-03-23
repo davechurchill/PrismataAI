@@ -70,7 +70,7 @@ void BuyIterator::recurse(const CardID currentCardBuyableIndex, const size_t num
         return;
     }
 
-    const CardType & cardType = _state.getCardBuyableByIndex(_allowedBuyableIndex[currentCardBuyableIndex]).getType();
+    const CardType cardType = _state.getCardBuyableByIndex(_allowedBuyableIndex[currentCardBuyableIndex]).getType();
     const Action buyCard(_state.getActivePlayer(), ActionTypes::BUY, cardType.getID());
         
     bool hasBuyLimit = _buyLimits.hasLimit(cardType.getID());

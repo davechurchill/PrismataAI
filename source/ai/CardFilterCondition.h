@@ -32,15 +32,15 @@ class CardFilterCondition
 
     bool            _valid;
 
-    bool evalRecurse(const GenericValue & value, const CardType & type);
-    bool evalSingle(const GenericValue & value, const CardType & type);
+    bool evalRecurse(const GenericValue & value, const CardType type);
+    bool evalSingle(const GenericValue & value, const CardType type);
 
 public:
 
     CardFilterCondition(const rapidjson::Value & condVal);
 
-    bool evaluate(const CardType & type) const;
-    bool evaluate(const GameState & state, const CardType & type) const;
+    bool evaluate(const CardType type) const;
+    bool evaluate(const GameState & state, const CardType type) const;
 };
 
 template <class T, class U>

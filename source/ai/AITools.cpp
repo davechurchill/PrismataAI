@@ -718,7 +718,7 @@ void AITools::TestParseJSONString(const std::string & jsonString)
     }
 }
 
-bool AITools::PurchaseIsOutOfSync(const PlayerID player, const CardType & type, const GameState & state)
+bool AITools::PurchaseIsOutOfSync(const PlayerID player, const CardType type, const GameState & state)
 {
     TurnType delay = std::max(type.getAbilityScript().getDelay(), type.getBeginOwnTurnScript().getDelay());
 
@@ -753,12 +753,12 @@ bool AITools::PurchaseIsOutOfSync(const PlayerID player, const CardType & type, 
     return false;
 }
 
-size_t AITools::NumResonatorsReady(const CardType & type, const GameState & state, const PlayerID player, const TurnType maxConstructionTime)
+size_t AITools::NumResonatorsReady(const CardType type, const GameState & state, const PlayerID player, const TurnType maxConstructionTime)
 {
     size_t resonatorsFound = 0;
     for (const auto & resonateToID : type.getResonateToIDs())
     {
-        const CardType & resonatorType = CardType(resonateToID);
+        const CardType resonatorType = CardType(resonateToID);
 
         // if we have one of the resonator cards
         if (state.numCardsOfType(player, resonatorType) > 0)
@@ -778,12 +778,12 @@ size_t AITools::NumResonatorsReady(const CardType & type, const GameState & stat
     return resonatorsFound;
 }
 
-Resources AITools::GetReceiveFromResonators(const CardType & type, const GameState & state, const PlayerID player, const TurnType maxConstructionTime)
+Resources AITools::GetReceiveFromResonators(const CardType type, const GameState & state, const PlayerID player, const TurnType maxConstructionTime)
 {
     Resources contribution;
     for (const auto & resonateToID : type.getResonateToIDs())
     {
-        const CardType & resonatorType = CardType(resonateToID);
+        const CardType resonatorType = CardType(resonateToID);
 
         // if we have one of the resonator cards
         if (state.numCardsOfType(player, resonatorType) > 0)
@@ -803,7 +803,7 @@ Resources AITools::GetReceiveFromResonators(const CardType & type, const GameSta
     return contribution;
 }
 
-Resources AITools::GetReceiveFromResonatees(const CardType & type, const GameState & state, const PlayerID player, const TurnType maxConstructionTime)
+Resources AITools::GetReceiveFromResonatees(const CardType type, const GameState & state, const PlayerID player, const TurnType maxConstructionTime)
 {
     Resources receive;
     size_t numResonatees = NumResonateesReady(type, state, player, maxConstructionTime);
@@ -816,12 +816,12 @@ Resources AITools::GetReceiveFromResonatees(const CardType & type, const GameSta
     return receive;
 }
 
-size_t AITools::NumResonateesReady(const CardType & type, const GameState & state, const PlayerID player, const TurnType maxConstructionTime)
+size_t AITools::NumResonateesReady(const CardType type, const GameState & state, const PlayerID player, const TurnType maxConstructionTime)
 {
     size_t resonateesFound = 0;
     for (const auto & resonateFromID : type.getResonateFromIDs())
     {
-        const CardType & resonateeType = CardType(resonateFromID);
+        const CardType resonateeType = CardType(resonateFromID);
 
         // if we have one of the resonator cards
         if (state.numCardsOfType(player, resonateeType) > 0)

@@ -24,7 +24,7 @@ CardType::CardType(const CardType & type)
  
 }
 
-CardType & CardType::operator = (const CardType & rhs)
+CardType & CardType::operator = (const CardType rhs)
 {
     if (this != &rhs)
     {
@@ -54,17 +54,17 @@ ActionID CardType::getActionType() const
     return ActionTypes::NONE;
 }
 
-bool CardType::operator == (const CardType & rhs) const
+bool CardType::operator == (const CardType rhs) const
 {
     return getID() == rhs.getID();
 }
 
-bool CardType::operator != (const CardType & rhs) const
+bool CardType::operator != (const CardType rhs) const
 {
     return getID() != rhs.getID();
 }
 
-bool CardType::operator < (const CardType & rhs) const
+bool CardType::operator < (const CardType rhs) const
 {
     return getID() < rhs.getID();
 }
@@ -260,7 +260,7 @@ const std::vector<SacDescription> & CardType::getBuySac() const
     return CardTypeData::Instance().getCardTypeInfo(m_id).buySac;
 }
 
-CardID CardType::getTypeBuySacCost(const CardType & type) const
+CardID CardType::getTypeBuySacCost(const CardType type) const
 {
     CardID sacced = 0;
 

@@ -37,7 +37,7 @@ void PartialPlayer_ActionBuy_EngineerHeuristic::getMove(GameState & state, Move 
     // if we have anything other than a drone or an engineer then don't bother with this
     for (const auto & cardID : state.getCardIDs(_playerID))
     {
-        const CardType & type = state.getCardByID(cardID).getType();
+        const CardType type = state.getCardByID(cardID).getType();
 
         if (type != droneType && type != engType)
         {
@@ -77,7 +77,7 @@ void PartialPlayer_ActionBuy_EngineerHeuristic::getMove(GameState & state, Move 
     size_t bigBlueCards = 0;
     for (size_t c(0); c < state.numCardsBuyable(); ++c)
     {
-        const CardType & type = state.getCardBuyableByIndex(c).getType();
+        const CardType type = state.getCardBuyableByIndex(c).getType();
 
         if (type.canBlock(false) && (!type.isFragile()) && (type.getStartingHealth() >= 4) && (type.getAttack() <= (type.getStartingHealth()/2)))
         {

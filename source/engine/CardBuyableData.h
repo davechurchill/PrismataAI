@@ -21,8 +21,8 @@ public:
     const   CardBuyable &   getCardBuyableByID(const CardID cardID) const;
             CardBuyable &   getCardBuyableByID(const CardID cardID);
 
-    const   CardBuyable &   getCardBuyableByType(const CardType & type) const;
-            CardBuyable &   getCardBuyableByType(const CardType & type);
+    const   CardBuyable &   getCardBuyableByType(const CardType type) const;
+            CardBuyable &   getCardBuyableByType(const CardType type);
             
     const   CardID          size() const;
 

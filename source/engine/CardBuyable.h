@@ -15,13 +15,13 @@ class CardBuyable
 public:
 
     CardBuyable();
-    CardBuyable(const CardType & type, const CardID p1MaxSupply, const CardID p2MaxSupply, const CardID p1Spent, const CardID p2Spent);
+    CardBuyable(const CardType type, const CardID p1MaxSupply, const CardID p2MaxSupply, const CardID p1Spent, const CardID p2Spent);
 
     CardBuyable & operator = (const CardBuyable & rhs); 
     
     bool operator < (const CardBuyable & rhs) const;
 
-    const CardType & getType() const;
+    const CardType getType() const;
     SupplyType  getSupplyRemaining(const PlayerID player) const;
     SupplyType  getMaxSupply(const PlayerID player) const;
     void        setSupplyRemaining(const PlayerID player, const SupplyType & amount);

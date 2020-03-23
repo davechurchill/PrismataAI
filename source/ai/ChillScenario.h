@@ -57,19 +57,19 @@ public:
     HealthType calculateExactUsedChill() const;
 
     void addChiller(const HealthType chill, const size_t n = 1);
-    void addChiller(const CardType & type, const size_t n = 1);
+    void addChiller(const CardType type, const size_t n = 1);
     void addChiller(const Card & card, const size_t n = 1);
     void removeChiller(const HealthType chill, const size_t n = 1);
-    void removeChiller(const CardType & type, const size_t n = 1);
+    void removeChiller(const CardType type, const size_t n = 1);
     void removeChiller(const Card & card, const size_t n = 1);
 
-    void buyDefender(const CardType & type);
-    void sellDefender(const CardType & type);
+    void buyDefender(const CardType type);
+    void sellDefender(const CardType type);
     void addDefender(const HealthType health, const size_t n = 1);
-    void addDefender(const CardType & type, const size_t n = 1);
+    void addDefender(const CardType type, const size_t n = 1);
     void addDefender(const Card & card, const size_t n = 1);
     void removeDefender(const HealthType health, const size_t n = 1);
-    void removeDefender(const CardType & type, const size_t n = 1);
+    void removeDefender(const CardType type, const size_t n = 1);
     void removeDefender(const Card & card, const size_t n = 1);
 
     void setRandomData(const size_t & histogramMinIndex, const size_t & histogramMaxIndex, const size_t & maxHistogramValue);

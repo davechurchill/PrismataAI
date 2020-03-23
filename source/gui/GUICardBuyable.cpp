@@ -38,7 +38,7 @@ const bool GUICardBuyable::operator < (const GUICardBuyable & rhs) const
     return m_cardBuyable->getType() < rhs.m_cardBuyable->getType();
 }
 
-const CardType & GUICardBuyable::getType() const
+const CardType GUICardBuyable::getType() const
 {
     return m_cardBuyable->getType();
 }

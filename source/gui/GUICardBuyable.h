@@ -26,7 +26,7 @@ public:
 
     const bool operator < (const GUICardBuyable & rhs) const;
 
-    const CardType &     getType() const;
+    const CardType     getType() const;
     const int            getLayer() const;
     const sf::Vector2f & pos() const;
     const bool           isClicked(int x, int y) const;

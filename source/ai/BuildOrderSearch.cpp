@@ -166,7 +166,7 @@ void BuildOrderSearch::recurse(GameState & state, const CardID currentCardBuyabl
         return;
     }
 
-    const CardType & cardType = state.getCardBuyableByIndex(_allowedBuyableIndex[currentCardBuyableIndex]).getType();
+    const CardType cardType = state.getCardBuyableByIndex(_allowedBuyableIndex[currentCardBuyableIndex]).getType();
     const Action buyCard(state.getActivePlayer(), ActionTypes::BUY, cardType.getID());
         
     bool hasBuyLimit = _params.getBuyLimits().hasLimit(cardType.getID());

@@ -63,7 +63,7 @@ const CardID Condition::getTypeID() const
     return _typeID;
 }
 
-const CardType & Condition::getType() const
+const CardType Condition::getType() const
 {
     return CardTypes::GetAllCardTypes()[getTypeID()];
 }

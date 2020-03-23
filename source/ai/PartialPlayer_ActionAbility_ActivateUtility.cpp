@@ -69,7 +69,7 @@ void PartialPlayer_ActionAbility_ActivateUtility::getMove(GameState & state, Mov
 
 bool PartialPlayer_ActionAbility_ActivateUtility::isUtilityCard(const Card & card) const
 {
-    const CardType & type = card.getType();
+    const CardType type = card.getType();
 
     // has to have an ability
     if (!type.hasAbility())

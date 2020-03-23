@@ -1565,7 +1565,7 @@ const HealthType GameState::getAttack(const PlayerID player) const
     return (HealthType)getResources(player).amountOf(Resources::Attack);
 }
 
-void GameState::addCard(const PlayerID player, const CardType & type, const size_t num, const int creationMethod, const TurnType delay, const TurnType lifespan)
+void GameState::addCard(const PlayerID player, const CardType type, const size_t num, const int creationMethod, const TurnType delay, const TurnType lifespan)
 {
     for (size_t i(0); i<num; ++i)
     {
@@ -1581,7 +1581,7 @@ void GameState::addCard(const Card & card)
     m_cards.addCard(card);
 }
 
-void GameState::addBuyableCardType(const CardType & type)
+void GameState::addBuyableCardType(const CardType type)
 {
     m_cards.addBuyableCardType(type);
 }
@@ -1622,7 +1622,7 @@ const CardID GameState::numKilledCards(const PlayerID player) const
     return m_cards.numKilledCards(player);
 }
 
-const CardID GameState::numCardsOfType(const PlayerID player, const CardType & type, bool requireActive) const
+const CardID GameState::numCardsOfType(const PlayerID player, const CardType type, bool requireActive) const
 {
     if (!requireActive)
     {
@@ -1646,7 +1646,7 @@ const CardID GameState::numCardsOfType(const PlayerID player, const CardType & t
     return num;
 }
 
-const CardID GameState::numCompletedCardsOfType(const PlayerID player, const CardType & type) const
+const CardID GameState::numCompletedCardsOfType(const PlayerID player, const CardType type) const
 {
     CardID num(0);
 
@@ -1707,7 +1707,7 @@ const CardBuyable & GameState::getCardBuyableByIndex(const CardID index) const
     return m_cards.getCardBuyableByIndex(index);
 }
 
-const CardBuyable & GameState::getCardBuyableByType(const CardType & type) const
+const CardBuyable & GameState::getCardBuyableByType(const CardType type) const
 {
     return m_cards.getCardBuyableByType(type);
 }
@@ -2051,12 +2051,12 @@ const CardID GameState::getIsomorphicCardID(const Card & card) const
     return -1;
 }
 
-void GameState::addCardBuyable(const CardType & type)
+void GameState::addCardBuyable(const CardType type)
 {
     m_cards.addBuyableCardType(type);
 }
 
-bool GameState::isBuyable(const PlayerID player, const CardType & type) const
+bool GameState::isBuyable(const PlayerID player, const CardType type) const
 {
     for (size_t i(0); i < numCardsBuyable(); ++i)
     {

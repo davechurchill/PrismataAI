@@ -32,7 +32,7 @@ public:
     const int getAttackValue()                              const;
     bool hasEffect()                                  const;
     const CardID getResonateTypeID()                      const;
-    const CardType & getResonateType()                      const;
+    const CardType getResonateType()                      const;
     const std::string & getResonateTypeName()               const;
     const Resources & getGive()                             const;
     const Resources & getReceive()                          const;

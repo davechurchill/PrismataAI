@@ -72,7 +72,7 @@ const CardID DestroyDescription::getTypeID() const
     return _typeID;
 }
 
-const CardType & DestroyDescription::getType() const
+const CardType DestroyDescription::getType() const
 {
     return CardTypes::GetAllCardTypes()[getTypeID()];
 }

@@ -25,7 +25,7 @@ void PartialPlayer_ActionBuy_Sequence::getMove(GameState & state, Move & move)
 
     for (size_t i(0); i<_buySequence.size(); ++i)
     {
-        const CardType & type = _buySequence[i].first;
+        const CardType type = _buySequence[i].first;
 
         Action buy(_playerID, ActionTypes::BUY, type.getID());
         size_t bought(0);

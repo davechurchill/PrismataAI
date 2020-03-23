@@ -25,7 +25,7 @@ public:
     {
     }
 
-    bool operator() (const CardType & c1, const CardType & c2) const
+    bool operator() (const CardType c1, const CardType c2) const
     {
         const double c1props[3] = { (double)(c1.isFragile() ? 0 : 1),      
                                     (double)-c1.getLifespan(),            

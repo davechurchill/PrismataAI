@@ -66,7 +66,7 @@ namespace CardTypes
         std::cout << "Dominion set has " << dominionCardTypes.size() << " cards\n";
     }
 
-    bool IsBaseSet(const CardType & type)
+    bool IsBaseSet(const CardType type)
     {
         return std::find(baseSetCardTypes.begin(), baseSetCardTypes.end(), type) != baseSetCardTypes.end();
     }
@@ -99,7 +99,7 @@ namespace CardTypes
         return false;
     }
 
-    const CardType & GetCardType(const CardID cardID)
+    const CardType GetCardType(const CardID cardID)
     {
         return allCardTypes[cardID];
     }

@@ -99,7 +99,7 @@ void PartialPlayer_ActionBuy_AvoidBreach::getMove(GameState & state, Move & move
     for (CardID c(0); c<state.numCardsBuyable(); ++c)
     {
         const CardBuyable & cardBuyable = predictedState.getCardBuyableByIndex(c);
-        const CardType & cardType = cardBuyable.getType();
+        const CardType cardType = cardBuyable.getType();
 
         if (cardType.isPromptBlocker())
         {
@@ -121,7 +121,7 @@ void PartialPlayer_ActionBuy_AvoidBreach::getMove(GameState & state, Move & move
     CardType cheapestAbsorber;
     for (CardID c(0); c < promptBlockers.size(); ++c)
     {
-        const CardType & blockerType = promptBlockers[c];
+        const CardType blockerType = promptBlockers[c];
         Action buyCard(_playerID, ActionTypes::BUY, blockerType.getID());
         
         // candidate absorber test

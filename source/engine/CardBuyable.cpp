@@ -7,7 +7,7 @@ CardBuyable::CardBuyable()
    
 }
 
-CardBuyable::CardBuyable(const CardType & type, const CardID p1MaxSupply, const CardID p2MaxSupply, const CardID p1Spent, const CardID p2Spent)
+CardBuyable::CardBuyable(const CardType type, const CardID p1MaxSupply, const CardID p2MaxSupply, const CardID p1Spent, const CardID p2Spent)
     : m_type(type)
 {
     m_maxSupply[Players::Player_One] = p1MaxSupply;
@@ -31,7 +31,7 @@ CardBuyable & CardBuyable::operator = (const CardBuyable & rhs)
     return *this;
 }
 
-const CardType & CardBuyable::getType() const
+const CardType CardBuyable::getType() const
 {
     return m_type;
 }

@@ -55,7 +55,7 @@ sf::Vector2f GUICard::GetCardSize()
 
 const int GUICard::getLane() const
 {
-    const CardType & type = m_card->getType();
+    const CardType type = m_card->getType();
 
     if (type.isFrontline())
     {

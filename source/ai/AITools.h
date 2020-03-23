@@ -31,12 +31,12 @@ namespace AITools
 
     double CalculateWipeoutLoss(GameState & state, const PlayerID player);
 
-    bool PurchaseIsOutOfSync(const PlayerID player, const CardType & type, const GameState & state);
+    bool PurchaseIsOutOfSync(const PlayerID player, const CardType type, const GameState & state);
 
-    size_t NumResonatorsReady(const CardType & type, const GameState & state, const PlayerID player, const TurnType maxConstructionTime);
-    size_t NumResonateesReady(const CardType & type, const GameState & state, const PlayerID player, const TurnType maxConstructionTime);
-    Resources GetReceiveFromResonators(const CardType & type, const GameState & state, const PlayerID player, const TurnType maxConstructionTime);
-    Resources GetReceiveFromResonatees(const CardType & type, const GameState & state, const PlayerID player, const TurnType maxConstructionTime);
+    size_t NumResonatorsReady(const CardType type, const GameState & state, const PlayerID player, const TurnType maxConstructionTime);
+    size_t NumResonateesReady(const CardType type, const GameState & state, const PlayerID player, const TurnType maxConstructionTime);
+    Resources GetReceiveFromResonators(const CardType type, const GameState & state, const PlayerID player, const TurnType maxConstructionTime);
+    Resources GetReceiveFromResonatees(const CardType type, const GameState & state, const PlayerID player, const TurnType maxConstructionTime);
     
     void TestParseJSONString(const std::string & jsonString);
 

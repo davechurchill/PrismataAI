@@ -44,7 +44,7 @@ void PartialPlayer_ActionAbility_UntapAvoidBreach::getMove(GameState & state, Mo
     // if we will still be breached after untapping attackers, untap drones
     if (!avoidedBreach && CardTypes::CardTypeExists("Drone"))
     {
-        const CardType & drone = CardTypes::GetCardType("Drone");
+        const CardType drone = CardTypes::GetCardType("Drone");
         std::vector<CardID> tappedDrones;
         tappedDrones.reserve(20);
 

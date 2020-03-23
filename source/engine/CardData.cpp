@@ -99,7 +99,7 @@ void CardData::removeLiveCard(const PlayerID player, const CardID cardIndex)
     PRISMATA_ASSERT(player < 2, "player exceeds capacity: player=%d, total players=%d", player, 2);    
     PRISMATA_ASSERT(cardIndex < numCards(player), "cardIndex=%d, size=%d", cardIndex, numCards(player));
 
-    const CardType & type = getCardByID(m_liveCardIDs[player][cardIndex]).getType();
+    const CardType type = getCardByID(m_liveCardIDs[player][cardIndex]).getType();
     PRISMATA_ASSERT(getCardTypeCount(player, type) > 0, "removing a card with 0 type count");
 
     m_cardTypeCounts[player][type.getID()]--;
@@ -239,12 +239,12 @@ CardBuyable & CardData::getCardBuyableByID(const CardID cardID)
     return m_cardsBuyable.getCardBuyableByID(cardID);
 }
 
-const CardBuyable & CardData::getCardBuyableByType(const CardType & type) const
+const CardBuyable & CardData::getCardBuyableByType(const CardType type) const
 {
     return m_cardsBuyable.getCardBuyableByType(type);
 }
 
-CardBuyable & CardData::getCardBuyableByType(const CardType & type)
+CardBuyable & CardData::getCardBuyableByType(const CardType type)
 {
     return m_cardsBuyable.getCardBuyableByType(type);
 }
@@ -254,7 +254,7 @@ const CardID CardData::numCardsBuyable() const
     return m_cardsBuyable.size();
 }
 
-void CardData::addBuyableCardType(const CardType & type)
+void CardData::addBuyableCardType(const CardType type)
 {
     m_cardsBuyable.addCardBuyable(CardBuyable(type, type.getSupply(), type.getSupply(), 0, 0));
 }
@@ -315,7 +315,7 @@ const CardID CardData::getFreeCardID()
     return m_allCards.size()-1;
 }
 
-const CardID CardData::getCardTypeCount(const PlayerID player, const CardType & type) const
+const CardID CardData::getCardTypeCount(const PlayerID player, const CardType type) const
 {
     return m_cardTypeCounts[player][type.getID()];
 }

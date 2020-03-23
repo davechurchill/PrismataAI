@@ -84,7 +84,7 @@ void CardFilter::addFilter(const CardFilter & filter)
     }
 }
 
-bool CardFilter::operator [] (const CardType & type) const
+bool CardFilter::operator [] (const CardType type) const
 {
     if (_filter.size() < type.getID())
     {
@@ -162,7 +162,7 @@ void CardFilter::parseStateConditions(const rapidjson::Value & conditions)
     }
 }
 
-bool CardFilter::evaluate(const GameState & state, const CardType & type) const
+bool CardFilter::evaluate(const GameState & state, const CardType type) const
 {
     if (_filter[type.getID()])
     {

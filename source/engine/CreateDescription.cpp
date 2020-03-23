@@ -86,7 +86,7 @@ const CardID CreateDescription::getTypeID() const
     return _typeID;
 }
 
-const CardType & CreateDescription::getType() const
+const CardType CreateDescription::getType() const
 {
     return CardTypes::GetAllCardTypes()[getTypeID()];
 }

@@ -39,7 +39,7 @@ public:
 
     const   CardID          numCards(const PlayerID player) const;
     const   CardID          numKilledCards(const PlayerID player) const;
-    const   CardID          getCardTypeCount(const PlayerID player, const CardType & type) const;
+    const   CardID          getCardTypeCount(const PlayerID player, const CardType type) const;
 
     const   CardIDVector &  getCardIDs(const PlayerID player) const;
     const   CardIDVector &  getKilledCardIDs(const PlayerID player) const;
@@ -48,13 +48,13 @@ public:
             CardBuyable &   getCardBuyableByIndex(const CardID cardIndex);
     const   CardBuyable &   getCardBuyableByID(const CardID cardID) const;
             CardBuyable &   getCardBuyableByID(const CardID cardID);
-    const   CardBuyable &   getCardBuyableByType(const CardType & type) const;
-            CardBuyable &   getCardBuyableByType(const CardType & type);
+    const   CardBuyable &   getCardBuyableByType(const CardType type) const;
+            CardBuyable &   getCardBuyableByType(const CardType type);
 
             Card &          addCard(const Card & card);
             Card &          buyCardByID(const PlayerID player, const CardID cardBuyableIndex);
     void                    sellCardByID(const CardID cardID);
-    void                    addBuyableCardType(const CardType & type);
+    void                    addBuyableCardType(const CardType type);
     void                    addBuyableCard(const CardBuyable & type);
     void                    killCardByID(const CardID cardID, const int causeOfDeath);
     void                    removeKilledCards();

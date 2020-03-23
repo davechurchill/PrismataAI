@@ -34,17 +34,17 @@ BuyLimits::BuyLimits(const rapidjson::Value & val)
     }
 }
 
-const CardID BuyLimits::getLimit(const CardType & type) const
+const CardID BuyLimits::getLimit(const CardType type) const
 {
     return _buyLimits[type.getID()];
 }
 
-bool BuyLimits::hasLimit(const CardType & type) const
+bool BuyLimits::hasLimit(const CardType type) const
 {
     return _hasLimit[type.getID()];
 }
 
-void BuyLimits::setLimit(const CardType & type, const CardID limit)
+void BuyLimits::setLimit(const CardType type, const CardID limit)
 {
     _hasAnyLimits = true;
     _hasLimit[type.getID()] = true;

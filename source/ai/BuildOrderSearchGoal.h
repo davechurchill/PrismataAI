@@ -21,7 +21,7 @@ public:
     BuildOrderSearchGoal(const rapidjson::Value & val);
 
     const size_t size() const;
-    void addGoal(const CardType & type, const size_t goalAmount, const size_t goalTurn);
+    void addGoal(const CardType type, const size_t goalAmount, const size_t goalTurn);
     bool meetsGoal(const GameState & state) const;
     bool cannotMeetGoal(const GameState & state) const;
 };

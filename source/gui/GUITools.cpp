@@ -72,7 +72,7 @@ namespace GUITools
         }
     }
 
-    void DrawBuyCost(const CardType & cardType, const sf::Vector2f & origin, const sf::Vector2f & iconSize, const sf::Vector2f & numberSize, const sf::Vector2f & buffer, bool drawZeros, sf::RenderWindow * window)
+    void DrawBuyCost(const CardType cardType, const sf::Vector2f & origin, const sf::Vector2f & iconSize, const sf::Vector2f & numberSize, const sf::Vector2f & buffer, bool drawZeros, sf::RenderWindow * window)
     {
         sf::Vector2f diffSize((iconSize.x - numberSize.x) / 2, (iconSize.y - numberSize.y) / 2);
         Resources cost = cardType.getBuyCost();
@@ -103,7 +103,7 @@ namespace GUITools
         }
     }
 
-    void DrawMouseOverPane(const CardType & type, const sf::Vector2f & pos, const Card * card, sf::RenderWindow * window)
+    void DrawMouseOverPane(const CardType type, const sf::Vector2f & pos, const Card * card, sf::RenderWindow * window)
     {
         sf::Vector2f iconSize(32,32);
         sf::Vector2f halfIconSize(iconSize.x/2, iconSize.y/2);

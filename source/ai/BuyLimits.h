@@ -18,10 +18,10 @@ public:
     BuyLimits();
     BuyLimits(const rapidjson::Value & val);
 
-    const CardID getLimit(const CardType & type) const;
-    bool hasLimit(const CardType & type) const;
+    const CardID getLimit(const CardType type) const;
+    bool hasLimit(const CardType type) const;
     bool hasAnyLimits() const;
-    void setLimit(const CardType & index, const CardID limit);
+    void setLimit(const CardType index, const CardID limit);
     void addLimits(const BuyLimits & limits);
 };
 }

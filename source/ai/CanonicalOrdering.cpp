@@ -15,7 +15,7 @@ void CanonicalOrdering::createGraph(const std::vector<CardType> & types)
 {
     for (size_t i(0); i < types.size(); ++i)
     {
-        const CardType & type = types[i];
+        const CardType type = types[i];
 
         bool sacsUnit = type.getAbilityScript().getSacCost().size() > 0;
         const Resources & consumed = type.getAbilityScript().getManaCost();

@@ -27,7 +27,7 @@ class GameState
     CardBuyable &   _getCardBuyableByID(const CardID cardID);
     Resources &     _getResources(const PlayerID player);
     
-    void            addBuyableCardType(const CardType & type);
+    void            addBuyableCardType(const CardType type);
     void            endPhase();
     void            beginPhase(const PlayerID player, const int newPhase);
     void            blockWithCard(Card & card);
@@ -56,9 +56,9 @@ public:
     bool doMove(const Move & move);
     void setStartingState(const PlayerID startPlayer, const CardID numDominionCards);
     void generateLegalActions(std::vector<Action> & actions) const;
-    void addCard(const PlayerID player, const CardType & type, const size_t num, const int creationMethod, const TurnType delay, const TurnType lifespan);
+    void addCard(const PlayerID player, const CardType type, const size_t num, const int creationMethod, const TurnType delay, const TurnType lifespan);
     void addCard(const Card & card);
-    void addCardBuyable(const CardType & type);
+    void addCardBuyable(const CardType type);
     void setMana(const PlayerID player, const Resources & resource);
     void killCardByID(const CardID cardID, const int causeOfDeath);
     void beginTurn(const PlayerID player);
@@ -75,15 +75,15 @@ public:
     bool canRunScriptUndo(const PlayerID player, const CardID card, const Script & script) const;
     bool isIsomorphic(const GameState & other)                                   const;
     bool isPlayerIsomorphic(const GameState & other, const PlayerID player)    const;
-    bool isBuyable(const PlayerID player, const CardType & type)               const;
+    bool isBuyable(const PlayerID player, const CardType type)               const;
     bool canBreachFrozenCard()                                                   const;
     bool canWipeout(const PlayerID player)                                     const;
     bool isTargetAbilityCardClicked()                                            const;
     
-    const CardID            numCardsOfType(const PlayerID player, const CardType & type, bool requireActive = false) const;
+    const CardID            numCardsOfType(const PlayerID player, const CardType type, bool requireActive = false) const;
     const CardID            numCards(const PlayerID player)                                       const;
     const CardID            numKilledCards(const PlayerID player)                                 const;
-    const CardID            numCompletedCardsOfType(const PlayerID player, const CardType & type) const;
+    const CardID            numCompletedCardsOfType(const PlayerID player, const CardType type) const;
     const CardID            numCardsBuyable()                                                       const;
     const CardID            getLastCardBoughtID()                                                   const;
     const CardID            getIsomorphicCardID(const Card & card)                                  const;
@@ -99,7 +99,7 @@ public:
     const Card &            getTargetAbilityCardClicked()                                           const;
     const CardBuyable &     getCardBuyableByIndex(const CardID index)                             const;
     const CardBuyable &     getCardBuyableByID(const CardID cardID)                               const;
-    const CardBuyable &     getCardBuyableByType(const CardType & type)                             const;
+    const CardBuyable &     getCardBuyableByType(const CardType type)                             const;
     const Resources &       getResources(const PlayerID player)                                        const;
     const CardIDVector &    getCardIDs(const PlayerID player)                                     const;
     const CardIDVector &    getKilledCardIDs(const PlayerID player)                               const;

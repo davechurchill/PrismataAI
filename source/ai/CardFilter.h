@@ -28,8 +28,8 @@ public:
     CardFilter();
     CardFilter(const std::string & name, const rapidjson::Value & filterVal);
     
-    bool operator [] (const CardType & type) const;
-    bool evaluate(const GameState & state, const CardType & type) const;
+    bool operator [] (const CardType type) const;
+    bool evaluate(const GameState & state, const CardType type) const;
     bool getAllowResonate() const;
 
     void printFilter() const;

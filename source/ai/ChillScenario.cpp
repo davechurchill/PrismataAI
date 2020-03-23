@@ -103,7 +103,7 @@ void ChillScenario::addChiller(const HealthType chill, const size_t n)
     _modifications++;
 }
 
-void ChillScenario::addChiller(const CardType & type, const size_t n)
+void ChillScenario::addChiller(const CardType type, const size_t n)
 {
     if (type.hasTargetAbility() && (type.getTargetAbilityType() == ActionTypes::CHILL))
     {
@@ -179,7 +179,7 @@ void ChillScenario::removeChiller(const HealthType chill, const size_t n)
     }
 }
 
-void ChillScenario::removeChiller(const CardType & type, const size_t n)
+void ChillScenario::removeChiller(const CardType type, const size_t n)
 {
     if (type.hasTargetAbility() && (type.getTargetAbilityType() == ActionTypes::CHILL))
     {
@@ -212,7 +212,7 @@ void ChillScenario::addDefender(const HealthType health, const size_t n)
     _modifications++;
 }
 
-void ChillScenario::addDefender(const CardType & type, const size_t n)
+void ChillScenario::addDefender(const CardType type, const size_t n)
 {
     if (type.canBlock(false))
     {
@@ -228,7 +228,7 @@ void ChillScenario::addDefender(const Card & card, const size_t n)
     }
 }
 
-void ChillScenario::buyDefender(const CardType & type)
+void ChillScenario::buyDefender(const CardType type)
 {
     if (type.isPromptBlocker())
     {
@@ -251,7 +251,7 @@ void ChillScenario::buyDefender(const CardType & type)
     }
 }
 
-void ChillScenario::sellDefender(const CardType & type)
+void ChillScenario::sellDefender(const CardType type)
 {
     if (type.isPromptBlocker())
     {
@@ -333,7 +333,7 @@ void ChillScenario::removeDefender(const HealthType health, const size_t n)
     }
 }
 
-void ChillScenario::removeDefender(const CardType & type, const size_t n)
+void ChillScenario::removeDefender(const CardType type, const size_t n)
 {
     if (type.canBlock(false))
     {
@@ -606,7 +606,7 @@ GameState ChillScenario::constructGameState() const
     {
         for (size_t c(0); c < allCardTypes.size(); ++c)
         {
-            const CardType & type = allCardTypes[c];
+            const CardType type = allCardTypes[c];
 
             if (type.hasTargetAbility() && (type.getTargetAbilityType() == ActionTypes::CHILL) && (type.getTargetAbilityAmount() == i))
             {
@@ -620,7 +620,7 @@ GameState ChillScenario::constructGameState() const
     {
         for (size_t c(0); c < allCardTypes.size(); ++c)
         {
-            const CardType & type = allCardTypes[c];
+            const CardType type = allCardTypes[c];
 
             if (type.canBlock(false) && type.getStartingHealth() == i)
             {

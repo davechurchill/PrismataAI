@@ -48,7 +48,7 @@ public:
     const BuildOrderSearchGoal &    getGoal() const;
     const BuyLimits &               getBuyLimits() const;
     const double &                  getTimeLimitMS() const;
-    bool                      isRelevant(const CardType & type) const;
+    bool                      isRelevant(const CardType type) const;
     bool                      printStack() const;
 };
 

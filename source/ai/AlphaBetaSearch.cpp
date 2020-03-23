@@ -20,7 +20,7 @@ void AlphaBetaSearch::doSearch(const GameState & initialState, Move & move)
 
     try
     {
-        for (; _currentMaxDepth <= _params.maxDepth(); _currentMaxDepth++)
+        for (; (int)_currentMaxDepth <= _params.maxDepth(); _currentMaxDepth++)
         {                       
             unsigned long long previousNodes = _results.nodesExpanded;
 

@@ -24,7 +24,7 @@ public:
     Condition(const rapidjson::Value & value);
     
     const std::string toString() const;
-    const CardType & getType() const;
+    const CardType getType() const;
     const CardID getTypeID() const;
     bool isTech() const;
     bool isNotBlocking() const;

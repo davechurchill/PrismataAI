@@ -20,7 +20,7 @@ public:
     SacDescription(const rapidjson::Value & value);
     
     const CardID getMultiple() const;
-    const CardType & getType() const;
+    const CardType getType() const;
     const CardID getTypeID() const;
     const std::string & getCardName() const;
 

@@ -38,27 +38,27 @@ void HeuristicValues::ResetData()
 }
 
 
-EvaluationType HeuristicValues::GetInflatedManaCostValue(const CardType & type)
+EvaluationType HeuristicValues::GetInflatedManaCostValue(const CardType type)
 {
     return _precomputedInflatedManaCostValue[type.getID()];
 }
 
-EvaluationType HeuristicValues::GetInflatedTotalCostValue(const CardType & type)
+EvaluationType HeuristicValues::GetInflatedTotalCostValue(const CardType type)
 {
     return _precomputedInflatedTotalCostValue[type.getID()];
 }
 
-EvaluationType HeuristicValues::GetBuyManaCost(const CardType & type)
+EvaluationType HeuristicValues::GetBuyManaCost(const CardType type)
 {
     return _precomputedBuyManaCosts[type.getID()];
 }
 
-EvaluationType HeuristicValues::GetInflatedManaCostValueGivenToEnemy(const CardType & type)
+EvaluationType HeuristicValues::GetInflatedManaCostValueGivenToEnemy(const CardType type)
 {
     return _precomputedInflatedManaCostsGivenToEnemy[type.getID()];
 }
 
-EvaluationType HeuristicValues::GetBuyTotalCost(const CardType & type)
+EvaluationType HeuristicValues::GetBuyTotalCost(const CardType type)
 {
     return _precomputedBuyTotalCosts[type.getID()];
 }
@@ -77,7 +77,7 @@ void HeuristicValues::Init()
 
     // calculate all the precomputed values
     // this must be done in this order since later calculations rely on previous ones
-    for (const CardType & type : CardTypes::GetAllCardTypes())
+    for (const CardType type : CardTypes::GetAllCardTypes())
     {
         _precomputedBuyManaCosts[type.getID()]              = CalculateBuyManaCost(type);
         _precomputedBuySacCosts[type.getID()]               = CalculateBuySacCost(type);
@@ -87,7 +87,7 @@ void HeuristicValues::Init()
     }
 
     // calculating the given costs must be done after all the others have been done since it relies on them
-    for (const CardType & type : CardTypes::GetAllCardTypes())
+    for (const CardType type : CardTypes::GetAllCardTypes())
     {
         _precomputedInflatedManaCostsGivenToEnemy[type.getID()] = CalculateInflatedManaCostGivenToEnemy(type);
     }
@@ -96,7 +96,7 @@ void HeuristicValues::Init()
     // let's just say for now that forcefield does not incur inflation, due to its extra drone cost
     if (CardTypes::CardTypeExists("Forcefield"))
     {
-        const CardType & ffType = CardTypes::GetCardType("Forcefield");
+        const CardType ffType = CardTypes::GetCardType("Forcefield");
 
         // magic heuristic for forcefield since it's so hard to price. this is approx 2/3 of a wall
         _precomputedInflatedManaCostValue[ffType.getID()] = 3.75; //_precomputedBuyManaCosts[ffType.getID()];
@@ -104,7 +104,7 @@ void HeuristicValues::Init()
     }
 }
 
-EvaluationType HeuristicValues::CalculateBuySacCost(const CardType & type)
+EvaluationType HeuristicValues::CalculateBuySacCost(const CardType type)
 {
     double sacCost = 0;
 
@@ -116,12 +116,12 @@ EvaluationType HeuristicValues::CalculateBuySacCost(const CardType & type)
     return sacCost;
 }
 
-EvaluationType HeuristicValues::GetBuySacCost(const CardType & type)
+EvaluationType HeuristicValues::GetBuySacCost(const CardType type)
 {
     return _precomputedBuySacCosts[type.getID()];
 }
 
-EvaluationType HeuristicValues::CalculateBuyManaCost(const CardType & type)
+EvaluationType HeuristicValues::CalculateBuyManaCost(const CardType type)
 {
     EvaluationType scaledCost = 0;
     
@@ -135,7 +135,7 @@ EvaluationType HeuristicValues::CalculateBuyManaCost(const CardType & type)
     return scaledCost;
 }
 
-EvaluationType HeuristicValues::CalculateInflatedManaCostGivenToEnemy(const CardType & type)
+EvaluationType HeuristicValues::CalculateInflatedManaCostGivenToEnemy(const CardType type)
 {
     double cost = 0;
 
@@ -170,7 +170,7 @@ EvaluationType Heuristics::DamageLoss_WillCost(const Card & card, const GameStat
     double exhaustLoss = card.getCurrentDelay() > 0 ? (card.getCurrentDelay() * epsilon) : 0;
     double tieBreakLoss = chargeLoss + lifespanLoss + exhaustLoss;
     
-    const CardType & type = card.getType();
+    const CardType type = card.getType();
     bool linearHealthValue = card.canBlockOnly() || card.getType().isAbilityHealthUserOnly();
     
     // an added value of attack if this card is currently resonating
@@ -265,7 +265,7 @@ EvaluationType Heuristics::DamageLoss_AttackValue(const Card & card, const GameS
     
 }
 
-EvaluationType Heuristics::BuyHighestCost(const CardType & type, const GameState & state, const PlayerID player)
+EvaluationType Heuristics::BuyHighestCost(const CardType type, const GameState & state, const PlayerID player)
 {
     return HeuristicValues::Instance().GetInflatedTotalCostValue(type);
 }
@@ -297,7 +297,7 @@ EvaluationType Heuristics::DefenseHeuristicSaveAttackers(const Card & card, cons
     return attackProduced / card.currentHealth();
 }
 
-HealthType Heuristics::GetAttackProduced(const CardType & type, const Script & script, const GameState & state, const PlayerID player)
+HealthType Heuristics::GetAttackProduced(const CardType type, const Script & script, const GameState & state, const PlayerID player)
 {
     HealthType attack = 0;
     attack += script.getEffect().getReceive().amountOf(Resources::Attack);
@@ -310,7 +310,7 @@ HealthType Heuristics::GetAttackProduced(const CardType & type, const Script & s
     return attack;
 }
 
-HealthType Heuristics::GetAttackProduced(const CardType & type, const GameState & state, const PlayerID player)
+HealthType Heuristics::GetAttackProduced(const CardType type, const GameState & state, const PlayerID player)
 {
     return GetAttackProduced(type, type.getBeginOwnTurnScript(), state, player) + GetAttackProduced(type, type.getAbilityScript(), state, player);
 }
@@ -336,7 +336,7 @@ HealthType Heuristics::GetAttackProduced(const Card & card, const GameState & st
     return attack;
 }
 
-EvaluationType Heuristics::BuyAttackValue(const CardType & type, const GameState & state, const PlayerID player)
+EvaluationType Heuristics::BuyAttackValue(const CardType type, const GameState & state, const PlayerID player)
 {
     EvaluationType attack = GetAttackProduced(type, state, player);
     EvaluationType val    = (attack / HeuristicValues::Instance().GetBuyTotalCost(type));
@@ -369,7 +369,7 @@ EvaluationType Heuristics::BuyAttackValue(const CardType & type, const GameState
     
 }
 
-EvaluationType Heuristics::BuyBlockValue(const CardType & type, const GameState & state, const PlayerID player)
+EvaluationType Heuristics::BuyBlockValue(const CardType type, const GameState & state, const PlayerID player)
 {
     EvaluationType block = type.canBlock(false) ? type.getStartingHealth() : 0;
 
@@ -380,8 +380,8 @@ bool Heuristics::CardActivateOrderComparator::operator() (CardID c1, CardID c2) 
 {
     const Card & card1 = m_state.getCardByID(c1);
     const Card & card2 = m_state.getCardByID(c2);
-    const CardType & t1 = card1.getType();
-    const CardType & t2 = card2.getType();
+    const CardType t1 = card1.getType();
+    const CardType t2 = card2.getType();
     
     const int c1props[3] = { -static_cast<int>(t1.getID()),                                                           // 1. order by lower card type first
                                 t1.getHealthUsed() > 0 ? card1.currentHealth() : -card1.currentHealth(),    // 2. if it uses health pick the healthiest, otherwise use the lowest one        

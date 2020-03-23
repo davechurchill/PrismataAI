@@ -8,7 +8,7 @@ namespace Prismata
 
 class PartialPlayer_ActionBuy_Iterator : public PartialPlayer
 {
-    CardID numBuyable(const GameState & state, const Resources & resource, const CardType & type);
+    CardID numBuyable(const GameState & state, const Resources & resource, const CardType type);
 
 public:
 

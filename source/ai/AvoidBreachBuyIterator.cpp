@@ -61,7 +61,7 @@ AvoidBreachBuyIterator::AvoidBreachBuyIterator(const GameState & state, const Br
     // Only these cards will be considered in the recursion
     for (size_t c(0); c < state.numCardsBuyable(); ++c)
     {
-        const CardType & type = state.getCardBuyableByIndex(c).getType();
+        const CardType type = state.getCardBuyableByIndex(c).getType();
 
         if (type.isPromptBlocker())
         {
@@ -292,7 +292,7 @@ void AvoidBreachBuyIterator::solve()
     //for (CardID c(0); c < _promptAbsorberCardBuyableIndex.size(); ++c)
     for (CardID c(0); c < _promptCardBuyableIndex.size(); ++c)
     {
-        const CardType & cardType = _state.getCardBuyableByIndex(_promptCardBuyableIndex[c]).getType();
+        const CardType cardType = _state.getCardBuyableByIndex(_promptCardBuyableIndex[c]).getType();
 
         // filter out non-absorbers
         if (cardType.isFragile() || (cardType.getLifespan() == 1) || (cardType.getStartingHealth() == 1))
@@ -395,7 +395,7 @@ void AvoidBreachBuyIterator::recurse(const CardID currentCardBuyableIndex, const
     }
 
     // set up the next card type to buy
-    const CardType & cardType = _state.getCardBuyableByIndex(_promptCardBuyableIndex[currentCardBuyableIndex]).getType();
+    const CardType cardType = _state.getCardBuyableByIndex(_promptCardBuyableIndex[currentCardBuyableIndex]).getType();
     const Action buyCard(_state.getActivePlayer(), ActionTypes::BUY, cardType.getID());
 
     // go down the branch we we buy one of the current card type

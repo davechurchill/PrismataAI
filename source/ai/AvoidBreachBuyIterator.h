@@ -138,7 +138,7 @@ public:
     void        getMove(Move & move);
     
     bool        solutionFound() const;
-    BuyCost     getCardCost(const CardType & type);
+    BuyCost     getCardCost(const CardType type);
     size_t      getNodesSearched();
     
     void        setPrint(bool print);

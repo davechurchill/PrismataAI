@@ -140,7 +140,7 @@ OpeningBookEntry::OpeningBookEntry(const rapidjson::Value & openingBookEntryValu
             return;
         }
 
-        const CardType & type = CardTypes::GetCardType(cardTypeString);
+        const CardType type = CardTypes::GetCardType(cardTypeString);
         _selfCardTypes.push_back(type);
         _selfCardTypeCounts.push_back(selfEntry[1u].GetInt());
     }

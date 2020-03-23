@@ -34,7 +34,7 @@ const CardID SacDescription::getTypeID() const
     return _typeID;
 }
 
-const CardType & SacDescription::getType() const
+const CardType SacDescription::getType() const
 {
     return CardTypes::GetAllCardTypes()[getTypeID()];
 }

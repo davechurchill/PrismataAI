@@ -16,7 +16,7 @@ namespace CardTypes
     const std::vector<CardType> & GetDominionCardTypes();
     CardType GetCardType(const std::string & name);
     bool CardTypeExists(const std::string & name);
-    bool IsBaseSet(const CardType & type);
+    bool IsBaseSet(const CardType type);
     extern const CardType None;
 }
 }

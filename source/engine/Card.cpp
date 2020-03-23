@@ -174,7 +174,7 @@ Card::Card(const rapidjson::Value & cardValue)
     }
 }
    
-Card::Card(const CardType & type, const PlayerID player, const int & creationMethod, const TurnType delay, const TurnType lifespan)
+Card::Card(const CardType type, const PlayerID player, const int & creationMethod, const TurnType delay, const TurnType lifespan)
     : _type                 (type)
     , _player               (player)
     , _id                   (-1)
@@ -266,7 +266,7 @@ Card & Card::operator = (const Card & rhs)
 }
 
 
-const CardType & Card::getType() const
+const CardType Card::getType() const
 {
  return _type;
 }

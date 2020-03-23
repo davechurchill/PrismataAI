@@ -54,7 +54,7 @@ CardFilterCondition::CardFilterCondition(const rapidjson::Value & condVal)
     else if (op == ">=")    { _OP = OP_GEQ; }
 }
 
-bool CardFilterCondition::evaluate(const CardType & type) const
+bool CardFilterCondition::evaluate(const CardType type) const
 {
     PRISMATA_ASSERT(_LHS.isInt(), "LHS should be int for card type evaluations");
 
@@ -79,7 +79,7 @@ bool CardFilterCondition::evaluate(const CardType & type) const
     return false;
 }
 
-bool CardFilterCondition::evaluate(const GameState & state, const CardType & type) const
+bool CardFilterCondition::evaluate(const GameState & state, const CardType type) const
 {
     // if the LHS is a card type, we're doing an operation on how many of them we have
     if (_LHS.isCardType())

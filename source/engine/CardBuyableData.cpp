@@ -49,12 +49,12 @@ CardBuyable & CardBuyableData::getCardBuyableByID(const CardID cardID)
     return m_buyableCards[0];
 }
 
-const CardBuyable & CardBuyableData::getCardBuyableByType(const CardType & type) const
+const CardBuyable & CardBuyableData::getCardBuyableByType(const CardType type) const
 {
     return getCardBuyableByID(type.getID());
 }
 
-CardBuyable & CardBuyableData::getCardBuyableByType(const CardType & type)
+CardBuyable & CardBuyableData::getCardBuyableByType(const CardType type)
 {
     return getCardBuyableByID(type.getID());
 }

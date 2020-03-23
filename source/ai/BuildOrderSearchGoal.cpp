@@ -36,7 +36,7 @@ const size_t BuildOrderSearchGoal::size() const
     return _goalType.size();
 }
 
-void BuildOrderSearchGoal::addGoal(const CardType & type, const size_t goalAmount, const size_t goalTurn)
+void BuildOrderSearchGoal::addGoal(const CardType type, const size_t goalAmount, const size_t goalTurn)
 {
     _goalType.push_back(type);
     _goalAmount.push_back(goalAmount);
@@ -48,7 +48,7 @@ bool BuildOrderSearchGoal::meetsGoal(const GameState & state) const
     const PlayerID player = Players::Player_One;
     for (size_t i(0); i < size(); ++i)
     {
-        const CardType & type = _goalType[i];
+        const CardType type = _goalType[i];
         if (state.numCardsOfType(player, type) < _goalAmount[i])
         {
             return false;
@@ -63,7 +63,7 @@ bool BuildOrderSearchGoal::cannotMeetGoal(const GameState & state) const
     const PlayerID player = Players::Player_One;
     for (size_t i(0); i < size(); ++i)
     {
-        const CardType & type = _goalType[i];
+        const CardType type = _goalType[i];
 
         if (_goalTurn[i] == 0)
         {

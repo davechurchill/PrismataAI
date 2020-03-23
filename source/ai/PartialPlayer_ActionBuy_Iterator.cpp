@@ -30,7 +30,7 @@ void PartialPlayer_ActionBuy_Iterator::getMove(GameState & state, Move & move)
     
 }
 
-CardID PartialPlayer_ActionBuy_Iterator::numBuyable(const GameState & state, const Resources & resourceRemaining, const CardType & type)
+CardID PartialPlayer_ActionBuy_Iterator::numBuyable(const GameState & state, const Resources & resourceRemaining, const CardType type)
 {
     while (true)
     {

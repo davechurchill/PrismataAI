@@ -6,7 +6,7 @@ using namespace Prismata;
 
 PartialPlayer_ActionBuy_GreedyKnapsack::PartialPlayer_ActionBuy_GreedyKnapsack( const PlayerID playerID, 
                                                                                 const CardFilter & filter,
-                                                                                EvaluationType (*heuristic)(const CardType &, const GameState &, const PlayerID))
+                                                                                EvaluationType (*heuristic)(const CardType, const GameState &, const PlayerID))
     : _heuristic(heuristic)
     , _filter(filter)
     , _enemyWasChilled(false)
@@ -32,7 +32,7 @@ void PartialPlayer_ActionBuy_GreedyKnapsack::getMove(GameState & state, Move & m
 
     for (CardID c(0); c < state.numCardsBuyable(); ++c)
     {
-        const CardType & cardBuyableType = state.getCardBuyableByIndex(c).getType();
+        const CardType cardBuyableType = state.getCardBuyableByIndex(c).getType();
 
         //std::cout << cardBuyableType.getUIName() << " : " << _heuristic(cardBuyableType, state, _playerID) << "\n";
 
@@ -52,7 +52,7 @@ void PartialPlayer_ActionBuy_GreedyKnapsack::getMove(GameState & state, Move & m
         bool foundBuyable = false;
         for (CardID c(0); c < _buyableTypes.size(); ++c)
         {
-            const CardType & cardType = _buyableTypes[c];
+            const CardType cardType = _buyableTypes[c];
 
             // do another check for whether or not a card should be buyable in case the condition is more dynamic
             if (shouldNotBuy(cardType, state))
@@ -101,7 +101,7 @@ void PartialPlayer_ActionBuy_GreedyKnapsack::sortBuyables(const GameState & stat
 }
 
 #include "AITools.h"
-bool PartialPlayer_ActionBuy_GreedyKnapsack::shouldNotBuy(const CardType & cardType, const GameState & state) const
+bool PartialPlayer_ActionBuy_GreedyKnapsack::shouldNotBuy(const CardType cardType, const GameState & state) const
 {
     // we will allow resonate cards even if the buy limit has been exceeded
     bool resonateException = AITools::NumResonatorsReady(cardType, state, _playerID, 1) > 0;
@@ -140,7 +140,7 @@ bool PartialPlayer_ActionBuy_GreedyKnapsack::shouldNotBuy(const CardType & cardT
     return false;
 }
 
-void PartialPlayer_ActionBuy_GreedyKnapsack::updateStateData(const CardType & cardTypeBought)
+void PartialPlayer_ActionBuy_GreedyKnapsack::updateStateData(const CardType cardTypeBought)
 {
     // update if we've given any attack to the enemy
     _enemyAttackPotential += cardTypeBought.getAttackGivenToEnemy();
@@ -224,7 +224,7 @@ void PartialPlayer_ActionBuy_GreedyKnapsack::calculateStateData(const GameState 
     }
 }
 
-bool PartialPlayer_ActionBuy_GreedyKnapsack::canAffordToActivate(const CardType & cardType, const GameState & state) const
+bool PartialPlayer_ActionBuy_GreedyKnapsack::canAffordToActivate(const CardType cardType, const GameState & state) const
 {
     Resources abilityCost = cardType.getAbilityScript().getManaCost();
     if (abilityCost.empty() || !hasNonCumulativeManaCostAbility(cardType))
@@ -252,7 +252,7 @@ bool PartialPlayer_ActionBuy_GreedyKnapsack::canAffordToActivate(const CardType 
     return true;
 }
 
-bool PartialPlayer_ActionBuy_GreedyKnapsack::hasNonCumulativeManaCostAbility(const CardType & type) const
+bool PartialPlayer_ActionBuy_GreedyKnapsack::hasNonCumulativeManaCostAbility(const CardType type) const
 {
     const Resources & abilityCost = type.getAbilityScript().getManaCost();
 
@@ -267,7 +267,7 @@ bool PartialPlayer_ActionBuy_GreedyKnapsack::hasNonCumulativeManaCostAbility(con
     return true;
 }
 
-bool BuyKnapsackCompare::operator() (const CardType & c1, const CardType & c2) const
+bool BuyKnapsackCompare::operator() (const CardType c1, const CardType c2) const
 {
     HealthType eap = _enemyAttackPotential;
     PRISMATA_ASSERT(c1.getID() < 1000 && c2.getID() < 1000, "CardType ID too high");

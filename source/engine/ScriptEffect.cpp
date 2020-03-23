@@ -101,7 +101,7 @@ const std::string & ScriptEffect::getResonateTypeName() const
     return m_resonateCardName;
 }
 
-const CardType & ScriptEffect::getResonateType() const
+const CardType ScriptEffect::getResonateType() const
 {
     return CardTypes::GetAllCardTypes()[getResonateTypeID()];
 }

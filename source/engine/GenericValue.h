@@ -35,7 +35,7 @@ public:
     GenericValue(const double d);
     GenericValue(const std::string & str);
     GenericValue(bool b);
-    GenericValue(const CardType & type);
+    GenericValue(const CardType type);
     GenericValue(const std::vector<GenericValue> & v);
 
     const size_t size() const;
@@ -49,7 +49,7 @@ public:
     bool isString() const;
     bool isVector() const;
 
-    const CardType & getCardType() const;
+    const CardType getCardType() const;
     const int getInt() const;
     const double getDouble() const;
     bool getBool() const;

@@ -24,7 +24,7 @@ public:
     CardType(const CardID id);
     CardType(const CardType & type);
 
-    CardType & operator = (const CardType & rhs);
+    CardType & operator = (const CardType rhs);
 
     const std::vector<SacDescription> & getBuySac()         const;
     const std::vector<SacDescription> & getAbilitySac()     const;
@@ -49,7 +49,7 @@ public:
     ActionID        getTargetAbilityType()      const;
     HealthType      getTargetAbilityAmount()    const;
     ActionID        getActionType()             const;
-    CardID          getTypeBuySacCost(const CardType & type) const;
+    CardID          getTypeBuySacCost(const CardType type) const;
     int             getCustomHeuristicValue()   const;
 
     bool getDefaultBlocking()        const;
@@ -86,9 +86,9 @@ public:
     const std::string           getImageFileName()          const;
     const std::string &         getDescription()            const;
 
-    bool operator == (const CardType & rhs)           const;
-    bool operator != (const CardType & rhs)           const;
-    bool operator <  (const CardType & rhs)           const;
+    bool operator == (const CardType rhs)           const;
+    bool operator != (const CardType rhs)           const;
+    bool operator <  (const CardType rhs)           const;
 };
 
 namespace CardTypes
@@ -100,7 +100,7 @@ namespace CardTypes
     const std::vector<CardType> & GetDominionCardTypes();
     CardType GetCardType(const std::string & name);
     bool CardTypeExists(const std::string & name);
-    bool IsBaseSet(const CardType & type);
+    bool IsBaseSet(const CardType type);
     extern const CardType None;
 }
 }
