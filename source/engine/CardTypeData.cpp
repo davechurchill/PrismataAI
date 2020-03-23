@@ -17,9 +17,9 @@ CardTypeData & CardTypeData::Instance()
 
 void CardTypeData::ProcessPostInit()
 {
-    for (size_t type(0); type < _allCardTypeInfo.size(); ++type)
+    for (size_t type(0); type < m_allCardTypeInfo.size(); ++type)
     {
-        CardTypeInfo & data = _allCardTypeInfo[type];
+        CardTypeInfo & data = m_allCardTypeInfo[type];
         data.attackGivenToEnemy = 0;
 
         // calculate how much attack buying this card gives to the enemy
@@ -42,28 +42,28 @@ void CardTypeData::ProcessPostInit()
         {
             CardID resonateFromID = GetCardTypeInfoByName(data.beginOwnTurnScript.getResonateEffect().getResonateTypeName()).typeID;
             data.resonatesFromIDs.push_back(resonateFromID);
-            _allCardTypeInfo[resonateFromID].resonatesToIDs.push_back(type);
+            m_allCardTypeInfo[resonateFromID].resonatesToIDs.push_back(type);
         }
     }
 }
 const CardTypeInfo & CardTypeData::getCardTypeInfo(const CardID id)
 {
-    PRISMATA_ASSERT(id < _allCardTypeInfo.size(), "Card ID not known: %d", id);
+    PRISMATA_ASSERT(id < m_allCardTypeInfo.size(), "Card ID not known: %d", id);
 
-    return _allCardTypeInfo[id];
+    return m_allCardTypeInfo[id];
 }
 
 const CardTypeInfo & CardTypeData::GetCardTypeInfoByName(const std::string & name)
 {
-    for (CardID c(0); c<_allCardTypeInfo.size(); ++c)
+    for (CardID c(0); c<m_allCardTypeInfo.size(); ++c)
     {
-        if (_allCardTypeInfo[c].cardName.compare(name) == 0)
+        if (m_allCardTypeInfo[c].cardName.compare(name) == 0)
         {
-            return _allCardTypeInfo[c];
+            return m_allCardTypeInfo[c];
         }
     }
 
-    return _allCardTypeInfo[0];
+    return m_allCardTypeInfo[0];
 }
 
 std::string CardTypeData::getVariableName(const std::string & str)
@@ -95,20 +95,20 @@ std::string CardTypeData::getVariableName(const std::string & str)
 
 size_t CardTypeData::numCardTypes()
 {
-    return _allCardTypeInfo.size();
+    return m_allCardTypeInfo.size();
 }
 
 void CardTypeData::ResetData()
 {
-    _allCardTypeInfo.clear();
+    m_allCardTypeInfo.clear();
 }
 
 void CardTypeData::InitFromMergedDeckJSON(const rapidjson::Value & mergedDeck)
 {
     Instance() = CardTypeData();
 
-    _allCardTypeInfo.push_back(CardTypeInfo());
-    _allCardTypeInfo.push_back(CardTypeInfo());
+    m_allCardTypeInfo.push_back(CardTypeInfo());
+    m_allCardTypeInfo.push_back(CardTypeInfo());
 
     PRISMATA_ASSERT(mergedDeck.IsArray(), "Input 'mergedDeck' JSON Value is not an Array");
     
@@ -119,7 +119,7 @@ void CardTypeData::InitFromMergedDeckJSON(const rapidjson::Value & mergedDeck)
         const std::string &         name = mergedDeck[i]["name"].GetString();
         const rapidjson::Value &    val  = mergedDeck[i];
 
-        _allCardTypeInfo.push_back(CardTypeInfo(_allCardTypeInfo.size(), name, val));
+        m_allCardTypeInfo.push_back(CardTypeInfo(m_allCardTypeInfo.size(), name, val));
     }
 
     ProcessPostInit();
@@ -130,8 +130,8 @@ void CardTypeData::InitFromCardLibraryFile(const std::string & jsonGameStateCard
 {
     Instance() = CardTypeData();
 
-    _allCardTypeInfo.push_back(CardTypeInfo());
-    _allCardTypeInfo.push_back(CardTypeInfo());
+    m_allCardTypeInfo.push_back(CardTypeInfo());
+    m_allCardTypeInfo.push_back(CardTypeInfo());
 
     rapidjson::Document document;
     
@@ -167,7 +167,7 @@ void CardTypeData::InitFromCardLibraryFile(const std::string & jsonGameStateCard
                
         if (isBaseSet || isDominionSet)
         {
-            _allCardTypeInfo.push_back(CardTypeInfo(_allCardTypeInfo.size(), name, val));
+            m_allCardTypeInfo.push_back(CardTypeInfo(m_allCardTypeInfo.size(), name, val));
         }
     }
 
@@ -176,16 +176,16 @@ void CardTypeData::InitFromCardLibraryFile(const std::string & jsonGameStateCard
 
 void CardTypeData::printCardTypeVariableNames()
 {
-    for (size_t i(0); i < _allCardTypeInfo.size(); ++i)
+    for (size_t i(0); i < m_allCardTypeInfo.size(); ++i)
     {
-        const CardTypeInfo & typeData = _allCardTypeInfo[i];
+        const CardTypeInfo & typeData = m_allCardTypeInfo[i];
         std::cout << "CardType " << getVariableName(typeData.cardName) << "(" << typeData.typeID << ");" << std::endl;
         
     }
 
-    for (size_t i(0); i < _allCardTypeInfo.size(); ++i)
+    for (size_t i(0); i < m_allCardTypeInfo.size(); ++i)
     {
-        const CardTypeInfo & typeData = _allCardTypeInfo[i];
+        const CardTypeInfo & typeData = m_allCardTypeInfo[i];
         std::cout << "extern CardType " << getVariableName(typeData.cardName) << ";" << std::endl;
     }
 }

@@ -30,30 +30,29 @@ enum { Block, Breach, NumDamageSources };
 
 class Card
 {
-    CardType        _type;
-    CardID              _id                 = (CardID)-1;
-    CardID              _targetID           = 0;
-    PlayerID            _player             = Players::Player_None;
-    HealthType          _currentHealth      = 0;
-    HealthType          _currentChill       = 0;
-    HealthType          _damageTaken        = 0;
-    TurnType            _constructionTime   = 0;
-    TurnType            _currentDelay       = 0;
-    TurnType            _lifespan           = 0;
-    ChargeType          _currentCharges     = 0;
-    int            _status             = CardStatus::Default;
-    int            _aliveStatus        = AliveStatus::Alive;
-    int            _causeOfDeath       = CauseOfDeath::None;
+    CardType    m_type;
+    CardID      m_id                 = (CardID)-1;
+    CardID      m_targetID           = 0;
+    PlayerID    m_player             = Players::Player_None;
+    HealthType  m_currentHealth      = 0;
+    HealthType  m_currentChill       = 0;
+    HealthType  m_damageTaken        = 0;
+    TurnType    m_constructionTime   = 0;
+    TurnType    m_currentDelay       = 0;
+    TurnType    m_lifespan           = 0;
+    ChargeType  m_currentCharges     = 0;
+    int         m_status             = CardStatus::Default;
+    int         m_aliveStatus        = AliveStatus::Alive;
+    int         m_causeOfDeath       = CauseOfDeath::None;
+    bool        m_hasTarget          = false;
+    bool        m_dead               = true;
+    bool        m_sellable           = false;
+    bool        m_inPlay             = false;
+    bool        m_wasBreached        = false;
+    bool        m_abilityUsedThisTurn = false;
 
-    bool                _hasTarget          = false;
-    bool                _dead               = true;
-    bool                _sellable           = false;
-    bool                _inPlay             = false;
-    bool                _wasBreached        = false;
-    bool                _abilityUsedThisTurn = false;
-
-    std::vector<CardID> _killedCardIDs;
-    std::vector<CardID> _createdCardIDs;
+    std::vector<CardID> m_killedCardIDs;
+    std::vector<CardID> m_createdCardIDs;
 
 public:
 
@@ -104,14 +103,13 @@ public:
     bool wasBreached() const;
 
     void setStatus(int status);
-    void takeDamage(const HealthType amount, const int & damageSource);
-    void toggleAssigned();
+    void takeDamage(const HealthType amount, const int damageSource);
     void useAbility();
     void undoUseAbility();
     void runAbilityScript();
     void runBeginTurnScript();
     void beginTurn();
-    void kill(const int & causeOfDeath);
+    void kill(const int causeOfDeath);
     void applyChill(const HealthType amount);
     void removeChill(const HealthType amount);
     void setID(const CardID id);

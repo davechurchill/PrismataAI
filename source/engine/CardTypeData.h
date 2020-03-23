@@ -7,7 +7,7 @@ namespace Prismata
  
 class CardTypeData
 {
-    std::vector<CardTypeInfo> _allCardTypeInfo;
+    std::vector<CardTypeInfo> m_allCardTypeInfo;
     
     CardTypeData();
 
