@@ -13,8 +13,8 @@ class PartialPlayer_ActionAbility_AvoidAttackWaste : public PartialPlayer
     void        getAbilityAttackCostCards(const GameState & state, std::vector<CardID> & cards);
     HealthType  calculateLossDecreaseThreshold(const GameState & state, const double & originalLoss);
     void        untapLifeSpanOneHeuristic(GameState & state, Move & move, std::vector<CardID> & attackingCards);
-    void        untapAttackingCards(GameState & state, Move & move, std::vector<CardID> & attackingCards, const HealthType & lossDecreaseAttackThreshold);
-    void        untapAbilityAttackCostCards(GameState & state, Move & move, std::vector<CardID> & attackingCards, const HealthType & lossDecreaseAttackThreshold);
+    void        untapAttackingCards(GameState & state, Move & move, std::vector<CardID> & attackingCards, const HealthType lossDecreaseAttackThreshold);
+    void        untapAbilityAttackCostCards(GameState & state, Move & move, std::vector<CardID> & attackingCards, const HealthType lossDecreaseAttackThreshold);
 
     bool        weWillWinOnThisAttack(const GameState & state);
 

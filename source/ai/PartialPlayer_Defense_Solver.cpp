@@ -2,7 +2,7 @@
 
 using namespace Prismata;
 
-PartialPlayer_Defense_Solver::PartialPlayer_Defense_Solver(const PlayerID playerID, EvaluationType (*heuristic)(const Card &, const GameState & state, const HealthType &))
+PartialPlayer_Defense_Solver::PartialPlayer_Defense_Solver(const PlayerID playerID, EvaluationType (*heuristic)(const Card &, const GameState & state, const HealthType))
     : _heuristic(heuristic)
 {
     _playerID = playerID;

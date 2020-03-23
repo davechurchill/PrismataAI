@@ -279,6 +279,7 @@
     <ClCompile Include="..\source\ai\BuyLimits.cpp">
       <Filter>util</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\ai\AIParameters.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\ai\PartialPlayer.h">
@@ -531,6 +532,11 @@
       <Filter>tactical</Filter>
     </ClInclude>
     <ClInclude Include="..\source\ai\BuyLimits.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ai\AIParameters.h" />
+    <ClInclude Include="..\source\ai\PrismataAI.h" />
+    <ClInclude Include="..\source\engine\GraphViz.hpp">
       <Filter>util</Filter>
     </ClInclude>
   </ItemGroup>

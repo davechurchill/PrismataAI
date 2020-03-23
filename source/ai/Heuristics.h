@@ -50,8 +50,8 @@ namespace Heuristics
 
     // GENERIC EVALUATIONS
     EvaluationType CurrentCardValue(const Card & blocker, const GameState & state);
-    EvaluationType DamageLoss_WillCost(const Card & blocker, const GameState & state, const HealthType & damage);
-    EvaluationType DamageLoss_AttackValue(const Card & blocker, const GameState & state, const HealthType & damage);
+    EvaluationType DamageLoss_WillCost(const Card & blocker, const GameState & state, const HealthType damage);
+    EvaluationType DamageLoss_AttackValue(const Card & blocker, const GameState & state, const HealthType damage);
 
     // HELPER FUNCTIONS
     HealthType     GetAttackProduced(const CardType & type, const Script & script, const GameState & state, const PlayerID player);

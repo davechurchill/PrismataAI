@@ -140,9 +140,6 @@
     <ClInclude Include="..\source\engine\JSONTools.h">
       <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\engine\GraphViz.hpp">
-      <Filter>util</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\engine\FileUtils.h">
       <Filter>util</Filter>
     </ClInclude>

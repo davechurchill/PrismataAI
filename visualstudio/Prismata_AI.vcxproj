@@ -194,6 +194,7 @@
     <ClInclude Include="..\source\ai\UCTSearch.h" />
     <ClInclude Include="..\source\ai\UCTSearchParameters.hpp" />
     <ClInclude Include="..\source\ai\UCTSearchResults.hpp" />
+    <ClInclude Include="..\source\engine\GraphViz.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{DF35EE68-3361-4D77-A5F7-B1292CEB98EF}</ProjectGuid>

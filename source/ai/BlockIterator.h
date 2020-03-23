@@ -49,7 +49,7 @@ public:
         return _numBlocking;
     }
 
-    const HealthType & getHealth() const
+    const HealthType getHealth() const
     {
         return getCard().currentHealth();
     }
@@ -89,7 +89,7 @@ class BlockIterator
 {
     const GameState &                       _state;
     PlayerID                                _player;   
-    EvaluationType                          (*_heuristic)(const Card &, const GameState & state, const HealthType &);
+    EvaluationType                          (*_heuristic)(const Card &, const GameState & state, const HealthType);
     
     std::vector<const Card *>               _blockers;
     std::vector<IsomorphicBlockerData>      _isoBlockers;
@@ -104,15 +104,15 @@ class BlockIterator
 
     int                                     findIsomorphicBlockerIndex(const Card * blocker);
     void                                    setBestBlockSequence();
-    bool                                    isLastBlocker(IsomorphicBlockerData & blocker, const HealthType & damageRemaining);
+    bool                                    isLastBlocker(IsomorphicBlockerData & blocker, const HealthType damageRemaining);
 
 public:
     
-    BlockIterator(const GameState & state, EvaluationType (*heuristic)(const Card &, const GameState & state, const HealthType &) = &Heuristics::DamageLoss_WillCost);
+    BlockIterator(const GameState & state, EvaluationType (*heuristic)(const Card &, const GameState & state, const HealthType) = &Heuristics::DamageLoss_WillCost);
 
     void        solve();
     void        getBestMove(Move & move);
-    void        recurse(const CardID depth, const HealthType & damageRemaining, const double lossScore, const double tieBreakScore);
+    void        recurse(const CardID depth, const HealthType damageRemaining, const double lossScore, const double tieBreakScore);
     size_t      getNumBuys();
     double      getMinLossScore() const;
 

@@ -52,7 +52,7 @@ CreateDescription::CreateDescription(const rapidjson::Value & value)
 
 }
 
-const TurnType & CreateDescription::getBuildTime() const
+const TurnType CreateDescription::getBuildTime() const
 {
     return _buildTime;
 }
@@ -96,7 +96,7 @@ const CardID CreateDescription::getMultiple() const
     return _multiple;
 }
 
-const TurnType & CreateDescription::getLifespan() const
+const TurnType CreateDescription::getLifespan() const
 {
     return _lifespan;
 }

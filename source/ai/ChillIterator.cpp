@@ -242,12 +242,12 @@ void ChillIterator::printStack(const std::vector<Action> & actionStack, HealthTy
     printf("\n");
 }
 
-const HealthType & ChillIterator::getBestUsedChill() const
+const HealthType ChillIterator::getBestUsedChill() const
 {
     return _bestUsedChill;
 }
 
-const HealthType & ChillIterator::getBestWastedChill() const
+const HealthType ChillIterator::getBestWastedChill() const
 {
     return _bestWastedChill;
 }

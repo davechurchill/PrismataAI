@@ -31,8 +31,8 @@ public:
     const CardID getTypeID() const;
     const CardID getMultiple() const;
     bool getOwn() const;
-    const TurnType & getBuildTime() const;
-    const TurnType & getLifespan() const;
+    const TurnType getBuildTime() const;
+    const TurnType getLifespan() const;
 
     bool operator == (const CreateDescription & rhs) const;
 };

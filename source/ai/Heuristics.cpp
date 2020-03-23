@@ -155,7 +155,7 @@ EvaluationType Heuristics::CurrentCardValue(const Card & blocker, const GameStat
     return DamageLoss_WillCost(blocker, state, blocker.currentHealth());
 }
 
-EvaluationType Heuristics::DamageLoss_WillCost(const Card & card, const GameState & state, const HealthType & damage)
+EvaluationType Heuristics::DamageLoss_WillCost(const Card & card, const GameState & state, const HealthType damage)
 {
     // if it's a doom card with 1 lifespan it's useless to us anyway
     if (card.getCurrentLifespan() == 1 || damage == 0)
@@ -241,7 +241,7 @@ EvaluationType Heuristics::DamageLoss_WillCost(const Card & card, const GameStat
     }
 }
 
-EvaluationType Heuristics::DamageLoss_AttackValue(const Card & card, const GameState & state, const HealthType & damage)
+EvaluationType Heuristics::DamageLoss_AttackValue(const Card & card, const GameState & state, const HealthType damage)
 {
     // if it's a doom card with 1 lifespan it's useless to us anyway
     if (card.getCurrentLifespan() == 1)

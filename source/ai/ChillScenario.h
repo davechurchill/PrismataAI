@@ -43,11 +43,11 @@ public:
     const size_t & getDefenders(const size_t & chill) const;
     const size_t & getModifications() const;
 
-    const HealthType & getTotalDefense() const;
-    const HealthType & getTotalChill() const;
-    const HealthType & getTotalDefenseBought() const;
-    const HealthType & getLargestDefender() const;
-    const HealthType & getLargestChiller() const;
+    const HealthType getTotalDefense() const;
+    const HealthType getTotalChill() const;
+    const HealthType getTotalDefenseBought() const;
+    const HealthType getLargestDefender() const;
+    const HealthType getLargestChiller() const;
 
     const Histogram & getDefenseHistogram() const;
     const Histogram & getChillHistogram() const;
@@ -56,19 +56,19 @@ public:
     HealthType calculateHeuristicUsedChill();
     HealthType calculateExactUsedChill() const;
 
-    void addChiller(const HealthType & chill, const size_t n = 1);
+    void addChiller(const HealthType chill, const size_t n = 1);
     void addChiller(const CardType & type, const size_t n = 1);
     void addChiller(const Card & card, const size_t n = 1);
-    void removeChiller(const HealthType & chill, const size_t n = 1);
+    void removeChiller(const HealthType chill, const size_t n = 1);
     void removeChiller(const CardType & type, const size_t n = 1);
     void removeChiller(const Card & card, const size_t n = 1);
 
     void buyDefender(const CardType & type);
     void sellDefender(const CardType & type);
-    void addDefender(const HealthType & health, const size_t n = 1);
+    void addDefender(const HealthType health, const size_t n = 1);
     void addDefender(const CardType & type, const size_t n = 1);
     void addDefender(const Card & card, const size_t n = 1);
-    void removeDefender(const HealthType & health, const size_t n = 1);
+    void removeDefender(const HealthType health, const size_t n = 1);
     void removeDefender(const CardType & type, const size_t n = 1);
     void removeDefender(const Card & card, const size_t n = 1);
 

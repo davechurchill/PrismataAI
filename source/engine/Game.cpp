@@ -80,7 +80,7 @@ int Game::getActions()
     return m_actions;
 }
 
-void Game::setTurnLimit(const TurnType & limit)
+void Game::setTurnLimit(const TurnType limit)
 {
     m_turnLimit = limit;
 }

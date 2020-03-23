@@ -174,7 +174,7 @@ Card::Card(const rapidjson::Value & cardValue)
     }
 }
    
-Card::Card(const CardType & type, const PlayerID player, const int & creationMethod, const TurnType & delay, const TurnType & lifespan)
+Card::Card(const CardType & type, const PlayerID player, const int & creationMethod, const TurnType delay, const TurnType lifespan)
     : _type                 (type)
     , _player               (player)
     , _id                   (-1)
@@ -240,17 +240,17 @@ void Card::setID(const CardID id)
     _id = id;
 }
 
-const TurnType & Card::getConstructionTime() const
+TurnType Card::getConstructionTime() const
 {
     return _constructionTime;
 }
 
-const TurnType & Card::getCurrentLifespan() const
+TurnType Card::getCurrentLifespan() const
 {
     return _lifespan;
 }
 
-const TurnType & Card::getCurrentDelay() const
+TurnType Card::getCurrentDelay() const
 {
     return _currentDelay;
 }
@@ -271,12 +271,12 @@ const CardType & Card::getType() const
  return _type;
 }
 
-const PlayerID Card::getPlayer() const
+PlayerID Card::getPlayer() const
 {
     return _player;
 }
 
-const CardID Card::getID() const
+CardID Card::getID() const
 {
  return _id;
 }
@@ -316,22 +316,22 @@ bool Card::isDead() const
     return _dead;
 }
 
-const HealthType & Card::currentHealth() const
+HealthType Card::currentHealth() const
 {
     return _currentHealth;
 }
 
-const HealthType & Card::currentChill() const
+HealthType Card::currentChill() const
 {
     return _currentChill;
 }
 
-const int & Card::getStatus() const
+int Card::getStatus() const
 {
     return _status;
 }
 
-const int & Card::getAliveStatus() const
+int Card::getAliveStatus() const
 {
     return _aliveStatus;
 }
@@ -346,7 +346,7 @@ bool Card::isOverkillable() const
     return isUnderConstruction() && !isDead();
 }
 
-bool Card::canBreachFor(const HealthType & damage) const
+bool Card::canBreachFor(const HealthType damage) const
 {
     if (damage == 0)
     {
@@ -366,7 +366,7 @@ bool Card::canBreachFor(const HealthType & damage) const
     return true;
 }
 
-bool Card::canOverkillFor(const HealthType & damage) const
+bool Card::canOverkillFor(const HealthType damage) const
 {
     if (damage == 0)
     {
@@ -386,7 +386,7 @@ bool Card::canOverkillFor(const HealthType & damage) const
     return true;
 }
 
-void Card::takeDamage(const HealthType & amount, const int & damageSource)
+void Card::takeDamage(const HealthType amount, const int & damageSource)
 {
     _damageTaken = std::min(amount, _currentHealth);
 
@@ -422,14 +422,14 @@ void Card::takeDamage(const HealthType & amount, const int & damageSource)
     }
 }
 
-void Card::applyChill(const HealthType & amount)
+void Card::applyChill(const HealthType amount)
 {
     PRISMATA_ASSERT(currentChill() < currentHealth(), "We shouldn't be applying chill to a frozen card");
 
     _currentChill += amount;
 }
 
-void Card::removeChill(const HealthType & amount)
+void Card::removeChill(const HealthType amount)
 {
     PRISMATA_ASSERT(amount <= currentChill(), "Trying to remove too much chill from a card");
 
@@ -453,7 +453,7 @@ void Card::setTargetID(const CardID targetID)
     _targetID = targetID;
 }
 
-const CardID Card::getTargetID() const
+CardID Card::getTargetID() const
 {
     PRISMATA_ASSERT(hasTarget(), "Trying to get the target of a card without one: %s", getType().getUIName().c_str() );
 
@@ -560,7 +560,7 @@ bool Card::isDelayed() const
     return _currentDelay > 0;
 }
 
-const ChargeType & Card::getCurrentCharges() const
+ChargeType Card::getCurrentCharges() const
 {
     return _currentCharges;
 }
@@ -641,7 +641,7 @@ bool Card::canRunBeginOwnTurnScript() const
     return !isUnderConstruction() && _currentDelay == 0;
 }
 
-bool Card::canFrontlineFor(const HealthType & damage) const
+bool Card::canFrontlineFor(const HealthType damage) const
 {
 	if (!getType().isFrontline())
 	{
@@ -897,7 +897,7 @@ const std::vector<CardID> & Card::getKilledCardIDs() const
     return _killedCardIDs;
 }
 
-const HealthType & Card::getDamageTaken() const
+HealthType Card::getDamageTaken() const
 {
     return _damageTaken;
 }

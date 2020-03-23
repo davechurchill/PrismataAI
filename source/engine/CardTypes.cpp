@@ -71,7 +71,7 @@ namespace CardTypes
         return std::find(baseSetCardTypes.begin(), baseSetCardTypes.end(), type) != baseSetCardTypes.end();
     }
 
-    const CardType & GetCardType(const std::string & name)
+    CardType GetCardType(const std::string & name)
     {
         for (size_t i(0); i<allCardTypes.size(); ++i)
         {

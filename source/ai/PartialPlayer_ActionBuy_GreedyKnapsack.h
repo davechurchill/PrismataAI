@@ -45,11 +45,11 @@ class BuyKnapsackCompare
     EvaluationType (*_heuristic)(const CardType &, const GameState &, const PlayerID);
     const GameState & _state;
     const PlayerID _player;
-    const HealthType & _enemyAttackPotential;
+    const HealthType _enemyAttackPotential;
 
 public:
 
-    BuyKnapsackCompare(EvaluationType (*heuristic)(const CardType &, const GameState &, const PlayerID), const GameState & state, const PlayerID player, const HealthType & enemyAttackPotential)
+    BuyKnapsackCompare(EvaluationType (*heuristic)(const CardType &, const GameState &, const PlayerID), const GameState & state, const PlayerID player, const HealthType enemyAttackPotential)
         : _heuristic(heuristic)
         , _state(state)
         , _player(player)

@@ -2000,7 +2000,7 @@ void GameState::setStartingState(const PlayerID startPlayer, const CardID numDom
     beginPhase(startPlayer, Phases::Swoosh);
 }
 
-void  GameState::manuallySetAttack(const PlayerID player, const HealthType & attackAmount)
+void  GameState::manuallySetAttack(const PlayerID player, const HealthType attackAmount)
 {
     m_resources[player].set(Resources::Attack, attackAmount);
 }

@@ -75,7 +75,6 @@
     <ClInclude Include="..\source\engine\CardBuyableData.h" />
     <ClInclude Include="..\source\engine\CardData.h" />
     <ClInclude Include="..\source\engine\GenericValue.h" />
-    <ClInclude Include="..\source\engine\GraphViz.hpp" />
     <ClInclude Include="..\source\engine\JSONTools.h" />
     <ClInclude Include="..\source\engine\Move.h" />
     <ClInclude Include="..\source\engine\Player.h" />

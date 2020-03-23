@@ -42,18 +42,18 @@ public:
     bool hasSacCost()     const;
     bool isSelfSac()      const;
     bool hasResonate()    const;
-    const TurnType & getDelay()                         const;
+    const TurnType getDelay()                         const;
     const ScriptEffect & getEffect()                    const;
     const ScriptEffect & getResonateEffect()            const;
     const std::vector<SacDescription> & getSacCost()    const;
     const Resources & getManaCost()                     const;
-    const HealthType & getHealthUsed()                  const;
+    const HealthType getHealthUsed()                  const;
 
     bool operator == (const Script & rhs) const;
 
     void setEffect(const ScriptEffect & effect);
     void setResonateEffect(const ScriptEffect & effect);
-    void setHealthUsed(const HealthType & health);
+    void setHealthUsed(const HealthType health);
     void setManaCost(const Resources & cost);
     void setSacCost(const std::vector<SacDescription> & sacCost);
     void setSelfSac(bool sac);

@@ -53,17 +53,17 @@ const Histogram & ChillScenario::getChillHistogram() const
     return _chillHistogram;
 }
 
-const HealthType & ChillScenario::getTotalDefense() const
+const HealthType ChillScenario::getTotalDefense() const
 {
     return _totalDefense;
 }
 
-const HealthType & ChillScenario::getTotalChill() const
+const HealthType ChillScenario::getTotalChill() const
 {
     return _totalChill;
 }
 
-const HealthType & ChillScenario::getTotalDefenseBought() const
+const HealthType ChillScenario::getTotalDefenseBought() const
 {
     return _totalDefenseBought;
 }
@@ -83,7 +83,7 @@ const size_t & ChillScenario::getDefenders(const size_t & health) const
     return _defenseHistogram[health];
 }
 
-void ChillScenario::addChiller(const HealthType & chill, const size_t n)
+void ChillScenario::addChiller(const HealthType chill, const size_t n)
 {
     if (n == 0)
     {
@@ -120,7 +120,7 @@ void ChillScenario::addChiller(const Card & card, const size_t n)
     }
 }
 
-void ChillScenario::removeChiller(const HealthType & chill, const size_t n)
+void ChillScenario::removeChiller(const HealthType chill, const size_t n)
 {
     if (n == 0)
     {
@@ -192,7 +192,7 @@ void ChillScenario::removeChiller(const Card & card, const size_t n)
     removeChiller(card.getType(), n);
 }
 
-void ChillScenario::addDefender(const HealthType & health, const size_t n)
+void ChillScenario::addDefender(const HealthType health, const size_t n)
 {
     if (n == 0)
     {
@@ -274,7 +274,7 @@ void ChillScenario::sellDefender(const CardType & type)
     }
 }
 
-void ChillScenario::removeDefender(const HealthType & health, const size_t n)
+void ChillScenario::removeDefender(const HealthType health, const size_t n)
 {
     if (n == 0)
     {
@@ -401,12 +401,12 @@ void ChillScenario::print() const
     printf("]\n");
 }
 
-const HealthType & ChillScenario::getLargestDefender() const
+const HealthType ChillScenario::getLargestDefender() const
 {
     return _largestDefender;
 }
 
-const HealthType & ChillScenario::getLargestChiller() const
+const HealthType ChillScenario::getLargestChiller() const
 {
     return _largestChiller;
 }

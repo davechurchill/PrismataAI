@@ -7,19 +7,19 @@ using namespace Prismata;
 const CardType CardTypes::None = CardType();
 
 CardType::CardType()
-    : _id(0)
+    : m_id(0)
 {
 
 }
 
 CardType::CardType(const CardID id)
-    : _id(id)
+    : m_id(id)
 {
 
 }
 
 CardType::CardType(const CardType & type)
-    : _id(type.getID())
+    : m_id(type.getID())
 {
  
 }
@@ -34,12 +34,12 @@ CardType & CardType::operator = (const CardType & rhs)
     return *this;
 }
 
-const CardID CardType::getID() const
+CardID CardType::getID() const
 {
-    return _id;
+    return m_id;
 }
 
-const ActionID CardType::getActionType() const
+ActionID CardType::getActionType() const
 {
     if (hasTargetAbility())
     {
@@ -71,17 +71,17 @@ bool CardType::operator < (const CardType & rhs) const
 
 bool CardType::hasAbility() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).hasAbility;  
+    return CardTypeData::Instance().getCardTypeInfo(m_id).hasAbility;  
 }
 
 bool CardType::usesCharges() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).startingCharge > 0;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).startingCharge > 0;
 }
 
 bool CardType::isFragile() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).fragile;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).fragile;
 }
 
 bool CardType::isPromptBlocker() const
@@ -91,87 +91,87 @@ bool CardType::isPromptBlocker() const
 
 bool CardType::isFrontline() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).frontline;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).frontline;
 }
 
 bool CardType::canProduce(int m) const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).produces.amountOf(m) > 0;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).produces.amountOf(m) > 0;
 }
 
 const std::string & CardType::getName() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).cardName;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).cardName;
 }
 
 const std::string & CardType::getUIName() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).uiName;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).uiName;
 }
 
-const int & CardType::getCustomHeuristicValue() const
+int CardType::getCustomHeuristicValue() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).customHeuristicValue;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).customHeuristicValue;
 }
 
-const HealthType & CardType::getAttack() const
+HealthType CardType::getAttack() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).attack;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).attack;
 }
 
-const HealthType & CardType::getStartingHealth() const
+HealthType CardType::getStartingHealth() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).startingHealth;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).startingHealth;
 }
 
-const HealthType & CardType::getHealthGained() const
+HealthType CardType::getHealthGained() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).healthGained;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).healthGained;
 }
 
 bool CardType::isAbilityHealthUserOnly() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).isAbilityHealthUserOnly;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).isAbilityHealthUserOnly;
 }
 
-const HealthType & CardType::getHealthUsed() const
+HealthType CardType::getHealthUsed() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).healthUsed;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).healthUsed;
 }
 
-const HealthType & CardType::getHealthMax() const
+HealthType CardType::getHealthMax() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).healthMax;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).healthMax;
 }
 
 const std::vector<CardID> & CardType::getResonateFromIDs() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).resonatesFromIDs;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).resonatesFromIDs;
 }
 
 const std::vector<CardID> & CardType::getResonateToIDs() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).resonatesToIDs;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).resonatesToIDs;
 }
 
-const SupplyType & CardType::getSupply() const
+SupplyType CardType::getSupply() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).supply;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).supply;
 }
 
 const Resources & CardType::getBuyCost() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).buyCost;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).buyCost;
 }
 
-const HealthType & CardType::getBeginTurnAttackAmount() const
+HealthType CardType::getBeginTurnAttackAmount() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).beginTurnAttackAmount;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).beginTurnAttackAmount;
 }
 
-const HealthType & CardType::getAbilityAttackAmount() const
+HealthType CardType::getAbilityAttackAmount() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).abilityAttackAmount;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).abilityAttackAmount;
 }
 
 //
@@ -180,87 +180,87 @@ const HealthType & CardType::getAbilityAttackAmount() const
 //    return CardTypeData::Instance().getCardTypeInfo(_id).abilityCost;
 //}
 
-const TurnType & CardType::getLifespan() const
+TurnType CardType::getLifespan() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).lifespan;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).lifespan;
 }
 
-const TurnType & CardType::getConstructionTime() const
+TurnType CardType::getConstructionTime() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).buildTime;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).buildTime;
 }
 
 bool CardType::getDefaultBlocking() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).defaultBlocking;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).defaultBlocking;
 }
 
 bool CardType::getAssignedBlocking() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).assignedBlocking;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).assignedBlocking;
 }
 
 bool CardType::hasCustomHeuristicValue() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).hasCustomHeuristicValue;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).hasCustomHeuristicValue;
 }
 
 const Script & CardType::getAbilityScript() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).abilityScript;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).abilityScript;
 }
 
 const Script & CardType::getBeginOwnTurnScript() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).beginOwnTurnScript;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).beginOwnTurnScript;
 }
 
 const Script & CardType::getBuyScript() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).buyScript;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).buyScript;
 }
 
 const Resources & CardType::produces() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).produces;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).produces;
 }
 
 bool CardType::hasBeginOwnTurnScript() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).hasBeginOwnTurnScript;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).hasBeginOwnTurnScript;
 }
 
-const ChargeType & CardType::getStartingCharge() const
+const ChargeType CardType::getStartingCharge() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).startingCharge;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).startingCharge;
 }
 
 bool CardType::usesBuySac() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).buySac.size() > 0;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).buySac.size() > 0;
 }
 
 bool CardType::isTech() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).isTech;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).isTech;
 }
 
 bool CardType::isSpell() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).isSpell;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).isSpell;
 }
 
 const Condition & CardType::getTargetAbilityCondition() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).targetAbilityCondition;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).targetAbilityCondition;
 }
 
 const std::vector<SacDescription> & CardType::getBuySac() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).buySac;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).buySac;
 }
 
-const CardID CardType::getTypeBuySacCost(const CardType & type) const
+CardID CardType::getTypeBuySacCost(const CardType & type) const
 {
     CardID sacced = 0;
 
@@ -296,7 +296,7 @@ const Resources CardType::getCreatedUnitsManaProduced() const
 
 const std::vector<SacDescription> & CardType::getAbilitySac() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).abilitySac;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).abilitySac;
 }
 
 const ChargeType CardType::getChargeUsed() const
@@ -306,32 +306,32 @@ const ChargeType CardType::getChargeUsed() const
 
 bool CardType::isEconCard() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).isEconCard;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).isEconCard;
 }
 
 bool CardType::isBaseSet() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).isBaseSet;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).isBaseSet;
 }
 
-const HealthType & CardType::getAttackGivenToEnemy() const
+HealthType CardType::getAttackGivenToEnemy() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).attackGivenToEnemy;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).attackGivenToEnemy;
 }
 
-const ActionID & CardType::getTargetAbilityType() const
+ActionID CardType::getTargetAbilityType() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).targetActionType; 
+    return CardTypeData::Instance().getCardTypeInfo(m_id).targetActionType; 
 }
 
-const HealthType & CardType::getTargetAbilityAmount() const
+HealthType CardType::getTargetAbilityAmount() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).targetAmount;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).targetAmount;
 }
     
 bool CardType::hasTargetAbility() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).targetActionType != ActionTypes::NONE;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).targetActionType != ActionTypes::NONE;
 }
 
 bool CardType::canBlock(bool assigned) const
@@ -348,7 +348,7 @@ bool CardType::canBlock(bool assigned) const
 
 const std::string & CardType::getDescription() const
 {
-    return CardTypeData::Instance().getCardTypeInfo(_id).description;
+    return CardTypeData::Instance().getCardTypeInfo(m_id).description;
 }
 
 const std::string CardType::getImageFileName() const

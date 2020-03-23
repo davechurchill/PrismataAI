@@ -2,7 +2,7 @@
 
 using namespace Prismata;
 
-BlockIterator::BlockIterator(const GameState & state, EvaluationType (*heuristic)(const Card &, const GameState & state, const HealthType &))
+BlockIterator::BlockIterator(const GameState & state, EvaluationType (*heuristic)(const Card &, const GameState & state, const HealthType))
     : _state(state)
     , _player(state.getActivePlayer())
     , _minLossScore(std::numeric_limits<double>::max())
@@ -47,7 +47,7 @@ void BlockIterator::solve()
     recurse(0, _state.getAttack(_state.getEnemy(_state.getActivePlayer())), 0, 0);
 }
 
-void BlockIterator::recurse(const CardID depth, const HealthType & damageRemaining, const double lossScore, const double tieBreakScore)
+void BlockIterator::recurse(const CardID depth, const HealthType damageRemaining, const double lossScore, const double tieBreakScore)
 {
     // solve condition
     if (damageRemaining == 0)
@@ -187,7 +187,7 @@ double BlockIterator::getMinLossScore() const
     return _minLossScore;
 }
 
-bool BlockIterator::isLastBlocker(IsomorphicBlockerData & blocker, const HealthType & damageRemaining)
+bool BlockIterator::isLastBlocker(IsomorphicBlockerData & blocker, const HealthType damageRemaining)
 {
     bool canBlock = blocker.getNumBlocking() < blocker.getNum();
     bool isLastBlocker = blocker.getHealth() >= damageRemaining;

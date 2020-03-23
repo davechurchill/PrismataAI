@@ -24,7 +24,7 @@ public:
     void                play();
     void                playNextTurn();
     void                doMove(const Move & m, bool checkActionLegal = false);
-    void                setTurnLimit(const TurnType & limit);
+    void                setTurnLimit(const TurnType limit);
     bool                doAction(const Action & action);
     bool                gameOver() const;
     int                 getTurnsPlayed();

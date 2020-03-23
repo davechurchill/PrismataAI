@@ -10,13 +10,13 @@ namespace Prismata
 
 class PartialPlayer_Breach_GreedyKnapsack : public PartialPlayer
 {
-    EvaluationType (*_heuristic)(const Card &, const GameState &, const HealthType &);
+    EvaluationType (*_heuristic)(const Card &, const GameState &, const HealthType);
     double  _totalBreachDamageLoss;
     bool    _lowTechPriority;
 
 public:
 
-    PartialPlayer_Breach_GreedyKnapsack(const PlayerID playerID, bool lowTechPriority, EvaluationType (*heuristic)(const Card &, const GameState &, const HealthType &) = &Heuristics::DamageLoss_WillCost);
+    PartialPlayer_Breach_GreedyKnapsack(const PlayerID playerID, bool lowTechPriority, EvaluationType (*heuristic)(const Card &, const GameState &, const HealthType) = &Heuristics::DamageLoss_WillCost);
     void getMove(GameState & state, Move & move);
     double getTotalBreachDamageLoss() const;
 

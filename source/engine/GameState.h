@@ -62,7 +62,7 @@ public:
     void setMana(const PlayerID player, const Resources & resource);
     void killCardByID(const CardID cardID, const int causeOfDeath);
     void beginTurn(const PlayerID player);
-    void manuallySetAttack(const PlayerID player, const HealthType & attackAmount);
+    void manuallySetAttack(const PlayerID player, const HealthType attackAmount);
     void manuallySetMana(const PlayerID player, const Resources & resource);
 
     bool isLegal(const Action & action)                                          const;

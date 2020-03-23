@@ -47,8 +47,8 @@ public:
     void debugSolve(const size_t maxNodes = 0);
     const size_t & getNodesSearched() const;
 
-    const HealthType & getBestUsedChill() const;
-    const HealthType & getBestWastedChill() const;
+    const HealthType getBestUsedChill() const;
+    const HealthType getBestWastedChill() const;
     const size_t & getBestSolutionCount() const;
 };
 }

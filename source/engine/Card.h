@@ -6,35 +6,35 @@
 
 namespace Prismata
 {
-    enum CardRoles { };
- 
+enum CardRoles { };
+
 namespace CardCreationMethod
 {
-    enum { Bought, BuyScript, AbilityScript, Manual };
+enum { Bought, BuyScript, AbilityScript, Manual };
 }
 
 namespace AliveStatus
 {
-    enum { Alive, Dead, KilledThisTurn };
+enum { Alive, Dead, KilledThisTurn };
 }
 
 namespace CauseOfDeath
 {
-    enum { None, SelfSac, SelfAbilityHealthCost, Sniped, BuySacCost, AbilitySacCost, Blocker, Breached, Lifespan, UndoCreate, Unknown, Deleted, NumCausesOfDeath};
+enum { None, SelfSac, SelfAbilityHealthCost, Sniped, BuySacCost, AbilitySacCost, Blocker, Breached, Lifespan, UndoCreate, Unknown, Deleted, NumCausesOfDeath };
 }
 
 namespace DamageSource
 {
-    enum { Block, Breach, NumDamageSources };
+enum { Block, Breach, NumDamageSources };
 }
 
 class Card
 {
-    CardType            _type;                  
-    CardID              _id                 = (CardID)-1;                    
-    CardID              _targetID           = 0;              
-    PlayerID            _player             = Players::Player_None;                
-    HealthType          _currentHealth      = 0;         
+    CardType        _type;
+    CardID              _id                 = (CardID)-1;
+    CardID              _targetID           = 0;
+    PlayerID            _player             = Players::Player_None;
+    HealthType          _currentHealth      = 0;
     HealthType          _currentChill       = 0;
     HealthType          _damageTaken        = 0;
     TurnType            _constructionTime   = 0;
@@ -44,41 +44,41 @@ class Card
     int            _status             = CardStatus::Default;
     int            _aliveStatus        = AliveStatus::Alive;
     int            _causeOfDeath       = CauseOfDeath::None;
-    
+
     bool                _hasTarget          = false;
     bool                _dead               = true;
     bool                _sellable           = false;
     bool                _inPlay             = false;
     bool                _wasBreached        = false;
     bool                _abilityUsedThisTurn = false;
-    
+
     std::vector<CardID> _killedCardIDs;
     std::vector<CardID> _createdCardIDs;
-    
+
 public:
- 
+
     Card();
     Card(const std::string & jsonString);
     Card(const rapidjson::Value & cardValue);
-    Card(const CardType & type, const PlayerID player, const int & creationMethod, const TurnType & delay, const TurnType & lifespan);
+    Card(const CardType & type, const PlayerID player, const int & creationMethod, const TurnType delay, const TurnType lifespan);
     Card & operator = (const Card & rhs);
     bool          operator == (const Card & rhs) const;
     bool          operator < (const Card & rhs) const;
 
     const CardType &    getType() const;
-    const CardID      getID() const;
-    const CardID      getTargetID() const;
-    const PlayerID    getPlayer() const;
-    const HealthType &  currentHealth() const;
-    const HealthType &  currentChill() const;
-    const HealthType &  getDamageTaken() const;
-    const int &    getAliveStatus() const;
-    const ChargeType &  getCurrentCharges() const;
-    const TurnType &    getConstructionTime() const;
-    const TurnType &    getCurrentLifespan() const;
-    const TurnType &    getCurrentDelay() const;
-    const int &    getStatus() const;
-    
+    CardID      getID() const;
+    CardID      getTargetID() const;
+    PlayerID    getPlayer() const;
+    HealthType  currentHealth() const;
+    HealthType  currentChill() const;
+    HealthType  getDamageTaken() const;
+    int         getAliveStatus() const;
+    ChargeType  getCurrentCharges() const;
+    TurnType    getConstructionTime() const;
+    TurnType    getCurrentLifespan() const;
+    TurnType    getCurrentDelay() const;
+    int         getStatus() const;
+
     bool canBlock() const;
     bool isUnderConstruction() const;
     bool isDead() const;
@@ -90,11 +90,11 @@ public:
     bool isDelayed() const;
     bool meetsCondition(const Condition & condition) const;
     bool isIsomorphic(const Card & other) const;
-    bool canBreachFor(const HealthType & damage) const;
+    bool canBreachFor(const HealthType damage) const;
     bool isOverkillable() const;
-    bool canOverkillFor(const HealthType & damage) const;
+    bool canOverkillFor(const HealthType damage) const;
     bool canBeChilled() const;
-	bool canFrontlineFor(const HealthType & damagee) const;
+    bool canFrontlineFor(const HealthType damagee) const;
     bool canBlockOnly() const;
     bool isSellable() const;
     bool isInPlay() const;
@@ -104,7 +104,7 @@ public:
     bool wasBreached() const;
 
     void setStatus(int status);
-    void takeDamage(const HealthType & amount, const int & damageSource);
+    void takeDamage(const HealthType amount, const int & damageSource);
     void toggleAssigned();
     void useAbility();
     void undoUseAbility();
@@ -112,8 +112,8 @@ public:
     void runBeginTurnScript();
     void beginTurn();
     void kill(const int & causeOfDeath);
-    void applyChill(const HealthType & amount);
-    void removeChill(const HealthType & amount);
+    void applyChill(const HealthType amount);
+    void removeChill(const HealthType amount);
     void setID(const CardID id);
     void addKilledCardID(const CardID id);
     void addCreatedCardID(const CardID id);
@@ -130,7 +130,7 @@ public:
     const std::string toJSONString(bool formatted = false) const;
 };
 
-class IsomorphicCardComparator 
+class IsomorphicCardComparator
 {
     const Card & _card;
 

@@ -36,7 +36,7 @@ bool Script::isSelfSac() const
     return _selfSac;
 }
 
-const TurnType & Script::getDelay() const
+const TurnType Script::getDelay() const
 {
     return _delay;
 }
@@ -46,7 +46,7 @@ void Script::setEffect(const ScriptEffect & effect)
     _effect = effect;
 }
 
-void Script::setHealthUsed(const HealthType & health)
+void Script::setHealthUsed(const HealthType health)
 {
     _healthUsed = health;
 }
@@ -100,7 +100,7 @@ const Resources & Script::getManaCost() const
     return _resourceCost;
 }
 
-const HealthType & Script::getHealthUsed() const
+const HealthType Script::getHealthUsed() const
 {
     return _healthUsed;
 }

@@ -71,7 +71,7 @@ bool PartialPlayer_ActionAbility_AvoidAttackWaste::weWillWinOnThisAttack(const G
     return state.getAttack(state.getActivePlayer()) >= totalEnemyHP;
 }
 
-void PartialPlayer_ActionAbility_AvoidAttackWaste::untapAbilityAttackCostCards(GameState & state, Move & move, std::vector<CardID> & attackingCards, const HealthType & lossDecreaseAttackThreshold)
+void PartialPlayer_ActionAbility_AvoidAttackWaste::untapAbilityAttackCostCards(GameState & state, Move & move, std::vector<CardID> & attackingCards, const HealthType lossDecreaseAttackThreshold)
 {
     // do the untapping to avoid waste
     for (const auto & cardID : attackingCards)
@@ -109,7 +109,7 @@ void PartialPlayer_ActionAbility_AvoidAttackWaste::untapAbilityAttackCostCards(G
     }
 }
 
-void PartialPlayer_ActionAbility_AvoidAttackWaste::untapAttackingCards(GameState & state, Move & move, std::vector<CardID> & attackingCards, const HealthType & lossDecreaseAttackThreshold)
+void PartialPlayer_ActionAbility_AvoidAttackWaste::untapAttackingCards(GameState & state, Move & move, std::vector<CardID> & attackingCards, const HealthType lossDecreaseAttackThreshold)
 {
     // do the untapping to avoid waste
     for (const auto & cardID : attackingCards)
