@@ -10,6 +10,7 @@ using namespace Prismata;
 
 GUIState_Menu::GUIState_Menu(GUIEngine & game)
     : GUIState(game)
+    , m_menuText(Assets::Instance().getFont("Consolas"))
 {
     init("");
 }
@@ -23,7 +24,6 @@ void GUIState_Menu::init(const std::string & menuConfig)
         m_menuStrings.push_back(stateName);
     }
 
-    m_menuText.setFont(Assets::Instance().getFont("Consolas"));
     m_menuText.setCharacterSize(16);
 }
 
@@ -35,38 +35,38 @@ void GUIState_Menu::onFrame()
 
 void GUIState_Menu::sUserInput()
 {
-    sf::Event event;
-    while (m_game.window().pollEvent(event))
+    while (const auto event = m_game.window().pollEvent())
     {
-        if (event.type == sf::Event::Closed)
+        if (event->is<sf::Event::Closed>())
         {
             m_game.quit();
         }
+
         // this event is triggered when a key is pressed
-        if (event.type == sf::Event::KeyPressed)
+        if (const auto * keyPressed = event->getIf<sf::Event::KeyPressed>())
         {
-            switch (event.key.code)
+            switch (keyPressed->code)
             {
-                case sf::Keyboard::Escape: 
+                case sf::Keyboard::Key::Escape: 
                 { 
                     m_game.quit(); 
                     break; 
                 }
-                case sf::Keyboard::W: 
-                case sf::Keyboard::Up:
+                case sf::Keyboard::Key::W: 
+                case sf::Keyboard::Key::Up:
                 {
                     if (m_selectedMenuIndex > 0) { m_selectedMenuIndex--; }
                     else { m_selectedMenuIndex = m_menuStrings.size() - 1; }
                     break;
                 }
-                case sf::Keyboard::S: 
-                case sf::Keyboard::Down:
+                case sf::Keyboard::Key::S: 
+                case sf::Keyboard::Key::Down:
                 { 
                     m_selectedMenuIndex = (m_selectedMenuIndex + 1) % m_menuStrings.size(); 
                     break; 
                 }
-                case sf::Keyboard::D: 
-                case sf::Keyboard::Return:
+                case sf::Keyboard::Key::D: 
+                case sf::Keyboard::Key::Enter:
                 { 
                     auto & stateName = m_menuStrings[m_selectedMenuIndex];
                     m_game.pushState(std::make_shared<GUIState_Play>(m_game, AIParameters::Instance().getState(stateName)));

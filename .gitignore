@@ -39,3 +39,4 @@ emscripten/*.js
 emscripten/*.data
 emscripten/*.mem
 bin/graphviz/
+/visualstudio/x64

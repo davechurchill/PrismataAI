@@ -105,7 +105,7 @@ public:
 
     sf::View getSFMLView()
     {
-        return sf::View(sf::FloatRect((float)m_pos.x, (float)m_pos.y, (float)m_size.x, (float)m_size.y));
+        return sf::View(sf::FloatRect({(float)m_pos.x, (float)m_pos.y}, {(float)m_size.x, (float)m_size.y}));
     }
 
     const Vec2& pos() const { return m_pos; }

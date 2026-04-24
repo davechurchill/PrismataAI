@@ -16,6 +16,7 @@ using namespace Prismata;
 
 GUIState_Play::GUIState_Play(GUIEngine & game, const GameState & state)
     : GUIState(game)
+    , m_text(Assets::Instance().getFont("Consolas"))
     , m_currentState(state)
 {
     m_stateHistory.push_back(state);
@@ -23,8 +24,7 @@ GUIState_Play::GUIState_Play(GUIEngine & game, const GameState & state)
     m_view.setWindowSize(Vec2(m_game.window().getSize().x, m_game.window().getSize().y));
     m_view.setView(m_game.window().getView());
         
-    m_text.setFont(Assets::Instance().getFont("Consolas"));
-    m_text.setPosition(10, 5);
+    m_text.setPosition({10, 5});
     m_text.setCharacterSize(10);
 
     loadPlayers();
@@ -250,42 +250,41 @@ void GUIState_Play::sUserInput()
     // if an AI move is being carried out, don't allow any input
     if (m_doingAIMove) { return; }
 
-    sf::Event event;
     int menuIndexChange = 0;
     PlayerID player = m_currentState.getActivePlayer();
-    bool shift = sf::Keyboard::isKeyPressed(sf::Keyboard::LShift);
-    while (m_game.window().pollEvent(event))
+    bool shift = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift);
+    while (const auto event = m_game.window().pollEvent())
     {
         // this event triggers when the window is closed
-        if (event.type == sf::Event::Closed) { m_game.quit(); }
+        if (event->is<sf::Event::Closed>()) { m_game.quit(); }
 
         // this event is triggered when a key is pressed
-        if (event.type == sf::Event::KeyPressed)
+        if (const auto * keyPressed = event->getIf<sf::Event::KeyPressed>())
         {
-            switch (event.key.code)
+            switch (keyPressed->code)
             {
-                case sf::Keyboard::Escape:  { m_game.popState(); break; }
-                case sf::Keyboard::Tab:     { toggleBool(m_drawBaseSetCards); break; }
-                case sf::Keyboard::Q:       { activateWorkers(); break; }
-                case sf::Keyboard::Space:   { endCurrentPhase(); break; }
-                case sf::Keyboard::A:       { buyCardByName("Animus", shift); break; }
-                case sf::Keyboard::D:       { buyCardByName("Drone", shift); break; }
-                case sf::Keyboard::E:       { buyCardByName("Engineer", shift); break; }
-                case sf::Keyboard::B:       { buyCardByName("Blastforge", shift); break; }
-                case sf::Keyboard::C:       { buyCardByName("Conduit", shift); break; }
-                case sf::Keyboard::F:       { buyCardByName("Forcefield", shift); break; }
-                case sf::Keyboard::G:       { buyCardByName("Gauss Cannon", shift); break; }
-                case sf::Keyboard::S:       { buyCardByName("Steelsplitter", shift); menuIndexChange = 1; break; }
-                case sf::Keyboard::T:       { buyCardByName("Tarsier", shift); break; }
-                case sf::Keyboard::R:       { buyCardByName("Rhino", shift); break; }
-                case sf::Keyboard::W:       { buyCardByName("Wall", shift); menuIndexChange = -1; break; }
-                case sf::Keyboard::Z:       { rewindToPreviousState(); break; }
-                case sf::Keyboard::M:       { toggleBool(m_drawMouseOver); break; }
-                case sf::Keyboard::X:       { toggleBool(m_drawPotentials); break; }
-                case sf::Keyboard::Tilde:   { toggleBool(m_drawDebugInfo); break; }
-                case sf::Keyboard::Return:  { handleAIMenu(); break; }
-                case sf::Keyboard::Up:      { menuIndexChange = -1; break; }
-                case sf::Keyboard::Down:    { menuIndexChange =  1; break; }
+                case sf::Keyboard::Key::Escape:  { m_game.popState(); break; }
+                case sf::Keyboard::Key::Tab:     { toggleBool(m_drawBaseSetCards); break; }
+                case sf::Keyboard::Key::Q:       { activateWorkers(); break; }
+                case sf::Keyboard::Key::Space:   { endCurrentPhase(); break; }
+                case sf::Keyboard::Key::A:       { buyCardByName("Animus", shift); break; }
+                case sf::Keyboard::Key::D:       { buyCardByName("Drone", shift); break; }
+                case sf::Keyboard::Key::E:       { buyCardByName("Engineer", shift); break; }
+                case sf::Keyboard::Key::B:       { buyCardByName("Blastforge", shift); break; }
+                case sf::Keyboard::Key::C:       { buyCardByName("Conduit", shift); break; }
+                case sf::Keyboard::Key::F:       { buyCardByName("Forcefield", shift); break; }
+                case sf::Keyboard::Key::G:       { buyCardByName("Gauss Cannon", shift); break; }
+                case sf::Keyboard::Key::S:       { buyCardByName("Steelsplitter", shift); menuIndexChange = 1; break; }
+                case sf::Keyboard::Key::T:       { buyCardByName("Tarsier", shift); break; }
+                case sf::Keyboard::Key::R:       { buyCardByName("Rhino", shift); break; }
+                case sf::Keyboard::Key::W:       { buyCardByName("Wall", shift); menuIndexChange = -1; break; }
+                case sf::Keyboard::Key::Z:       { rewindToPreviousState(); break; }
+                case sf::Keyboard::Key::M:       { toggleBool(m_drawMouseOver); break; }
+                case sf::Keyboard::Key::X:       { toggleBool(m_drawPotentials); break; }
+                case sf::Keyboard::Key::Grave:   { toggleBool(m_drawDebugInfo); break; }
+                case sf::Keyboard::Key::Enter:   { handleAIMenu(); break; }
+                case sf::Keyboard::Key::Up:      { menuIndexChange = -1; break; }
+                case sf::Keyboard::Key::Down:    { menuIndexChange =  1; break; }
 
                 default:                    { break; }
             }
@@ -296,19 +295,19 @@ void GUIState_Play::sUserInput()
             else { m_selectedPlayer[player] = m_selectedPlayer[player] % m_players[player].size(); }
         }
 
-        if (event.type == sf::Event::MouseButtonPressed)
+        if (const auto * mouseButton = event->getIf<sf::Event::MouseButtonPressed>())
         {
-            auto mouse = m_view.windowToWorld(Vec2(event.mouseButton.x, event.mouseButton.y));
+            auto mouse = m_view.windowToWorld(Vec2(mouseButton->position.x, mouseButton->position.y));
 
             // happens when the left mouse button is pressed
-            if (event.mouseButton.button == sf::Mouse::Left)
+            if (mouseButton->button == sf::Mouse::Button::Left)
             {
                 m_view.stopScroll();
 
                 // determine which element of the gui was clicked, if any
                 GUICard * guiCard = getClickedCard(mouse.x, mouse.y);
                 GUICardBuyable * cardBuyable = guiCard ? NULL : getClickedCardBuyable(mouse.x, mouse.y);
-                bool shift = sf::Keyboard::isKeyPressed(sf::Keyboard::LShift);
+                bool shift = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift);
 
                 // if a card was clicked
                 if (guiCard)
@@ -327,30 +326,30 @@ void GUIState_Play::sUserInput()
             }
 
             // happens when the right mouse button is pressed
-            if (event.mouseButton.button == sf::Mouse::Right)
+            if (mouseButton->button == sf::Mouse::Button::Right)
             {
-                m_drag = { event.mouseButton.x, event.mouseButton.y };
+                m_drag = { mouseButton->position.x, mouseButton->position.y };
                 m_view.stopScroll();
             }
         }
 
         // happens when the mouse button is released
-        if (event.type == sf::Event::MouseButtonReleased)
+        if (const auto * mouseButton = event->getIf<sf::Event::MouseButtonReleased>())
         {
-            if (event.mouseButton.button == sf::Mouse::Left)  { }
-            if (event.mouseButton.button == sf::Mouse::Right) { m_drag = { -1, -1 }; }
+            if (mouseButton->button == sf::Mouse::Button::Left)  { }
+            if (mouseButton->button == sf::Mouse::Button::Right) { m_drag = { -1, -1 }; }
         }
 
-        if (event.type == sf::Event::MouseWheelMoved)
+        if (const auto * mouseWheel = event->getIf<sf::Event::MouseWheelScrolled>())
         {
-            double zoom = 1.0 - (0.2 * event.mouseWheel.delta);
-            m_view.zoomTo(zoom, Vec2(event.mouseWheel.x, event.mouseWheel.y));
+            double zoom = 1.0 - (0.2 * mouseWheel->delta);
+            m_view.zoomTo(zoom, Vec2(mouseWheel->position.x, mouseWheel->position.y));
         }
 
         // happens whenever the mouse is being moved
-        if (event.type == sf::Event::MouseMoved)
+        if (const auto * mouseMove = event->getIf<sf::Event::MouseMoved>())
         {
-            auto world = m_view.windowToWorld(Vec2(event.mouseMove.x, event.mouseMove.y));
+            auto world = m_view.windowToWorld(Vec2(mouseMove->position.x, mouseMove->position.y));
             m_mouseWorld = sf::Vector2f(world.x, world.y);
             m_mouseOverCard = getClickedCard(world.x, world.y);
             m_mouseOverCardBuyable = getClickedCardBuyable(world.x, world.y);
@@ -359,10 +358,10 @@ void GUIState_Play::sUserInput()
             if (m_drag.x != -1)
             {
                 auto prev = m_view.windowToWorld(m_drag);
-                auto curr = m_view.windowToWorld({ event.mouseMove.x, event.mouseMove.y });
+                auto curr = m_view.windowToWorld({ mouseMove->position.x, mouseMove->position.y });
                 auto scroll = prev - curr;
                 m_view.scroll(prev - curr);
-                m_drag = { event.mouseMove.x, event.mouseMove.y };
+                m_drag = { mouseMove->position.x, mouseMove->position.y };
             }
 
         }

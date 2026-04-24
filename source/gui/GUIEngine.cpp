@@ -34,7 +34,7 @@ void GUIEngine::init()
     // load assets
     loadAssets("asset/config/assets.txt");
     
-    m_window.create(sf::VideoMode(1600, 900), "Prismata AI");
+    m_window.create(sf::VideoMode({1600, 900}), "Prismata AI");
     m_window.setFramerateLimit(60);
 
     pushState(std::make_shared<GUIState_Menu>(*this));

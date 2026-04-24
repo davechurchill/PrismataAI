@@ -40,7 +40,7 @@ const sf::Texture & Assets::getTexture(const std::string & textureName) const
 void Assets::addFont(const std::string & fontName, const std::string & path)
 {
     m_fontMap[fontName] = sf::Font();
-    if (!m_fontMap[fontName].loadFromFile(path))
+    if (!m_fontMap[fontName].openFromFile(path))
     {
         std::cerr << "Could not load font file: " << path << std::endl;
         m_fontMap.erase(fontName);
@@ -68,8 +68,9 @@ void Assets::addSound(const std::string& soundName, const std::string& path)
     else
     {
         std::cout << "Loaded Sound:    " << path << std::endl;
-        m_soundMap[soundName] = sf::Sound(m_soundBufferMap[soundName]);
-        m_soundMap[soundName].setVolume(25);
+        m_soundMap.erase(soundName);
+        m_soundMap.emplace(soundName, sf::Sound(m_soundBufferMap.at(soundName)));
+        m_soundMap.at(soundName).setVolume(25);
     }
 }
 

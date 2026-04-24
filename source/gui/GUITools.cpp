@@ -27,9 +27,8 @@ namespace GUITools
 
     void DrawString(sf::Vector2f p, const std::string & str, sf::Color color, sf::RenderWindow * window, int size)
     {
-        sf::Text text;
+        sf::Text text(Assets::Instance().getFont("Consolas"));
         text.setString(str);
-        text.setFont(Assets::Instance().getFont("Consolas"));
         text.setCharacterSize(size);
         text.setFillColor(color);
         text.setPosition(p);
@@ -45,7 +44,7 @@ namespace GUITools
 
     void DrawLine(const sf::Vector2f & p1, const sf::Vector2f & p2, sf::Color color, sf::RenderWindow * window)
     {
-        sf::VertexArray lines(sf::LinesStrip, 2);
+        sf::VertexArray lines(sf::PrimitiveType::LineStrip, 2);
         lines[0].position = p1; lines[0].color = color;
         lines[1].position = p2; lines[1].color = color;
         window->draw(lines);

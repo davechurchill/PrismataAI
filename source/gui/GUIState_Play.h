@@ -10,6 +10,7 @@
 #include <SFML/Audio.hpp>
 #include <chrono>
 #include <iostream>
+#include <map>
 
 namespace Prismata
 {
