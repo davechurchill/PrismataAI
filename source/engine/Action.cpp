@@ -27,7 +27,7 @@ Action::Action(const PlayerID player, const ActionID & actionType, const CardID 
 
 bool Action::operator == (const Action & rhs) const
 {
-    return (m_type == rhs.m_type) && (m_id == rhs.m_id) && (m_player == rhs.m_player);
+    return (m_type == rhs.m_type) && (m_id == rhs.m_id) && (m_player == rhs.m_player) && (m_targetID == rhs.m_targetID) && (m_shift == rhs.m_shift);
 }
 
 bool Action::operator != (const Action & rhs) const

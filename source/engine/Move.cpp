@@ -9,6 +9,11 @@ Move::Move()
 
 bool Move::operator == (const Move & rhs) const
 {
+    if (size() != rhs.size())
+    {
+        return false;
+    }
+
     for (size_t a(0); a<size(); ++a)
     {
         if (m_actions[a] != rhs.m_actions[a])

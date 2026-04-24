@@ -39,9 +39,17 @@ void GameState::initFromJSON(const rapidjson::Value & value)
             {
                 m_activePhase = Phases::Defense;
             }
+            else if (phase == "breach")
+            {
+                m_activePhase = Phases::Breach;
+            }
             else if (phase == "confirm")   
             {
                 m_activePhase = Phases::Confirm;
+            }
+            else if (phase == "swoosh")
+            {
+                m_activePhase = Phases::Swoosh;
             }
             else
             {
@@ -196,6 +204,11 @@ bool GameState::isLegal(const Action & action) const
     const PlayerID player = action.getPlayer();
     const PlayerID enemy = getEnemy(player);
 
+    if (isTargetAbilityCardClicked() && action.getType() != ActionTypes::SNIPE && action.getType() != ActionTypes::CHILL && !(action.getType() == ActionTypes::UNDO_USE_ABILITY && action.getID() == m_targetAbilityCardID))
+    {
+        return false;
+    }
+
     switch(action.getType())
     {
         case ActionTypes::BUY:
@@ -259,7 +272,42 @@ bool GameState::isLegal(const Action & action) const
             const Card & card = getCardByID(action.getID());
             const Card & targetCard = getCardByID(action.getTargetID());
 
+            if (getActivePhase() != Phases::Action)
+            {
+                return false;
+            }
+
             if (!isTargetAbilityCardClicked())
+            {
+                return false;
+            }
+
+            if (action.getID() != m_targetAbilityCardID)
+            {
+                return false;
+            }
+
+            if (card.getPlayer() != player)
+            {
+                return false;
+            }
+
+            if (card.isDead())
+            {
+                return false;
+            }
+
+            if (!card.getType().hasTargetAbility() || card.getType().getTargetAbilityType() != action.getType())
+            {
+                return false;
+            }
+
+            if (!card.canUseAbility())
+            {
+                return false;
+            }
+
+            if (!canRunScript(player, card.getType().getAbilityScript()))
             {
                 return false;
             }
@@ -305,6 +353,11 @@ bool GameState::isLegal(const Action & action) const
             }
 
             if (card.isDead())
+            {
+                return false;
+            }
+
+            if (card.getPlayer() != player)
             {
                 return false;
             }
@@ -451,7 +504,8 @@ bool GameState::isLegal(const Action & action) const
         }
         case ActionTypes::ASSIGN_BLOCKER:
         {
-            return (getAttack(enemy) > 0) && (getActivePhase() == Phases::Defense) && getCardByID(action.getID()).canBlock();
+            const Card & card = getCardByID(action.getID());
+            return (card.getPlayer() == player) && (getAttack(enemy) > 0) && (getActivePhase() == Phases::Defense) && card.canBlock();
         }
         case ActionTypes::ASSIGN_FRONTLINE:
         {
@@ -698,6 +752,7 @@ bool GameState::doAction(const Action & action)
         case ActionTypes::WIPEOUT:
         {
             endPhase();
+            break;
         }
         case ActionTypes::UNDO_CHILL:
         {
@@ -1652,7 +1707,7 @@ const CardID GameState::numCompletedCardsOfType(const PlayerID player, const Car
 
     for (const auto & cardID : getCardIDs(player))
     {
-        const Card & card = getCardByID(player);
+        const Card & card = getCardByID(cardID);
         if (card.getType() == type && !card.isUnderConstruction() && !card.isDelayed())
         {
             ++num;
@@ -1837,6 +1892,29 @@ void GameState::generateLegalActions(std::vector<Action> & actions) const
         }
         case Phases::Action:
         {
+            if (isTargetAbilityCardClicked())
+            {
+                const Card & card = getTargetAbilityCardClicked();
+
+                for (const auto & enemyCardID : getCardIDs(enemy))
+                {
+                    const Action targetAction(player, card.getType().getTargetAbilityType(), card.getID(), enemyCardID);
+
+                    if (isLegal(targetAction))
+                    {
+                        actions.push_back(targetAction);
+                    }
+                }
+
+                const Action undoAbility(player, ActionTypes::UNDO_USE_ABILITY, card.getID());
+                if (isLegal(undoAbility))
+                {
+                    actions.push_back(undoAbility);
+                }
+
+                break;
+            }
+
             // add all legal purchases
             for (CardID cb(0); cb < numCardsBuyable(); ++cb)
             {
@@ -1859,23 +1937,7 @@ void GameState::generateLegalActions(std::vector<Action> & actions) const
             {
                 const Card & card = getCardByID(cardID);
                 
-                // special case for targeted abilities
-                if (card.getType().hasTargetAbility())
-                {
-                    // we must find all legal enemy targets for their ability
-                    for (const auto & enemyCardID : getCardIDs(enemy))
-                    {
-                        const Card & enemyCard = getCardByID(enemyCardID);
-                        
-                        const Action targetAction(player, card.getType().getActionType(), card.getID(), enemyCard.getID());
-
-                        if (isLegal(targetAction))
-                        {
-                            actions.push_back(targetAction);
-                        }
-                    }
-                }
-                else if (card.getType().hasAbility())
+                if (card.getType().hasAbility() || card.getType().hasTargetAbility())
                 {
                     const Action ability(player, ActionTypes::USE_ABILITY, card.getID());
 
@@ -2254,6 +2316,18 @@ std::string GameState::toJSONString() const
     else if (getActivePhase() == Phases::Defense)
     {
         ss << "\"defense\", \n";
+    }
+    else if (getActivePhase() == Phases::Confirm)
+    {
+        ss << "\"confirm\", \n";
+    }
+    else if (getActivePhase() == Phases::Swoosh)
+    {
+        ss << "\"swoosh\", \n";
+    }
+    else
+    {
+        PRISMATA_ASSERT(false, "Unknown phase while serializing GameState");
     }
 
     ss << "\"cards\":[";
