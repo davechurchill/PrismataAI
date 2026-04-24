@@ -140,7 +140,7 @@ AvoidBreachBuyIterator::AvoidBreachBuyIterator(const GameState & state, const Br
         }
 
         bool isAbsorber = !card.getType().isFragile();
-        HealthType attackRemaining = _predictedEnemyAttack - _initialFrontlineUsed;
+        HealthType attackRemaining = (_predictedEnemyAttack > _initialFrontlineUsed) ? (_predictedEnemyAttack - _initialFrontlineUsed) : 0;
         if (card.getType().isFrontline() && attackRemaining >= card.currentHealth())
         {
             isAbsorber = false;
@@ -415,7 +415,7 @@ void AvoidBreachBuyIterator::recurse(const CardID currentCardBuyableIndex, const
         bool isAbsorber = !cardType.isFragile();
         HealthType frontlineUsed = 0;
 
-        HealthType attackRemaining = _predictedEnemyAttack - frontlineAssigned;
+        HealthType attackRemaining = (_predictedEnemyAttack > frontlineAssigned) ? (_predictedEnemyAttack - frontlineAssigned) : 0;
         if (cardType.isFrontline() && attackRemaining >= cardType.getStartingHealth())
         {
             isAbsorber = false;

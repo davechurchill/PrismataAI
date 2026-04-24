@@ -119,7 +119,7 @@ void StateChillIterator::solve(size_t maxIterations)
     }
     catch (int e)
     {
-        if (e == SCI_MAX_NODES_REACHED || e == SCI_MAX_NODES_REACHED)
+        if (e == SCI_TIMEOUT || e == SCI_MAX_NODES_REACHED)
         {
             _solved = false;
         }

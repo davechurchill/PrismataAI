@@ -551,9 +551,11 @@ void PlayerBenchmark::printResults()
             table.setData(c, col++, _gamesAvailable[c] == 0 ? 0 : ((double)_gamesBought[c][1]/_gamesAvailable[c]));
             table.setData(c, col++, _gamesWon[c][0]);
             table.setData(c, col++, _gamesWon[c][1]);
-            table.setData(c, col++, _gamesAvailable[c] == 0 ? 0 : ((double)_gamesWon[c][0]/_gamesBought[c][0]));
-            table.setData(c, col++, _gamesAvailable[c] == 0 ? 0 : ((double)_gamesWon[c][1]/_gamesBought[c][1]));
-            table.setData(c, col++, _gamesAvailable[c] == 0 ? 0 : fabs(((double)_gamesWon[c][1]/_gamesBought[c][1]) - ((double)_gamesWon[c][0]/_gamesBought[c][0])));
+            double p1WinRate = _gamesBought[c][0] == 0 ? 0 : ((double)_gamesWon[c][0]/_gamesBought[c][0]);
+            double p2WinRate = _gamesBought[c][1] == 0 ? 0 : ((double)_gamesWon[c][1]/_gamesBought[c][1]);
+            table.setData(c, col++, p1WinRate);
+            table.setData(c, col++, p2WinRate);
+            table.setData(c, col++, fabs(p2WinRate - p1WinRate));
         }
             
         table.appendHTMLTableToFile(filename, "unitStatsTable");

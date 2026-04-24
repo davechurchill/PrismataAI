@@ -234,7 +234,7 @@ void GUIState_Play::activateWorkers()
         GUICard & guiCard = m_guiCards[gc];
         const Card * card = guiCard.getCard();
         bool isDrone = (card->getType().getUIName() == "Drone" || card->getType().getUIName() == "Doomed Drone");
-        if (card->getPlayer() == m_currentState.getActivePlayer() && isDrone && (!card->getStatus() == CardStatus::Assigned) && !card->isUnderConstruction())
+        if (card->getPlayer() == m_currentState.getActivePlayer() && isDrone && (card->getStatus() != CardStatus::Assigned) && !card->isUnderConstruction())
         {
             Action a = guiCard.onClick(m_currentState);
             doGUIAction(a);

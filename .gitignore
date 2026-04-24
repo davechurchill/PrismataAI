@@ -40,3 +40,4 @@ emscripten/*.data
 emscripten/*.mem
 bin/graphviz/
 /visualstudio/x64
+/build/
