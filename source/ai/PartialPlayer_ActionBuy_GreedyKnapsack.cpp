@@ -166,6 +166,8 @@ void PartialPlayer_ActionBuy_GreedyKnapsack::updateStateData(const CardType card
 
 void PartialPlayer_ActionBuy_GreedyKnapsack::calculateStateData(const GameState & state)
 {
+    _enemyWasChilled = false;
+
     // determine our total resource income for the state
     _beginTurnIncome = Resources();
     for (const auto & cardID : state.getCardIDs(_playerID))

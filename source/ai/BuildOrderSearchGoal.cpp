@@ -14,12 +14,12 @@ BuildOrderSearchGoal::BuildOrderSearchGoal(const rapidjson::Value & val)
     {
         const rapidjson::Value & limit = val[i];
 
-        PRISMATA_ASSERT(limit.IsArray() && limit.Size() == 3, "Goal array entry must be an array of length 2 or 3");
-        PRISMATA_ASSERT(limit[0u].IsString() && limit[1u].IsInt() && limit[1u].IsInt(), "Goal array entry must be [\"CardName\", Integer, Integer]");
+        PRISMATA_ASSERT(limit.IsArray() && (limit.Size() == 2 || limit.Size() == 3), "Goal array entry must be an array of length 2 or 3");
+        PRISMATA_ASSERT(limit[0u].IsString() && limit[1u].IsInt() && (limit.Size() == 2 || limit[2u].IsInt()), "Goal array entry must be [\"CardName\", Integer] or [\"CardName\", Integer, Integer]");
 
         const std::string & cardName = limit[0u].GetString();
         const int cardLimit = limit[1u].GetInt();
-        const int turn = limit[2u].GetInt();
+        const int turn = (limit.Size() == 3) ? limit[2u].GetInt() : 0;
         if (CardTypes::CardTypeExists(cardName))
         {
             addGoal(CardTypes::GetCardType(cardName), cardLimit, turn);

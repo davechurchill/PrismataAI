@@ -242,6 +242,14 @@ bool StateChillIterator::chillTarget(const Card & chiller, const CardID chillerI
         _currentState.doAction(clickChiller);
         _actionStack.addAction(clickChiller);
 
+        if (!_currentState.isLegal(chillUnit))
+        {
+            const Action undoClick(_player, ActionTypes::UNDO_USE_ABILITY, chiller.getID());
+            _currentState.doAction(undoClick);
+            _actionStack.popAction();
+            return false;
+        }
+
         _currentState.doAction(chillUnit);
         _actionStack.addAction(chillUnit);
 
@@ -402,6 +410,14 @@ void StateChillIterator::recurse(const size_t currentBlockerIndex)
             {
                 _currentState.doAction(clickChiller);
                 _actionStack.addAction(clickChiller);
+
+                if (!_currentState.isLegal(chillUnit))
+                {
+                    const Action undoClick(_player, ActionTypes::UNDO_USE_ABILITY, chiller.getID());
+                    _currentState.doAction(undoClick);
+                    _actionStack.popAction();
+                    continue;
+                }
 
                 _currentState.doAction(chillUnit);
                 _actionStack.addAction(chillUnit);

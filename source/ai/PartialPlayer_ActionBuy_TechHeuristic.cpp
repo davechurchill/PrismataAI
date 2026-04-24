@@ -67,8 +67,8 @@ void PartialPlayer_ActionBuy_TechHeuristic::getMovesElyotFormula(GameState & sta
     // variables which will store whether or not certain tech types are legal to buy
     // these will be modified throughout the function based on buy limits, etc
     bool hasConduit         = state.isBuyable(_playerID, conduitType);
-    bool hasBlastforge      = state.isBuyable(_playerID, conduitType);
-    bool hasAnimus          = state.isBuyable(_playerID, conduitType);
+    bool hasBlastforge      = state.isBuyable(_playerID, blastforgeType);
+    bool hasAnimus          = state.isBuyable(_playerID, animusType);
     bool buyableConduit     = state.isLegal(buyConduit);
     bool buyableBlastforge  = state.isLegal(buyBlastforge);
     bool buyableAnimus      = state.isLegal(buyAnimus);

@@ -54,7 +54,7 @@ bool OpeningBookEntry::matchesState(const GameState & state) const
     const PlayerID enemy = state.getInactivePlayer();
 
     CardID selfTotalCards = state.numCards(self);
-    CardID enemyTotalCards = state.numCards(self);
+    CardID enemyTotalCards = state.numCards(enemy);
     CardID selfMatchTotalCards = 0;
     CardID enemyMatchTotalCards = 0;
 
@@ -163,8 +163,8 @@ OpeningBookEntry::OpeningBookEntry(const rapidjson::Value & openingBookEntryValu
                 return;
             }
 
-            _selfCardTypes.push_back(CardTypes::GetCardType(cardTypeString));
-            _selfCardTypeCounts.push_back(enemyEntry[1u].GetInt());
+            _enemyCardTypes.push_back(CardTypes::GetCardType(cardTypeString));
+            _enemyCardTypeCounts.push_back(enemyEntry[1u].GetInt());
         }
     }
 

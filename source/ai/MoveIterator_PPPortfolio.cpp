@@ -128,7 +128,10 @@ void MoveIterator_PPPortfolio::incrementMove(const size_t phase)
 {
     // increment the index for this unit
     m_currentIndex[phase] = (m_currentIndex[phase] + 1) % m_portfolio[phase].size();
-    m_previousMoveChanged[phase] = true;
+    for (size_t i(phase); i < m_previousMoveChanged.size(); ++i)
+    {
+        m_previousMoveChanged[i] = true;
+    }
 
     // if the value rolled over, we need to do the carry calculation
     if (m_currentIndex[phase] == 0)

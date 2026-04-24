@@ -18,7 +18,7 @@ void PartialPlayer_ActionAbility_Random::getMove(GameState & state, Move & move)
     }
 
     std::vector<Action> legalActions;
-    while (state.getActivePlayer() == _playerID && state.getActivePhase() == _phaseID)
+    while (state.getActivePlayer() == _playerID && state.getActivePhase() == Phases::Action)
     {
         legalActions.clear();
         state.generateLegalActions(legalActions);

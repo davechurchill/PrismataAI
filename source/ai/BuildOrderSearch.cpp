@@ -8,6 +8,8 @@ BuildOrderSearch::BuildOrderSearch(const BuildOrderSearchParameters & params)
     , _cardTypeCount(_params.getInitialState().numCardsBuyable(), 0)
     , _buyPlayer(params.getInitialState().getActivePlayer())
     , _params(params)
+    , _solutionFound(false)
+    , _bestSolutionTurn(0)
     , _currentMaxTurn(0)
     , _bestSolutionMaxDrones(0)
 {

@@ -79,26 +79,67 @@ void MoveIterator_AllAbility::recurse(size_t isoIndex)
 
         if (_currentState.isLegal(useAbility))
         {
-            // do the action on the state
-            _currentState.doAction(useAbility);
-            _actionStack.addAction(useAbility);
-        
-            _allMoves.push_back(_actionStack);
+            const bool targetAbility = _currentState.getCardByID(breachCardID).getType().hasTargetAbility();
 
-            _currentIsoIndex[isoIndex]++;
+            if (targetAbility)
+            {
+                GameState stateBeforeClick(_currentState);
+                const ActionID targetActionType = _currentState.getCardByID(breachCardID).getType().getTargetAbilityType();
 
-            // recurse branch where we breach this iso type again
-            recurse(isoIndex);
+                _currentState.doAction(useAbility);
+                _actionStack.addAction(useAbility);
 
-            // unroll the moves we did above
-            const Action undoAbility(_playerID, ActionTypes::UNDO_USE_ABILITY, breachCardID);
-            _currentState.doAction(undoAbility);
-            _actionStack.popAction();
-            _currentIsoIndex[isoIndex]--;
+                GameState stateAfterClick(_currentState);
+                for (const auto & targetID : stateAfterClick.getCardIDs(stateAfterClick.getEnemy(_playerID)))
+                {
+                    const Action targetAction(_playerID, targetActionType, breachCardID, targetID);
+
+                    if (!stateAfterClick.isLegal(targetAction))
+                    {
+                        continue;
+                    }
+
+                    _currentState = stateAfterClick;
+                    _currentState.doAction(targetAction);
+                    _actionStack.addAction(targetAction);
+
+                    _allMoves.push_back(_actionStack);
+
+                    _currentIsoIndex[isoIndex]++;
+
+                    // recurse branch where we use this iso type again
+                    recurse(isoIndex);
+
+                    _currentIsoIndex[isoIndex]--;
+                    _actionStack.popAction();
+                }
+
+                _actionStack.popAction();
+                _currentState = stateBeforeClick;
+            }
+            else
+            {
+                // do the action on the state
+                _currentState.doAction(useAbility);
+                _actionStack.addAction(useAbility);
+
+                _allMoves.push_back(_actionStack);
+
+                _currentIsoIndex[isoIndex]++;
+
+                // recurse branch where we use this iso type again
+                recurse(isoIndex);
+
+                // unroll the moves we did above
+                const Action undoAbility(_playerID, ActionTypes::UNDO_USE_ABILITY, breachCardID);
+                _currentState.doAction(undoAbility);
+                _actionStack.popAction();
+                _currentIsoIndex[isoIndex]--;
+            }
         }
     }
 
-    // recurse breanch with this card having been skipped
+    // recurse branch with this card having been skipped
     recurse(isoIndex + 1);
 }
 
@@ -113,7 +154,7 @@ void MoveIterator_AllAbility::processIsomorphicCards()
         const Card & card = _state.getCardByID(cardID);
 
         // if this card type doesn't have an activated ability then continue
-        if (!card.getType().hasAbility() || (card.getStatus() == CardStatus::Assigned))
+        if ((!card.getType().hasAbility() && !card.getType().hasTargetAbility()) || (card.getStatus() == CardStatus::Assigned))
         {
             continue;
         }

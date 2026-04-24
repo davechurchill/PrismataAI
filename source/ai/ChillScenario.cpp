@@ -6,8 +6,10 @@ using namespace Prismata;
 ChillScenario::ChillScenario()
     : _numDefenders(0)
     , _totalDefense(0)
+    , _smallestDefender(0)
     , _numChillers(0)
     , _totalChill(0)
+    , _smallestChiller(0)
     , _modifications(0)
     , _largestChiller(0)
     , _largestDefender(0)
@@ -20,8 +22,10 @@ ChillScenario::ChillScenario()
 ChillScenario::ChillScenario(const GameState & state, const PlayerID chillPlayer)
     : _numDefenders(0)
     , _totalDefense(0)
+    , _smallestDefender(0)
     , _numChillers(0)
     , _totalChill(0)
+    , _smallestChiller(0)
     , _modifications(0)
     , _largestChiller(0)
     , _largestDefender(0)
@@ -97,8 +101,8 @@ void ChillScenario::addChiller(const HealthType chill, const size_t n)
 
     _chillHistogram[chill] += n;  
     _totalChill += (HealthType)n*chill;
+    _smallestChiller = (_numChillers == 0) ? chill : std::min(chill, _smallestChiller);
     _numChillers += n;
-    _smallestChiller = std::min(chill, _smallestChiller);
     _largestChiller = std::max(chill, _largestChiller);
     _modifications++;
 }
@@ -159,7 +163,7 @@ void ChillScenario::removeChiller(const HealthType chill, const size_t n)
     }
 
     // if this is the sole largest defender we need to update
-    if (chill == _largestChiller && _defenseHistogram[chill] == 0)
+    if (chill == _largestChiller && _chillHistogram[chill] == 0)
     {
         if (_numChillers == 0)
         {
@@ -206,8 +210,8 @@ void ChillScenario::addDefender(const HealthType health, const size_t n)
 
     _defenseHistogram[health] += n;
     _totalDefense += (HealthType)n*health;
+    _smallestDefender = (_numDefenders == 0) ? health : std::min(health, _smallestDefender);
     _numDefenders += n;
-    _smallestDefender = std::min(health, _smallestDefender);
     _largestDefender = std::max(health, _largestDefender);
     _modifications++;
 }
