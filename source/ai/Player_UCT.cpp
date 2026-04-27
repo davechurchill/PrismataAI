@@ -3,8 +3,8 @@
 using namespace Prismata;
 
 Player_UCT::Player_UCT (const PlayerID playerID, const UCTSearchParameters & params)
-    : _search(params)
-    , _params(params)
+    : _params(params.clone())
+    , _search(_params)
 
 {
     m_playerID = playerID;

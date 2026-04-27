@@ -11,8 +11,8 @@ namespace Prismata
 
 class Player_AlphaBeta : public Player
 {
-    AlphaBetaSearch                     _search;
     AlphaBetaSearchParameters           _params;
+    AlphaBetaSearch                     _search;
 public:
     Player_AlphaBeta(const PlayerID playerID, const AlphaBetaSearchParameters & params);
     void getMove(const GameState & state, Move & move);
@@ -20,6 +20,6 @@ public:
     AlphaBetaSearchResults & getResults();
     std::string getDescription() { return m_description + "\n" + _search.getDescription(); };
 
-    PlayerPtr clone() { return PlayerPtr(new Player_AlphaBeta(*this)); }
+    PlayerPtr clone() { PlayerPtr ret(new Player_AlphaBeta(m_playerID, _params)); ret->setDescription(m_description); return ret; }
 };
 }

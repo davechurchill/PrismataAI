@@ -42,6 +42,7 @@ target_include_directories(Prismata_Engine PUBLIC
 
 file(GLOB PRISMATA_AI_SOURCES CONFIGURE_DEPENDS
     "${CMAKE_CURRENT_SOURCE_DIR}/source/ai/*.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/source/ai/experimental/*.cpp"
 )
 
 add_library(Prismata_AI STATIC ${PRISMATA_AI_SOURCES})

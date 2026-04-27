@@ -5,11 +5,20 @@
 #include "TournamentGame.h"
 #include "Timer.h"
 
+#include <mutex>
+
 namespace Prismata
 {
  
 class Tournament
 {
+    struct GameJob
+    {
+        GameState initialState;
+        size_t    playerOneIndex;
+        size_t    playerTwoIndex;
+    };
+
     std::string                         _name;
     std::string                         _type;
     std::string                         _date;
@@ -17,7 +26,11 @@ class Tournament
     size_t                              _totalGamesPlayed;
     size_t                              _updateIntervalSec;
     size_t                              _randomCards;
+    size_t                              _threads;
     Timer                               _timeElapsed;
+    Timer                               _updateTimer;
+    std::mutex                          _resultsMutex;
+    std::mutex                          _playerCreationMutex;
 
     std::vector<std::string>            _players;
     std::vector<std::string>            _stateDescriptions;
@@ -38,6 +51,9 @@ class Tournament
     void parseResult(std::string & result);
     void parseTournamentGameResult(const TournamentGame & game);
     void playGame(TournamentGame & game);
+    void playGameJob(const GameJob & job);
+    void runSerial();
+    void runParallel();
     void writeHTMLResults();
     void printResults() const;
     std::string getTimeStringFromMS(const size_t ms);

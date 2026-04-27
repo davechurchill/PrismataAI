@@ -3,7 +3,7 @@
 
 using namespace Prismata;
 
-TournamentGame::TournamentGame(GameState & initialState, const std::string & p1name, PlayerPtr p1, const std::string & p2name, const PlayerPtr p2)
+TournamentGame::TournamentGame(const GameState & initialState, const std::string & p1name, PlayerPtr p1, const std::string & p2name, const PlayerPtr p2)
     : _game(initialState, p1, p2)
 {
     _playerNames[0] = p1name;

@@ -728,6 +728,281 @@ PlayerPtr AIParameters::parsePlayer(const PlayerID player, const std::string & p
         
         playerPtr = PlayerPtr(new Player_UCT(player, params));
     }
+    else if (playerClassName == "Player_PlanEvolution")
+    {
+        const rapidjson::Value & args = playerValue;
+
+        PRISMATA_ASSERT(args.HasMember("TimeLimit"), "No PlanEvolution TimeLimit Found");
+        PRISMATA_ASSERT(args.HasMember("Eval"), "No PlanEvolution EvalType Found");
+
+        PlanEvolutionParameters params;
+        params.setMaxPlayer(player);
+        params.setTimeLimit(args["TimeLimit"].GetInt());
+
+        if (args.HasMember("Population") && args["Population"].IsInt())
+        {
+            params.setPopulationSize(args["Population"].GetInt());
+        }
+
+        if (args.HasMember("Elite") && args["Elite"].IsInt())
+        {
+            params.setEliteSize(args["Elite"].GetInt());
+        }
+
+        if (args.HasMember("MaxGenerations") && args["MaxGenerations"].IsInt())
+        {
+            params.setMaxGenerations(args["MaxGenerations"].GetInt());
+        }
+
+        if (args.HasMember("MaxActions") && args["MaxActions"].IsInt())
+        {
+            params.setMaxActions(args["MaxActions"].GetInt());
+        }
+
+        if (args.HasMember("MutationRate") && args["MutationRate"].IsNumber())
+        {
+            params.setMutationRate(args["MutationRate"].GetDouble());
+        }
+
+        if (args.HasMember("MutationStrength") && args["MutationStrength"].IsNumber())
+        {
+            params.setMutationStrength(args["MutationStrength"].GetDouble());
+        }
+
+        std::string evalMethodString = args["Eval"].GetString();
+        if (evalMethodString == "Playout")
+        {
+            params.setEvalMethod(EvaluationMethods::Playout);
+
+            PRISMATA_ASSERT(args.HasMember("PlayoutPlayer"), "No playout player found");
+
+            params.setPlayoutPlayer(Players::Player_One, parsePlayer(Players::Player_One, args["PlayoutPlayer"].GetString(), root));
+            params.setPlayoutPlayer(Players::Player_Two, parsePlayer(Players::Player_Two, args["PlayoutPlayer"].GetString(), root));
+        }
+        else if (evalMethodString == "WillScore")
+        {
+            params.setEvalMethod(EvaluationMethods::WillScore);
+        }
+        else if (evalMethodString == "WillScoreInflation")
+        {
+            params.setEvalMethod(EvaluationMethods::WillScoreInflation);
+        }
+        else
+        {
+            PRISMATA_ASSERT(false, "Unknown PlanEvolution Evaluation Method Name: %s", evalMethodString.c_str());
+        }
+
+        playerPtr = PlayerPtr(new Player_PlanEvolution(player, params));
+    }
+    else if (playerClassName == "Player_LazyUCT" || playerClassName == "Player_ProgressiveWideningUCT")
+    {
+        const rapidjson::Value & args = playerValue;
+
+        PRISMATA_ASSERT(args.HasMember("TimeLimit"), "No LazyUCT TimeLimit Found");
+        PRISMATA_ASSERT(args.HasMember("MaxChildren"), "No LazyUCT MaxChildren Found");
+        PRISMATA_ASSERT(args.HasMember("MoveIterator"), "No LazyUCT MoveIterator Found");
+        PRISMATA_ASSERT(args.HasMember("Eval"), "No LazyUCT EvalType Found");
+
+        LazyUCTSearchParameters params;
+        params.setMaxPlayer(player);
+        params.setTimeLimit(args["TimeLimit"].GetInt());
+        params.setMaxChildren(args["MaxChildren"].GetInt());
+        params.setMoveIterator(Players::Player_One, getMoveIterator(Players::Player_One, args["MoveIterator"].GetString()));
+        params.setMoveIterator(Players::Player_Two, getMoveIterator(Players::Player_Two, args["MoveIterator"].GetString()));
+        params.setProgressiveWidening(playerClassName == "Player_ProgressiveWideningUCT");
+
+        if (args.HasMember("RootMoveIterator"))
+        {
+            params.setRootMoveIterator(Players::Player_One, getMoveIterator(Players::Player_One, args["RootMoveIterator"].GetString()));
+            params.setRootMoveIterator(Players::Player_Two, getMoveIterator(Players::Player_Two, args["RootMoveIterator"].GetString()));
+        }
+        else
+        {
+            params.setRootMoveIterator(Players::Player_One, getMoveIterator(Players::Player_One, args["MoveIterator"].GetString()));
+            params.setRootMoveIterator(Players::Player_Two, getMoveIterator(Players::Player_Two, args["MoveIterator"].GetString()));
+        }
+
+        if (args.HasMember("MaxTraversals") && args["MaxTraversals"].IsInt())
+        {
+            params.setMaxTraversals(args["MaxTraversals"].GetInt());
+        }
+
+        if (args.HasMember("MaxDepth") && args["MaxDepth"].IsInt())
+        {
+            params.setMaxDepth(args["MaxDepth"].GetInt());
+        }
+
+        if (args.HasMember("UCTConstant") && args["UCTConstant"].IsNumber())
+        {
+            params.setCValue(args["UCTConstant"].GetDouble());
+        }
+
+        if (args.HasMember("WidenC") && args["WidenC"].IsNumber())
+        {
+            params.setWidenC(args["WidenC"].GetDouble());
+        }
+
+        if (args.HasMember("WidenAlpha") && args["WidenAlpha"].IsNumber())
+        {
+            params.setWidenAlpha(args["WidenAlpha"].GetDouble());
+        }
+
+        if (args.HasMember("RootMoveSelection"))
+        {
+            PRISMATA_ASSERT(args["RootMoveSelection"].IsString(), "LazyUCT RootMoveSelection must be a string");
+
+            std::string rootMoveSelection = args["RootMoveSelection"].GetString();
+            if (rootMoveSelection == "HighestValue")
+            {
+                params.setRootMoveSelectionMethod(LazyUCTMoveSelect::HighestValue);
+            }
+            else if (rootMoveSelection == "MostVisited")
+            {
+                params.setRootMoveSelectionMethod(LazyUCTMoveSelect::MostVisited);
+            }
+            else
+            {
+                PRISMATA_ASSERT(false, "Unknown LazyUCT RootMoveSelection: %s", rootMoveSelection.c_str());
+            }
+        }
+
+        std::string evalMethodString = args["Eval"].GetString();
+        if (evalMethodString == "Playout")
+        {
+            params.setEvalMethod(EvaluationMethods::Playout);
+
+            PRISMATA_ASSERT(args.HasMember("PlayoutPlayer"), "No playout player found");
+
+            params.setPlayoutPlayer(Players::Player_One, parsePlayer(Players::Player_One, args["PlayoutPlayer"].GetString(), root));
+            params.setPlayoutPlayer(Players::Player_Two, parsePlayer(Players::Player_Two, args["PlayoutPlayer"].GetString(), root));
+        }
+        else if (evalMethodString == "WillScore")
+        {
+            params.setEvalMethod(EvaluationMethods::WillScore);
+        }
+        else if (evalMethodString == "WillScoreInflation")
+        {
+            params.setEvalMethod(EvaluationMethods::WillScoreInflation);
+        }
+        else
+        {
+            PRISMATA_ASSERT(false, "Unknown LazyUCT Evaluation Method Name: %s", evalMethodString.c_str());
+        }
+
+        if (playerClassName == "Player_LazyUCT")
+        {
+            playerPtr = PlayerPtr(new Player_LazyUCT(player, params));
+        }
+        else
+        {
+            playerPtr = PlayerPtr(new Player_ProgressiveWideningUCT(player, params));
+        }
+    }
+    else if (playerClassName == "Player_RootRacing")
+    {
+        const rapidjson::Value & args = playerValue;
+
+        PRISMATA_ASSERT(args.HasMember("TimeLimit"), "No RootRacing TimeLimit Found");
+        PRISMATA_ASSERT(args.HasMember("MaxCandidates"), "No RootRacing MaxCandidates Found");
+        PRISMATA_ASSERT(args.HasMember("Eval"), "No RootRacing EvalType Found");
+        PRISMATA_ASSERT(args.HasMember("RootMoveIterators") || args.HasMember("RootMoveIterator") || args.HasMember("MoveIterator"), "No RootRacing root iterator Found");
+
+        RootRacingParameters params;
+        params.setMaxPlayer(player);
+        params.setTimeLimit(args["TimeLimit"].GetInt());
+        params.setMaxCandidates(args["MaxCandidates"].GetInt());
+
+        if (args.HasMember("MaxRacePasses") && args["MaxRacePasses"].IsInt())
+        {
+            params.setMaxRacePasses(args["MaxRacePasses"].GetInt());
+        }
+
+        if (args.HasMember("KeepPerRound"))
+        {
+            PRISMATA_ASSERT(args["KeepPerRound"].IsNumber(), "RootRacing KeepPerRound must be a number");
+            params.setKeepFraction(args["KeepPerRound"].GetDouble());
+        }
+
+        if (args.HasMember("RoundRobinRootIterators"))
+        {
+            PRISMATA_ASSERT(args["RoundRobinRootIterators"].IsBool(), "RootRacing RoundRobinRootIterators must be a bool");
+            params.setRoundRobinRootIterators(args["RoundRobinRootIterators"].GetBool());
+        }
+
+        if (args.HasMember("RootMoveIterators"))
+        {
+            PRISMATA_ASSERT(args["RootMoveIterators"].IsArray(), "RootMoveIterators must be an array");
+
+            for (size_t i(0); i < args["RootMoveIterators"].Size(); ++i)
+            {
+                PRISMATA_ASSERT(args["RootMoveIterators"][i].IsString(), "RootMoveIterators entries must be strings");
+                params.addRootMoveIterator(getMoveIterator(player, args["RootMoveIterators"][i].GetString()));
+            }
+        }
+        else if (args.HasMember("RootMoveIterator"))
+        {
+            PRISMATA_ASSERT(args["RootMoveIterator"].IsString(), "RootMoveIterator must be a string");
+            params.addRootMoveIterator(getMoveIterator(player, args["RootMoveIterator"].GetString()));
+        }
+        else
+        {
+            PRISMATA_ASSERT(args["MoveIterator"].IsString(), "MoveIterator must be a string");
+            params.addRootMoveIterator(getMoveIterator(player, args["MoveIterator"].GetString()));
+        }
+
+        std::string evalMethodString = args["Eval"].GetString();
+        if (evalMethodString == "Playout")
+        {
+            params.setEvalMethod(EvaluationMethods::Playout);
+
+            PRISMATA_ASSERT(args.HasMember("PlayoutPlayer"), "No playout player found");
+
+            params.setPlayoutPlayer(Players::Player_One, parsePlayer(Players::Player_One, args["PlayoutPlayer"].GetString(), root));
+            params.setPlayoutPlayer(Players::Player_Two, parsePlayer(Players::Player_Two, args["PlayoutPlayer"].GetString(), root));
+        }
+        else if (evalMethodString == "WillScore")
+        {
+            params.setEvalMethod(EvaluationMethods::WillScore);
+        }
+        else if (evalMethodString == "WillScoreInflation")
+        {
+            params.setEvalMethod(EvaluationMethods::WillScoreInflation);
+        }
+        else
+        {
+            PRISMATA_ASSERT(false, "Unknown RootRacing Evaluation Method Name: %s", evalMethodString.c_str());
+        }
+
+        if (args.HasMember("SeedEval"))
+        {
+            PRISMATA_ASSERT(args["SeedEval"].IsString(), "RootRacing SeedEval must be a string");
+
+            std::string seedEvalMethodString = args["SeedEval"].GetString();
+            if (seedEvalMethodString == "Playout")
+            {
+                params.setSeedEvalMethod(EvaluationMethods::Playout);
+
+                PRISMATA_ASSERT(args.HasMember("PlayoutPlayer"), "No playout player found");
+
+                params.setPlayoutPlayer(Players::Player_One, parsePlayer(Players::Player_One, args["PlayoutPlayer"].GetString(), root));
+                params.setPlayoutPlayer(Players::Player_Two, parsePlayer(Players::Player_Two, args["PlayoutPlayer"].GetString(), root));
+            }
+            else if (seedEvalMethodString == "WillScore")
+            {
+                params.setSeedEvalMethod(EvaluationMethods::WillScore);
+            }
+            else if (seedEvalMethodString == "WillScoreInflation")
+            {
+                params.setSeedEvalMethod(EvaluationMethods::WillScoreInflation);
+            }
+            else
+            {
+                PRISMATA_ASSERT(false, "Unknown RootRacing SeedEval Method Name: %s", seedEvalMethodString.c_str());
+            }
+        }
+
+        playerPtr = PlayerPtr(new Player_RootRacing(player, params));
+    }
     else if (playerClassName == "Player_StackAlphaBeta" || playerClassName == "Player_AlphaBeta")  
     { 
         const rapidjson::Value & args = playerValue;

@@ -3,8 +3,8 @@
 using namespace Prismata;
 
 Player_StackAlphaBeta::Player_StackAlphaBeta (const PlayerID playerID, const AlphaBetaSearchParameters & params)
-    : _search(params)
-    , _params(params)
+    : _params(params.clone())
+    , _search(_params)
 {
     m_playerID = playerID;
 

@@ -39,6 +39,20 @@ public:
 
     }
 
+    UCTSearchParameters clone() const
+    {
+        UCTSearchParameters params(*this);
+
+        for (PlayerID p(0); p < 2; ++p)
+        {
+            params._playoutPlayers[p] = _playoutPlayers[p].get() ? _playoutPlayers[p]->clone() : PlayerPtr();
+            params._moveIterators[p] = _moveIterators[p].get() ? _moveIterators[p]->clone() : MoveIteratorPtr();
+            params._rootMoveIterators[p] = _rootMoveIterators[p].get() ? _rootMoveIterators[p]->clone() : MoveIteratorPtr();
+        }
+
+        return params;
+    }
+
     const PlayerID maxPlayer()                                    const   { return _maxPlayer; }
     const int & evalMethod()                                   const   { return _evalMethod; }
     const size_t & timeLimit()                                      const   { return _timeLimit; }

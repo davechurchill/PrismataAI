@@ -7,12 +7,18 @@
 #include <iomanip>
 #include <ctime>
 #include <sstream>
+#include <algorithm>
+#include <condition_variable>
+#include <deque>
+#include <thread>
+
 using namespace Prismata;
 
 Tournament::Tournament(const rapidjson::Value & tournamentValue)
     : _totalGamesPlayed(0)
     , _updateIntervalSec(0)
     , _randomCards(8)
+    , _threads(1)
 {
     PRISMATA_ASSERT(tournamentValue.HasMember("name"), "Tournament has no name");
     PRISMATA_ASSERT(tournamentValue.HasMember("rounds"), "Tournament has no rounds number");
@@ -22,6 +28,12 @@ Tournament::Tournament(const rapidjson::Value & tournamentValue)
     JSONTools::ReadInt("rounds", tournamentValue, _rounds);
     JSONTools::ReadInt("RandomCards", tournamentValue, _randomCards);
     JSONTools::ReadInt("UpdateIntervalSec", tournamentValue, _updateIntervalSec);
+
+    int threads = 1;
+    JSONTools::ReadInt("ParallelGames", tournamentValue, threads);
+    JSONTools::ReadInt("Threads", tournamentValue, threads);
+    PRISMATA_ASSERT(threads >= 1, "Tournament Threads / ParallelGames must be at least 1");
+    _threads = (size_t)threads;
     
     PRISMATA_ASSERT(tournamentValue["players"].Size() >= 2, "Tournament has less than 2 players");
 
@@ -53,9 +65,105 @@ void Tournament::run()
     _draws = std::vector< std::vector<int> >(_players.size(), std::vector<int>(_players.size(), 0));
     _turns = std::vector< std::vector<int> >(_players.size(), std::vector<int>(_players.size(), 0));
 
-    Timer t;
-    t.start();
     _timeElapsed.start();
+    _updateTimer.start();
+
+    if (_threads == 1)
+    {
+        runSerial();
+    }
+    else
+    {
+        runParallel();
+    }
+
+    {
+        std::lock_guard<std::mutex> lock(_resultsMutex);
+        printResults();
+        writeHTMLResults();
+    }
+}
+
+void Tournament::runSerial()
+{
+    for (size_t r(0); r < _rounds; ++r)
+    {
+        GameState state;
+        state.setStartingState(Players::Player_One, _randomCards);
+
+        for (size_t p1(0); p1 < _players.size(); ++p1)
+        {
+            for (size_t p2(0); p2 < _players.size(); ++p2)
+            {
+                if (_playerGroups[p1] == _playerGroups[p2])
+                {
+                    continue;
+                }
+
+                GameJob g1;
+                g1.initialState = state;
+                g1.playerOneIndex = p1;
+                g1.playerTwoIndex = p2;
+
+                GameJob g2;
+                g2.initialState = state;
+                g2.playerOneIndex = p2;
+                g2.playerTwoIndex = p1;
+
+                playGameJob(g1);
+                playGameJob(g2);
+            }
+        }
+    }
+}
+
+void Tournament::runParallel()
+{
+    std::deque<GameJob> jobs;
+    std::mutex jobsMutex;
+    std::condition_variable jobsChanged;
+    std::condition_variable queueHasSpace;
+    bool allJobsQueued = false;
+
+    const size_t maxQueuedGames = std::max<size_t>(_threads * 4, _threads);
+
+    auto queueGame = [&](const GameJob & job)
+    {
+        std::unique_lock<std::mutex> lock(jobsMutex);
+        queueHasSpace.wait(lock, [&]() { return jobs.size() < maxQueuedGames; });
+        jobs.push_back(job);
+        jobsChanged.notify_one();
+    };
+
+    auto worker = [&]()
+    {
+        while (true)
+        {
+            GameJob job;
+
+            {
+                std::unique_lock<std::mutex> lock(jobsMutex);
+                jobsChanged.wait(lock, [&]() { return allJobsQueued || !jobs.empty(); });
+
+                if (jobs.empty())
+                {
+                    return;
+                }
+
+                job = jobs.front();
+                jobs.pop_front();
+                queueHasSpace.notify_one();
+            }
+
+            playGameJob(job);
+        }
+    };
+
+    std::vector<std::thread> workers;
+    for (size_t t(0); t < _threads; ++t)
+    {
+        workers.push_back(std::thread(worker));
+    }
 
     for (size_t r(0); r < _rounds; ++r)
     {
@@ -71,35 +179,67 @@ void Tournament::run()
                     continue;
                 }
 
-                PlayerPtr w1 = AIParameters::Instance().getPlayer(Players::Player_One, _players[p1]);
-                PlayerPtr b1 = AIParameters::Instance().getPlayer(Players::Player_Two, _players[p2]);
-                PlayerPtr w2 = AIParameters::Instance().getPlayer(Players::Player_One, _players[p2]);
-                PlayerPtr b2 = AIParameters::Instance().getPlayer(Players::Player_Two, _players[p1]);
+                GameJob g1;
+                g1.initialState = state;
+                g1.playerOneIndex = p1;
+                g1.playerTwoIndex = p2;
 
-                TournamentGame g1(state, _players[p1], w1, _players[p2], b1);
-                TournamentGame g2(state, _players[p2], w2, _players[p1], b2);
+                GameJob g2;
+                g2.initialState = state;
+                g2.playerOneIndex = p2;
+                g2.playerTwoIndex = p1;
 
-                playGame(g1);
-                playGame(g2);
-
-                if (t.getElapsedTimeInSec() > _updateIntervalSec)
-                {
-                    printResults();
-                    writeHTMLResults();
-                    printf("\n\n");
-                    t.start();
-                }
+                queueGame(g1);
+                queueGame(g2);
             }
         }
+    }
+
+    {
+        std::lock_guard<std::mutex> lock(jobsMutex);
+        allJobsQueued = true;
+    }
+
+    jobsChanged.notify_all();
+
+    for (size_t t(0); t < workers.size(); ++t)
+    {
+        workers[t].join();
     }
 }
 
 void Tournament::playGame(TournamentGame & game)
 {
     game.playGame();
+
+    std::lock_guard<std::mutex> lock(_resultsMutex);
+
     parseTournamentGameResult(game);
 
     _totalGamesPlayed++;
+
+    if (_updateTimer.getElapsedTimeInSec() > _updateIntervalSec)
+    {
+        printResults();
+        writeHTMLResults();
+        printf("\n\n");
+        _updateTimer.start();
+    }
+}
+
+void Tournament::playGameJob(const GameJob & job)
+{
+    PlayerPtr playerOne;
+    PlayerPtr playerTwo;
+
+    {
+        std::lock_guard<std::mutex> lock(_playerCreationMutex);
+        playerOne = AIParameters::Instance().getPlayer(Players::Player_One, _players[job.playerOneIndex]);
+        playerTwo = AIParameters::Instance().getPlayer(Players::Player_Two, _players[job.playerTwoIndex]);
+    }
+
+    TournamentGame game(job.initialState, _players[job.playerOneIndex], playerOne, _players[job.playerTwoIndex], playerTwo);
+    playGame(game);
 }
 
 void Tournament::parseTournamentGameResult(const TournamentGame & game)
@@ -159,6 +299,7 @@ void Tournament::writeHTMLResults()
     
     std::stringstream ss;
     double timeElapsed = _timeElapsed.getElapsedTimeInMilliSec();
+    double gamesPerSec = timeElapsed > 0 ? (1000.0 * _totalGamesPlayed / timeElapsed) : 0;
 
     ss << "<table cellpadding=2 rules=all style=\"font: 12px/1.5em Verdana; border: 1px solid #cccccc;\">\n";
     ss << "<tr><td width=150><b>Tournament Name</b></td><td width=200 align=right>" << _name << "</td></tr>\n";
@@ -166,8 +307,9 @@ void Tournament::writeHTMLResults()
     ss << "<tr><td><b>AI Compiled</b></td><td align=right>" << __DATE__ << " " __TIME__ << "</td></tr>";
     ss << "<tr><td><b>Assert Level</b></td><td align=right>" << assertLevel << "</td></tr>";
     ss << "<tr><td><b>Tournament Rounds</b></td><td align=right>" << _rounds << "</td></tr>\n";
+    ss << "<tr><td><b>Threads</b></td><td align=right>" << _threads << "</td></tr>\n";
     ss << "<tr><td><b>Time Elapsed</b></td><td align=right>" << getTimeStringFromMS(timeElapsed) << "</td></tr>\n";
-    ss << "<tr><td><b>Games Played</b></td><td align=right>" << _totalGamesPlayed << " (" << (1000.0 * _totalGamesPlayed / timeElapsed) << "/s)</td></tr>\n";
+    ss << "<tr><td><b>Games Played</b></td><td align=right>" << _totalGamesPlayed << " (" << gamesPerSec << "/s)</td></tr>\n";
     ss << "</table>\n<br><br>\n";
 
     FILE * f = fopen(filename.c_str(), "w");
@@ -184,15 +326,19 @@ void Tournament::writeHTMLResults()
     for (size_t p(0); p < _players.size(); ++p)
     {
         size_t col = 0;
+        double score = _totalGames[p] == 0 ? 0 : (_totalWins[p] + 0.5*_totalDraws[p])/_totalGames[p];
+        double turnsPerGame = _totalGames[p] == 0 ? 0 : (double)_totalTurns[p] / _totalGames[p];
+        double msPerTurn = _totalTurns[p] == 0 ? 0 : (double)_totalTimeMS[p] / _totalTurns[p];
+
         stats.setData(p, col++, _players[p]);
-        stats.setData(p, col++, (_totalWins[p] + 0.5*_totalDraws[p])/_totalGames[p]);
+        stats.setData(p, col++, score);
         stats.setData(p, col++, _totalGames[p]);
         stats.setData(p, col++, _totalWins[p]);
         stats.setData(p, col++, _totalGames[p] - _totalWins[p] - _totalDraws[p]);
         stats.setData(p, col++, _totalDraws[p]);
         stats.setData(p, col++, _totalTurns[p]);
-        stats.setData(p, col++, (double)_totalTurns[p] / _totalGames[p]);
-        stats.setData(p, col++, (double)_totalTimeMS[p] / _totalTurns[p]);
+        stats.setData(p, col++, turnsPerGame);
+        stats.setData(p, col++, msPerTurn);
         stats.setData(p, col++, _maxTimeMS[p]);
     }
 
