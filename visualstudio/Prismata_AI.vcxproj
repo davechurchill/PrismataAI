@@ -34,8 +34,6 @@
     <ClCompile Include="..\source\ai\Eval.cpp" />
     <ClCompile Include="..\source\ai\Heuristics.cpp" />
     <ClCompile Include="..\source\ai\IsomorphicCardSet.cpp" />
-    <ClCompile Include="..\source\ai\experimental\LazyUCTNode.cpp" />
-    <ClCompile Include="..\source\ai\experimental\LazyUCTSearch.cpp" />
     <ClCompile Include="..\source\ai\MoveIterator.cpp" />
     <ClCompile Include="..\source\ai\MoveIterator_All.cpp" />
     <ClCompile Include="..\source\ai\MoveIterator_AllAbility.cpp" />
@@ -82,13 +80,9 @@
     <ClCompile Include="..\source\ai\Player_AlphaBeta.cpp" />
     <ClCompile Include="..\source\ai\Player_Default.cpp" />
     <ClCompile Include="..\source\ai\Player_GUI.cpp" />
-    <ClCompile Include="..\source\ai\experimental\Player_LazyUCT.cpp" />
-    <ClCompile Include="..\source\ai\experimental\Player_PlanEvolution.cpp" />
     <ClCompile Include="..\source\ai\Player_PPSequence.cpp" />
-    <ClCompile Include="..\source\ai\experimental\Player_ProgressiveWideningUCT.cpp" />
     <ClCompile Include="..\source\ai\Player_Random.cpp" />
     <ClCompile Include="..\source\ai\Player_RandomFromIterator.cpp" />
-    <ClCompile Include="..\source\ai\experimental\Player_RootRacing.cpp" />
     <ClCompile Include="..\source\ai\Player_StackAlphaBeta.cpp" />
     <ClCompile Include="..\source\ai\Player_UCT.cpp" />
     <ClCompile Include="..\source\ai\PuzzleSolver.cpp" />
@@ -124,10 +118,6 @@
     <ClInclude Include="..\source\ai\Eval.h" />
     <ClInclude Include="..\source\ai\Heuristics.h" />
     <ClInclude Include="..\source\ai\IsomorphicCardSet.h" />
-    <ClInclude Include="..\source\ai\experimental\LazyUCTNode.h" />
-    <ClInclude Include="..\source\ai\experimental\LazyUCTSearch.h" />
-    <ClInclude Include="..\source\ai\experimental\LazyUCTSearchParameters.hpp" />
-    <ClInclude Include="..\source\ai\experimental\LazyUCTSearchResults.hpp" />
     <ClInclude Include="..\source\ai\MoveIterator.h" />
     <ClInclude Include="..\source\ai\MoveIterator_All.h" />
     <ClInclude Include="..\source\ai\MoveIterator_AllAbility.h" />
@@ -174,13 +164,9 @@
     <ClInclude Include="..\source\ai\Player_AlphaBeta.h" />
     <ClInclude Include="..\source\ai\Player_Default.h" />
     <ClInclude Include="..\source\ai\Player_GUI.h" />
-    <ClInclude Include="..\source\ai\experimental\Player_LazyUCT.h" />
-    <ClInclude Include="..\source\ai\experimental\Player_PlanEvolution.h" />
     <ClInclude Include="..\source\ai\Player_PPSequence.h" />
-    <ClInclude Include="..\source\ai\experimental\Player_ProgressiveWideningUCT.h" />
     <ClInclude Include="..\source\ai\Player_Random.h" />
     <ClInclude Include="..\source\ai\Player_RandomFromIterator.h" />
-    <ClInclude Include="..\source\ai\experimental\Player_RootRacing.h" />
     <ClInclude Include="..\source\ai\Player_StackAlphaBeta.h" />
     <ClInclude Include="..\source\ai\Player_UCT.h" />
     <ClInclude Include="..\source\ai\PrismataAI.h" />
@@ -205,19 +191,18 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="ExtensionSettings">
-  </ImportGroup>
+  <ImportGroup Label="ExtensionSettings"></ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -238,8 +223,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader></PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -256,8 +240,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader></PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -273,6 +256,5 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets"></ImportGroup>
 </Project>

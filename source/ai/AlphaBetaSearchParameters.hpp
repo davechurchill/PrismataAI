@@ -37,20 +37,6 @@ public:
 
     }
 
-    AlphaBetaSearchParameters clone() const
-    {
-        AlphaBetaSearchParameters params(*this);
-
-        for (PlayerID p(0); p < 2; ++p)
-        {
-            params._playoutPlayers[p] = _playoutPlayers[p].get() ? _playoutPlayers[p]->clone() : PlayerPtr();
-            params._moveIterators[p] = _moveIterators[p].get() ? _moveIterators[p]->clone() : MoveIteratorPtr();
-            params._rootMoveIterators[p] = _rootMoveIterators[p].get() ? _rootMoveIterators[p]->clone() : MoveIteratorPtr();
-        }
-
-        return params;
-    }
-
     int searchMethod() const { return _searchMethod; }
     PlayerID maxPlayer() const { return _maxPlayer; }
     int maxDepth() const { return _maxDepth; }

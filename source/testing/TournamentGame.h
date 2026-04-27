@@ -15,7 +15,7 @@ class TournamentGame
         
 public:
 
-    TournamentGame(const GameState & initialState, const std::string & p1name, PlayerPtr p1, const std::string & p2name, const PlayerPtr p2);
+    TournamentGame(GameState & initialState, const std::string & p1name, PlayerPtr p1, const std::string & p2name, const PlayerPtr p2);
 
     void playGame();
 

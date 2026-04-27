@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="move iterators">
@@ -192,25 +192,13 @@
     <ClCompile Include="..\source\ai\Player_GUI.cpp">
       <Filter>players</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\ai\experimental\Player_LazyUCT.cpp">
-      <Filter>players</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\ai\experimental\Player_PlanEvolution.cpp">
-      <Filter>players</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\ai\Player_PPSequence.cpp">
-      <Filter>players</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\ai\experimental\Player_ProgressiveWideningUCT.cpp">
       <Filter>players</Filter>
     </ClCompile>
     <ClCompile Include="..\source\ai\Player_Random.cpp">
       <Filter>players</Filter>
     </ClCompile>
     <ClCompile Include="..\source\ai\Player_RandomFromIterator.cpp">
-      <Filter>players</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\ai\experimental\Player_RootRacing.cpp">
       <Filter>players</Filter>
     </ClCompile>
     <ClCompile Include="..\source\ai\Player_StackAlphaBeta.cpp">
@@ -244,12 +232,6 @@
       <Filter>search algorithms\uct</Filter>
     </ClCompile>
     <ClCompile Include="..\source\ai\UCTSearch.cpp">
-      <Filter>search algorithms\uct</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\ai\experimental\LazyUCTNode.cpp">
-      <Filter>search algorithms\uct</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\ai\experimental\LazyUCTSearch.cpp">
       <Filter>search algorithms\uct</Filter>
     </ClCompile>
     <ClCompile Include="..\source\ai\ChillIterator.cpp">
@@ -456,25 +438,13 @@
     <ClInclude Include="..\source\ai\Player_GUI.h">
       <Filter>players</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\ai\experimental\Player_LazyUCT.h">
-      <Filter>players</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\ai\experimental\Player_PlanEvolution.h">
-      <Filter>players</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\ai\Player_PPSequence.h">
-      <Filter>players</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\ai\experimental\Player_ProgressiveWideningUCT.h">
       <Filter>players</Filter>
     </ClInclude>
     <ClInclude Include="..\source\ai\Player_Random.h">
       <Filter>players</Filter>
     </ClInclude>
     <ClInclude Include="..\source\ai\Player_RandomFromIterator.h">
-      <Filter>players</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\ai\experimental\Player_RootRacing.h">
       <Filter>players</Filter>
     </ClInclude>
     <ClInclude Include="..\source\ai\Player_StackAlphaBeta.h">
@@ -517,18 +487,6 @@
       <Filter>search algorithms\uct</Filter>
     </ClInclude>
     <ClInclude Include="..\source\ai\UCTSearchParameters.hpp">
-      <Filter>search algorithms\uct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\ai\experimental\LazyUCTNode.h">
-      <Filter>search algorithms\uct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\ai\experimental\LazyUCTSearch.h">
-      <Filter>search algorithms\uct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\ai\experimental\LazyUCTSearchParameters.hpp">
-      <Filter>search algorithms\uct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\ai\experimental\LazyUCTSearchResults.hpp">
       <Filter>search algorithms\uct</Filter>
     </ClInclude>
     <ClInclude Include="..\source\ai\ChillScenario.h">

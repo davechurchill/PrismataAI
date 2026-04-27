@@ -10,8 +10,8 @@ namespace Prismata
 
 class Player_UCT : public Player
 {
-    UCTSearchParameters     _params;
     UCTSearch               _search;
+    UCTSearchParameters     _params;
 
 public:
     Player_UCT(const PlayerID playerID, const UCTSearchParameters & params);
@@ -20,6 +20,6 @@ public:
     UCTSearchResults & getResults();
 
     virtual std::string getDescription() { return m_description + "\n" + _search.getDescription(); };
-    PlayerPtr clone() { PlayerPtr ret(new Player_UCT(m_playerID, _params)); ret->setDescription(m_description); return ret; }
+    PlayerPtr clone() { return PlayerPtr(new Player_UCT(*this)); }
 };
 }
