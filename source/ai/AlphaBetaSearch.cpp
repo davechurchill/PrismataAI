@@ -90,8 +90,10 @@ AlphaBetaValue AlphaBetaSearch::alphaBeta(const GameState & state, size_t depth,
     Move movePerformed;
 
     GameState & child = _stateStack[depth];
-    while (iter->generateNextChild(child, movePerformed))
+    size_t childNum = 0;
+    while ((_params.maxChildren() == 0 || childNum < _params.maxChildren()) && iter->generateNextChild(child, movePerformed))
     {
+        childNum++;
         AlphaBetaValue value = alphaBeta(child, depth+1, alpha, beta);
 
         // set alpha or beta based on maxplayer

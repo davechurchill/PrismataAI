@@ -133,7 +133,7 @@ AB_BEGIN:
     
     CHILD_NUM = 0;
     MOVE_ITERATOR->setState(STATE);
-    while (MOVE_ITERATOR->generateNextChild(CHILD_STATE, MOVE))
+    while ((_params.maxChildren() == 0 || CHILD_NUM < _params.maxChildren()) && MOVE_ITERATOR->generateNextChild(CHILD_STATE, MOVE))
     {        
         _results.rootNumChildren = (_depth == 0 ? CHILD_NUM + 1 : _results.rootNumChildren);
         _results.rootCurrentChild = (_depth == 0 ? CHILD_NUM : _results.rootCurrentChild);
