@@ -14,6 +14,7 @@ PartialPlayer_ActionBuy_GreedyKnapsack::PartialPlayer_ActionBuy_GreedyKnapsack( 
     _playerID = playerID;
     _phaseID = PPPhases::ACTION_BUY;
     _buyableTypes.reserve(20);
+    _scoredBuyableTypes.reserve(20);
 }
 
 void PartialPlayer_ActionBuy_GreedyKnapsack::getMove(GameState & state, Move & move)
@@ -25,10 +26,16 @@ void PartialPlayer_ActionBuy_GreedyKnapsack::getMove(GameState & state, Move & m
         return;
     }
 
+    if (!hasAnyLegalBuy(state))
+    {
+        return;
+    }
+
     calculateStateData(state);
 
     // determine the valid buyable card types in this set
     _buyableTypes.clear();
+    _scoredBuyableTypes.clear();
 
     for (CardID c(0); c < state.numCardsBuyable(); ++c)
     {
@@ -38,13 +45,28 @@ void PartialPlayer_ActionBuy_GreedyKnapsack::getMove(GameState & state, Move & m
 
         if (!shouldNotBuy(cardBuyableType, state))
         {
-            _buyableTypes.push_back(cardBuyableType);
+            const double frontlinePenalty = 100000;
+            EvaluationType score = _heuristic(cardBuyableType, state, _playerID);
+
+            if (cardBuyableType.isFrontline() && _enemyAttackPotential >= cardBuyableType.getStartingHealth())
+            {
+                score /= frontlinePenalty;
+            }
+
+            _scoredBuyableTypes.push_back(std::make_pair(cardBuyableType, score));
         }
     }
 
     // sort the cards in the vector by the given heurustic
-    AITools::SortVector(_buyableTypes, BuyKnapsackCompare(_heuristic, state, _playerID, _enemyAttackPotential));
-    //std::sort(_buyableTypes.begin(), _buyableTypes.end(), BuyKnapsackCompare(_heuristic, state, _playerID, _enemyAttackPotential));
+    std::stable_sort(_scoredBuyableTypes.begin(), _scoredBuyableTypes.end(), [](const std::pair<CardType, EvaluationType> & a, const std::pair<CardType, EvaluationType> & b)
+    {
+        return a.second > b.second;
+    });
+
+    for (size_t i(0); i<_scoredBuyableTypes.size(); ++i)
+    {
+        _buyableTypes.push_back(_scoredBuyableTypes[i].first);
+    }
     
     // keep buying the best card according to the heuristic
     while (state.getActivePhase() == Phases::Action && !state.isGameOver())
@@ -89,6 +111,22 @@ void PartialPlayer_ActionBuy_GreedyKnapsack::getMove(GameState & state, Move & m
             break;
         }
     }
+}
+
+bool PartialPlayer_ActionBuy_GreedyKnapsack::hasAnyLegalBuy(const GameState & state) const
+{
+    for (CardID c(0); c < state.numCardsBuyable(); ++c)
+    {
+        const CardType cardBuyableType = state.getCardBuyableByIndex(c).getType();
+        const Action buyCardAction(_playerID, ActionTypes::BUY, cardBuyableType.getID());
+
+        if (state.isLegal(buyCardAction))
+        {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 void PartialPlayer_ActionBuy_GreedyKnapsack::sortBuyables(const GameState & state)
@@ -167,6 +205,7 @@ void PartialPlayer_ActionBuy_GreedyKnapsack::updateStateData(const CardType card
 void PartialPlayer_ActionBuy_GreedyKnapsack::calculateStateData(const GameState & state)
 {
     _enemyWasChilled = false;
+    _totalAbilityActivateCost = Resources();
 
     // determine our total resource income for the state
     _beginTurnIncome = Resources();

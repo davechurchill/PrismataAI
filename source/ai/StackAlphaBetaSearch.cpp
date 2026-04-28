@@ -19,7 +19,10 @@ StackAlphaBetaSearch::StackAlphaBetaSearch(const AlphaBetaSearchParameters & par
 
     if (_params.getMoveIterator(0).get())
     {
-        for (size_t i(0); i<PRISMATA_MAX_ALPHABETA_DEPTH; ++i) 
+        const size_t searchDepth = _params.maxDepth() > 0 ? static_cast<size_t>(_params.maxDepth()) : 1;
+        const size_t iteratorDepths = std::min<size_t>(PRISMATA_MAX_ALPHABETA_DEPTH, searchDepth);
+
+        for (size_t i(0); i<iteratorDepths; ++i)
         {
             for (PlayerID p(0); p<2; ++p)
             {

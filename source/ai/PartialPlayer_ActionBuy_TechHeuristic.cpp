@@ -54,10 +54,14 @@ void PartialPlayer_ActionBuy_TechHeuristic::getMove(GameState & state, Move & mo
 void PartialPlayer_ActionBuy_TechHeuristic::getMovesElyotFormula(GameState & state, Move & move, bool balanced)
 {
     const PlayerID enemy = state.getEnemy(_playerID);
-    const CardType conduitType = CardTypes::CardTypeExists("Conduit") ? CardTypes::GetCardType("Conduit") : CardType();
-    const CardType blastforgeType = CardTypes::CardTypeExists("Blastforge") ? CardTypes::GetCardType("Blastforge") : CardType();
-    const CardType animusType = CardTypes::CardTypeExists("Animus") ? CardTypes::GetCardType("Animus") : CardType();
-    const CardType droneType = CardTypes::CardTypeExists("Drone") ? CardTypes::GetCardType("Drone") : CardType();
+    static const bool conduitExists = CardTypes::CardTypeExists("Conduit");
+    static const bool blastforgeExists = CardTypes::CardTypeExists("Blastforge");
+    static const bool animusExists = CardTypes::CardTypeExists("Animus");
+    static const bool droneExists = CardTypes::CardTypeExists("Drone");
+    static const CardType conduitType = conduitExists ? CardTypes::GetCardType("Conduit") : CardType();
+    static const CardType blastforgeType = blastforgeExists ? CardTypes::GetCardType("Blastforge") : CardType();
+    static const CardType animusType = animusExists ? CardTypes::GetCardType("Animus") : CardType();
+    static const CardType droneType = droneExists ? CardTypes::GetCardType("Drone") : CardType();
 
     // the actions for buying the individual tech types
     const Action buyConduit(_playerID, ActionTypes::BUY, conduitType.getID());
@@ -75,7 +79,7 @@ void PartialPlayer_ActionBuy_TechHeuristic::getMovesElyotFormula(GameState & sta
     
     // the following code block is a hard-coded heuristics that prevents us from buying a turn 2 blastforge
     // it checks to see if we have less than 11 gold on the turn and makes blastforge illegal if so
-    if (CardTypes::CardTypeExists("Drone") && state.isBuyable(_playerID, droneType))
+    if (droneExists && state.isBuyable(_playerID, droneType))
     {
         size_t totalGoldSpent = 0;
         for (size_t m(0); m < move.size(); ++m)

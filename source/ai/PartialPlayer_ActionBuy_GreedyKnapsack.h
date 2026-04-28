@@ -20,11 +20,13 @@ class PartialPlayer_ActionBuy_GreedyKnapsack : public PartialPlayer
     HealthType              _enemyChillPotential;
     HealthType              _enemyAttackPotential;
     std::vector<CardType>   _buyableTypes;
+    std::vector< std::pair<CardType, EvaluationType> > _scoredBuyableTypes;
     bool                    _enemyWasChilled;
 
     void sortBuyables(const GameState & state);
     void updateStateData(const CardType cardTypeBought);
     void calculateStateData(const GameState & state);
+    bool hasAnyLegalBuy(const GameState & state) const;
     bool shouldNotBuy(const CardType cb, const GameState & state) const;
     bool canAffordToActivate(const CardType cb, const GameState & state) const;
     bool hasNonCumulativeManaCostAbility(const CardType type) const;

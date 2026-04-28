@@ -1,5 +1,4 @@
 #include "StateChillIterator.h"
-#include "Timer.h"
 #include "Eval.h"
 #include "AITools.h"
 
@@ -109,9 +108,6 @@ void StateChillIterator::solve(size_t maxIterations)
 
     //printDebug();
 
-    Timer t;
-    t.start();
-
     try
     {
         recurseIsomorphic(0, 0, false);
@@ -125,7 +121,6 @@ void StateChillIterator::solve(size_t maxIterations)
         }
     }
 
-    double ms = t.getElapsedTimeInMilliSec();
     //printf("\nFound %d nodes, %d freeze combinations, %d unique, in %lf ms\n\n", _nodesSearched, _numFrozen, _allStateIsomorphisms.size(), ms);
     evaluateState(_bestState, _bestMove);
 }

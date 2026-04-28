@@ -18,7 +18,6 @@ void PartialPlayer_ActionBuy_Random::getMove(GameState & state, Move & move)
         return;
     }
 
-    std::vector<Action> legalActions;
     std::vector<Action> buyActions;
     while (state.getActivePlayer() == _playerID && state.getActivePhase() == Phases::Action)
     {
@@ -27,15 +26,15 @@ void PartialPlayer_ActionBuy_Random::getMove(GameState & state, Move & move)
             return;
         }
 
-        legalActions.clear();
-        state.generateLegalActions(legalActions);
-
         buyActions.clear();
-        for (const Action & action : legalActions)
+        for (CardID c(0); c < state.numCardsBuyable(); ++c)
         {
-            if (action.getType() == ActionTypes::BUY || action.getType() == ActionTypes::END_PHASE)
+            const CardType cardBuyableType = state.getCardBuyableByIndex(c).getType();
+            const Action buyCardAction(_playerID, ActionTypes::BUY, cardBuyableType.getID());
+
+            if (state.isLegal(buyCardAction))
             {
-                buyActions.push_back(action);
+                buyActions.push_back(buyCardAction);
             }
         }
 
@@ -45,16 +44,7 @@ void PartialPlayer_ActionBuy_Random::getMove(GameState & state, Move & move)
         }
 
         Action a = buyActions[Random::Int(buyActions.size())];
-
-        // buy players should never actually end the phase, so if we chose end phase just exit
-        if (a.getType() == ActionTypes::END_PHASE)
-        {
-            return;
-        }
-        else
-        {
-            state.doAction(a);
-            move.addAction(a);
-        }
+        state.doAction(a);
+        move.addAction(a);
     }
 }

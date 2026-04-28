@@ -600,8 +600,8 @@ void AITools::PredictEnemyNextTurn(GameState & state, bool solveDefense)
         }
     }
 
-    // static prediction players so we don't need extra constructors
-    PPPtr predictionPlayers[2] = { GetPredictionPlayer(0), GetPredictionPlayer(1) };
+    // Thread-local prediction players avoid repeated construction without sharing mutable partial-player state across threads.
+    static thread_local PPPtr predictionPlayers[2] = { GetPredictionPlayer(0), GetPredictionPlayer(1) };
 
     PRISMATA_ASSERT(state.getActivePhase() == Phases::Action, "Should be enemy action phase right now");
 
