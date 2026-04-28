@@ -9,7 +9,12 @@ namespace Prismata
 
 class CardBuyableData 
 {
+    static constexpr CardID InvalidBuyableIndex = std::numeric_limits<CardID>::max();
+
     std::vector<CardBuyable> m_buyableCards;
+    std::vector<CardID>      m_cardIDToBuyableIndex;
+
+    CardID                  getCardBuyableIndexByID(const CardID cardID) const;
 
 public:
 
@@ -23,6 +28,8 @@ public:
 
     const   CardBuyable &   getCardBuyableByType(const CardType type) const;
             CardBuyable &   getCardBuyableByType(const CardType type);
+
+    bool                    hasCardBuyableByID(const CardID cardID) const;
             
     const   CardID          size() const;
 

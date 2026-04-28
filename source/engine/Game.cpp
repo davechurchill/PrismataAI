@@ -49,12 +49,14 @@ void Game::doMove(const Move & m, bool checkActionLegal)
 {
     for (ActionID a(0); a < m.size(); ++a)
     {
-        if (!m_state.isLegal(m.getAction(a)))
+        const Action & action = m.getAction(a);
+
+        if (checkActionLegal && !m_state.isLegal(action))
         {
             std::cout << m.toString();
         }
 
-        bool didAction = doAction(m.getAction(a));
+        bool didAction = doAction(action);
 
         PRISMATA_ASSERT(didAction, "Tried to do an illegal action");
     }

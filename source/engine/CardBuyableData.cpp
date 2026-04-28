@@ -23,30 +23,12 @@ CardBuyable & CardBuyableData::getCardBuyableByIndex(const CardID cardIndex)
 
 const CardBuyable & CardBuyableData::getCardBuyableByID(const CardID cardID) const
 {
-    for (size_t i(0); i < m_buyableCards.size(); ++i)
-    {
-        if (m_buyableCards[i].getType() == cardID)
-        {
-            return m_buyableCards[i];
-        }
-    }
-
-    PRISMATA_ASSERT(false, "Couldn't find card by ID");
-    return m_buyableCards[0];
+    return m_buyableCards[getCardBuyableIndexByID(cardID)];
 }
 
 CardBuyable & CardBuyableData::getCardBuyableByID(const CardID cardID)
 {
-    for (size_t i(0); i < m_buyableCards.size(); ++i)
-    {
-        if (m_buyableCards[i].getType() == cardID)
-        {
-            return m_buyableCards[i];
-        }
-    }
-
-    PRISMATA_ASSERT(false, "Couldn't find card by ID");
-    return m_buyableCards[0];
+    return m_buyableCards[getCardBuyableIndexByID(cardID)];
 }
 
 const CardBuyable & CardBuyableData::getCardBuyableByType(const CardType type) const
@@ -62,6 +44,22 @@ CardBuyable & CardBuyableData::getCardBuyableByType(const CardType type)
 const CardID CardBuyableData::size() const
 {
     return m_buyableCards.size();
+}
+
+CardID CardBuyableData::getCardBuyableIndexByID(const CardID cardID) const
+{
+    if (hasCardBuyableByID(cardID))
+    {
+        return m_cardIDToBuyableIndex[cardID];
+    }
+
+    PRISMATA_ASSERT(false, "Couldn't find card by ID");
+    return 0;
+}
+
+bool CardBuyableData::hasCardBuyableByID(const CardID cardID) const
+{
+    return cardID < m_cardIDToBuyableIndex.size() && m_cardIDToBuyableIndex[cardID] != InvalidBuyableIndex;
 }
 
 void CardBuyableData::buyCardByID(const PlayerID player, const CardID cardID)
@@ -87,5 +85,20 @@ void CardBuyableData::buyCardByIndex(const PlayerID player, const CardID cardInd
 
 void CardBuyableData::addCardBuyable(const CardBuyable & cardBuyable)
 {
+    const CardID cardTypeID = cardBuyable.getType().getID();
+
+    if (cardTypeID >= m_cardIDToBuyableIndex.size())
+    {
+        m_cardIDToBuyableIndex.resize(cardTypeID + 1, InvalidBuyableIndex);
+    }
+
+    const bool alreadyBuyable = hasCardBuyableByID(cardTypeID);
+    PRISMATA_ASSERT(!alreadyBuyable, "Card already exists in buyable list");
+
+    if (!alreadyBuyable)
+    {
+        m_cardIDToBuyableIndex[cardTypeID] = (CardID)m_buyableCards.size();
+    }
+
     m_buyableCards.push_back(cardBuyable);
 }

@@ -224,17 +224,20 @@ bool GameState::isLegal(const Action & action) const
                 return false;
             }
 
-            if (!getResources(player).has(getCardBuyableByID(action.getID()).getType().getBuyCost()))
+            const CardBuyable & cardBuyable = getCardBuyableByID(action.getID());
+            const CardType cardType = cardBuyable.getType();
+
+            if (!getResources(player).has(cardType.getBuyCost()))
             {
                 return false;
             }
 
-            if (!haveSacCost(player, getCardBuyableByID(action.getID()).getType().getBuySac()))
+            if (!haveSacCost(player, cardType.getBuySac()))
             {
                 return false;
             }
 
-            if (getCardBuyableByID(action.getID()).getSupplyRemaining(player) == 0)
+            if (cardBuyable.getSupplyRemaining(player) == 0)
             {
                 return false;
             }
@@ -602,12 +605,13 @@ bool GameState::doAction(const Action & action)
         return false;
     }
 
-    if (!isLegal(action))
+    const bool legalAction = isLegal(action);
+    PRISMATA_ASSERT(legalAction, "Trying to do an illegal action! %s", action.toClientString().c_str());
+
+    if (!legalAction)
     {
-        bool legal = isLegal(action);
+        return false;
     }
-    
-    PRISMATA_ASSERT(isLegal(action), "Trying to do an illegal action! %s", action.toClientString().c_str());
     
     switch(action.getType())
     {
@@ -624,7 +628,6 @@ bool GameState::doAction(const Action & action)
         }
         case ActionTypes::USE_ABILITY:
         {
-            PRISMATA_ASSERT(isLegal(action), "Tried to do illegal Ability action, Card=%s", getCardByID(action.getID()).toJSONString().c_str());
             PRISMATA_ASSERT(!getCardByID(action.getID()).isDead(), "Tried to use dead card ability, Card=%s", getCardByID(action.getID()).toJSONString().c_str());
                         
             Action currentAction(action);
@@ -686,8 +689,6 @@ bool GameState::doAction(const Action & action)
         }
         case ActionTypes::ASSIGN_BLOCKER:
         {
-            PRISMATA_ASSERT(isLegal(action), "Tried to do illegal block action, Card=%s", getCardByID(action.getID()).toJSONString().c_str());
-
             blockWithCard(_getCardByID(action.getID()));
 
             break;
@@ -1451,18 +1452,20 @@ void GameState::endPhase()
 
 Card & GameState::buyCardByID(const PlayerID player, const CardID cardID)
 {
+    const CardBuyable & cardBuyable = getCardBuyableByID(cardID);
+    const CardType cardType = cardBuyable.getType();
+
     // subtract the appropriate resource from the current player
-    PRISMATA_ASSERT(getResources(player).has(getCardBuyableByID(cardID).getType().getBuyCost()), "Do not have enough resource to buy this card");
-    _getResources(player).subtract(getCardBuyableByID(cardID).getType().getBuyCost());
+    PRISMATA_ASSERT(getResources(player).has(cardType.getBuyCost()), "Do not have enough resource to buy this card");
+    _getResources(player).subtract(cardType.getBuyCost());
 
     Card & boughtCard = m_cards.buyCardByID(player, cardID);
     m_lastCardBoughtID = boughtCard.getID();
 
     // sac the appropriate units
-    CardBuyable cardBuyable = getCardBuyableByID(cardID);
-    if (cardBuyable.getType().usesBuySac())
+    if (cardType.usesBuySac())
     {
-        const std::vector<SacDescription> & buySac = cardBuyable.getType().getBuySac();
+        const std::vector<SacDescription> & buySac = cardType.getBuySac();
         std::vector<CardID> cardsToSac;
         cardsToSac.reserve(7);
 
@@ -2121,17 +2124,12 @@ void GameState::addCardBuyable(const CardType type)
 
 bool GameState::isBuyable(const PlayerID player, const CardType type) const
 {
-    for (size_t i(0); i < numCardsBuyable(); ++i)
+    if (!m_cards.hasCardBuyableByID(type.getID()))
     {
-        const CardBuyable & cb = getCardBuyableByIndex(i);
-
-        if (cb.getType() ==  type && cb.getMaxSupply(player) > 0)
-        {
-            return true;
-        }
+        return false;
     }
 
-    return false;
+    return getCardBuyableByID(type.getID()).getMaxSupply(player) > 0;
 }
 
 bool GameState::isIsomorphic(const GameState & otherState) const

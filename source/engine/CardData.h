@@ -50,6 +50,7 @@ public:
             CardBuyable &   getCardBuyableByID(const CardID cardID);
     const   CardBuyable &   getCardBuyableByType(const CardType type) const;
             CardBuyable &   getCardBuyableByType(const CardType type);
+    bool                    hasCardBuyableByID(const CardID cardID) const;
 
             Card &          addCard(const Card & card);
             Card &          buyCardByID(const PlayerID player, const CardID cardBuyableIndex);

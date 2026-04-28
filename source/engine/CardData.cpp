@@ -212,11 +212,13 @@ void CardData::sellCardByID(const CardID cardID)
 
 Card & CardData::buyCardByID(const PlayerID player, const CardID cardID)
 {
-    PRISMATA_ASSERT(getCardBuyableByID(cardID).getSupplyRemaining(player) > 0, "Trying to buy a card with no supply remaining");
+    CardBuyable & cardBuyable = m_cardsBuyable.getCardBuyableByID(cardID);
 
-    m_cardsBuyable.buyCardByID(player, cardID);
+    PRISMATA_ASSERT(cardBuyable.getSupplyRemaining(player) > 0, "Trying to buy a card with no supply remaining");
 
-    return addCard(Card(m_cardsBuyable.getCardBuyableByID(cardID).getType(), player, CardCreationMethod::Bought, 0, 0));
+    cardBuyable.buyCard(player);
+
+    return addCard(Card(cardBuyable.getType(), player, CardCreationMethod::Bought, 0, 0));
 }
 
 const CardBuyable & CardData::getCardBuyableByIndex(const CardID cardIndex) const
@@ -247,6 +249,11 @@ const CardBuyable & CardData::getCardBuyableByType(const CardType type) const
 CardBuyable & CardData::getCardBuyableByType(const CardType type)
 {
     return m_cardsBuyable.getCardBuyableByType(type);
+}
+
+bool CardData::hasCardBuyableByID(const CardID cardID) const
+{
+    return m_cardsBuyable.hasCardBuyableByID(cardID);
 }
 
 const CardID CardData::numCardsBuyable() const
