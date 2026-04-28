@@ -1,0 +1,20 @@
+# Keep text files LF-normalized across platforms.
+* text=auto eol=lf
+
+# Binary assets and build artifacts.
+*.bmp binary
+*.dll binary
+*.exe binary
+*.gif binary
+*.ico binary
+*.jpeg binary
+*.jpg binary
+*.lib binary
+*.mp3 binary
+*.ogg binary
+*.otf binary
+*.pdb binary
+*.png binary
+*.ttf binary
+*.wav binary
+*.zip binary
