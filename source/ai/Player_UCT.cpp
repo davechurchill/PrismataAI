@@ -30,3 +30,11 @@ UCTSearchResults & Player_UCT::getResults()
 {
     return _search.getResults();
 }
+
+PlayerPtr Player_UCT::clone()
+{
+    PlayerPtr ret(new Player_UCT(m_playerID, _params.clone()));
+    ret->setDescription(m_description);
+
+    return ret;
+}

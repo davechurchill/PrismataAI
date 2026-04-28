@@ -1,4 +1,5 @@
 #include "PartialPlayer_Defense_Random.h"
+#include "Random.h"
 
 using namespace Prismata;
 
@@ -23,7 +24,7 @@ void PartialPlayer_Defense_Random::getMove(GameState & state, Move & move)
         legalActions.clear();
         state.generateLegalActions(legalActions);
 
-        Action a = legalActions[rand() % legalActions.size()];
+        Action a = legalActions[Random::Int(legalActions.size())];
         state.doAction(a);
         move.addAction(a);
     }

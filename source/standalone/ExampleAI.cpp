@@ -1,4 +1,5 @@
 #include "AITools.h"
+#include "Random.h"
 
 using namespace Prismata;
 
@@ -30,7 +31,7 @@ Move GetRandomAIMove(const GameState & state)
         currentState.generateLegalActions(legalActions);
         
         // get a random action from the legal actions array
-        Action a = legalActions[rand() % legalActions.size()];
+        Action a = legalActions[Random::Int(legalActions.size())];
 
         // record the action in the move sequence
         move.addAction(a);
@@ -93,4 +94,3 @@ void ExampleAIMain()
     // Print the string to be captured by the Prismata client
     std::cout << aiString << "\n";
 }
-

@@ -1,5 +1,6 @@
 #include "Prismata.h"
 #include "PrismataAI.h"
+#include "Random.h"
 #include "Benchmarks.h"
 #include <iostream>
 
@@ -9,7 +10,7 @@ int main(int argc, char* argv[])
 {
     printf("Benchmarks!\n");
 
-    srand((unsigned int)time(NULL));
+    Random::Seed((uint64_t)time(NULL));
 
     // read all the configuration settings
     std::string configDir = "asset/config/";

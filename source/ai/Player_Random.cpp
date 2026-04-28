@@ -1,4 +1,5 @@
 #include "Player_Random.h"
+#include "Random.h"
 
 using namespace Prismata;
 
@@ -19,7 +20,7 @@ void Player_Random::getMove(const GameState & state, Move & move)
         legalActions.clear();
         currentState.generateLegalActions(legalActions);
         
-        Action a = legalActions[rand() % legalActions.size()];
+        Action a = legalActions[Random::Int(legalActions.size())];
         currentState.doAction(a);
         move.addAction(a);
 

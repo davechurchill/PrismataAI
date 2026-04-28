@@ -7,12 +7,16 @@
 #include <iomanip>
 #include <ctime>
 #include <sstream>
+#include <chrono>
+#include <future>
+#include <thread>
 using namespace Prismata;
 
 Tournament::Tournament(const rapidjson::Value & tournamentValue)
     : _totalGamesPlayed(0)
     , _updateIntervalSec(0)
     , _randomCards(8)
+    , _threads(1)
 {
     PRISMATA_ASSERT(tournamentValue.HasMember("name"), "Tournament has no name");
     PRISMATA_ASSERT(tournamentValue.HasMember("rounds"), "Tournament has no rounds number");
@@ -22,6 +26,8 @@ Tournament::Tournament(const rapidjson::Value & tournamentValue)
     JSONTools::ReadInt("rounds", tournamentValue, _rounds);
     JSONTools::ReadInt("RandomCards", tournamentValue, _randomCards);
     JSONTools::ReadInt("UpdateIntervalSec", tournamentValue, _updateIntervalSec);
+    JSONTools::ReadInt("Threads", tournamentValue, _threads);
+    _threads = std::max<size_t>(1, _threads);
     
     PRISMATA_ASSERT(tournamentValue["players"].Size() >= 2, "Tournament has less than 2 players");
 
@@ -68,36 +74,146 @@ void Tournament::run()
 
     std::cout << "\nStarting tournament " << _name << ": " << _rounds << " rounds, "
               << _players.size() << " players, " << totalGamesExpected
-              << " games, updates every " << _updateIntervalSec << " seconds" << std::endl;
+              << " games, " << _threads << " thread" << (_threads == 1 ? "" : "s")
+              << ", updates every " << _updateIntervalSec << " seconds" << std::endl;
 
     Timer t;
     t.start();
     _timeElapsed.start();
 
-    for (size_t r(0); r < _rounds; ++r)
+    if (_threads == 1)
     {
-        GameState state;
-        state.setStartingState(Players::Player_One, _randomCards);
-
-        for (size_t p1(0); p1 < _players.size(); ++p1)
+        for (size_t r(0); r < _rounds; ++r)
         {
-            for (size_t p2(0); p2 < _players.size(); ++p2)
+            GameState state;
+            state.setStartingState(Players::Player_One, _randomCards);
+
+            for (size_t p1(0); p1 < _players.size(); ++p1)
             {
-                if (_playerGroups[p1] == _playerGroups[p2])
+                for (size_t p2(0); p2 < _players.size(); ++p2)
                 {
-                    continue;
+                    if (_playerGroups[p1] == _playerGroups[p2])
+                    {
+                        continue;
+                    }
+
+                    PlayerPtr w1 = AIParameters::Instance().getPlayer(Players::Player_One, _players[p1]);
+                    PlayerPtr b1 = AIParameters::Instance().getPlayer(Players::Player_Two, _players[p2]);
+                    PlayerPtr w2 = AIParameters::Instance().getPlayer(Players::Player_One, _players[p2]);
+                    PlayerPtr b2 = AIParameters::Instance().getPlayer(Players::Player_Two, _players[p1]);
+
+                    TournamentGame g1(state, _players[p1], w1, _players[p2], b1);
+                    TournamentGame g2(state, _players[p2], w2, _players[p1], b2);
+
+                    playGame(g1, t);
+                    playGame(g2, t);
                 }
+            }
+        }
+    }
+    else
+    {
+        std::vector<std::future<TournamentGame>> games;
 
-                PlayerPtr w1 = AIParameters::Instance().getPlayer(Players::Player_One, _players[p1]);
-                PlayerPtr b1 = AIParameters::Instance().getPlayer(Players::Player_Two, _players[p2]);
-                PlayerPtr w2 = AIParameters::Instance().getPlayer(Players::Player_One, _players[p2]);
-                PlayerPtr b2 = AIParameters::Instance().getPlayer(Players::Player_Two, _players[p1]);
+        auto printUpdate = [&]()
+        {
+            printResults();
+            writeHTMLResults();
+            std::cout << std::endl << std::flush;
+            t.start();
+        };
 
-                TournamentGame g1(state, _players[p1], w1, _players[p2], b1);
-                TournamentGame g2(state, _players[p2], w2, _players[p1], b2);
+        auto maybePrintUpdate = [&]()
+        {
+            if (_updateIntervalSec > 0 && t.getElapsedTimeInSec() >= _updateIntervalSec)
+            {
+                printUpdate();
+            }
+        };
 
-                playGame(g1, t);
-                playGame(g2, t);
+        auto finishGame = [&](TournamentGame & game)
+        {
+            parseTournamentGameResult(game);
+            _totalGamesPlayed++;
+
+            if (_updateIntervalSec == 0)
+            {
+                printUpdate();
+            }
+            else
+            {
+                maybePrintUpdate();
+            }
+        };
+
+        auto collectFinishedGames = [&]()
+        {
+            bool collected = false;
+            for (size_t i(0); i < games.size();)
+            {
+                if (games[i].wait_for(std::chrono::milliseconds(0)) == std::future_status::ready)
+                {
+                    TournamentGame game = games[i].get();
+                    finishGame(game);
+                    games.erase(games.begin() + i);
+                    collected = true;
+                }
+                else
+                {
+                    ++i;
+                }
+            }
+
+            return collected;
+        };
+
+        auto waitForGameSlot = [&]()
+        {
+            while (games.size() >= _threads)
+            {
+                if (!collectFinishedGames())
+                {
+                    maybePrintUpdate();
+                    std::this_thread::sleep_for(std::chrono::milliseconds(10));
+                }
+            }
+        };
+
+        auto submitGame = [&](const GameState & state, const size_t whiteIndex, const size_t blackIndex)
+        {
+            waitForGameSlot();
+            games.emplace_back(std::async(std::launch::async, [this, state, whiteIndex, blackIndex]()
+            {
+                return playGame(state, whiteIndex, blackIndex);
+            }));
+        };
+
+        for (size_t r(0); r < _rounds; ++r)
+        {
+            GameState state;
+            state.setStartingState(Players::Player_One, _randomCards);
+
+            for (size_t p1(0); p1 < _players.size(); ++p1)
+            {
+                for (size_t p2(0); p2 < _players.size(); ++p2)
+                {
+                    if (_playerGroups[p1] == _playerGroups[p2])
+                    {
+                        continue;
+                    }
+
+                    submitGame(state, p1, p2);
+                    submitGame(state, p2, p1);
+                }
+            }
+        }
+
+        while (!games.empty())
+        {
+            if (!collectFinishedGames())
+            {
+                maybePrintUpdate();
+                std::this_thread::sleep_for(std::chrono::milliseconds(10));
             }
         }
     }
@@ -105,6 +221,17 @@ void Tournament::run()
     printResults();
     writeHTMLResults();
     std::cout << std::endl << "Tournament complete" << std::endl;
+}
+
+TournamentGame Tournament::playGame(const GameState & state, const size_t whiteIndex, const size_t blackIndex) const
+{
+    PlayerPtr white = AIParameters::Instance().getPlayer(Players::Player_One, _players[whiteIndex]);
+    PlayerPtr black = AIParameters::Instance().getPlayer(Players::Player_Two, _players[blackIndex]);
+
+    TournamentGame game(state, _players[whiteIndex], white, _players[blackIndex], black);
+    game.playGame();
+
+    return game;
 }
 
 void Tournament::playGame(TournamentGame & game, Timer & updateTimer)

@@ -17,6 +17,7 @@ class Tournament
     size_t                              _totalGamesPlayed;
     size_t                              _updateIntervalSec;
     size_t                              _randomCards;
+    size_t                              _threads;
     Timer                               _timeElapsed;
 
     std::vector<std::string>            _players;
@@ -38,6 +39,7 @@ class Tournament
     void parseResult(std::string & result);
     void parseTournamentGameResult(const TournamentGame & game);
     void playGame(TournamentGame & game, Timer & updateTimer);
+    TournamentGame playGame(const GameState & state, const size_t whiteIndex, const size_t blackIndex) const;
     void writeHTMLResults();
     void printResults() const;
     std::string getTimeStringFromMS(const size_t ms);

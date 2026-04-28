@@ -1,4 +1,5 @@
 #include "GameState.h"
+#include "Random.h"
 #include <set>
 
 using namespace Prismata;
@@ -2047,7 +2048,7 @@ void GameState::setStartingState(const PlayerID startPlayer, const CardID numDom
 
     for (size_t c(0); c<numDominionCards; ++c)
     {
-        size_t r = rand() % pool.size();
+        size_t r = Random::Int(pool.size());
         addBuyableCardType(CardTypes::GetDominionCardTypes()[pool[r]]);
         std::swap(pool[r], pool.back());
         pool.pop_back();

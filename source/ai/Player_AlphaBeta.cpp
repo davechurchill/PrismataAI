@@ -29,3 +29,11 @@ AlphaBetaSearchResults & Player_AlphaBeta::getResults()
 {
     return _search.getResults();
 }
+
+PlayerPtr Player_AlphaBeta::clone()
+{
+    PlayerPtr ret(new Player_AlphaBeta(m_playerID, _params.clone()));
+    ret->setDescription(m_description);
+
+    return ret;
+}

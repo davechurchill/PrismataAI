@@ -1,4 +1,5 @@
 #include "PartialPlayer_ActionBuy_Random.h"
+#include "Random.h"
 
 using namespace Prismata;
 
@@ -43,7 +44,7 @@ void PartialPlayer_ActionBuy_Random::getMove(GameState & state, Move & move)
             return;
         }
 
-        Action a = buyActions[rand() % buyActions.size()];
+        Action a = buyActions[Random::Int(buyActions.size())];
 
         // buy players should never actually end the phase, so if we chose end phase just exit
         if (a.getType() == ActionTypes::END_PHASE)

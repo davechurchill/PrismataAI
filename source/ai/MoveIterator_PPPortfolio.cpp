@@ -1,5 +1,6 @@
 #include "MoveIterator_PPPortfolio.h"
 #include "AllPlayers.h"
+#include "Random.h"
 
 using namespace Prismata;
 
@@ -93,7 +94,7 @@ void MoveIterator_PPPortfolio::getRandomMove(const GameState & state, Move & mov
 
     for (size_t i(0); i < PPPhases::NUM_PHASES; ++i)
     {
-        randomSequence[i] = m_portfolio[i][rand() % m_portfolio[i].size()];
+        randomSequence[i] = m_portfolio[i][Random::Int(m_portfolio[i].size())];
     }
 
     m_previousSequence = randomSequence;

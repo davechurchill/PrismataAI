@@ -20,6 +20,6 @@ public:
     UCTSearchResults & getResults();
 
     virtual std::string getDescription() { return m_description + "\n" + _search.getDescription(); };
-    PlayerPtr clone() { return PlayerPtr(new Player_UCT(*this)); }
+    PlayerPtr clone();
 };
 }

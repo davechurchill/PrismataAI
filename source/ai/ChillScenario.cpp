@@ -1,4 +1,5 @@
 #include "ChillScenario.h"
+#include "Random.h"
 #include "Timer.h"
 
 using namespace Prismata;
@@ -369,7 +370,7 @@ void ChillScenario::setRandomData(const size_t & histogramMinIndex, const size_t
 
     for (size_t c(histogramMinIndex); c < histogramMaxIndex; ++c)
     {
-        int r = rand() % maxHistogramValue;
+        int r = (int)Random::Int(maxHistogramValue);
 
         for (int i(0); i < r; ++i)
         {
@@ -379,7 +380,7 @@ void ChillScenario::setRandomData(const size_t & histogramMinIndex, const size_t
 
     for (size_t c(histogramMinIndex); c < histogramMaxIndex; ++c)
     {
-        int r = rand() % maxHistogramValue;
+        int r = (int)Random::Int(maxHistogramValue);
         
         for (int i(0); i < r; ++i)
         {

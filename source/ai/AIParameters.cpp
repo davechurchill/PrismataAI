@@ -879,23 +879,26 @@ MoveIteratorPtr AIParameters::parseMoveIterator(const PlayerID player, const std
 
 PlayerPtr AIParameters::getPlayer(const PlayerID player, const std::string & playerName)
 {
-    PRISMATA_ASSERT(_playerMap[player].find(playerName) != _playerMap[player].end(), "AIParameters::getPlayer Couldn't find player variable: %d %s", (int)_playerMap[player].size(), playerName.c_str());
+    auto playerIt = _playerMap[player].find(playerName);
+    PRISMATA_ASSERT(playerIt != _playerMap[player].end(), "AIParameters::getPlayer Couldn't find player variable: %d %s", (int)_playerMap[player].size(), playerName.c_str());
 
-    return _playerMap[player][playerName]->clone();
+    return playerIt->second->clone();
 }
 
 PPPtr AIParameters::getPartialPlayer(const PlayerID player, const std::string & playerName)
 {
-	PRISMATA_ASSERT(_partialPlayerMap[player].find(playerName) != _partialPlayerMap[player].end(), "AIParameters::getPartialPlayer Couldn't find player variable  %d %s", (int)_partialPlayerMap[player].size(), playerName.c_str());
+    auto playerIt = _partialPlayerMap[player].find(playerName);
+	PRISMATA_ASSERT(playerIt != _partialPlayerMap[player].end(), "AIParameters::getPartialPlayer Couldn't find player variable  %d %s", (int)_partialPlayerMap[player].size(), playerName.c_str());
 
-    return _partialPlayerMap[player][playerName]->clone();
+    return playerIt->second->clone();
 }
 
 MoveIteratorPtr AIParameters::getMoveIterator(const PlayerID player, const std::string & iteratorName)
 {
-	PRISMATA_ASSERT(_moveIteratorMap[player].find(iteratorName) != _moveIteratorMap[player].end(), "AIParameters::getMoveIterator Couldn't find movw iterator variable %d %s", (int)_moveIteratorMap[player].size(), iteratorName.c_str());
+    auto iteratorIt = _moveIteratorMap[player].find(iteratorName);
+	PRISMATA_ASSERT(iteratorIt != _moveIteratorMap[player].end(), "AIParameters::getMoveIterator Couldn't find movw iterator variable %d %s", (int)_moveIteratorMap[player].size(), iteratorName.c_str());
 
-    return _moveIteratorMap[player][iteratorName]->clone();
+    return iteratorIt->second->clone();
 }
 
 void AIParameters::parseJSONString(const std::string & jsonString)

@@ -1,5 +1,6 @@
 #include "Prismata.h"
 #include "PrismataAI.h"
+#include "Random.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -27,7 +28,7 @@ int main(int argc, char *argv[])
     SetErrorMode(dwMode | SEM_NOGPFAULTERRORBOX);
 #endif
     
-    srand((unsigned int)time(NULL));
+    Random::Seed((uint64_t)time(NULL));
     
     // get the input line from stdin
     std::string inputLine;

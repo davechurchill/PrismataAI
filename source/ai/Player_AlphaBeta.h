@@ -20,6 +20,6 @@ public:
     AlphaBetaSearchResults & getResults();
     std::string getDescription() { return m_description + "\n" + _search.getDescription(); };
 
-    PlayerPtr clone() { return PlayerPtr(new Player_AlphaBeta(*this)); }
+    PlayerPtr clone();
 };
 }
