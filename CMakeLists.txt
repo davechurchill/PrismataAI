@@ -20,6 +20,9 @@ endforeach()
 
 option(PRISMATA_BUILD_GUI "Build the SFML GUI executable" ON)
 
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+
 add_library(prismata_options INTERFACE)
 target_compile_features(prismata_options INTERFACE cxx_std_17)
 target_compile_definitions(prismata_options INTERFACE
@@ -33,6 +36,7 @@ target_include_directories(prismata_options INTERFACE
 target_compile_options(prismata_options INTERFACE
     $<$<CXX_COMPILER_ID:MSVC>:/EHsc>
 )
+target_link_libraries(prismata_options INTERFACE Threads::Threads)
 
 file(GLOB PRISMATA_ENGINE_SOURCES CONFIGURE_DEPENDS
     "${CMAKE_CURRENT_SOURCE_DIR}/source/engine/*.cpp"
