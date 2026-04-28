@@ -444,7 +444,10 @@ void Tournament::printResults()
     std::stringstream rate;
     rate << std::fixed << std::setprecision(2) << gamesPerSec;
 
-    std::cout << "Games completed: " << _totalGamesPlayed << " (" << rate.str() << "/s)" << std::endl << std::flush;
+    std::stringstream threadRate;
+    threadRate << std::fixed << std::setprecision(2) << (gamesPerSec / _threads);
+
+    std::cout << "Games completed: " << _totalGamesPlayed << " (" << rate.str() << "/s, " << threadRate.str() << "/s/thread)" << std::endl << std::flush;
 }
 
 int Tournament::getPlayerIndex(const std::string & playerName) const
