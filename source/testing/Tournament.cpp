@@ -14,6 +14,7 @@ using namespace Prismata;
 
 Tournament::Tournament(const rapidjson::Value & tournamentValue)
     : _totalGamesPlayed(0)
+    , _discardedGames(0)
     , _updateIntervalSec(0)
     , _randomCards(8)
     , _threads(1)
@@ -133,6 +134,13 @@ void Tournament::run()
 
         auto finishGame = [&](TournamentGame & game)
         {
+            if (game.wasDiscarded())
+            {
+                discardTournamentGameResult(game);
+                maybePrintUpdate();
+                return;
+            }
+
             parseTournamentGameResult(game);
             _totalGamesPlayed++;
 
@@ -237,6 +245,22 @@ TournamentGame Tournament::playGame(const GameState & state, const size_t whiteI
 void Tournament::playGame(TournamentGame & game, Timer & updateTimer)
 {
     game.playGame(_updateIntervalSec);
+
+    if (game.wasDiscarded())
+    {
+        discardTournamentGameResult(game);
+
+        if (_updateIntervalSec == 0 || updateTimer.getElapsedTimeInSec() >= _updateIntervalSec)
+        {
+            printResults();
+            writeHTMLResults();
+            std::cout << std::endl << std::flush;
+            updateTimer.start();
+        }
+
+        return;
+    }
+
     parseTournamentGameResult(game);
 
     _totalGamesPlayed++;
@@ -248,6 +272,13 @@ void Tournament::playGame(TournamentGame & game, Timer & updateTimer)
         std::cout << std::endl << std::flush;
         updateTimer.start();
     }
+}
+
+void Tournament::discardTournamentGameResult(const TournamentGame & game)
+{
+    _discardedGames++;
+    std::cout << "Discarded game: " << game.getPlayerName(0) << " vs " << game.getPlayerName(1)
+              << " (" << game.getDiscardReason() << ")" << std::endl;
 }
 
 void Tournament::parseTournamentGameResult(const TournamentGame & game)
@@ -316,6 +347,7 @@ void Tournament::writeHTMLResults()
     ss << "<tr><td><b>Tournament Rounds</b></td><td align=right>" << _rounds << "</td></tr>\n";
     ss << "<tr><td><b>Time Elapsed</b></td><td align=right>" << getTimeStringFromMS(timeElapsed) << "</td></tr>\n";
     ss << "<tr><td><b>Games Played</b></td><td align=right>" << _totalGamesPlayed << " (" << (1000.0 * _totalGamesPlayed / timeElapsed) << "/s)</td></tr>\n";
+    ss << "<tr><td><b>Games Discarded</b></td><td align=right>" << _discardedGames << "</td></tr>\n";
     ss << "</table>\n<br><br>\n";
 
     FILE * f = fopen(filename.c_str(), "w");
@@ -447,7 +479,12 @@ void Tournament::printResults()
     std::stringstream threadRate;
     threadRate << std::fixed << std::setprecision(2) << (gamesPerSec / _threads);
 
-    std::cout << "Games completed: " << _totalGamesPlayed << " (" << rate.str() << "/s, " << threadRate.str() << "/s/thread)" << std::endl << std::flush;
+    std::cout << "Games completed: " << _totalGamesPlayed << " (" << rate.str() << "/s, " << threadRate.str() << "/s/thread)";
+    if (_discardedGames > 0)
+    {
+        std::cout << ", discarded: " << _discardedGames;
+    }
+    std::cout << std::endl << std::flush;
 }
 
 int Tournament::getPlayerIndex(const std::string & playerName) const

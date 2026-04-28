@@ -10,8 +10,10 @@ class TournamentGame
 {
     Game            _game;
     std::string     _playerNames[2];
+    std::string     _discardReason;
     size_t          _playerTotalTimeMS[2];
     size_t          _maxTimeMS[2];
+    bool            _discarded;
         
 public:
 
@@ -19,6 +21,8 @@ public:
 
     void playGame(size_t updateIntervalSec = 0);
 
+    bool wasDiscarded() const;
+    const std::string & getDiscardReason() const;
     const std::string & getPlayerName(const PlayerID player) const;
     const GameState & getFinalGameState() const;
     const size_t getTotalTimeMS(const PlayerID player) const;

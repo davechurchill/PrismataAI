@@ -54,7 +54,14 @@ void AlphaBetaSearch::doSearch(const GameState & initialState, Move & move)
         }
     }
 
-    move = _results.bestMoves[_results.maxDepthCompleted];
+    if (_results.maxDepthCompleted > 0)
+    {
+        move = _results.bestMoves[_results.maxDepthCompleted];
+    }
+    else
+    {
+        move = _results.bestMoves[_currentMaxDepth];
+    }
 }
 
 std::string AlphaBetaSearch::getDescription()
@@ -93,6 +100,11 @@ AlphaBetaValue AlphaBetaSearch::alphaBeta(const GameState & state, size_t depth,
     size_t childNum = 0;
     while ((_params.maxChildren() == 0 || childNum < _params.maxChildren()) && iter->generateNextChild(child, movePerformed))
     {
+        if (depth == 0 && _results.bestMoves[_currentMaxDepth].size() == 0)
+        {
+            _results.bestMoves[_currentMaxDepth] = movePerformed;
+        }
+
         childNum++;
         AlphaBetaValue value = alphaBeta(child, depth+1, alpha, beta);
 

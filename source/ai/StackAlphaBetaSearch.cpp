@@ -137,7 +137,12 @@ AB_BEGIN:
     CHILD_NUM = 0;
     MOVE_ITERATOR->setState(STATE);
     while ((_params.maxChildren() == 0 || CHILD_NUM < _params.maxChildren()) && MOVE_ITERATOR->generateNextChild(CHILD_STATE, MOVE))
-    {        
+    {
+        if (_depth == 0 && _results.bestMoves[_currentMaxDepth].size() == 0)
+        {
+            _results.bestMoves[_currentMaxDepth] = MOVE;
+        }
+
         _results.rootNumChildren = (_depth == 0 ? CHILD_NUM + 1 : _results.rootNumChildren);
         _results.rootCurrentChild = (_depth == 0 ? CHILD_NUM : _results.rootCurrentChild);
         

@@ -23,6 +23,7 @@ public:
 
     void                play();
     void                playNextTurn();
+    bool                playNextTurn(bool assertOnEmptyMove);
     void                doMove(const Move & m, bool checkActionLegal = false);
     void                setTurnLimit(const TurnType limit);
     bool                doAction(const Action & action);

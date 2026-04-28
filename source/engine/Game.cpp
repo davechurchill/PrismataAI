@@ -16,7 +16,10 @@ void Game::play()
 
     while(!gameOver())
     {
-        playNextTurn();
+        if (!playNextTurn(true))
+        {
+            break;
+        }
     }
 }
 
@@ -26,18 +29,33 @@ PlayerPtr Game::getPlayerToMove()
 }
 
 void Game::playNextTurn()
+{
+    playNextTurn(true);
+}
+
+bool Game::playNextTurn(bool assertOnEmptyMove)
 {    
     PlayerPtr player = getPlayerToMove();
         
     m_previousMove.clear();
     player->getMove(m_state, m_previousMove);
 
-    PRISMATA_ASSERT(m_previousMove.size() > 0, "Calculated move had size 0, will cause infinite loop");
+    if (m_previousMove.size() == 0)
+    {
+        if (assertOnEmptyMove)
+        {
+            PRISMATA_ASSERT(false, "Calculated move had size 0, will cause infinite loop");
+        }
+
+        return false;
+    }
     
     doMove(m_previousMove);
 
     m_actions += m_previousMove.size();
     m_turnsPlayed++;
+
+    return true;
 }
 
 const PlayerPtr Game::getPlayer(const PlayerID player) const

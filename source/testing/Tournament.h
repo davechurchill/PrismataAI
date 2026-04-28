@@ -15,6 +15,7 @@ class Tournament
     std::string                         _date;
     size_t                              _rounds;
     size_t                              _totalGamesPlayed;
+    size_t                              _discardedGames;
     size_t                              _updateIntervalSec;
     size_t                              _randomCards;
     size_t                              _threads;
@@ -38,6 +39,7 @@ class Tournament
     int getPlayerIndex(const std::string & playerName) const;
     void parseResult(std::string & result);
     void parseTournamentGameResult(const TournamentGame & game);
+    void discardTournamentGameResult(const TournamentGame & game);
     void playGame(TournamentGame & game, Timer & updateTimer);
     TournamentGame playGame(const GameState & state, const size_t whiteIndex, const size_t blackIndex) const;
     void writeHTMLResults();

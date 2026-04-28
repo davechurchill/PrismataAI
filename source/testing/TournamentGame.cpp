@@ -7,6 +7,7 @@ using namespace Prismata;
 
 TournamentGame::TournamentGame(const GameState & initialState, const std::string & p1name, PlayerPtr p1, const std::string & p2name, const PlayerPtr p2)
     : _game(initialState, p1, p2)
+    , _discarded(false)
 {
     _playerNames[0] = p1name;
     _playerNames[1] = p2name;
@@ -27,7 +28,13 @@ void TournamentGame::playGame(size_t updateIntervalSec)
         PlayerID playerToMove = _game.getState().getActivePlayer();   
 
         t.start();
-        _game.playNextTurn();
+        if (!_game.playNextTurn(false))
+        {
+            _discarded = true;
+            _discardReason = "empty move from " + _playerNames[playerToMove] + " on turn " + std::to_string(_game.getState().getTurnNumber());
+            return;
+        }
+
         double ms = t.getElapsedTimeInMilliSec();
         _playerTotalTimeMS[playerToMove] += ms;
         _maxTimeMS[playerToMove] = std::max((size_t)ms, _maxTimeMS[playerToMove]);
@@ -39,6 +46,16 @@ void TournamentGame::playGame(size_t updateIntervalSec)
             updateTimer.start();
         }
     }
+}
+
+bool TournamentGame::wasDiscarded() const
+{
+    return _discarded;
+}
+
+const std::string & TournamentGame::getDiscardReason() const
+{
+    return _discardReason;
 }
 
 const std::string & TournamentGame::getPlayerName(const PlayerID player) const
