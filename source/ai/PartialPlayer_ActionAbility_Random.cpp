@@ -3,6 +3,33 @@
 
 using namespace Prismata;
 
+namespace
+{
+    void removeUndoUseAbilityIfProgressExists(std::vector<Action> & actions)
+    {
+        if (actions.size() <= 1)
+        {
+            return;
+        }
+
+        std::vector<Action> progressActions;
+        progressActions.reserve(actions.size());
+
+        for (size_t i(0); i<actions.size(); ++i)
+        {
+            if (actions[i].getType() != ActionTypes::UNDO_USE_ABILITY)
+            {
+                progressActions.push_back(actions[i]);
+            }
+        }
+
+        if (!progressActions.empty())
+        {
+            actions.swap(progressActions);
+        }
+    }
+}
+
 PartialPlayer_ActionAbility_Random::PartialPlayer_ActionAbility_Random(const PlayerID playerID)
 {
     _playerID = playerID;
@@ -23,6 +50,7 @@ void PartialPlayer_ActionAbility_Random::getMove(GameState & state, Move & move)
     {
         legalActions.clear();
         state.generateLegalActions(legalActions);
+        removeUndoUseAbilityIfProgressExists(legalActions);
 
         Action a = legalActions[Random::Int(legalActions.size())];
         state.doAction(a);
