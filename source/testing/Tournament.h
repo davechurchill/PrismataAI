@@ -41,7 +41,7 @@ class Tournament
     void playGame(TournamentGame & game, Timer & updateTimer);
     TournamentGame playGame(const GameState & state, const size_t whiteIndex, const size_t blackIndex) const;
     void writeHTMLResults();
-    void printResults() const;
+    void printResults();
     std::string getTimeStringFromMS(const size_t ms);
 
 public:

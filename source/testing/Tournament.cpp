@@ -389,7 +389,7 @@ void Tournament::writeHTMLResults()
     turnTable.appendHTMLTableToFile(filename, "totalScoreTable");
 }
 
-void Tournament::printResults() const
+void Tournament::printResults()
 {
     std::stringstream ss;
   
@@ -438,7 +438,13 @@ void Tournament::printResults() const
         std::cout << line.str();
     }
 
-    std::cout << "Games completed: " << _totalGamesPlayed << std::endl << std::flush;
+    const double elapsedSec = _timeElapsed.getElapsedTimeInSec();
+    const double gamesPerSec = elapsedSec > 0 ? _totalGamesPlayed / elapsedSec : 0.0;
+
+    std::stringstream rate;
+    rate << std::fixed << std::setprecision(2) << gamesPerSec;
+
+    std::cout << "Games completed: " << _totalGamesPlayed << " (" << rate.str() << "/s)" << std::endl << std::flush;
 }
 
 int Tournament::getPlayerIndex(const std::string & playerName) const
