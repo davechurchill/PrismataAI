@@ -18,12 +18,32 @@ void PartialPlayer_ActionBuy_Random::getMove(GameState & state, Move & move)
     }
 
     std::vector<Action> legalActions;
+    std::vector<Action> buyActions;
     while (state.getActivePlayer() == _playerID && state.getActivePhase() == Phases::Action)
     {
+        if (move.size() >= MAX_MOVE_ACTIONS)
+        {
+            return;
+        }
+
         legalActions.clear();
         state.generateLegalActions(legalActions);
 
-        Action a = legalActions[rand() % legalActions.size()];
+        buyActions.clear();
+        for (const Action & action : legalActions)
+        {
+            if (action.getType() == ActionTypes::BUY || action.getType() == ActionTypes::END_PHASE)
+            {
+                buyActions.push_back(action);
+            }
+        }
+
+        if (buyActions.empty())
+        {
+            return;
+        }
+
+        Action a = buyActions[rand() % buyActions.size()];
 
         // buy players should never actually end the phase, so if we chose end phase just exit
         if (a.getType() == ActionTypes::END_PHASE)

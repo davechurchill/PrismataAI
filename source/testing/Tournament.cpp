@@ -53,6 +53,23 @@ void Tournament::run()
     _draws = std::vector< std::vector<int> >(_players.size(), std::vector<int>(_players.size(), 0));
     _turns = std::vector< std::vector<int> >(_players.size(), std::vector<int>(_players.size(), 0));
 
+    size_t totalGamesExpected = 0;
+    for (size_t p1(0); p1 < _players.size(); ++p1)
+    {
+        for (size_t p2(0); p2 < _players.size(); ++p2)
+        {
+            if (_playerGroups[p1] != _playerGroups[p2])
+            {
+                totalGamesExpected += 2;
+            }
+        }
+    }
+    totalGamesExpected *= _rounds;
+
+    std::cout << "\nStarting tournament " << _name << ": " << _rounds << " rounds, "
+              << _players.size() << " players, " << totalGamesExpected
+              << " games, updates every " << _updateIntervalSec << " seconds" << std::endl;
+
     Timer t;
     t.start();
     _timeElapsed.start();
@@ -79,27 +96,31 @@ void Tournament::run()
                 TournamentGame g1(state, _players[p1], w1, _players[p2], b1);
                 TournamentGame g2(state, _players[p2], w2, _players[p1], b2);
 
-                playGame(g1);
-                playGame(g2);
-
-                if (t.getElapsedTimeInSec() > _updateIntervalSec)
-                {
-                    printResults();
-                    writeHTMLResults();
-                    printf("\n\n");
-                    t.start();
-                }
+                playGame(g1, t);
+                playGame(g2, t);
             }
         }
     }
+
+    printResults();
+    writeHTMLResults();
+    std::cout << std::endl << "Tournament complete" << std::endl;
 }
 
-void Tournament::playGame(TournamentGame & game)
+void Tournament::playGame(TournamentGame & game, Timer & updateTimer)
 {
-    game.playGame();
+    game.playGame(_updateIntervalSec);
     parseTournamentGameResult(game);
 
     _totalGamesPlayed++;
+
+    if (_updateIntervalSec == 0 || updateTimer.getElapsedTimeInSec() >= _updateIntervalSec)
+    {
+        printResults();
+        writeHTMLResults();
+        std::cout << std::endl << std::flush;
+        updateTimer.start();
+    }
 }
 
 void Tournament::parseTournamentGameResult(const TournamentGame & game)
@@ -289,6 +310,8 @@ void Tournament::printResults() const
         ss << line.str();
         std::cout << line.str();
     }
+
+    std::cout << "Games completed: " << _totalGamesPlayed << std::endl << std::flush;
 }
 
 int Tournament::getPlayerIndex(const std::string & playerName) const

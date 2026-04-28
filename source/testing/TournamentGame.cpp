@@ -1,6 +1,8 @@
 #include "TournamentGame.h"
 #include "Timer.h"
 
+#include <iostream>
+
 using namespace Prismata;
 
 TournamentGame::TournamentGame(GameState & initialState, const std::string & p1name, PlayerPtr p1, const std::string & p2name, const PlayerPtr p2)
@@ -14,9 +16,12 @@ TournamentGame::TournamentGame(GameState & initialState, const std::string & p1n
     _maxTimeMS[1] = 0;
 }
 
-void TournamentGame::playGame()
+void TournamentGame::playGame(size_t updateIntervalSec)
 {
     Timer t;
+    Timer updateTimer;
+    updateTimer.start();
+
     while(!_game.gameOver())
     {
         PlayerID playerToMove = _game.getState().getActivePlayer();   
@@ -26,6 +31,13 @@ void TournamentGame::playGame()
         double ms = t.getElapsedTimeInMilliSec();
         _playerTotalTimeMS[playerToMove] += ms;
         _maxTimeMS[playerToMove] = std::max((size_t)ms, _maxTimeMS[playerToMove]);
+
+        if (updateIntervalSec > 0 && updateTimer.getElapsedTimeInSec() >= updateIntervalSec)
+        {
+            std::cout << "  Playing " << _playerNames[0] << " vs " << _playerNames[1]
+                      << ", turn " << _game.getState().getTurnNumber() << std::endl;
+            updateTimer.start();
+        }
     }
 }
 

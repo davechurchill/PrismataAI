@@ -37,7 +37,7 @@ class Tournament
     int getPlayerIndex(const std::string & playerName) const;
     void parseResult(std::string & result);
     void parseTournamentGameResult(const TournamentGame & game);
-    void playGame(TournamentGame & game);
+    void playGame(TournamentGame & game, Timer & updateTimer);
     void writeHTMLResults();
     void printResults() const;
     std::string getTimeStringFromMS(const size_t ms);

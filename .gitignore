@@ -16,6 +16,9 @@ bin/mcds_error_log.txt
 bin/*.bsc
 bin/*.png
 bin/*.exe
+bin/Prismata_GUI
+bin/Prismata_Standalone
+bin/Prismata_Testing
 bin/*.pdb
 bin/*.ilk
 bin/*.bmp
@@ -41,3 +44,5 @@ emscripten/*.mem
 bin/graphviz/
 /visualstudio/x64
 /build/
+bin/.DS_Store
+.DS_Store

@@ -10,9 +10,13 @@ if(CMAKE_SIZEOF_VOID_P EQUAL 4)
     message(FATAL_ERROR "PrismataAI CMake builds are x64-only. Configure with a 64-bit compiler, or with -A x64 when using Visual Studio.")
 endif()
 
+set(PRISMATA_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PRISMATA_RUNTIME_OUTPUT_DIRECTORY}")
+foreach(PRISMATA_CONFIG DEBUG RELEASE RELWITHDEBINFO MINSIZEREL)
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_${PRISMATA_CONFIG} "${PRISMATA_RUNTIME_OUTPUT_DIRECTORY}")
+endforeach()
 
 option(PRISMATA_BUILD_GUI "Build the SFML GUI executable" ON)
 
@@ -71,7 +75,12 @@ target_include_directories(Prismata_Testing PRIVATE
 )
 
 if(PRISMATA_BUILD_GUI)
-    find_package(SFML 3 COMPONENTS Audio Graphics Main Network System Window REQUIRED CONFIG)
+    set(PRISMATA_SFML_COMPONENTS Audio Graphics Network System Window)
+    if(WIN32)
+        list(APPEND PRISMATA_SFML_COMPONENTS Main)
+    endif()
+
+    find_package(SFML 3 COMPONENTS ${PRISMATA_SFML_COMPONENTS} REQUIRED CONFIG)
 
     file(GLOB PRISMATA_GUI_SOURCES CONFIGURE_DEPENDS
         "${CMAKE_CURRENT_SOURCE_DIR}/source/gui/*.cpp"
@@ -83,11 +92,13 @@ if(PRISMATA_BUILD_GUI)
         Prismata_Engine
         SFML::Audio
         SFML::Graphics
-        SFML::Main
         SFML::Network
         SFML::System
         SFML::Window
     )
+    if(TARGET SFML::Main)
+        target_link_libraries(Prismata_GUI PRIVATE SFML::Main)
+    endif()
     target_include_directories(Prismata_GUI PRIVATE
         "${CMAKE_CURRENT_SOURCE_DIR}/source/gui"
     )
