@@ -810,6 +810,63 @@ PlayerPtr AIParameters::parsePlayer(const PlayerID player, const std::string & p
                                                                getMoveIterator(Players::Player_One, portfolioName),
                                                                getMoveIterator(Players::Player_Two, portfolioName)));
     }
+    else if (playerClassName == "Player_RobustRootSearch")
+    {
+        const rapidjson::Value & args = playerValue;
+
+        PRISMATA_ASSERT(args.HasMember("RootMoveIterator"), "No RobustRootSearch RootMoveIterator Found");
+        PRISMATA_ASSERT(args.HasMember("PlayoutPlayer"), "No RobustRootSearch PlayoutPlayer Found");
+
+        Player_RobustRootSearch::Parameters params;
+
+        if (args.HasMember("TimeLimit") && args["TimeLimit"].IsNumber())
+        {
+            params.timeLimitMS = args["TimeLimit"].GetDouble();
+        }
+
+        if (args.HasMember("MaxRootMoves") && args["MaxRootMoves"].IsInt())
+        {
+            params.maxRootMoves = args["MaxRootMoves"].GetInt();
+        }
+
+        if (args.HasMember("MaxResponses") && args["MaxResponses"].IsInt())
+        {
+            params.maxResponseMoves = args["MaxResponses"].GetInt();
+        }
+
+        if (args.HasMember("PlayoutTurnLimit") && args["PlayoutTurnLimit"].IsInt())
+        {
+            params.playoutTurnLimit = args["PlayoutTurnLimit"].GetInt();
+        }
+
+        if (args.HasMember("DirectWeight") && args["DirectWeight"].IsNumber())
+        {
+            params.directWeight = args["DirectWeight"].GetDouble();
+        }
+
+        if (args.HasMember("WorstResponseWeight") && args["WorstResponseWeight"].IsNumber())
+        {
+            params.worstResponseWeight = args["WorstResponseWeight"].GetDouble();
+        }
+
+        if (args.HasMember("AverageResponseWeight") && args["AverageResponseWeight"].IsNumber())
+        {
+            params.averageResponseWeight = args["AverageResponseWeight"].GetDouble();
+        }
+
+        const std::string rootIterator = args["RootMoveIterator"].GetString();
+        const std::string responseIterator = args.HasMember("ResponseMoveIterator") ? args["ResponseMoveIterator"].GetString() : rootIterator;
+        const std::string playoutPlayer = args["PlayoutPlayer"].GetString();
+
+        playerPtr = PlayerPtr(new Player_RobustRootSearch(player,
+                                                          params,
+                                                          getMoveIterator(Players::Player_One, rootIterator),
+                                                          getMoveIterator(Players::Player_Two, rootIterator),
+                                                          getMoveIterator(Players::Player_One, responseIterator),
+                                                          getMoveIterator(Players::Player_Two, responseIterator),
+                                                          parsePlayer(Players::Player_One, playoutPlayer, root),
+                                                          parsePlayer(Players::Player_Two, playoutPlayer, root)));
+    }
     else
     {
         PRISMATA_ASSERT(false, "Unknown Player Class Name: %s", playerClassName.c_str());

@@ -11,6 +11,7 @@
 #include "Player_AlphaBeta.h"
 #include "Player_StackAlphaBeta.h"
 #include "Player_PortfolioGreedySearch.h"
+#include "Player_RobustRootSearch.h"
 #include "Player_Random.h"
 #include "Player_RandomFromIterator.h"
 #include "PartialPlayer_ActionAbility_Default.h"
