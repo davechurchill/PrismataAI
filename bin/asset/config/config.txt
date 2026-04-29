@@ -168,7 +168,6 @@
     "HardAI" :              { "type":"Player_StackAlphaBeta", "TimeLimit":3000, "MaxChildren":40, "RootMoveIterator":"HardIterator_Root", "MoveIterator":"HardIterator", "Eval":"Playout", "PlayoutPlayer":"Playout"},
     "ExpertAI" :            { "type":"Player_StackAlphaBeta", "TimeLimit":1000, "MaxDepth":1, "MaxChildren":40, "RootMoveIterator":"HardIterator_Root", "MoveIterator":"HardIterator", "Eval":"Playout", "PlayoutPlayer":"Playout"},
     "PGSAI" :               { "type":"Player_PortfolioGreedySearch", "TimeLimit":1000, "ImprovementIterations":1, "Responses":1, "Portfolio":"HardIterator_Root"},
-    "DirectAI" :            { "type":"Player_DirectTacticalSearch", "TimeLimit":1000, "ActionBeam":48, "BuyCandidates":12, "AbilityCandidates":16, "TargetCandidates":8, "MaxActions":120, "EnemyThreat":true},
     "MediumAI" :            { "type":"Player_RandomFromIterator", "iterator":"HardIterator_Root" },
     "EasyAI" :              { "type":"Player_RandomFromIterator", "iterator":"EasyIterator" },
     "RandomAI" :            { "type":"Player_PPSequence", "PartialPlayers":["DefenseRandom", "ACRandom", "BuyRandom", "BreachRandom"]},
@@ -199,7 +198,7 @@
     { "run":false, "type":"PlayerBenchmark", "name":"HardAI300",   "PlayerOne":"HardAI300", "PlayerTwo":"HardAI300", "TimeLimitSec":60000, "RandomCards":8, "UpdateIntervalSec":5, "DoClickString":false, "DoUnitStats":true, "DoEvalStats":true, "DoPlayoutEvalStats":false, "DoSearchStats":true},
     { "run":false, "type":"PlayerBenchmark", "name":"UCT300",   "PlayerOne":"HardAI300UCT", "PlayerTwo":"HardAI300UCT", "TimeLimitSec":60000, "RandomCards":8, "UpdateIntervalSec":5, "DoClickString":false, "DoUnitStats":false, "DoEvalStats":false, "DoPlayoutEvalStats":false, "DoSearchStats":false},
     
-    { "run":true, "type":"Tournament", "name":"AIDifficulties", "rounds":10000, "UpdateIntervalSec":5, "Threads":8, "RandomCards":8, "players":[ {"name":"DocileAI","group":1}, {"name":"RandomAI","group":2}, {"name":"EasyAI","group":3}, {"name":"MediumAI","group":4}, {"name":"Playout","group":5},{"name":"ExpertAI","group":6},{"name":"PGSAI","group":7},{"name":"DirectAI","group":8}] },
+    { "run":true, "type":"Tournament", "name":"AIDifficulties", "rounds":10000, "UpdateIntervalSec":5, "Threads":8, "RandomCards":8, "players":[ {"name":"DocileAI","group":1}, {"name":"RandomAI","group":2}, {"name":"EasyAI","group":3}, {"name":"MediumAI","group":4}, {"name":"Playout","group":5},{"name":"ExpertAI","group":6},{"name":"PGSAI","group":7}] },
     { "run":false, "type":"Tournament", "name":"AIDifficulties", "rounds":10000, "UpdateIntervalSec":5, "Threads":8, "RandomCards":8, "players":[ {"name":"DocileAI","group":1}, {"name":"RandomAI","group":2}, {"name":"EasyAI","group":3}, {"name":"MediumAI","group":4}, {"name":"Playout","group":5}] },
     { "run":false, "type":"Tournament", "name":"HardAI", "rounds":10000, "UpdateIntervalSec":5, "RandomCards":8, "players":[ {"name":"HardAI","group":1}, {"name":"HardAIUCT","group":2}, {"name":"ExpertAI","group":3}] },
     { "run":false, "type":"Tournament", "name":"Playout", "rounds":10000, "UpdateIntervalSec":5, "RandomCards":8, "players":[ {"name":"Playout","group":1}, {"name":"PlayoutNew","group":2}] },

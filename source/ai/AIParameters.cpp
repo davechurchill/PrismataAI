@@ -810,49 +810,6 @@ PlayerPtr AIParameters::parsePlayer(const PlayerID player, const std::string & p
                                                                getMoveIterator(Players::Player_One, portfolioName),
                                                                getMoveIterator(Players::Player_Two, portfolioName)));
     }
-    else if (playerClassName == "Player_DirectTacticalSearch")
-    {
-        const rapidjson::Value & args = playerValue;
-
-        Player_DirectTacticalSearch::Parameters params;
-
-        if (args.HasMember("TimeLimit") && args["TimeLimit"].IsNumber())
-        {
-            params.timeLimitMS = args["TimeLimit"].GetDouble();
-        }
-
-        if (args.HasMember("ActionBeam") && args["ActionBeam"].IsInt())
-        {
-            params.actionBeam = args["ActionBeam"].GetInt();
-        }
-
-        if (args.HasMember("BuyCandidates") && args["BuyCandidates"].IsInt())
-        {
-            params.buyCandidates = args["BuyCandidates"].GetInt();
-        }
-
-        if (args.HasMember("AbilityCandidates") && args["AbilityCandidates"].IsInt())
-        {
-            params.abilityCandidates = args["AbilityCandidates"].GetInt();
-        }
-
-        if (args.HasMember("TargetCandidates") && args["TargetCandidates"].IsInt())
-        {
-            params.targetCandidates = args["TargetCandidates"].GetInt();
-        }
-
-        if (args.HasMember("MaxActions") && args["MaxActions"].IsInt())
-        {
-            params.maxActions = args["MaxActions"].GetInt();
-        }
-
-        if (args.HasMember("EnemyThreat") && args["EnemyThreat"].IsBool())
-        {
-            params.enemyThreat = args["EnemyThreat"].GetBool();
-        }
-
-        playerPtr = PlayerPtr(new Player_DirectTacticalSearch(player, params));
-    }
     else
     {
         PRISMATA_ASSERT(false, "Unknown Player Class Name: %s", playerClassName.c_str());
