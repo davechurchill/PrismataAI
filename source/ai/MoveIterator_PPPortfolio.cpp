@@ -110,6 +110,27 @@ void MoveIterator_PPPortfolio::addPartialPlayer(const size_t phase, const PPPtr 
     m_portfolio[phase].push_back(player);
 }
 
+size_t MoveIterator_PPPortfolio::numPartialPlayers(const size_t phase) const
+{
+    PRISMATA_ASSERT(phase < m_portfolio.size(), "Phase index out of range");
+
+    return m_portfolio[phase].size();
+}
+
+PPSequence MoveIterator_PPPortfolio::getSequence(const std::vector<size_t> & indices) const
+{
+    PRISMATA_ASSERT(indices.size() == PPPhases::NUM_PHASES, "Portfolio index sequence has wrong size");
+
+    PPSequence sequence;
+    for (size_t phase(0); phase < PPPhases::NUM_PHASES; ++phase)
+    {
+        PRISMATA_ASSERT(indices[phase] < m_portfolio[phase].size(), "Portfolio index out of range");
+        sequence.setPP(phase, m_portfolio[phase][indices[phase]]);
+    }
+
+    return sequence;
+}
+
 void MoveIterator_PPPortfolio::reset()
 {
     _hasMoreMoves = true;

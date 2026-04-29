@@ -792,6 +792,24 @@ PlayerPtr AIParameters::parsePlayer(const PlayerID player, const std::string & p
             playerPtr = PlayerPtr(new Player_StackAlphaBeta(player, params));
         }
     }
+    else if (playerClassName == "Player_PortfolioGreedySearch")
+    {
+        const rapidjson::Value & args = playerValue;
+
+        PRISMATA_ASSERT(args.HasMember("TimeLimit"), "No PGS TimeLimit Found");
+        PRISMATA_ASSERT(args.HasMember("Portfolio") || args.HasMember("MoveIterator"), "No PGS Portfolio Found");
+
+        const std::string portfolioName = args.HasMember("Portfolio") ? args["Portfolio"].GetString() : args["MoveIterator"].GetString();
+        const size_t improvementIterations = (args.HasMember("ImprovementIterations") && args["ImprovementIterations"].IsInt()) ? args["ImprovementIterations"].GetInt() : 1;
+        const size_t responses = (args.HasMember("Responses") && args["Responses"].IsInt()) ? args["Responses"].GetInt() : 1;
+
+        playerPtr = PlayerPtr(new Player_PortfolioGreedySearch(player,
+                                                               args["TimeLimit"].GetDouble(),
+                                                               improvementIterations,
+                                                               responses,
+                                                               getMoveIterator(Players::Player_One, portfolioName),
+                                                               getMoveIterator(Players::Player_Two, portfolioName)));
+    }
     else
     {
         PRISMATA_ASSERT(false, "Unknown Player Class Name: %s", playerClassName.c_str());

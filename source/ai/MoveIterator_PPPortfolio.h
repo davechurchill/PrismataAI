@@ -33,6 +33,8 @@ public:
 
     bool            generateNextChild(GameState & child, Move & movePerformed);
     void            addPartialPlayer(const size_t phase, const PPPtr & player);
+    size_t          numPartialPlayers(const size_t phase) const;
+    PPSequence      getSequence(const std::vector<size_t> & indices) const;
     void            reset();
     void            setState(const GameState & state);
     void            getRandomMove(const GameState & state, Move & move);
