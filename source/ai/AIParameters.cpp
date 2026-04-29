@@ -728,7 +728,7 @@ PlayerPtr AIParameters::parsePlayer(const PlayerID player, const std::string & p
         
         playerPtr = PlayerPtr(new Player_UCT(player, params));
     }
-    else if (playerClassName == "Player_StackAlphaBeta" || playerClassName == "Player_AlphaBeta")  
+    else if (playerClassName == "Player_StackAlphaBeta" || playerClassName == "Player_AlphaBeta" || playerClassName == "Player_RootParallelAlphaBeta")
     { 
         const rapidjson::Value & args = playerValue;
 
@@ -790,6 +790,10 @@ PlayerPtr AIParameters::parsePlayer(const PlayerID player, const std::string & p
         else if (playerClassName == "Player_StackAlphaBeta")
         {
             playerPtr = PlayerPtr(new Player_StackAlphaBeta(player, params));
+        }
+        else if (playerClassName == "Player_RootParallelAlphaBeta")
+        {
+            playerPtr = PlayerPtr(new Player_RootParallelAlphaBeta(player, params));
         }
     }
     else if (playerClassName == "Player_PortfolioGreedySearch")

@@ -62,6 +62,8 @@ public:
     const AlphaBetaSearchSaveState & getSaveState() const { return _saveState; }
     MoveIteratorPtr & getMoveIterator(const PlayerID p) { return _moveIterators[p]; }
     MoveIteratorPtr & getRootMoveIterator(const PlayerID p) { return _rootMoveIterators[p]; }
+    const MoveIteratorPtr & getMoveIterator(const PlayerID p) const { return _moveIterators[p]; }
+    const MoveIteratorPtr & getRootMoveIterator(const PlayerID p) const { return _rootMoveIterators[p]; }
 
     void setSearchMethod(const int & method) { _searchMethod = method; }
     void setMaxPlayer(const PlayerID player) { _maxPlayer = player; }

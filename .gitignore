@@ -46,3 +46,4 @@ bin/graphviz/
 /build/
 bin/.DS_Store
 .DS_Store
+root_parallel_alpha_beta_report.html
